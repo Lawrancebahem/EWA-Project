@@ -1,0 +1,9 @@
+nav{
+    background-color: var(--color-orange);
+}
+h2{
+    font-style: italic;
+    color: var(--white);
+    margin: 0;
+
+}
