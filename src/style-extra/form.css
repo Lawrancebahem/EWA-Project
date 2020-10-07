@@ -1,0 +1,70 @@
+.form--container{
+    background: rgba(249,249,249,0.85);
+    border: 1px solid rgba(186,186,186,0.85);
+    padding: 20px;
+    border-radius: 1rem;
+}
+
+.form--input, .form--textarea, .form--radio, .form--select{
+    margin-bottom: 1rem;
+}
+
+.form--input input{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--color-black);
+    width: 100%;
+    padding: 5px 0;
+    text-indent: 8px;
+    border: 1px solid var(--color-black);
+    background-color: #ffffff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form--input span, .form--textarea span, .form--select span, .form--radio .form--radio--title{
+    font-family: 'Open Sans', sans-serif;
+    color: var(--color-black);
+    font-size: .8rem;
+    display:block;
+    padding-bottom: 5px;
+}
+
+.form--search input{
+    font-size: 1rem;
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    padding: 1rem;
+    padding-left: 3rem;
+    color: var(--color-black);
+    background-color: #eee;
+    border: none;
+}
+
+/*error*/
+.form--input .error{
+    color: red;
+    padding: .5rem .5rem 0 .5rem;
+    font-style: italic;
+}
+
+.form--select select{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--color-black);
+    width: 100%;
+    padding: 5px 0;
+    text-indent: 8px;
+    border: 1px solid var(--color-black);
+    background-color: #ffffff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form--link:hover{
+    cursor: pointer;
+    color: var(--color-red);
+}

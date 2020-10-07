@@ -1,0 +1,18 @@
+.login_blok{
+    transition: box-shadow .2s ease;
+    padding: 2rem;
+    background-color: var(--color-white);
+    margin-top: -5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 3px 3px 7px 1px rgba(0,0,0,0.22);
+}
+
+.login_blok:hover{
+    box-shadow: 3px 3px 7px 1px rgba(0,0,0,0.4);
+}
+
+@media only screen and (max-width: 48em){
+    .login_blok{
+        margin:0;
+    }
+}

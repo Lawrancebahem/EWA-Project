@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
-
+@import "style-extra/buttons.css";
+@import "style-extra/form.css";
+@import "style-extra/grid.css";
 :root{
     --color-black: #232323;
     --color-grey: #9e9e9e;
@@ -11,6 +13,19 @@
     --color-orange: #EBA250;
 
     --font-size: 1.2rem;
+
+
+    /*RESPONSIVE SIZES (Not working with media queries) */
+    --media_XS:         20em; /* Extra Small Devices               320px    */
+    --media_S:          30em; /* Small Devices, Phones             480px    */
+    --media_M:          48em; /* Medium Devices, Tablets           768px    */
+    --media_L:          62em; /* Large Devices, Desktops           992px    */
+    --media_XL:         80em; /* Extra Large Devices, Wide Screens 1280px   */
+
+    /*OTHER VARIABLES*/
+    --border-radius:    1rem;
+    --font-size-text:   1rem;
+    --font-family-text: 'Open Sans', sans-serif;
 }
 
 p, span, li{
@@ -23,6 +38,7 @@ ul{
     padding: 0;
     list-style-type: none;
 }
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
