@@ -10,3 +10,17 @@
     margin: 0 auto;
     z-index: -1;
 }
+
+#carouselExampleSlidesOnly {
+    max-height: 510px;
+}
+
+/************--  media query's  --************/
+
+@media screen and(max-width: 475px) {
+    #carouselExampleSlidesOnly {
+        max-height: 175px;
+    }
+
+
+}
