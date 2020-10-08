@@ -6,9 +6,9 @@ import {HomeComponent} from "./components/mainpage/home/home.component";
 import {NavBarComponent} from "./components/mainpage/nav-bar/nav-bar.component";
 
 const routes: Routes = [
-  {path:"", component: HomeComponent},
-  {path:"register", component: RegisterComponent},
-  {path:"login", component: LoginComponent},
+  {path:'', redirectTo: 'login', pathMatch: 'full'},
+  {path:'login', component: LoginComponent},
+  {path:'register', component:RegisterComponent}
 ];
 
 @NgModule({

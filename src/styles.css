@@ -11,7 +11,6 @@
 
     --font-size: 1.2rem;
 
-
     /*RESPONSIVE SIZES (Not working with media queries) */
     --media_XS:         20em; /* Extra Small Devices               320px    */
     --media_S:          30em; /* Small Devices, Phones             480px    */

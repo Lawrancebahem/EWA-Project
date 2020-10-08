@@ -1,7 +1,12 @@
 @import "../../../../style-extra/form.css";
 @import "../../../../style-extra/buttons.css";
 @import "../../../../style-extra/grid.css";
-
+.header{
+    background-color: var(--color-orange);
+}
+.digital-life-title{
+    color: var(--color-white);
+}
 .upload_picture{
     width: 100px;
     height: 100px;
@@ -30,18 +35,12 @@
     grid-gap: 2rem;
 }
 
-.description-interests {
-    display: grid;
-    justify-content: center;
-    font-family: Arial, serif;
-    font-size: 25px;
-}
 
 .interest--image{
     height: 150px;
     box-sizing: border-box;
     border-radius: var(--border-radius);
-    border: 0px solid transparent;
+    border: 0 solid transparent;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
