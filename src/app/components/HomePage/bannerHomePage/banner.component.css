@@ -1,0 +1,12 @@
+.carousel-inner {
+    max-height: 600px;
+}
+
+.carousel-inner {
+    left: 50%;
+    transform: translate(-50%, -15%);
+    min-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    z-index: -1;
+}
