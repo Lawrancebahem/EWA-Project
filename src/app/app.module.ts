@@ -10,6 +10,7 @@ import {ZoekbalkHomePageComponent} from './components/HomePage/search-home-page/
 import {ActivitiesHomePageComponent} from './components/HomePage/activities-home-page/activities-home-page.component';
 import {RegisterComponent} from "./components/mainpage/register/register.component";
 import {LoginComponent} from "./components/mainpage/login/login.component";
+import {CategorypageComponent} from "./components/categorypage/categorypage/categorypage.component";
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import {LoginComponent} from "./components/mainpage/login/login.component";
         ZoekbalkHomePageComponent,
         ActivitiesHomePageComponent,
         RegisterComponent,
-        LoginComponent
+        LoginComponent,
+        CategorypageComponent
     ],
     imports: [
         BrowserModule,
