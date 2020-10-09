@@ -59,7 +59,7 @@ img{
     transform: translateY(-10px);
     cursor: pointer;
     transition: .2s;
-    background-color: var(--color-lightgrey);
+    background-color: var(--color-grey);
 }
 
 
