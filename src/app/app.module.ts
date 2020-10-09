@@ -11,6 +11,7 @@ import {ActivitiesHomePageComponent} from './components/HomePage/activities-home
 import {RegisterComponent} from "./components/mainpage/register/register.component";
 import {LoginComponent} from "./components/mainpage/login/login.component";
 import {CategorypageComponent} from "./components/categorypage/categorypage/categorypage.component";
+import { HomeComponent } from './components/HomePage/home/home.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import {CategorypageComponent} from "./components/categorypage/categorypage/cate
         ActivitiesHomePageComponent,
         RegisterComponent,
         LoginComponent,
-        CategorypageComponent
+        CategorypageComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,

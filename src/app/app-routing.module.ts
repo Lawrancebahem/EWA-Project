@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {RegisterComponent} from "./components/mainpage/register/register.component";
 import {LoginComponent} from "./components/mainpage/login/login.component";
-import {NavBarComponent} from "./components/mainpage/nav-bar/nav-bar.component";
+import {HomeComponent} from "./components/HomePage/home/home.component";
 
 const routes: Routes = [
-  {path:'', redirectTo: 'login', pathMatch: 'full'},
+  {path:'', redirectTo: 'home', pathMatch: 'full'},
+  {path:'home', component: HomeComponent},
   {path:'login', component: LoginComponent},
   {path:'register', component:RegisterComponent}
 ];
