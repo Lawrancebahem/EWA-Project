@@ -1,0 +1,26 @@
+.carousel-inner {
+    max-height: 600px;
+}
+
+.carousel-inner {
+    left: 50%;
+    transform: translate(-50%, -15%);
+    min-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    z-index: -1;
+}
+
+#carouselExampleSlidesOnly {
+    max-height: 510px;
+}
+
+/************--  media query's  --************/
+
+@media screen and(max-width: 475px) {
+    #carouselExampleSlidesOnly {
+        max-height: 175px;
+    }
+
+
+}
