@@ -12,6 +12,7 @@ import {RegisterComponent} from "./components/mainpage/register/register.compone
 import {LoginComponent} from "./components/mainpage/login/login.component";
 import {CategorypageComponent} from "./components/categorypage/categorypage/categorypage.component";
 import { HomeComponent } from './components/HomePage/home/home.component';
+import { ActivitywandelenComponent } from './components/activitypages/activitywandelen/activitywandelen.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { HomeComponent } from './components/HomePage/home/home.component';
         RegisterComponent,
         LoginComponent,
         CategorypageComponent,
-        HomeComponent
+        HomeComponent,
+        ActivitywandelenComponent
     ],
     imports: [
         BrowserModule,
