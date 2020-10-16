@@ -17,10 +17,20 @@
 
 /************--  media query's  --************/
 
-@media screen and(max-width: 475px) {
-    #carouselExampleSlidesOnly {
-        max-height: 175px;
+@media screen  and (max-width: 1120px) {
+    #carouselExampleSlidesOnly{
+        max-height: 340px;
     }
+}
 
+@media screen  and (max-width: 748px) {
+    #carouselExampleSlidesOnly{
+        max-height: 220px;
+    }
+}
 
+@media screen  and (max-width: 486px) {
+    #carouselExampleSlidesOnly{
+        max-height: 140px;
+    }
 }
