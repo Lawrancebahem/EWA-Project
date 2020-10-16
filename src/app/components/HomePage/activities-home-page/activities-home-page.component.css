@@ -1,0 +1,35 @@
+.row.row-cols-1.row-cols-md-3 {
+    margin: auto;
+    padding: 40px;
+}
+.col.mb-4 {
+    display: flex;
+}
+
+.card {
+    width: 500px;
+    justify-content: space-between;
+}
+
+.col.mb-4:nth-child(1) .card {
+    height: 418px;
+}
+
+@media screen and (max-width: 1640px) {
+    .row.row-cols-1.row-cols-md-3 {
+        padding: 0px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .col.mb-4 {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    #carouselExampleSlidesOnly {
+        max-height: 280px;
+    }
+
+}

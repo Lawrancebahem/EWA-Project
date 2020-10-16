@@ -63,8 +63,19 @@ img{
 }
 
 
-@media screen and (max-width: 560px) {
+
+@media screen and (max-width: 62em){
+    .col.mb-4 {
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 560px) {
     .activity {
         width: 90%;
+    }
+
+    .col.mb-4 {
+        padding: 0;
     }
 }
