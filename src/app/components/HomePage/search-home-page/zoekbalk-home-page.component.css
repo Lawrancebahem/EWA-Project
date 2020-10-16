@@ -15,6 +15,12 @@
   margin: 25px auto;
 }
 
+@media screen  and (max-width: 850px){
+  .form-inline{
+    flex-direction: column;
+  }
 
-
-
+  label {
+    padding-top: 12px;
+  }
+}

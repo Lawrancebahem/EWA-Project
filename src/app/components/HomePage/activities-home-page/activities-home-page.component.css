@@ -15,9 +15,9 @@
     height: 418px;
 }
 
-@media screen and (max-width: 1640px) {
-    .row.row-cols-1.row-cols-md-3 {
-        padding: 0px;
+@media screen and (max-width: 1124px) {
+    #carouselExampleSlidesOnly {
+        max-height: 340px;
     }
 }
 
@@ -27,9 +27,3 @@
     }
 }
 
-@media screen and (max-width: 1024px){
-    #carouselExampleSlidesOnly {
-        max-height: 280px;
-    }
-
-}
