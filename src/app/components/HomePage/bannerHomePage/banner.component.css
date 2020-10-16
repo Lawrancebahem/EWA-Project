@@ -1,36 +1,38 @@
 .carousel-inner {
-    max-height: 600px;
+  max-height: 600px;
 }
 
 .carousel-inner {
-    left: 50%;
-    transform: translate(-50%, -15%);
-    min-width: 100%;
-    height: auto;
-    margin: 0 auto;
-    z-index: -1;
+  left: 50%;
+  transform: translate(-50%, -15%);
+  min-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  z-index: -1;
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
 }
 
 #carouselExampleSlidesOnly {
-    max-height: 510px;
+  max-height: 510px;
 }
 
 /************--  media query's  --************/
 
 @media screen  and (max-width: 1120px) {
-    #carouselExampleSlidesOnly{
-        max-height: 340px;
-    }
+  #carouselExampleSlidesOnly {
+    max-height: 340px;
+  }
 }
 
 @media screen  and (max-width: 748px) {
-    #carouselExampleSlidesOnly{
-        max-height: 220px;
-    }
+  #carouselExampleSlidesOnly {
+    max-height: 220px;
+  }
 }
 
 @media screen  and (max-width: 486px) {
-    #carouselExampleSlidesOnly{
-        max-height: 140px;
-    }
+  #carouselExampleSlidesOnly {
+    max-height: 140px;
+  }
 }

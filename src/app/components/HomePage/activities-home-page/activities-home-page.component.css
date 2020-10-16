@@ -1,19 +1,18 @@
-.row.row-cols-1.row-cols-md-3 {
-    margin: auto;
-    padding: 40px;
+.row.row-cols-1.row-cols-md-2 {
+   margin: 1rem;
 }
 .col.mb-4 {
     display: flex;
 }
 
-.card {
-    width: 500px;
-    justify-content: space-between;
-}
+/*.card {*/
+/*    width: 500px;*/
+/*    justify-content: space-between;*/
+/*}*/
 
-.col.mb-4:nth-child(1) .card {
-    height: 418px;
-}
+/*.col.mb-4:nth-child(1) .card {*/
+/*    height: 418px;*/
+/*}*/
 
 @media screen and (max-width: 1124px) {
     #carouselExampleSlidesOnly {
