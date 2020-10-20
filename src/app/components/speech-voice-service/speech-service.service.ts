@@ -66,6 +66,17 @@ export class SpeechServiceService {
         // routerService.navigate(['/login'], { skipLocationChange: true });
         routerService.navigate(['/login']);
       });
+    }else if (text === "zwart"){
+      document.documentElement.style.setProperty('--color-default', 'black');
+    }else if (text === "rood"){
+      document.documentElement.style.setProperty('--color-default', 'red');
+    }else if (text === "groen"){
+      document.documentElement.style.setProperty('--color-default', 'green');
+    }
+    else if (text === "geel"){
+      document.documentElement.style.setProperty('--color-default', 'yellow');
+    } else if (text === "blauw"){
+      document.documentElement.style.setProperty('--color-default', 'blue');
     }
   }
 }

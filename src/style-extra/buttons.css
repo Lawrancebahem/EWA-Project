@@ -28,7 +28,7 @@
 }
 
 .button--primary{
-    background-color: var(--color-grey-);
+    background-color: var(--color-default);
     color: var(--color-white);
 }
 .button--primary .fa{
