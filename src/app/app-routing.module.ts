@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {RegisterComponent} from "./components/mainpage/register/register.component";
 import {LoginComponent} from "./components/mainpage/login/login.component";
-import {HomeComponent} from "./components/HomePage/home/home.component";
 import {ActivitywandelenComponent} from "./components/activitypages/activitywandelen/activitywandelen.component";
 import {CategorypageComponent} from "./components/categorypage/categorypage/categorypage.component";
 import {ActivitiesHomePageComponent} from "./components/HomePage/activities-home-page/activities-home-page.component";
@@ -13,7 +12,7 @@ const routes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'register', component:RegisterComponent},
   {path:'activities', component:ActivitywandelenComponent},
-  {path:'category', component:CategorypageComponent}
+  {path:'category', component:CategorypageComponent},
 ];
 
 @NgModule({

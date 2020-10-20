@@ -11,8 +11,11 @@ import {ActivitiesHomePageComponent} from './components/HomePage/activities-home
 import {RegisterComponent} from "./components/mainpage/register/register.component";
 import {LoginComponent} from "./components/mainpage/login/login.component";
 import {CategorypageComponent} from "./components/categorypage/categorypage/categorypage.component";
-import { HomeComponent } from './components/HomePage/home/home.component';
 import { ActivitywandelenComponent } from './components/activitypages/activitywandelen/activitywandelen.component';
+import {HttpClientModule} from "@angular/common/http";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatIconModule} from "@angular/material/icon";
+import {SpeechServiceService} from "./components/speech-voice-service/speech-service.service";
 
 @NgModule({
     declarations: [
@@ -25,14 +28,17 @@ import { ActivitywandelenComponent } from './components/activitypages/activitywa
         RegisterComponent,
         LoginComponent,
         CategorypageComponent,
-        HomeComponent,
-        ActivitywandelenComponent
+        ActivitywandelenComponent,
+
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatIconModule,
     ],
-    providers: [],
+    providers: [SpeechServiceService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SpeechServiceService} from "../../speech-voice-service/speech-service.service";
+import * as annyang from 'annyang';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public speechService:SpeechServiceService) { }
 
   ngOnInit(): void {
+    annyang.setLanguage(this.speechService.languages[0])
   }
 
 }
