@@ -1,5 +1,5 @@
 import {Injectable, Injector, NgZone} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import * as annyang from 'annyang';
 
 @Injectable({

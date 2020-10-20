@@ -5,10 +5,11 @@
 .login_blok{
     transition: box-shadow .2s ease;
     padding: 2rem;
-    background-color: var(--color-white);
+    background-color: var(--color-default);
     margin-top: -5rem;
     border-radius: var(--border-radius);
     box-shadow: 3px 3px 7px 1px rgba(0,0,0,0.22);
+    color: white;
 }
 
 .login_blok:hover{

@@ -1,10 +1,11 @@
 .carousel-inner {
-  max-height: 600px;
+  max-height: 250px;
+  /*max-height: 600px;*/
 }
 
 .carousel-inner {
   left: 50%;
-  transform: translate(-50%, -15%);
+  transform: translate(-50%, -.1%);
   min-width: 100%;
   height: auto;
   margin: 0 auto;
@@ -14,14 +15,14 @@
 }
 
 #carouselExampleSlidesOnly {
-  max-height: 510px;
+  max-height: 250px;
 }
 
 /************--  media query's  --************/
 
 @media screen  and (max-width: 1120px) {
   #carouselExampleSlidesOnly {
-    max-height: 340px;
+    max-height: 250px;
   }
 }
 
