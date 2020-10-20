@@ -1,81 +1,63 @@
 header {
-    width: 100%;
-    height: 30%;
-    background-image: linear-gradient(to bottom, rgba(220,220,220,0.7) 0%,rgba(220,220,220,0.7) 100%),
-    url("src/assets/Images/fall background.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
-    margin: -5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 30%;
+  background-image: linear-gradient(to bottom, rgba(220,220,220,0.7) 0%,rgba(220,220,220,0.7) 100%),
+  url("src/assets/Images/fall background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  margin: -5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
 header h1 {
-    font-size: 70px;
-    text-shadow: 0 0 20px white;
+  font-size: 70px;
+  text-shadow: 0 0 20px white;
 }
 
 img{
-    size: auto;
+  size: auto;
 }
 
 .activity-overview {
-    box-sizing: border-box;
+  box-sizing: border-box;
 
 }
 
 .activity {
-    float: left;
-    width: 273px;
-    height: 300px;
-    border: 1px solid var(--color-grey);
-    padding: 0;
-    margin: 15px;
-    box-sizing: border-box;
+  float: left;
+  border: 1px solid var(--color-grey-);
+  padding: 0;
+  margin: 15px;
+  box-sizing: border-box;
 }
 
-.activity-image {
-    position: center;
-    width: 100%;
-    height: 125px;
+
+.card-title {
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+  position: center;
 }
 
-.activity-title {
-    padding: 5px;
-    width: 100%;
-    position: center;
-}
-
-.activity-description{
-    opacity: .5;
-    padding: 5px;
-    font-size: 13px;
+.card-text{
+  opacity: .5;
+  padding: 5px;
 }
 
 .activity:hover {
-    transform: translateY(-10px);
-    cursor: pointer;
-    transition: .2s;
-    background-color: var(--color-grey);
+  transform: translateY(-10px);
+  cursor: pointer;
+  transition: .2s;
+  background-color: var(--color-grey-);
 }
 
 
-
-@media screen and (max-width: 62em){
-    .col.mb-4 {
-        padding: 0;
-    }
-}
-
-@media only screen and (max-width: 560px) {
-    .activity {
-        width: 90%;
-    }
-
-    .col.mb-4 {
-        padding: 0;
-    }
+@media screen and (max-width: 767px) {
+  .activity {
+    width: 90%;
+  }
 }

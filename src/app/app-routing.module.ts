@@ -5,10 +5,11 @@ import {LoginComponent} from "./components/mainpage/login/login.component";
 import {HomeComponent} from "./components/HomePage/home/home.component";
 import {ActivitywandelenComponent} from "./components/activitypages/activitywandelen/activitywandelen.component";
 import {CategorypageComponent} from "./components/categorypage/categorypage/categorypage.component";
+import {ActivitiesHomePageComponent} from "./components/HomePage/activities-home-page/activities-home-page.component";
 
 const routes: Routes = [
   {path:'', redirectTo: 'home', pathMatch: 'full'},
-  {path:'home', component: HomeComponent},
+  {path:'home', component: ActivitiesHomePageComponent},
   {path:'login', component: LoginComponent},
   {path:'register', component:RegisterComponent},
   {path:'activities', component:ActivitywandelenComponent},
