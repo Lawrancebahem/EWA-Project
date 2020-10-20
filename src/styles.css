@@ -3,11 +3,11 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 :root{
     --color-black: #232323;
-    --color-grey: #9e9e9e;
+    /*--color-grey: #9e9e9e;*/
     --color-red: #c3363b;
     --color-white: #fffeec;
     --color-blue: #45b3e0;
-    --color-orange: #EBA250;
+    --color-grey-: grey;
 
     --font-size: 1.2rem;
 

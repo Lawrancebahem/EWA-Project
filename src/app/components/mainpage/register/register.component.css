@@ -2,7 +2,7 @@
 @import "../../../../style-extra/buttons.css";
 @import "../../../../style-extra/grid.css";
 .header{
-    background-color: var(--color-orange);
+    background-color: var(--color-grey-);
 }
 .digital-life-title{
     color: var(--color-white);
@@ -47,7 +47,7 @@
     margin-bottom: .5rem;
 }
 .interest input:checked ~ .interest--image{
-    border: 10px solid var(--color-orange);
+    border: 10px solid var(--color-grey-);
 }
 
 .interest input:checked ~ .interest--checked{

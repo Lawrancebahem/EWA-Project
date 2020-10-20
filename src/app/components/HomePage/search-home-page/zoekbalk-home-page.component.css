@@ -1,5 +1,5 @@
 .container-fluid{
-  background-color: darkgrey;
+  background-color: var(--color-grey-);
   padding: 1rem;
 }
 
