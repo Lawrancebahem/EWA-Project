@@ -25,6 +25,7 @@ export class SpeechServiceService {
     constructor(private ngZone: NgZone, private router: Router, private injector: Injector) {
         this.utterance.lang = 'nl-NL';
         if (!this.introduced) {
+            console.log("Jaaa")
             this.speak("Hello mijn naam is dagje uit, om te navigeren in de applicatie of om de kleuren " +
                 "te wijzigen, kunt u gebruik maken van de spraak functie links bovenin")
             this.introduced = true;
