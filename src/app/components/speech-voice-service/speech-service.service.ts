@@ -178,19 +178,19 @@ export class SpeechServiceService {
 
         } else if (text === "zwart") {
             document.documentElement.style.setProperty('--color-default', 'black');
-            this.speak("De kleur is geactiveerd")
+            this.speak("De kleur zwart is geactiveerd")
         } else if (text === "rood") {
             document.documentElement.style.setProperty('--color-default', 'red');
-            this.speak("De kleur is geactiveerd")
+            this.speak("De kleur rood is geactiveerd")
         } else if (text === "groen") {
             document.documentElement.style.setProperty('--color-default', 'green');
-            this.speak("De kleur is geactiveerd")
+            this.speak("De kleur groen is geactiveerd")
         } else if (text === "geel") {
             document.documentElement.style.setProperty('--color-default', 'yellow');
-            this.speak("De kleur is geactiveerd")
+            this.speak("De kleur geel is geactiveerd")
         } else if (text === "blauw") {
             document.documentElement.style.setProperty('--color-default', 'blue');
-            this.speak("De kleur is geactiveerd")
+            this.speak("De kleur blauw is geactiveerd")
         }
     }
 
