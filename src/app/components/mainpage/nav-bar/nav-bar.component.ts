@@ -15,4 +15,5 @@ export class NavBarComponent implements OnInit {
     annyang.setLanguage(this.speechService.languages[0])
   }
 
+
 }

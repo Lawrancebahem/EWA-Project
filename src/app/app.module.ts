@@ -38,7 +38,7 @@ import {SpeechServiceService} from "./components/speech-voice-service/speech-ser
         BrowserAnimationsModule,
         MatIconModule,
     ],
-    providers: [SpeechServiceService],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {
