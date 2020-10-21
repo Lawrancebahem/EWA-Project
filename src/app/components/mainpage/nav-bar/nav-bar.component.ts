@@ -8,11 +8,17 @@ import * as annyang from 'annyang';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+    isLoggedIn: boolean;
 
-  constructor(public speechService:SpeechServiceService) { }
+  constructor(public speechService:SpeechServiceService) {
+
+  }
 
   ngOnInit(): void {
     annyang.setLanguage(this.speechService.languages[0])
+
+
+
   }
 
 

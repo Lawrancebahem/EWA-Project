@@ -56,7 +56,7 @@ export class SpeechServiceService {
         });
         let command = this.checkPhrase(this.phrases);
         console.log('I think the user said: ' + command);
-        if (command !== ""){
+        if (command !== "") {
             this.reactOnSpeech(command)
             annyang.abort();
         }
@@ -191,6 +191,8 @@ export class SpeechServiceService {
         } else if (text === "blauw") {
             document.documentElement.style.setProperty('--color-default', 'blue');
             this.speak("De kleur blauw is geactiveerd")
+        } else {
+            this.speak("Ik begrijp niet helemaal wat u bedoelt")
         }
     }
 
@@ -204,8 +206,6 @@ export class SpeechServiceService {
         this.utterance.text = message;
         this.previousMessage = message;
         this.synthesis.speak(this.utterance);
-        // this.synthesis.cancel();
-
         // this.synthesis.cancel();
     }
 }

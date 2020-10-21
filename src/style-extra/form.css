@@ -66,5 +66,8 @@
 
 .form--link:hover{
     cursor: pointer;
-    color: var(--color-red);
+    color: var(--color-black);
+}
+.form--link{
+    color: var(--color-blue);
 }
