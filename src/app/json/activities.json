@@ -1,0 +1,44 @@
+[
+  {
+    "image": "wandeling.jpg",
+    "activityTitle": "wandelen",
+    "description": "In de herfst komen de mooiste kleuren van de natuur naar buiten. Daarom is het de perfecte gelegenheid om met goed weer een wandeling te maken door bijvoorbeeld een bos.",
+    "categories": [
+      "herfst",
+      "wandelen",
+      "avontuur"
+    ],
+    "location": "overal"
+  },
+  {
+    "image": "muiderslot.jpg",
+    "activityTitle": "Het Muiderslot",
+    "description": "Vlakbij Amsterdam ligt al ruim 700 jaar het stoere Muiderslot, omringd door water en kasteeltuinen. Het is een van de oudste én best bewaarde kastelen van Nederland. Gebouwd met één doel: de verdediging. Het kasteel uit 1285 kent een lange en roerige geschiedenis. Dwaal rond en ontdek hoe de vijand werd tegengewerkt en hoe vroeger het leven was op een kasteel.",
+    "categories": [
+      "herfst",
+      "wandelen",
+      "avontuur"
+    ],
+    "location": "Muiden"
+  },
+  {
+    "image": "pompoen.jpg",
+    "activityTitle": "pompoen uithollen",
+    "description": "Eerst zoek je een mooie pompoen uit, dan maak je een ontwerp van hoe jouw pompoen eruit moet gaan zien, en dan … dan komt het zware werk: het uithollen. Als je klaar bent, is er een korte pauze met een limonade én een zakje chips. Tijd voor de laatste en leukste klus: het maken van je pompoengezicht. Het uitsnijden gaat met het speciale gereedschap gelukkig heel makkelijk en veilig. Lichtje erin en Klaar!",
+    "categories": [
+      "halloween",
+      "thuis"
+    ],
+    "location": "thuis"
+  },
+  {
+    "image": "mini-halloween.jpg",
+    "activityTitle": "Mini-Halloween: Speuren naar spinnetjes en pompoentjes",
+    "description": "Herfst en Halloween. In Miniworld betekent dit HELP. Reusachtige spinnen en pompoenen zijn neergedaald in onze miniatuurwereld? Help jij mee deze te vinden? Dan kunnen onze mini-bewoners weer rustig slapen",
+    "categories": [
+      "halloween",
+      "herfst"
+    ],
+    "location": "Rotterdam"
+  }
+]

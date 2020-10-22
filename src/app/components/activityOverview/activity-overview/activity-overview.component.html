@@ -1,0 +1,15 @@
+<header id="header">
+    <h1>Herfst</h1>
+</header>
+
+<div class="activity-overview row-cols-1 row-cols-md-3">
+    <div class="activity col mb-4" *ngFor="let activity of activityArray">
+        <img class="card-img-top" src="../../../../assets/Images/activityImage/{{activity.image}}" alt="{{activity.activityTitle}}">
+        <h4 class="card-title">
+            {{ activity.activityTitle}}
+        </h4>
+        <p class="card-text">
+            {{activity.description}}
+        </p>
+    </div>
+</div>
