@@ -1,11 +1,6 @@
 header {
     width: 100%;
     height: 30%;
-    /*background-image: linear-gradient(to bottom, rgba(220,220,220,0.7) 0%,rgba(220,220,220,0.7) 100%),*/
-    /*url("src/assets/Images/fall background.jpg");*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: center;*/
-    /*background-size: 100%;*/
     margin: -5px;
     display: flex;
     justify-content: center;
@@ -19,7 +14,20 @@ header h1 {
 }
 
 img{
-    size: auto;
+    height: 350px;
+    width: 100%;
+}
+
+.btn{
+    float: left;
+    margin: 1px;
+    background-color: var(--color-default);
+    border-color: var(--color-black);
+    box-sizing: border-box;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active{
+    background-color: var(--color-blue);
 }
 
 .activity-overview {
@@ -27,15 +35,22 @@ img{
 }
 
 .activity {
-    float: left;
+    float: right;
     border: 1px solid var(--color-default);
     padding: 0;
-    margin: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
     box-sizing: border-box;
     box-shadow: 5px 5px 5px var(--color-default);
-
+    max-width: 35%;
 }
 
+.activity:hover {
+    transform: translateY(-10px);
+    cursor: pointer;
+    transition: .2s;
+    background-color: var(--color-default);
+}
 
 .card-title {
     padding: 5px;
@@ -49,11 +64,9 @@ img{
     padding: 5px;
 }
 
-.activity:hover {
-    transform: translateY(-10px);
-    cursor: pointer;
-    transition: .2s;
-    background-color: var(--color-default);
+.filterlist{
+    max-width: 25%;
+    max-height: 100%;
 }
 
 
