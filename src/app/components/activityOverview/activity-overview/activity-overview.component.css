@@ -1,11 +1,11 @@
 header {
     width: 100%;
     height: 30%;
-    background-image: linear-gradient(to bottom, rgba(220,220,220,0.7) 0%,rgba(220,220,220,0.7) 100%),
-    url("src/assets/Images/fall background.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
+    /*background-image: linear-gradient(to bottom, rgba(220,220,220,0.7) 0%,rgba(220,220,220,0.7) 100%),*/
+    /*url("src/assets/Images/fall background.jpg");*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+    /*background-size: 100%;*/
     margin: -5px;
     display: flex;
     justify-content: center;
