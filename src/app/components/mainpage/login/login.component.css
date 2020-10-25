@@ -1,3 +1,7 @@
+/*@import "../../../../style-extra/form.css";*/
+/*@import "../../../../style-extra/buttons.css";*/
+/*@import "../../../../style-extra/grid.css";*/
+
 .login_blok{
     transition: box-shadow .2s ease;
     padding: 2rem;
@@ -12,6 +16,47 @@
     box-shadow: 3px 3px 7px 1px rgba(0,0,0,0.4);
 }
 
+
+.post-thumbnail--image{
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px;
+}
+
+.container-activity-thumbnails{
+    grid-template-columns: repeat(3, 1fr);
+    transition: background 0.2s;
+    background: linear-gradient(to top, var(--color-default) 5%, transparent 50%);
+    position: relative;
+    min-height: 200px;
+    padding: 1rem;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.activity-thumbnail--image {
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.activity-thumbnail h3{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    padding: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    color: var(--color-white);
+    font-size: 1.4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
 .text_1{
     display: block;
     font-style: var(--font-family-text);
