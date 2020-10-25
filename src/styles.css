@@ -2,6 +2,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "style-extra/buttons.css";
+@import "style-extra/grid.css";
+@import "style-extra/form.css";
 :root{
     --color-black: #232323;
     /*--color-grey: #9e9e9e;*/

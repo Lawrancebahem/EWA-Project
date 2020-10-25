@@ -11,17 +11,8 @@
     margin-bottom: 2rem;
 }
 
-.container--post{
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 0;
-    border-radius: var(--border-radius);
-    /*CHECK THIS SHADOW*/
-    box-shadow: 3px 3px 7px 1px rgba(0,0,0,0.22);
-}
 
-.container--post-thumbnails{
-    grid-template-columns: repeat(3, 1fr);
-}
+
 
 .account-completion{
     display: grid;
@@ -57,12 +48,6 @@
 }
 
 
-.grid--menu{
-    display:grid;
-    grid-template-columns: 2fr 1fr 2fr;
-    padding: 0 1rem;
-    align-items: center;
-}
 .gallery--grid {
     display: grid;
     justify-content: center;
@@ -118,7 +103,7 @@
     }
 }
 @media only screen and (max-width: 48em){
-    .container--post-thumbnails{
+    .container-activity-thumbnails{
         grid-template-columns: 1fr;
     }
 }

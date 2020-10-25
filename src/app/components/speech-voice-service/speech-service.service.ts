@@ -140,7 +140,10 @@ export class SpeechServiceService {
             return "geel"
         } else if (text.toLowerCase() === "blauw") {
             return "blauw"
-        } else {
+        }else if (text.toLowerCase() === "profielpagina" || text.toLowerCase() === "profiel"){
+            return "profile";
+        }
+        else {
             return "";
         }
     }
@@ -177,7 +180,14 @@ export class SpeechServiceService {
                 routerService.navigate(['/login']);
             });
 
-        } else if (text === "zwart") {
+        }else if (text ==="profile"){
+            this.speak("U bent op de profiel pagina")
+            ngZone.run(() => {
+                // routerService.navigate(['/login'], { skipLocationChange: true });
+                routerService.navigate(['/profile']);
+            });
+        }
+        else if (text === "zwart") {
             document.documentElement.style.setProperty('--color-default', 'black');
             this.speak("De kleur zwart is geactiveerd")
         } else if (text === "rood") {

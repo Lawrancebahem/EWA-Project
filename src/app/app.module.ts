@@ -16,6 +16,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
 import {SpeechServiceService} from "./components/speech-voice-service/speech-service.service";
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import {SpeechServiceService} from "./components/speech-voice-service/speech-ser
         LoginComponent,
         CategorypageComponent,
         ActivitywandelenComponent,
+        ProfileComponent,
 
     ],
     imports: [

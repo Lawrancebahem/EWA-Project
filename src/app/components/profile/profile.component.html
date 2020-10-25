@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Mijn profiel</title>
+    <!--    <link rel="shortcut icon" href="img/favicon_connect.ico" />-->
+
+</head>
+<body>
+
+<div id="headerImage" class="header-image--profile"
+     style="background-image:url('../../../assets/Images/wandeling.jpg')"></div>
+
+<div class="wrapper">
+    <div class="container container--profile">
+        <div class="profile--left">
+
+            <form action="" method="POST">
+                <div class="formRegister">
+                    <div id="input-fields-user-information">
+                        <h2>Persoonlijke gegevens</h2>
+
+                        <div class="form--input">
+                            <span>Voornaam</span>
+                            <input (keyup)="hasChanged = true" type="text" class="color" id="surname" name="Voornaam"
+                                   required maxlength="20">
+                        </div>
+
+                        <div class="form--input">
+                            <span>Achternaam</span>
+                            <input (keyup)="hasChanged = true" type="text" name="Achternaam" id="lastname" required
+                                   maxlength="20">
+                        </div>
+
+                        <div class="form--input">
+                            <span>Geboortedatum</span>
+                            <input (keyup)="hasChanged = true" type="date" name="Geboortedatum" id="birthdate" required>
+                        </div>
+
+                        <div class="form--radio">
+                            <label  for="choice_man">
+                                <input (keyup)="hasChanged = true" type="radio" id="choice_man" name="gender" value="man" checked>
+                                <span>Man</span>
+                            </label>
+                            <label for="choice_woman">
+                                <input (keyup)="hasChanged = true" type="radio" id="choice_woman" name="gender" value="vrouw">
+                                <span>Vrouw</span>
+                            </label>
+                            <label for="choice_diff">
+                                <input (keyup)="hasChanged = true" type="radio" id="choice_diff" name="gender" value="anders">
+                                <span>Anders</span>
+                            </label>
+                        </div>
+                        <div class="form--input">
+                            <span>Email</span>
+                            <input (keyup)="hasChanged = true" id="email" type="email" name="mailadres" maxlength="40">
+                        </div>
+
+                        <div class="form--input">
+                            <span>Wachtwoord</span>
+                            <div class="show-password">
+                                <i class="fa fa-eye"></i>
+                                <input (keyup)="hasChanged = true" class="form_input" type="password" name="wachtwoord" id="password1"
+                                       maxlength="30" required="required">
+                            </div>
+                            <span>Bevestiging wachtwoord</span>
+                            <div class="show-password">
+                                <i class="fa fa-eye"></i>
+                                <input (keyup)="hasChanged = true" class="form_input" type="password" name="wachtwoord" id="password2"
+                                       maxlength="30" required="required">
+                            </div>
+                        </div>
+                        <div>
+                            <button *ngIf="hasChanged" [disabled]="!hasChanged" id="save"
+                                    class="button button--primary button--form">Opslaan
+                            </button>
+                        </div>
+                    </div>
+                </div><!--display div grid-->
+            </form>
+        </div>
+        <!--            user info-->
+        <div class="user-info">
+            <div class="profile-picture" id="profileImage">
+                <a routerLink="/register">
+                    <mat-icon class="edit-icon">edit</mat-icon>
+                </a>
+            </div>
+        </div>
+
+        <div class="profile--right">
+            <h2>{{myInterestsText}}</h2>
+            <div class="pictures-section" id="pictures-section">
+                <label for=muziek class="interest">
+                    <input name="interest" value="muziek" type="checkbox" checked id="muziek">
+                    <div class="interest--checked fas fa-check"></div>
+                    <div class="interest--image"
+                         style="background-image:url('assets/Images/Interests/muziek.jpg')"></div>
+                    <span class="interest--name">muziek</span>
+                </label>
+
+                <label for=strand class="interest">
+                    <input name="interest" value="strand" type="checkbox" checked id="strand">
+                    <div class="interest--checked fas fa-check"></div>
+                    <div class="interest--image"
+                         style="background-image:url('assets/Images/Interests/strand.jpg')"></div>
+                    <span class="interest--name">Strand</span>
+                </label>
+
+
+                <label for=avontuur class="interest">
+                    <input name="interest" value="avontuur" type="checkbox" checked id="avontuur">
+                    <div class="interest--checked fas fa-check"></div>
+                    <div class="interest--image"
+                         style="background-image:url('assets/Images/Interests/avontuur.jpg')"></div>
+                    <span class="interest--name">avontuur</span>
+                </label>
+
+
+                <label *ngIf="editMyInterestsIsClicked" for=dieren class="interest">
+                    <input name="interest" value="dieren" type="checkbox" id="dieren">
+                    <div class="interest--checked fas fa-check"></div>
+                    <div class="interest--image"
+                         style="background-image:url('assets/Images/Interests/dieren.jpg')"></div>
+                    <span class="interest--name">dieren</span>
+                </label>
+
+
+                <label *ngIf="editMyInterestsIsClicked" for=shopping class="interest">
+                    <input name="interest" value="shopping" type="checkbox" id="shopping">
+                    <div class="interest--checked fas fa-check"></div>
+                    <div class="interest--image"
+                         style="background-image:url('assets/Images/Interests/shopping.jpg')"></div>
+                    <span class="interest--name">shopping</span>
+                </label>
+
+
+                <label *ngIf="editMyInterestsIsClicked" for=sporten class="interest">
+                    <input name="interest" value="sporten" type="checkbox" id="sporten">
+                    <div class="interest--checked fas fa-check"></div>
+                    <div class="interest--image"
+                         style="background-image:url('assets/Images/Interests/sporten.jpg')"></div>
+                    <span class="interest--name">Strand</span>
+                </label>
+
+
+                <label *ngIf="editMyInterestsIsClicked" for=wintersport class="interest">
+                    <input name="interest" value="wintersport" type="checkbox" id="wintersport">
+                    <div class="interest--checked fas fa-check"></div>
+                    <div class="interest--image"
+                         style="background-image:url('assets/Images/Interests/wintersport.jpg')"></div>
+                    <span class="interest--name">wintersport</span>
+                </label>
+
+
+            </div>
+
+            <button class="button button--primary float-right" (click)="editMyInterests()">{{buttonInterestsText}}
+            </button>
+        </div>
+    </div>
+    <div class="container">
+        <div>
+            <a>
+                <div class="button button--primary">Al mijn acitiviteiten</div>
+            </a>
+        </div>
+        <div class="container container-activity-thumbnails">
+            <div>
+                <div class="activity-thumbnail--image" style="background-image:url('/assets/Images/landscape.jpeg')">
+                    <div class="activity-thumbnail">
+                        <h3>Activiteit1</h3>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="activity-thumbnail--image" style="background-image:url('/assets/Images/wandeling.jpg')">
+                    <div class="activity-thumbnail">
+                        <h3>Activiteit 2</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="activity-thumbnail--image" style="background-image:url('/assets/Images/airballoon.jpeg')">
+                    <div class="activity-thumbnail">
+                        <h3>Activiteit 3</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
