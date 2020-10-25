@@ -5,6 +5,7 @@ import {LoginComponent} from "./components/mainpage/login/login.component";
 import {ActivitywandelenComponent} from "./components/activitypages/activitywandelen/activitywandelen.component";
 import {CategorypageComponent} from "./components/categorypage/categorypage/categorypage.component";
 import {ActivitiesHomePageComponent} from "./components/HomePage/activities-home-page/activities-home-page.component";
+import {ActivityOverviewComponent} from "./components/activityOverview/activity-overview/activity-overview.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:'register', component:RegisterComponent},
   {path:'activities', component:ActivitywandelenComponent},
   {path:'category', component:CategorypageComponent},
+  {path:'activityoverview', component:ActivityOverviewComponent}
   {path:'profile', component:ProfileComponent},
 ];
 
