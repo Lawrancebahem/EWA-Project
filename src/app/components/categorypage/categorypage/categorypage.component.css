@@ -25,6 +25,7 @@ img{
 .activity-overview {
   box-sizing: border-box;
   padding: .2rem;
+  max-width: 100%;
 
 }
 
@@ -35,6 +36,7 @@ img{
   margin: 15px;
   box-sizing: border-box;
   border-radius: var(--border-radius);
+  max-width: 31%;
 }
 .card-img-top{
   border-radius: var(--border-radius);
@@ -59,6 +61,10 @@ img{
   background-color: var(--color-default);
 }
 
+.form-control{
+  max-width: 100%;
+  margin: 10px;
+}
 
 @media screen and (max-width: 767px) {
   .activity {

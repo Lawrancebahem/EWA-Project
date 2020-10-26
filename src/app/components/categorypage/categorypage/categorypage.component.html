@@ -1,26 +1,18 @@
 <header id="header">
-  <h1>Herfst</h1>
+    <h1>Herfst</h1>
 </header>
 
+<input class="form-control" type="search" [(ngModel)]="searchtext" placeholder="Zoek hier naar activiteiten gerelateerd aan {{category}}">
+
 <div class="activity-overview row-cols-1 row-cols-md-3">
-  <div class="activity col mb-4" routerLink="/activities">
-    <img class="card-img-top"  src="../../../../assets/Images/activityImage/wandeling.jpg" alt="activity photo">
-    <h2 class="card-title">Wandeling</h2>
-    <p class="card-text">
-      In de herfst komen de mooiste kleuren van de
-      natuur naar buiten. Daarom is het de perfecte
-      gelegenheid om met goed weer een wandeling te
-      maken door bijvoorbeeld een bos.
-    </p>
-  </div>
-  <div class="activity col mb-4" routerLink="/activities">
-    <img class="card-img-top" src="../../../../assets/Images/activityImage/wandeling.jpg" alt="activity photo">
-    <h2 class="card-title">Wandeling</h2>
-    <p class="card-text">
-      In de herfst komen de mooiste kleuren van de
-      natuur naar buiten. Daarom is het de perfecte
-      gelegenheid om met goed weer een wandeling te
-      maken door bijvoorbeeld een bos.
-    </p>
-  </div>
+    <div class="activity col-2 mb-4" *ngFor="let activity of activityArray | filter: category | filter: searchtext">
+        <img class="card-img-top" src="../../../../assets/Images/activityImage/{{activity.image}}"
+             alt="{{activity.activityTitle}}">
+        <h4 class="card-title">
+            {{ activity.activityTitle}}
+        </h4>
+        <p class="card-text">
+            {{activity.description}}
+        </p>
+    </div>
 </div>
