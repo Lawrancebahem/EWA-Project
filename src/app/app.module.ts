@@ -18,6 +18,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {SpeechServiceService} from "./components/speech-voice-service/speech-service.service";
 import { ActivityOverviewComponent } from './components/activityOverview/activity-overview/activity-overview.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import {FormsModule} from "@angular/forms";
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
     declarations: [
@@ -41,6 +43,8 @@ import { ProfileComponent } from './components/profile/profile.component';
         HttpClientModule,
         BrowserAnimationsModule,
         MatIconModule,
+        FormsModule,
+        Ng2SearchPipeModule
     ],
     providers: [],
     bootstrap: [AppComponent]

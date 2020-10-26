@@ -3,6 +3,13 @@
 </header>
 
 <div class="activity-overview row-cols-1 row-cols-md-3">
+    <div class="activitySearch">
+        <label>
+            <h1>Zoek Activiteit</h1>
+        </label>
+        <input type="search" class="form-control" placeholder="Zoek hier uw activiteit" [(ngModel)]="activitySearchText">
+    </div>
+
     <div class="col-1 filterlist">
         <h1>Filters:</h1>
         <button type="button" class="btn btn-primary" data-toggle="button"
@@ -10,7 +17,7 @@
             {{category}}
         </button>
     </div>
-    <div class="activity col-2 mb-4" *ngFor="let activity of activityArray">
+    <div class="activity col-2 mb-4" *ngFor="let activity of activityArray | filter: activitySearchText">
         <img class="card-img-top" src="../../../../assets/Images/activityImage/{{activity.image}}"
              alt="{{activity.activityTitle}}">
         <h4 class="card-title">

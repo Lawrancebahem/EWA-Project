@@ -72,6 +72,12 @@ img{
     position: absolute;
 }
 
+.activitySearch{
+    margin: 25px;
+    margin-top: 0;
+    max-width: 100%;
+    position: center;
+}
 
 @media screen and (max-width: 767px) {
     .activity {
