@@ -43,6 +43,7 @@ img{
     box-sizing: border-box;
     box-shadow: 5px 5px 5px var(--color-default);
     max-width: 35%;
+    border-radius: .25rem;
 }
 
 .activity:hover {
@@ -57,6 +58,7 @@ img{
     width: 100%;
     text-align: center;
     position: center;
+    font-size: 25px;
 }
 
 .card-text{
