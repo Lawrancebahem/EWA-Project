@@ -1,3 +1,21 @@
+.container--grid{
+    display: grid;
+    grid-template-rows: 2fr 2fr;
+}
+.right-side-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    padding: 1rem;
+}
+
+.left-sid-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    padding: 1rem;
+}
+
 header {
     width: 100%;
     height: 250px;
@@ -16,34 +34,37 @@ header h1 {
 }
 
 .activity-image-box {
-    height: 50%;
-    width: 40%;
+    width: 100%;
     float: left;
-    margin-top: 2rem;
-    margin-left: 3rem;
+    border-radius: var(--border-radius);
 }
 
 .activity-image {
     height: 100%;
     width: 100%;
+    border-radius: var(--border-radius);
+
 }
 
 .activity-description-title {
     font-weight: bold;
+    margin-left: .5rem;
 }
 
+.activity-description p{
+    padding-left: 1rem;
+    opacity: .5;
+}
 .activity-description {
     border: 1px solid var(--color-default);
     float: right;
-    width: 50%;
-    margin-top: 2rem;
-    margin-right: 2rem;
+    width: 100%;
+    border-radius: var(--border-radius);
 }
 
 .comment-box {
-    margin-left: 3rem;
-    width: 40%;
-    height: 25%;
+    width: 100%;
+    height: 100%;
 }
 
 .comment-box-title {
@@ -54,26 +75,53 @@ header h1 {
     width: 100%;
     height: 100%;
     outline: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-indent: 8px;
+    display: inline-block;
+    border: 1px solid var(--color-default);
+    border-radius: var(--border-radius);
+    font-family: var(--font-family-text);
+    font-size: var(--font-size-text);
+    color: var(--color-black);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    resize: none;
 }
 
 .place-comment-button {
-    margin-top: -2%;
     height: 30%;
     width: 30%;
     float: right;
-    border-radius: 5%;
+    border-radius: var(--border-radius);
     border: none;
 }
 
 .user-comments-box-title {
     font-weight: bold;
+    margin-left: .5rem;
 }
 
 .user-comments-box {
     float: right;
-    width: 50%;
-    height: 36.5%;
+    width: 100%;
+    height: 100%;
     border: 1px solid var(--color-default);
-    margin-right: 2rem;
-    margin-top: -17rem;
+    border-radius: var(--border-radius);
+}
+.user-comments-box p{
+    padding-left: 1rem;
+    opacity: .5;
+}
+@media only screen and (max-width: 48em){
+    .right-side-grid{
+        grid-template-columns: 1fr;
+    }
+    .left-sid-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .left-sid-grid  > div:nth-of-type(1){
+        order: 1;
+    }
 }

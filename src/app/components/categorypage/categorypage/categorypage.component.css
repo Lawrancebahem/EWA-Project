@@ -24,6 +24,7 @@ img{
 
 .activity-overview {
   box-sizing: border-box;
+  padding: .2rem;
 
 }
 
@@ -33,6 +34,7 @@ img{
   padding: 0;
   margin: 15px;
   box-sizing: border-box;
+  border-radius: var(--border-radius);
 }
 
 
@@ -51,7 +53,7 @@ img{
 .activity:hover {
   transform: translateY(-10px);
   cursor: pointer;
-  transition: .2s;
+  transition: .6s;
   background-color: var(--color-default);
 }
 
