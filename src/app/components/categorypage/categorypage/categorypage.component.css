@@ -68,6 +68,6 @@ img{
 
 @media screen and (max-width: 767px) {
   .activity {
-    width: 90%;
+    max-width: 90%;
   }
 }

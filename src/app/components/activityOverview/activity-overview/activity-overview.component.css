@@ -79,8 +79,14 @@ img{
     position: center;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 800px) {
     .activity {
-        width: 90%;
+        max-width: 95%;
+        float: top;
+        position: center;
+    }
+    .filterlist{
+        max-width: 100%;
+        position: initial;
     }
 }
