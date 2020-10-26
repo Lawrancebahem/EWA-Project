@@ -36,7 +36,9 @@ img{
   box-sizing: border-box;
   border-radius: var(--border-radius);
 }
-
+.card-img-top{
+  border-radius: var(--border-radius);
+}
 
 .card-title {
   padding: 5px;
