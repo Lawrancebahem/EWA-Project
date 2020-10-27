@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/EWA Project Digital Life.iml" filepath="$PROJECT_DIR$/.idea/EWA Project Digital Life.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/be-app/app/app.iml" filepath="$PROJECT_DIR$/be-app/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/digital-life-5.iml" filepath="$PROJECT_DIR$/.idea/digital-life-5.iml" />
     </modules>
   </component>
 </project>

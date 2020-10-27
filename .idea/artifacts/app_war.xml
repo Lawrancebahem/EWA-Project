@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="war" name="app:war">
-    <output-path>$PROJECT_DIR$/app/target</output-path>
+    <output-path>$PROJECT_DIR$/be-app/app/target</output-path>
     <properties id="maven-jee-properties">
       <options>
         <module>app</module>
