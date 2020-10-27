@@ -7,6 +7,7 @@ import {CategorypageComponent} from "./components/categorypage/categorypage/cate
 import {ActivitiesHomePageComponent} from "./components/HomePage/activities-home-page/activities-home-page.component";
 import {ActivityOverviewComponent} from "./components/activityOverview/activity-overview/activity-overview.component";
 import {ProfileComponent} from "./components/profile/profile.component";
+import {AboutUsPageComponent} from "./components/about-us-page/about-us-page.component";
 
 const routes: Routes = [
   {path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'category', component:CategorypageComponent},
   {path:'activityoverview', component:ActivityOverviewComponent},
   {path:'profile', component:ProfileComponent},
+  {path:'aboutUs', component:AboutUsPageComponent},
 ];
 
 @NgModule({

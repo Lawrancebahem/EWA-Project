@@ -20,6 +20,7 @@ import { ActivityOverviewComponent } from './components/activityOverview/activit
 import { ProfileComponent } from './components/profile/profile.component';
 import {FormsModule} from "@angular/forms";
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
         ActivitywandelenComponent,
         ActivityOverviewComponent,
         ProfileComponent,
+        AboutUsPageComponent,
 
     ],
     imports: [
