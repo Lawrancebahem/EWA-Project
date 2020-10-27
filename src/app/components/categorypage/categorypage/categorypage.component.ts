@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as activities from "../../../json/activities.json";
 
 @Component({
   selector: 'app-categorypage',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categorypage.component.css']
 })
 export class CategorypageComponent implements OnInit {
+
+  activityArray: any = (activities as any).default;
+  category = "herfst";
+  searchtext: any;
 
   constructor() { }
 

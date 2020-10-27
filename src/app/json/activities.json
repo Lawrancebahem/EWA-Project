@@ -6,7 +6,9 @@
     "categories": [
       "herfst",
       "wandelen",
-      "avontuur"
+      "avontuur",
+      "natuur",
+      "actief"
     ],
     "location": "overal"
   },
@@ -40,5 +42,36 @@
       "herfst"
     ],
     "location": "Rotterdam"
-  }
+  },{
+  "image": "fietsen.jpg",
+  "activityTitle": "Fietsen met vriendin",
+  "description": "Gezellig fietsen met uw vriendin door de mooiste paden van Nederland met onze begeleiders.",
+  "categories": [
+    "avontuur",
+    "natuur",
+    "fietsen",
+    "actief"
+  ],
+  "location": "overal"
+},{
+  "image": "bowlen.jpg",
+  "activityTitle": "Disco Bowlen",
+  "description": "Zin in bowlen? Kom lekker met uw vriendin of familie disco Bowlen.",
+  "categories": [
+    "binnen",
+    "actief"
+  ],
+  "location": ""
+},{
+  "image": "mondkapjes.jpg",
+  "activityTitle": "Mondkapjes maken",
+  "description": "Geen zin om naar buiten te gaan? Maak thuis leuke mondkapjes voor je zelf of vriendin.",
+  "categories": [
+    "binnen",
+    "corona",
+    "creatief",
+    "thuis"
+  ],
+  "location": "thuis"
+}
 ]

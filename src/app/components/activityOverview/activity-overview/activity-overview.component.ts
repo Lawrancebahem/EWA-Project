@@ -10,7 +10,8 @@ import *  as  activities from '../../../json/activities.json';
 })
 export class ActivityOverviewComponent implements OnInit {
     activityArray: any = (activities as any).default;
-    categoryArray: Array<String> = ['herfst', 'thuis'];
+    categoryArray: Array<string> = [];
+    activitySearchText;
 
     constructor() {
     }
