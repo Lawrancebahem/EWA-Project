@@ -1,6 +1,6 @@
 .button{
     font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
+    /*font-weight: bold;*/
     transition: background-color .2s;
     font-size: 1rem;
     padding: .5rem 1rem;
@@ -30,6 +30,8 @@
 .button--primary{
     background-color: var(--color-default);
     color: var(--color-white);
+    border-radius: var(--border-radius);
+    border: none;
 }
 .button--primary .fa{
     color: var(--color-white);
