@@ -15,7 +15,6 @@ import { ActivitywandelenComponent } from './components/activitypages/activitywa
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
-import {SpeechServiceService} from "./components/speech-voice-service/speech-service.service";
 import { ActivityOverviewComponent } from './components/activityOverview/activity-overview/activity-overview.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import {FormsModule} from "@angular/forms";

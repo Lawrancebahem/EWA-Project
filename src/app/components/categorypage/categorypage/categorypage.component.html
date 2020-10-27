@@ -2,7 +2,11 @@
     <h1>Herfst</h1>
 </header>
 
-<input class="form-control" type="search" [(ngModel)]="searchtext" placeholder="Zoek hier naar activiteiten gerelateerd aan {{category}}">
+<div class="search-div">
+    <input class="form-control" type="search" [(ngModel)]="searchtext"
+           placeholder="Zoek hier naar activiteiten gerelateerd aan {{category}}">
+    <mat-icon>search</mat-icon>
+</div>
 
 <div class="activity-overview row-cols-1 row-cols-md-3">
     <div class="activity col-2 mb-4" *ngFor="let activity of activityArray | filter: category | filter: searchtext">
