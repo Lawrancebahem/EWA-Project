@@ -12,7 +12,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="app" target="15" />
-      <module name="be-app" target="15" />
+      <module name="be-app" target="14" />
       <module name="server" target="15" />
     </bytecodeTargetLevel>
   </component>
