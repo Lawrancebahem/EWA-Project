@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/lawrancebahem/IdeaProjects/digital-life-5/src/polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! /Users/lawrancebahem/IdeaProjects/digital-life-5/fe-app/src/polyfills.ts */"hN/g");
 
 
 /***/ }),

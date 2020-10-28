@@ -466,7 +466,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       __webpack_require__(
-      /*! /Users/lawrancebahem/IdeaProjects/digital-life-5/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js */
+      /*! /Users/lawrancebahem/IdeaProjects/digital-life-5/fe-app/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js */
       "mRIq");
 
       __webpack_require__(
@@ -474,7 +474,7 @@
       "R0gw");
 
       module.exports = __webpack_require__(
-      /*! /Users/lawrancebahem/IdeaProjects/digital-life-5/src/polyfills.ts */
+      /*! /Users/lawrancebahem/IdeaProjects/digital-life-5/fe-app/src/polyfills.ts */
       "hN/g");
       /***/
     },
