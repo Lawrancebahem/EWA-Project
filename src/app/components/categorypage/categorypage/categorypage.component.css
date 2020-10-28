@@ -46,7 +46,7 @@ img{
   cursor: pointer;
   transition: .2s;
   border-color: var(--color-blue);
-  box-shadow: 7px 7px 7px var(--color-default);
+  box-shadow: 7px 7px 7px var(--color-blue);
 }
 
 .card-img-top{
