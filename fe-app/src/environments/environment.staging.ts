@@ -1,5 +1,5 @@
 export const environment = {
-    apirUrl : "https://digital-life-backend-staging.herokuapp.com/rest",
+    apirUrl : "https://digital-life-frontend-staging.herokuapp.com/",
     environmentName: "staging",
     production: false
 };
