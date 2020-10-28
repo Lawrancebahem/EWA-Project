@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "image": "wandeling.jpg",
     "activityTitle": "wandelen",
     "description": "In de herfst komen de mooiste kleuren van de natuur naar buiten. Daarom is het de perfecte gelegenheid om met goed weer een wandeling te maken door bijvoorbeeld een bos.",
@@ -10,9 +11,11 @@
       "natuur",
       "actief"
     ],
-    "location": "overal"
+    "location": "overal",
+    "reactions": []
   },
   {
+    "id": 2,
     "image": "muiderslot.jpg",
     "activityTitle": "Het Muiderslot",
     "description": "Vlakbij Amsterdam ligt al ruim 700 jaar het stoere Muiderslot, omringd door water en kasteeltuinen. Het is een van de oudste én best bewaarde kastelen van Nederland. Gebouwd met één doel: de verdediging. Het kasteel uit 1285 kent een lange en roerige geschiedenis. Dwaal rond en ontdek hoe de vijand werd tegengewerkt en hoe vroeger het leven was op een kasteel.",
@@ -21,9 +24,11 @@
       "wandelen",
       "avontuur"
     ],
-    "location": "Muiden"
+    "location": "Muiden",
+    "reactions": []
   },
   {
+    "id": 3,
     "image": "pompoen.jpg",
     "activityTitle": "pompoen uithollen",
     "description": "Eerst zoek je een mooie pompoen uit, dan maak je een ontwerp van hoe jouw pompoen eruit moet gaan zien, en dan … dan komt het zware werk: het uithollen. Als je klaar bent, is er een korte pauze met een limonade én een zakje chips. Tijd voor de laatste en leukste klus: het maken van je pompoengezicht. Het uitsnijden gaat met het speciale gereedschap gelukkig heel makkelijk en veilig. Lichtje erin en Klaar!",
@@ -31,9 +36,11 @@
       "halloween",
       "thuis"
     ],
-    "location": "thuis"
+    "location": "thuis",
+    "reactions": []
   },
   {
+    "id": 4,
     "image": "mini-halloween.jpg",
     "activityTitle": "Mini-Halloween: Speuren naar spinnetjes en pompoentjes",
     "description": "Herfst en Halloween. In Miniworld betekent dit HELP. Reusachtige spinnen en pompoenen zijn neergedaald in onze miniatuurwereld? Help jij mee deze te vinden? Dan kunnen onze mini-bewoners weer rustig slapen",
@@ -41,37 +48,47 @@
       "halloween",
       "herfst"
     ],
-    "location": "Rotterdam"
-  },{
-  "image": "fietsen.jpg",
-  "activityTitle": "Fietsen met vriendin",
-  "description": "Gezellig fietsen met uw vriendin door de mooiste paden van Nederland met onze begeleiders.",
-  "categories": [
-    "avontuur",
-    "natuur",
-    "fietsen",
-    "actief"
-  ],
-  "location": "overal"
-},{
-  "image": "bowlen.jpg",
-  "activityTitle": "Disco Bowlen",
-  "description": "Zin in bowlen? Kom lekker met uw vriendin of familie disco Bowlen.",
-  "categories": [
-    "binnen",
-    "actief"
-  ],
-  "location": ""
-},{
-  "image": "mondkapjes.jpg",
-  "activityTitle": "Mondkapjes maken",
-  "description": "Geen zin om naar buiten te gaan? Maak thuis leuke mondkapjes voor je zelf of vriendin.",
-  "categories": [
-    "binnen",
-    "corona",
-    "creatief",
-    "thuis"
-  ],
-  "location": "thuis"
-}
+    "location": "Rotterdam",
+    "reactions": []
+  },
+  {
+    "id": 5,
+    "image": "fietsen.jpg",
+    "activityTitle": "Fietsen met vriendin",
+    "description": "Gezellig fietsen met uw vriendin door de mooiste paden van Nederland met onze begeleiders.",
+    "categories": [
+      "avontuur",
+      "natuur",
+      "fietsen",
+      "actief"
+    ],
+    "location": "overal",
+    "reactions": []
+  },
+  {
+    "id": 6,
+    "image": "bowlen.jpg",
+    "activityTitle": "Disco Bowlen",
+    "description": "Zin in bowlen? Kom lekker met uw vriendin of familie disco Bowlen.",
+    "categories": [
+      "binnen",
+      "actief"
+    ],
+    "location": "",
+    "reactions": []
+  },
+  {
+    "id": 7,
+    "image": "mondkapjes.jpg",
+    "activityTitle": "Mondkapjes maken",
+    "description": "Geen zin om naar buiten te gaan? Maak thuis leuke mondkapjes voor je zelf of vriendin.",
+    "categories": [
+      "binnen",
+      "corona",
+      "creatief",
+      "thuis"
+    ],
+    "location": "thuis",
+    "reactions": []
+  }
 ]
