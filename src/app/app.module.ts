@@ -15,11 +15,11 @@ import { ActivitywandelenComponent } from './components/activitypages/activitywa
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
-import {SpeechServiceService} from "./components/speech-voice-service/speech-service.service";
 import { ActivityOverviewComponent } from './components/activityOverview/activity-overview/activity-overview.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import {FormsModule} from "@angular/forms";
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +35,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
         ActivitywandelenComponent,
         ActivityOverviewComponent,
         ProfileComponent,
+        AboutUsPageComponent,
 
     ],
     imports: [

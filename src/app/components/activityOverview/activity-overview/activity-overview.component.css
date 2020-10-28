@@ -26,7 +26,7 @@ img{
     box-sizing: border-box;
 }
 
-.btn-primary:not(:disabled):not(.disabled).active{
+.button--primary:not(:disabled):not(.disabled).active{
     background-color: var(--color-blue);
 }
 
