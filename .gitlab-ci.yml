@@ -10,7 +10,7 @@ deploy_be:
       - "be-app/**/*"
   script:
     - git remote rm heroku-be-app || true
-      - git remote add heroku-be-app https://heroku:$HEROKU_API_KEY@git.heroku.com/digital-life-backend-staging.git || true
+    - git remote add heroku-be-app https://heroku:$HEROKU_API_KEY@git.heroku.com/digital-life-backend-staging.git || true
     - git subtree split --prefix be-app -b splitting-staging-be
     - git push --force heroku-be-app splitting-staging-be:master
     - git branch -D splitting-staging-be
