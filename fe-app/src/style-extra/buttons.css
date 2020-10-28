@@ -9,7 +9,6 @@
     -moz-appearance: none;
     margin-bottom: .5rem;
 }
-
 .button:hover{
     cursor:pointer;
 }
