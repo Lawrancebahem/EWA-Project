@@ -54,8 +54,7 @@ img{
 .card-text{
   opacity: .5;
   padding: 5px;
-  max-height: 50px;
-  /*text-overflow: hidden;*/
+  /*max-height: 50px;*/
 }
 
 .activity:hover {
