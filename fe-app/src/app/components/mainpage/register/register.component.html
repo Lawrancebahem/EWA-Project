@@ -1,0 +1,162 @@
+<!--<div class="text-center header">-->
+<!--    <h2  class="font-italic p-1 digital-life-title">Digital Life</h2>-->
+<!--</div>-->
+<form id="formRegister" action="" method="POST" [formGroup]="authenticationService.registerForm">
+    <div class="wrapper no-padding">
+        <div class="grid--half">
+            <div id="input-fields-user-information">
+                <h2>Persoonlijke gegevens</h2>
+
+                <div class="form--input">
+                    <span>Voornaam</span>
+                    <input #firstName formControlName="firstName" type="text" class="color form-control" id="surname" name="Voornaam" required maxlength="20" [ngClass]="{'is-invalid':
+                            authenticationService.registerForm.get('firstName').touched &&
+                            authenticationService.registerForm.get('firstName').invalid}">
+                </div>
+
+                <div class="form--input">
+                    <span>Achternaam</span>
+                    <input #lastName formControlName="lastName" type="text" name="Achternaam" id="lastname" class="form-control" required maxlength="20" [ngClass]="{'is-invalid':
+                            authenticationService.registerForm.get('lastName').touched &&
+                            authenticationService.registerForm.get('lastName').invalid}">
+                </div>
+
+                <div class="form--input">
+                    <span>Geboortedatum</span>
+                    <input formControlName="birthDate" class="form-control" #birthDate placeholder="yyyy-MM-dd" min="1996-01-01" type="date" name="Geboortedatum" id="birthdate" required [ngClass]="{'is-invalid':
+                            authenticationService.registerForm.get('birthDate').touched &&
+                            authenticationService.registerForm.get('birthDate').invalid}">
+                </div>
+
+                <form [formGroup]="authenticationService.registerForm" (ngSubmit)="onSubmit()">
+                    <div>
+                        <input id="male" type="radio" value="male" name="gender" formControlName="gender">
+                        <label class="custom-control-label" for="male">Male</label>
+                    </div>
+
+                    <div>
+                        <input id="female" type="radio" value="female" name="gender" formControlName="gender">
+                        <label class="custom-control-label" for="female">Female</label>
+                    </div>
+
+                    <!-- Showing error method -->
+                    <div *ngIf="isSubmitted && myForm.errors?.required">
+                        <p>Please select either value</p>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                </form><!-- Form ends -->
+
+                <h4>Account instellingen</h4>
+
+                <div class="pictures_uploaden">
+                    <div>
+                        <img class="upload_picture" src="../../../../assets/Images/Interests/musea.jpg">
+                        <p>Profielfoto</p>
+                        <input #profilePicture id="profile_image" type="file" name="profile_img">
+                    </div>
+                </div>
+
+                <div class="form--input">
+                    <span>Email</span>
+                    <input formControlName="email" #email id="email" class="form-control" type="email" name="mailadres" maxlength="40" [ngClass]="{'is-invalid':
+                            authenticationService.registerForm.get('email').touched &&
+                            authenticationService.registerForm.get('email').invalid}">
+                </div>
+
+                <div class="form--input">
+                    <span>Wachtwoord</span>
+                    <div class="show-password">
+                        <i class="fa fa-eye"></i>
+                        <input formControlName="password" #password class="form_input form-control" type="password" name="wachtwoord" id="password1" maxlength="30"
+                               required="required" [ngClass]="{'is-invalid':
+                            authenticationService.registerForm.get('password').touched &&
+                            authenticationService.registerForm.get('password').invalid}">
+                    </div>
+                    <span>Bevestiging wachtwoord</span>
+                    <div class="show-password">
+                        <i class="fa fa-eye"></i>
+                        <input #passwordConfirm class="form_input" type="password" name="wachtwoord" id="password2" maxlength="30"
+                               required="required">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2>Interesses</h2>
+                <p>Met deze interesses kunnen we voor u de passende activiteiten vinden <b>Kies drie interesses</b>.</p>
+                <div class="pictures-section" id="pictures-section">
+                    <label for=muziek class="interest">
+                        <input name="interest" value="muziek" type="checkbox" id="muziek">
+                        <div class="interest--checked fas fa-check"></div>
+                        <div class="interest--image"
+                             style="background-image:url('../../../../assets/Images/Interests/muziek.jpg')"></div>
+                        <span class="interest--name">muziek</span>
+                    </label>
+
+                    <label for=strand class="interest">
+                        <input name="interest" value="strand" type="checkbox" id="strand">
+                        <div class="interest--checked fas fa-check"></div>
+                        <div class="interest--image"
+                             style="background-image:url('../../../../assets/Images/Interests/strand.jpg')"></div>
+                        <span class="interest--name">Strand</span>
+                    </label>
+
+
+                    <label for=avontuur class="interest">
+                        <input name="interest" value="avontuur" type="checkbox" id="avontuur">
+                        <div class="interest--checked fas fa-check"></div>
+                        <div class="interest--image"
+                             style="background-image:url('../../../../assets/Images/Interests/avontuur.jpg')"></div>
+                        <span class="interest--name">avontuur</span>
+                    </label>
+
+
+                    <label for=dieren class="interest">
+                        <input name="interest" value="dieren" type="checkbox" id="dieren">
+                        <div class="interest--checked fas fa-check"></div>
+                        <div class="interest--image"
+                             style="background-image:url('../../../../assets/Images/Interests/dieren.jpg')"></div>
+                        <span class="interest--name">dieren</span>
+                    </label>
+
+
+                    <label for=shopping class="interest">
+                        <input name="interest" value="shopping" type="checkbox" id="shopping">
+                        <div class="interest--checked fas fa-check"></div>
+                        <div class="interest--image"
+                             style="background-image:url('../../../../assets/Images/Interests/shopping.jpg')"></div>
+                        <span class="interest--name">shopping</span>
+                    </label>
+
+
+                    <label for=sporten class="interest">
+                        <input name="interest" value="sporten" type="checkbox" id="sporten">
+                        <div class="interest--checked fas fa-check"></div>
+                        <div class="interest--image"
+                             style="background-image:url('../../../../assets/Images/Interests/sporten.jpg')"></div>
+                        <span class="interest--name">Strand</span>
+                    </label>
+
+
+                    <label for=wintersport class="interest">
+                        <input name="interest" value="wintersport" type="checkbox" id="wintersport">
+                        <div class="interest--checked fas fa-check"></div>
+                        <div class="interest--image"
+                             style="background-image:url('../../../../assets/Images/Interests/wintersport.jpg')"></div>
+                        <span class="interest--name">wintersport</span>
+                    </label>
+
+                </div><!--pictures section-->
+            </div><!--grid child-->
+            <div>
+                <button [disabled]="!authenticationService.registerForm.valid && !myForm.valid" (click)="register()" id="submit"
+                        value="Registreren" type="submit"
+                        class="button button--primary button--form uppercase">Registeren</button>
+                <p class="text-center">Heeft u al een account? <a routerLink="/login"> Log in</a>.</p>
+            </div>
+
+        </div><!--display div grid-->
+    </div><!--wrapper-->
+
+</form>
+

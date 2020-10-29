@@ -1,0 +1,81 @@
+<app-header></app-header>
+<div class="wrapper">
+    <div class="grid--half p-5">
+        <div class="text_1">
+            <h2>Vind leuke activiteiten! </h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum.</p>
+        </div>
+        <div class="login_blok">
+            <form class="form" [formGroup]="authenticationService.loginForm">
+                <h2 id="h2">Inloggen</h2>
+                <div class="form--input">
+                    <!--                  <span>Gebruikersnaam</span>-->
+                    <input #email required formControlName="email" class="form_input form-control"
+                           id="email" name="gebruikersnaam" placeholder="e-mail" type="text" [ngClass]="{'is-invalid':
+                            authenticationService.loginForm.get('email').touched &&
+                            authenticationService.loginForm.get('email').invalid}">
+                </div>
+
+                <div class="form--input">
+                    <!--                  <span>Wachtwoord</span>-->
+                    <div class="show-password">
+                        <input #password formControlName="password" class="form_input form-control" id="password" maxlength="20"
+                               placeholder="wachtwoord" type="password"
+                               [ngClass]="{'is-invalid':
+                            authenticationService.loginForm.get('password').touched &&
+                            authenticationService.loginForm.get('password').invalid}">
+                    </div>
+                    <p *ngIf="showError" class="error ">Het emailadres of het wachtwoord is onjuist</p>
+
+                </div>
+
+                <button [disabled]="!authenticationService.loginForm.valid" type="submit" id="submit"
+                        class="button button--primary button--form uppercase" (click)="login({email: email.value, password:password.value})">Inloggen
+                </button>
+                <input value="stuur wachtwoord" type="button" id="stuur_wachtwoord"
+                       class="button button--primary button--form uppercase" style="display: none"
+                       onclick="">
+                <p class="text-center no-padding text-white">Heeft u nog geen een account? <a routerLink="/register"
+                                                                                              class="form--link">Registreer
+                    nu</a>
+                </p>
+                <p class="form--link text-center"><a class="text-white">Ik ben mijn wachtwoord vergeten.</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="container container-activity-thumbnails">
+
+        <div class="activity-thumbnail--image"
+             style="background-image:url('../../../../assets/Images/Interests/shopping.jpg')">
+            <div class="activity-thumbnail">
+                <h3>Ontdek</h3>
+            </div>
+        </div>
+
+        <div class="activity-thumbnail--image"
+             style="background-image:url('../../../../assets/Images/Interests/muziek.jpg')">
+            <div class="activity-thumbnail">
+                <h3>Lees meer</h3>
+            </div>
+        </div>
+
+        <div class="activity-thumbnail--image"
+             style="background-image:url('../../../../assets/Images/Interests/wintersport.jpg')">
+            <div class="activity-thumbnail">
+                <h3>Vind de mooiste activiteiten</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
