@@ -21,6 +21,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {AboutUsPageComponent} from './components/about-us-page/about-us-page.component';
 import {CustomDatePipe} from "./components/customDate/customDatePipe";
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import {CustomDatePipe} from "./components/customDate/customDatePipe";
         ActivityOverviewComponent,
         ProfileComponent,
         AboutUsPageComponent,
-        CustomDatePipe
+        CustomDatePipe,
+        TestComponent
 
     ],
     imports: [
