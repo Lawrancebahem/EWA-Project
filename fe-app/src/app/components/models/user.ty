@@ -1,7 +1,0 @@
-export class user{
-
-    constructor(private name, private age:number,) {
-    }
-
-
-}

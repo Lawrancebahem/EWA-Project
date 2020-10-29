@@ -11,15 +11,16 @@ import {ActivitiesHomePageComponent} from './components/HomePage/activities-home
 import {RegisterComponent} from "./components/mainpage/register/register.component";
 import {LoginComponent} from "./components/mainpage/login/login.component";
 import {CategorypageComponent} from "./components/categorypage/categorypage/categorypage.component";
-import { ActivitywandelenComponent } from './components/activitypages/activitywandelen/activitywandelen.component';
+import {ActivitywandelenComponent} from './components/activitypages/activitywandelen/activitywandelen.component';
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
-import { ActivityOverviewComponent } from './components/activityOverview/activity-overview/activity-overview.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import {FormsModule} from "@angular/forms";
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { AboutUsPageComponent } from './components/about-us-page/about-us-page.component';
+import {ActivityOverviewComponent} from './components/activityOverview/activity-overview/activity-overview.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {AboutUsPageComponent} from './components/about-us-page/about-us-page.component';
+import {CustomDatePipe} from "./components/customDate/customDatePipe";
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { AboutUsPageComponent } from './components/about-us-page/about-us-page.c
         ActivityOverviewComponent,
         ProfileComponent,
         AboutUsPageComponent,
+        CustomDatePipe
 
     ],
     imports: [
@@ -45,7 +47,8 @@ import { AboutUsPageComponent } from './components/about-us-page/about-us-page.c
         BrowserAnimationsModule,
         MatIconModule,
         FormsModule,
-        Ng2SearchPipeModule
+        Ng2SearchPipeModule,
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
