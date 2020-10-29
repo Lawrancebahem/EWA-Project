@@ -38,8 +38,17 @@ img{
   box-sizing: border-box;
   border-radius: var(--border-radius);
   max-width: 31%;
-
+  box-shadow: 5px 5px 5px var(--color-default);
 }
+
+.activity:hover {
+  transform: translateY(-10px);
+  cursor: pointer;
+  transition: .2s;
+  border-color: var(--color-blue);
+  box-shadow: 7px 7px 7px var(--color-blue);
+}
+
 .card-img-top{
   border-radius: var(--border-radius);
 }
@@ -54,19 +63,12 @@ img{
 .card-text{
   opacity: .5;
   padding: 5px;
-  max-height: 50px;
-  /*text-overflow: hidden;*/
-}
-
-.activity:hover {
-  transform: translateY(-10px);
-  cursor: pointer;
-  transition: .6s;
-  background-color: var(--color-default);
+  /*max-height: 50px;*/
 }
 
 .form-control{
-  max-width: 100%;
+  max-width: 99%;
+  margin: 10px;
 }
 .search-div{
   display: grid;
