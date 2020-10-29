@@ -12,8 +12,8 @@
 
             <li class="nav-item active">
                 <a class="nav-link button--primary" >
-                    <mat-icon class="icon-size " *ngIf="speechService.isListening;"
-                              (click)="speechService.startListening()">mic
+                    <mat-icon class="icon-size cached-icon" *ngIf="speechService.isListening;"
+                              (click)="speechService.startListening()">cached
                     </mat-icon>
                     <mat-icon class="icon-size " *ngIf="!speechService.isListening"
                               (click)="speechService.startListening()">mic_off

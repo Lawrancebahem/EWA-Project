@@ -9,12 +9,13 @@ import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 export class AuthenticationService {
 
 
-
+  //login form for the log in page
   public loginForm = new FormGroup({
     email : new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   })
 
+  //Register form for the registration page
   public registerForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),

@@ -6,10 +6,21 @@
     color: white;
 }
 
+.cached-icon {
+    animation: spin180 1s infinite;
+}
+
+@keyframes spin180 {
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
 nav {
     background-color: var(--color-default);
 }
-h2{
+
+h2 {
     font-style: italic;
     color: var(--white);
     margin: 0;

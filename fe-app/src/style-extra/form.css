@@ -44,12 +44,11 @@
 }
 
 /*error*/
-.form--input .error{
+.error{
     color: red;
-    padding: .5rem .5rem 0 .5rem;
+    /*padding: .5rem .5rem 0 .5rem;*/
     font-style: italic;
 }
-
 .form--select select{
     font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
