@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   @ViewChild('email') email:ElementRef;
   @ViewChild('password') password:ElementRef;
   showError: boolean;
-
+  submitted:boolean;
   constructor(public authenticationService:AuthenticationService) { }
 
   ngOnInit(): void {
@@ -30,21 +30,24 @@ export class RegisterComponent implements OnInit {
    * Register, once the user clicked the register button we get all the input values
    */
   public register() {
-    console.log("Called")
-    const genderElement = Array.from(document.querySelector('.gender-form').querySelectorAll('input[name=gender]:checked'))
+    this.submitted == true;
+    const genderElement = Array.from(document.querySelector('.gender-form').querySelectorAll('input[name=gender]:checked')).map((gender)=>{
+      return gender.getAttribute('value')
+    })
     const interests = Array.from(document.querySelector('#pictures-section')
         .querySelectorAll('input[name=interest]:checked')).map(interest=>{
           return interest.id;
     });
-
+    this.showError = genderElement.length == 0;
+    if (this.showError) return;
     const firstName = this.firstName.nativeElement.value;
     const lastName = this.lastName.nativeElement.value;
     const birthdate = this.birthdate.nativeElement.value;
     const profilePicture = this.profilePicture.nativeElement.value;
     const email = this.email.nativeElement.value;
     const password = this.password.nativeElement.value;
-    const gender = Gender[genderElement[0].getAttribute('value')];
-    this.showError = genderElement.length == 0;
+    const gender = Gender[genderElement[0]];
+
     const user = new User(firstName, lastName, birthdate, gender, profilePicture, email, password,interests);
 
     console.log(user);
