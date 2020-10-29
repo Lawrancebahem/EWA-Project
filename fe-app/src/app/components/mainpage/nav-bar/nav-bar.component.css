@@ -15,6 +15,10 @@
         transform: rotate(-360deg);
     }
 }
+.dropdown-item:hover{
+    background-color: var(--color-black);
+
+}
 
 nav {
     background-color: var(--color-default);

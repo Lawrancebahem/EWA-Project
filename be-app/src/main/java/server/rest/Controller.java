@@ -14,4 +14,8 @@ public class Controller {
         return "Helloo";
     }
 
+    @GetMapping("name")
+    public String SaySomething(){
+        return "My name is";
+    }
 }
