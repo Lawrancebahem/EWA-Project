@@ -39,6 +39,7 @@ export class AuthenticationService {
   //some fake users
   private users:any[] = [
     {email:"Lawrancebahem@gmail.com", password: "admin"},
+    {email:"tico.vermeer@hva.nl", password: "admin"},
     {email:"admin", password: "admin"},
   ];
 
