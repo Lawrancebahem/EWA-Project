@@ -48,6 +48,8 @@
     color: red;
     /*padding: .5rem .5rem 0 .5rem;*/
     font-style: italic;
+    margin: 0;
+    padding: 0;
 }
 .form--select select{
     font-family: 'Open Sans', sans-serif;

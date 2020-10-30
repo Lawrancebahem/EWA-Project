@@ -38,7 +38,6 @@ import {CustomDatePipe} from "./components/customDate/customDatePipe";
         ProfileComponent,
         AboutUsPageComponent,
         CustomDatePipe,
-
     ],
     imports: [
         BrowserModule,

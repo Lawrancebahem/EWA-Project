@@ -11,13 +11,12 @@
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item active">
-                <a class="nav-link button--primary" >
-                    <mat-icon class="icon-size cached-icon" *ngIf="speechService.isListening;"
-                              (click)="speechService.startListening()">cached
-                    </mat-icon>
-                    <mat-icon class="icon-size " *ngIf="!speechService.isListening"
-                              (click)="speechService.startListening()">mic_off
-                    </mat-icon>
+                <a class="nav-link button--primary">
+                       <mat-icon class="icon-size mic-icon"
+                                 (click)="speechService.startListening()">mic
+                           <p class="rec" *ngIf="speechService.isListening"></p>
+                       </mat-icon>
+
                 </a>
             </li>
 
@@ -53,8 +52,12 @@
                 </a>
             </li>
 
+            <li *ngIf="authenticateService.isLoggedIn" class="nav-item">
+                <a class="nav-link text-white button--primary" routerLink="/activityoverview">Alle Activiteiten</a>
+            </li>
+
             <li *ngIf="authenticateService.isLoggedIn; else notLoggedIn" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle button--primary" id="navbarDropdownMenuLink-333"
+                <a class="nav-link dropdown-toggle button--primary text-white" id="navbarDropdownMenuLink-333"
                    data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"><img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
@@ -70,16 +73,13 @@
             </li>
 
             <ng-template #notLoggedIn>
-                <li class="nav-item">
-                    <a class="nav-link text-white button--primary" routerLink="/activityoverview">Alle Activiteiten</a>
-                </li>
+
                 <li class="nav-item ">
                     <a class="nav-link button--primary text-white" routerLink="/login">Login</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link button--primary text-white" routerLink="/register">Signup</a>
                 </li>
-
             </ng-template>
         </ul>
     </div>
