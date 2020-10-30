@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SpeechServiceService } from './speech-service.service';
+import { ImageBase64Service } from './image-base64.service';
 
-describe('SpeechServiceService', () => {
-  let service: SpeechServiceService;
+describe('ImageBase64Service', () => {
+  let service: ImageBase64Service;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SpeechServiceService);
+    service = TestBed.inject(ImageBase64Service);
   });
 
   it('should be created', () => {

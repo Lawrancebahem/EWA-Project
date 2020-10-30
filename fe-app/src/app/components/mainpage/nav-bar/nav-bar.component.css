@@ -21,7 +21,8 @@
 }
 .rec{
     position: relative;
-    left: 1.2rem;
+    left: 20px;
+    bottom: .2rem;
     animation-name: pulse;
     animation-duration: 1.5s;
     animation-iteration-count: infinite;
