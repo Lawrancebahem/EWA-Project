@@ -12,7 +12,7 @@ import server.repositories.EntityRepository;
 import java.net.URI;
 import java.util.List;
 
-
+@CrossOrigin(origins = {"http://localhost:4200","https://digital-life-frontend-staging.herokuapp.com"})
 @RestController
 @RequestMapping("/user")
 public class UserController {
