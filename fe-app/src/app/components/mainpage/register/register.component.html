@@ -13,9 +13,10 @@
                            name="Voornaam" required maxlength="20" [ngClass]="{'is-invalid':
                             authenticationService.registerForm.get('firstName').touched &&
                             authenticationService.registerForm.get('firstName').invalid}">
+                    <p *ngIf="submitted &&  authenticationService.registerForm.get('firstName').invalid" class="error">
+                        Voornaam is een verplicht veld</p>
                 </div>
-                <p *ngIf="submitted &&  authenticationService.registerForm.get('firstName').invalid" class="error">
-                    Voornaam is een verplicht veld</p>
+
 
 
                 <div class="form--input">
@@ -24,9 +25,10 @@
                            class="form-control" required maxlength="20" [ngClass]="{'is-invalid':
                             authenticationService.registerForm.get('lastName').touched &&
                             authenticationService.registerForm.get('lastName').invalid}">
+                    <p *ngIf="submitted && authenticationService.registerForm.get('lastName').invalid" class="error">
+                        Achternaam is een verplicht veld</p>
                 </div>
-                <p *ngIf="submitted && authenticationService.registerForm.get('lastName').invalid" class="error">
-                    Achternaam is een verplicht veld</p>
+
 
                 <div class="form--input">
                     <span>Geboortedatum</span>
@@ -34,13 +36,13 @@
                            min="1996-01-01" type="date" name="Geboortedatum" id="birthdate" required [ngClass]="{'is-invalid':
                             authenticationService.registerForm.get('birthDate').touched &&
                             authenticationService.registerForm.get('birthDate').invalid}">
+                    <p *ngIf="submitted && authenticationService.registerForm.get('birthDate').value === ''" class="error">
+                        Geoortedatum is verplicht veld</p>
                 </div>
-                <p *ngIf="submitted && authenticationService.registerForm.get('birthDate').invalid" class="error">
-                    Geoortedatum is verplicht veld</p>
 
 
-                <form class="form--radio gender-form" #myForm="ngForm"
-                      (submit)="authenticationService.submitForm(myForm)">
+
+                <form class="form--radio gender-form" #myForm="ngForm">
                     <label for="choice_man">
                         <input type="radio" id="choice_man" class="gender" name="gender" value=0>
                         <span>Man</span>
@@ -53,9 +55,7 @@
                         <input type="radio" id="choice_diff" name="gender" value=2>
                         <span>Anders</span>
                     </label>
-
-                    <p *ngIf="showError" class="error">Geslacht is een verplicht veld</p>
-
+                    <p *ngIf="noGenderSelected" class="error">Geslacht is een verplicht veld</p>
 
                 </form>
 
@@ -75,31 +75,32 @@
                            maxlength="40" [ngClass]="{'is-invalid':
                             authenticationService.registerForm.get('email').touched &&
                             authenticationService.registerForm.get('email').invalid}">
+                    <p *ngIf="submitted && email.value.length === 0" class="error">Email is
+                        een verplicht veld</p>
                 </div>
-                <p *ngIf="submitted && authenticationService.registerForm.get('email').invalid" class="error">Email is
-                    een verplicht veld</p>
 
-
-                <div class="form--input">
+                <div class="form--input" >
                     <span>Wachtwoord</span>
                     <div class="show-password">
-                            <i class="fa fa-eye"></i>
-                            <input formControlName="password" #password class="form_input form-control" type="password"
+                        <i class="fa fa-eye"></i>
+                        <input formControlName="password" #password class="form_input form-control" type="password"
                                name="wachtwoord" id="password1" maxlength="30"
                                required="required" [ngClass]="{'is-invalid':
                             authenticationService.registerForm.get('password').touched &&
                             authenticationService.registerForm.get('password').invalid}">
+                        <p *ngIf="submitted && authenticationService.registerForm.get('password').invalid" class="error">
+                            Wachtowoord is een verplicht veld</p>
                     </div>
                     <span>Bevestiging wachtwoord</span>
                     <div class="show-password">
                         <i class="fa fa-eye"></i>
-                        <input #passwordConfirm class="form_input" type="password" name="wachtwoord" id="password2"
+                        <input #passwordConfirm formControlName="passwordConfirm" class="form_input" type="password" name="wachtwoord" id="password2"
                                maxlength="30"
                                required="required">
+                        <p *ngIf="submitted && !authenticationService.checkPasswords(passwordConfirm.value)" class="error">
+                            Het is niet juist
+                        </p>
                     </div>
-                    <p *ngIf="submitted && authenticationService.registerForm.get('password').invalid" class="error">
-                        Wachtowoord is een verplicht veld</p>
-
                 </div>
             </div>
             <div>
@@ -107,7 +108,7 @@
                 <p>Met deze interesses kunnen we voor u de passende activiteiten vinden <b>Kies drie interesses</b>.</p>
                 <div class="pictures-section" id="pictures-section">
                     <label for=muziek class="interest">
-                        <input name="interest" value="muziek" type="checkbox" id="muziek">
+                        <input name="interest" value= 1 type="checkbox" id="muziek">
                         <div class="interest--checked fas fa-check"></div>
                         <div class="interest--image"
                              style="background-image:url('../../../../assets/Images/Interests/muziek.jpg')"></div>
@@ -115,7 +116,7 @@
                     </label>
 
                     <label for=strand class="interest">
-                        <input name="interest" value="strand" type="checkbox" id="strand">
+                        <input name="interest" value= 2 type="checkbox" id="strand">
                         <div class="interest--checked fas fa-check"></div>
                         <div class="interest--image"
                              style="background-image:url('../../../../assets/Images/Interests/strand.jpg')"></div>
@@ -124,7 +125,7 @@
 
 
                     <label for=avontuur class="interest">
-                        <input name="interest" value="avontuur" type="checkbox" id="avontuur">
+                        <input name="interest" value=3 type="checkbox" id="avontuur">
                         <div class="interest--checked fas fa-check"></div>
                         <div class="interest--image"
                              style="background-image:url('../../../../assets/Images/Interests/avontuur.jpg')"></div>
@@ -133,7 +134,7 @@
 
 
                     <label for=dieren class="interest">
-                        <input name="interest" value="dieren" type="checkbox" id="dieren">
+                        <input name="interest" value=4 type="checkbox" id="dieren">
                         <div class="interest--checked fas fa-check"></div>
                         <div class="interest--image"
                              style="background-image:url('../../../../assets/Images/Interests/dieren.jpg')"></div>
@@ -142,7 +143,7 @@
 
 
                     <label for=shopping class="interest">
-                        <input name="interest" value="shopping" type="checkbox" id="shopping">
+                        <input name="interest" value=5 type="checkbox" id="shopping">
                         <div class="interest--checked fas fa-check"></div>
                         <div class="interest--image"
                              style="background-image:url('../../../../assets/Images/Interests/shopping.jpg')"></div>
@@ -151,7 +152,7 @@
 
 
                     <label for=sporten class="interest">
-                        <input name="interest" value="sporten" type="checkbox" id="sporten">
+                        <input name="interest" value=6 type="checkbox" id="sporten">
                         <div class="interest--checked fas fa-check"></div>
                         <div class="interest--image"
                              style="background-image:url('../../../../assets/Images/Interests/sporten.jpg')"></div>
@@ -160,7 +161,7 @@
 
 
                     <label for=wintersport class="interest">
-                        <input name="interest" value="wintersport" type="checkbox" id="wintersport">
+                        <input name="interest" value=7 type="checkbox" id="wintersport">
                         <div class="interest--checked fas fa-check"></div>
                         <div class="interest--image"
                              style="background-image:url('../../../../assets/Images/Interests/wintersport.jpg')"></div>

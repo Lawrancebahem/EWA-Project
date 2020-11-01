@@ -163,9 +163,9 @@ export class SpeechServiceService {
             });
 
         } else if (text === 'activiteiten pagina' || text === 'activiteiten') {
-            this.speak("U bent op de activitetienpagina")
+            this.speak("U bent op de activiteitenpagina")
             ngZone.run(() => {
-                routerService.navigate(['/activities']);
+                routerService.navigate(['/activityoverview']);
             });
 
         } else if (text === "registratiepagina" || text === "registratie") {

@@ -38,8 +38,6 @@ import {CustomDatePipe} from "./components/customDate/customDatePipe";
         ProfileComponent,
         AboutUsPageComponent,
         CustomDatePipe,
-
-
     ],
     imports: [
         BrowserModule,
@@ -49,7 +47,7 @@ import {CustomDatePipe} from "./components/customDate/customDatePipe";
         MatIconModule,
         FormsModule,
         Ng2SearchPipeModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
