@@ -19,6 +19,7 @@ export class ActivityOverviewComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAllCategories()
+        this.findByfilter();
     }
 
     getAllCategories(): any {
@@ -40,6 +41,16 @@ export class ActivityOverviewComponent implements OnInit {
             }
         }
         console.log(this.categorysearch)
+    }
+
+
+    findByfilter(){
+        for (let i = 0; i <this.activityArray; i++) {
+            if (this.activityArray.categories[i] === this.categorysearch[i]){
+
+            }
+            console.log(this.activityArray);
+        }
     }
 }
 
