@@ -14,7 +14,6 @@
 /*}*/
 
 /*.aboutUs{*/
-/*  background: var(--color-white-smoke) url("../../../assets/Images/ouderen.jpg") no-repeat left;*/
 /*  background-size: 55%;*/
 /*  overflow: hidden;*/
 /*  padding: 100px 0;*/
@@ -73,10 +72,6 @@
 /*  }*/
 /*}*/
 
-body, html{
-  background-color: var(--color-white-smoke);
-}
-
 .header{
   background: url("../../../assets/Images/ouderenKaarten.jpg") no-repeat top;
   height: 250px;
@@ -105,7 +100,23 @@ h1{
     0.3em 0.3em 1em rgba(0,0,0,0.3);
 }
 
+/**
+If you click on a word there is no border
+And the cursor changes into a pointer(hand)
+ */
 li{
   border-style: none;
+  cursor: pointer;
 }
 
+/**
+When you go with you mouse over the word it change the color to grey
+ */
+li:hover{
+  color: var(--color-default);
+}
+
+.col-md-8{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
