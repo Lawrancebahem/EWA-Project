@@ -12,6 +12,7 @@ export class ActivityOverviewComponent implements OnInit {
     activityArray: any = (activities as any).default;
     categoryArray: Array<string> = [];
     activitySearchText;
+    categorysearch = [];
 
     constructor() {
     }
@@ -28,6 +29,17 @@ export class ActivityOverviewComponent implements OnInit {
                 }
             }
         }
+    }
+
+    addCategoryToSearch(){
+        this.categorysearch = [];
+        for (let i = 0; i < this.categoryArray.length; i++) {
+            let currentButton = document.getElementById(this.categoryArray[i])
+            if(currentButton.getAttribute("aria-pressed") === "true"){
+                this.categorysearch.push(this.categoryArray[i])
+            }
+        }
+        console.log(this.categorysearch)
     }
 }
 

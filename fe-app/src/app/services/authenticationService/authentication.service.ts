@@ -66,6 +66,7 @@ export class AuthenticationService {
     private users: any[] = [
         {email: "Lawrancebahem@gmail.com", password: "admin"},
         {email: "admin", password: "admin"},
+        {email: "tico.vermeer@hva.nl", password: "admin"},
     ];
 
     constructor() {
