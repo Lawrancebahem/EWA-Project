@@ -1,4 +1,4 @@
-<header id="header">
+<header id="header" xmlns:filter="http://www.w3.org/1999/xhtml" xmlns:filter="http://www.w3.org/1999/xhtml">
     <h1>Alle activiteiten</h1>
 </header>
 
@@ -11,14 +11,16 @@
                [(ngModel)]="activitySearchText">
     </div>
 
-    <div class="filterlist" id="filterlist">
+    <div class="filterlist " id="filterlist">
         <h1>Filters:</h1>
-        <button type="button" class="btn button--primary" data-toggle="button"
-                *ngFor="let category of categoryArray">
+        <div class="btn-group-toggle" data-toggle="buttons">
+        <button type="button" class="btn button--primary" id="{{category}}"
+                *ngFor="let category of categoryArray" (click)="addCategoryToSearch()">
             {{category}}
         </button>
+        </div>
     </div>
-    <div class="activity col-2 mb-4" *ngFor="let activity of activityArray | filter: activitySearchText">
+    <div class="activity col-2 mb-4" *ngFor="let activity of activityArray | filter: activitySearchText ">
         <div class="card" id="{{activity.id}}">
             <img class="card-img-top" src="../../../../assets/Images/activityImage/{{activity.image}}"
                  alt="{{activity.activityTitle}}">
