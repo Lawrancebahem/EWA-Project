@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 // @ts-ignore
 
 import * as annyang from 'annyang';
-import {AuthenticationService} from "../../services/authenticationService/authentication.service";
 import { Router} from "@angular/router";
-import {SpeechServiceService} from "../../services/speech-voice-service/speech-service.service";
+import {SpeechServiceService} from "../../../services/speech-voice-service/speech-service.service";
+import {AuthenticationService} from "../../../services/authenticationService/authentication.service";
 
 @Component({
     selector: 'app-nav-bar',

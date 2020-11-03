@@ -7,7 +7,7 @@ import * as annyang from 'annyang';
 })
 
 export class SpeechServiceService {
-
+    // colors = {'blauw': "blue", 'groen': "green", 'zwart': "black" , 'rood': "red", 'geel': "yellow",}
     public title = 'angularSpeechRecognition';
     public phrases = [];
     public languages: string [] = ['nl-NL']
@@ -15,6 +15,10 @@ export class SpeechServiceService {
     public introduced = false;
     private synthesis = window.speechSynthesis;
     private utterance = new SpeechSynthesisUtterance("Dagje uit");
+    private colorsDutch = ["zwart", "groen", "wit", "geel", "rood", "blauw"] // this is for the dutch speakers
+    private colors = ["black", "green", "white", "yellow", "red", "blue"] // to apply the requested color in css
+    private navigationsDutch = ['home', 'activiteiten', 'registratie', 'login', 'profiel']// navigations in Dutch
+    private navigations = ['home', 'activityoverview', 'register', 'login', 'profile'] // navigations in English
 
     // commands = {
     //   'home pagina': this.getHomePage(),
@@ -25,7 +29,6 @@ export class SpeechServiceService {
     constructor(private ngZone: NgZone, private router: Router, private injector: Injector) {
         this.utterance.lang = 'nl-NL';
         if (!this.introduced) {
-            console.log("Jaaa")
             this.speak("Hello mijn naam is dagje uit, om te navigeren in de applicatie of om de kleuren " +
                 "te wijzigen, kunt u gebruik maken van de spraak functie links bovenin")
             this.introduced = true;
@@ -56,7 +59,7 @@ export class SpeechServiceService {
             this.phrases = whatTheUserHasSaid;
         });
         let command = this.checkPhrase(this.phrases);
-        console.log('I think the user said: ' + command);
+        // console.log('I think the user said: ' + command);
         if (command !== "") {
             this.reactOnSpeech(command)
             annyang.abort();
@@ -140,68 +143,32 @@ export class SpeechServiceService {
             return "geel"
         } else if (text.toLowerCase() === "blauw") {
             return "blauw"
-        }else if (text.toLowerCase() === "profielpagina" || text.toLowerCase() === "profiel"){
-            return "profile";
-        }
-        else {
+        } else if (text.toLowerCase() === "profielpagina" || text.toLowerCase() === "profiel") {
+            return "profiel";
+        } else {
             return "";
         }
     }
 
     /**
      * To switch between the page depending on what the user said
-     * @param text
+     * @param command
      * @private
      */
-    private reactOnSpeech(text: string) {
+    private reactOnSpeech(command: string) {
         const routerService = this.injector.get(Router);
         const ngZone = this.injector.get(NgZone);
-        if (text === 'homepagina' || text === 'home') {
-            this.speak("U bent op de homepagina")
+        if (this.navigationsDutch.indexOf(command) > -1) {
+            let navigateTo = this.navigations[this.navigationsDutch.indexOf(command)];
+            this.speak("U bent op de " + command +" pagina")
             ngZone.run(() => {
-                routerService.navigate(['/home']);
+                routerService.navigate(['/' + navigateTo]);
             });
-
-        } else if (text === 'activiteiten pagina' || text === 'activiteiten') {
-            this.speak("U bent op de activitetienpagina")
-            ngZone.run(() => {
-                routerService.navigate(['/activities']);
-            });
-
-        } else if (text === "registratiepagina" || text === "registratie") {
-            this.speak("U bent op de registratiepagina")
-            ngZone.run(() => {
-                routerService.navigate(['/register']);
-            });
-        } else if (text === "loginpagina" || text === "login") {
-            this.speak("U bent op de login pagina")
-            ngZone.run(() => {
-                // routerService.navigate(['/login'], { skipLocationChange: true });
-                routerService.navigate(['/login']);
-            });
-
-        }else if (text ==="profile"){
-            this.speak("U bent op de profiel pagina")
-            ngZone.run(() => {
-                // routerService.navigate(['/login'], { skipLocationChange: true });
-                routerService.navigate(['/profile']);
-            });
-        }
-        else if (text === "zwart") {
-            document.documentElement.style.setProperty('--color-default', 'black');
-            this.speak("De kleur zwart is geactiveerd")
-        } else if (text === "rood") {
-            document.documentElement.style.setProperty('--color-default', 'red');
-            this.speak("De kleur rood is geactiveerd")
-        } else if (text === "groen") {
-            document.documentElement.style.setProperty('--color-default', 'green');
-            this.speak("De kleur groen is geactiveerd")
-        } else if (text === "geel") {
-            document.documentElement.style.setProperty('--color-default', 'yellow');
-            this.speak("De kleur geel is geactiveerd")
-        } else if (text === "blauw") {
-            document.documentElement.style.setProperty('--color-default', 'blue');
-            this.speak("De kleur blauw is geactiveerd")
+        } else if (this.colorsDutch.indexOf(command) > -1) {
+            let indexColor = this.colorsDutch.indexOf(command);
+            let color = this.colors[indexColor]; // get the color if the found index
+            document.documentElement.style.setProperty('--color-default', color);
+            this.speak("De kleur " + command + " is geactiveerd")
         } else {
             this.speak("Ik begrijp niet helemaal wat u bedoelt")
         }

@@ -15,6 +15,45 @@
         transform: rotate(-360deg);
     }
 }
+.mic-icon .rec{
+    display: block;
+    text-align: center;
+}
+.rec{
+    position: relative;
+    left: 20px;
+    bottom: .2rem;
+    animation-name: pulse;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    width: 10px;
+    height: 10px;
+    font-size: 0;
+    background-color: red;
+    border: 0;
+    border-radius: 35px;
+    padding: 0;
+    outline: none;
+}
+
+@keyframes pulse{
+    0%{
+        box-shadow: 0 0 5px 0rgba(173,0,0,.3);
+    }
+    65%{
+        box-shadow: 0 0 5px 13px rgba(173,0,0,.3);
+    }
+    90%{
+        box-shadow: 0 0 5px 13px rgba(173,0,0,0);
+    }
+}
+
+
+.dropdown-item:hover{
+    background-color: var(--color-black);
+
+}
 
 nav {
     background-color: var(--color-default);
