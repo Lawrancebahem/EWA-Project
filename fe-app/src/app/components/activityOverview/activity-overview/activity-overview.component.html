@@ -18,6 +18,7 @@
             {{category}}
         </button>
     </div>
+
     <div class="activity col-2 mb-4" *ngFor="let activity of activityArray | filter: activitySearchText">
         <div class="card" id="{{activity.id}}">
             <img class="card-img-top" src="../../../../assets/Images/activityImage/{{activity.image}}"
