@@ -14,28 +14,20 @@
 
     <div class="filterlist " id="filterlist">
         <h1>Filters:</h1>
+        <a class="btn-link" (click)="clearFilters()">leeg filters</a>
 
+        <p class="custom-control-label">Categoriën:</p>
         <div class="custom-control custom-checkbox" *ngFor="let category of categoryArray">
             <input type="checkbox" class="custom-control-input" id="{{category}}">
             <label class="custom-control-label" for="{{category}}">{{category}}</label>
         </div>
         <button class="btn btn-primary" (click)="filterSearch()">Zoek</button>
 
-
-<!--        <div class="btn-group-toggle" data-toggle="checkbox">-->
-<!--            <table id="categoryTable">-->
-<!--                <tr *ngFor="let category of categoryArray">-->
-<!--                    <td>-->
-<!--                        <input type="checkbox">{{category}}-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--            </table>-->
-
-<!--        <button type="button" class="btn button&#45;&#45;primary" id="{{category}}"-->
-<!--                *ngFor="let category of categoryArray" (click)="addCategoryToSearch()">-->
-<!--            {{category}}-->
-<!--        </button>-->
-<!--        </div>-->
+        <!--        <button type="button" class="btn button&#45;&#45;primary" id="{{category}}"-->
+        <!--                *ngFor="let category of categoryArray" (click)="addCategoryToSearch()">-->
+        <!--            {{category}}-->
+        <!--        </button>-->
+        <!--        </div>-->
     </div>
 
     <div class="activity col-2 mb-4" *ngFor="let activity of filteredActivityArray | filter: activitySearchText ">
@@ -50,4 +42,5 @@
             </p>
         </div>
     </div>
+
 </div>

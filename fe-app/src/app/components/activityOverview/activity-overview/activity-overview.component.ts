@@ -20,7 +20,8 @@ export class ActivityOverviewComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getAllCategories()
+        this.getAllCategories();
+        this.categoryArray.sort((a, b) => a > b ? 1 : -1)
     }
 
     getAllCategories(): any {
@@ -56,8 +57,8 @@ export class ActivityOverviewComponent implements OnInit {
                 }
             }
         }
-        console.log(this.categorySearch)
-        console.log(this.activityArray)
+        console.log(this.categorySearch);
+        console.log(this.activityArray);
     }
 
     filterSearch() {
@@ -69,13 +70,13 @@ export class ActivityOverviewComponent implements OnInit {
         for (let category of this.categoryArray) {
             let currentCategory = <HTMLInputElement>document.getElementById(category);
             if (currentCategory.checked) {
-                this.categorySearch.push(category)
+                this.categorySearch.push(category);
             }
         }
 
         // If no filter is selected show every activity.
         if (this.categorySearch.length == 0) {
-            this.filteredActivityArray = this.activityArray
+            this.filteredActivityArray = this.activityArray;
         }
 
         console.log("Geselecteerde categoriën: " + this.categorySearch)
@@ -85,12 +86,19 @@ export class ActivityOverviewComponent implements OnInit {
             for (let currentCategory of this.categorySearch) {
                 // If the activity includes more than one category only show it once.
                 if (activity.categories.includes(currentCategory)) {
-                    if (!this.filteredActivityArray.includes(activity)){
-                        this.filteredActivityArray.push(activity)
+                    if (!this.filteredActivityArray.includes(activity)) {
+                        this.filteredActivityArray.push(activity);
                     }
                 }
             }
         }
     }
-}
 
+    clearFilters() {
+        for (let filter of this.categoryArray) {
+            let currentfilter = <HTMLInputElement>document.getElementById(filter);
+            currentfilter.checked = false;
+        }
+        this.filterSearch();
+    }
+}

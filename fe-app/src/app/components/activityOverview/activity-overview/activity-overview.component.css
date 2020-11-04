@@ -72,13 +72,13 @@ img{
     padding: 5px;
 }
 
-.card-text:hover{
-    font-size: 30px;
-    line-height: 1.2;
-    opacity: 1;
-    border: 1px solid var(--color-default);
-    transition: 1s;
-}
+/*.card-text:hover{*/
+/*    font-size: 30px;*/
+/*    line-height: 1.2;*/
+/*    opacity: 1;*/
+/*    border: 1px solid var(--color-default);*/
+/*    transition: 1s;*/
+/*}*/
 
 .filterlist{
     margin: 10px;
@@ -89,14 +89,15 @@ img{
     position: absolute;
 }
 
-
-
-
 .activitySearch{
     margin: 25px;
     margin-top: 0;
     max-width: 100%;
     position: center;
+}
+
+.btn-link:hover{
+    cursor: pointer;
 }
 
 @media screen and (max-width: 800px) {
