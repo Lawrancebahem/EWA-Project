@@ -21,7 +21,6 @@ export class ActivityOverviewComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAllCategories()
-        this.findByfilter();
     }
 
     getAllCategories(): any {
@@ -62,9 +61,11 @@ export class ActivityOverviewComponent implements OnInit {
     }
 
     filterSearch() {
+        // clear both arrays because a new search is done.
         this.categorySearch = [];
         this.filteredActivityArray = [];
 
+        // Check every filter if checked.
         for (let category of this.categoryArray) {
             let currentCategory = <HTMLInputElement>document.getElementById(category);
             if (currentCategory.checked) {
@@ -72,30 +73,23 @@ export class ActivityOverviewComponent implements OnInit {
             }
         }
 
+        // If no filter is selected show every activity.
         if (this.categorySearch.length == 0) {
             this.filteredActivityArray = this.activityArray
         }
 
         console.log("Geselecteerde categoriën: " + this.categorySearch)
 
+        // Check every activity if it includes the selected categories.
         for (let activity of this.activityArray) {
             for (let currentCategory of this.categorySearch) {
+                // If the activity includes more than one category only show it once.
                 if (activity.categories.includes(currentCategory)) {
                     if (!this.filteredActivityArray.includes(activity)){
                         this.filteredActivityArray.push(activity)
                     }
                 }
             }
-        }
-    }
-
-
-    findByfilter(){
-        for (let i = 0; i <this.activityArray; i++) {
-            if (this.activityArray.categories[i] === this.categorysearch[i]){
-
-            }
-            console.log(this.activityArray);
         }
     }
 }
