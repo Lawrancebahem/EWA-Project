@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 // @ts-ignore
 import *  as  activities from '../../../json/activities.json';
+import {forEachComment} from "tslint";
 
 
 @Component({
@@ -12,7 +13,8 @@ export class ActivityOverviewComponent implements OnInit {
     activityArray: any = (activities as any).default;
     categoryArray: Array<string> = [];
     activitySearchText;
-    categorysearch = [];
+    categorySearch = [];
+    filteredActivityArray = this.activityArray;
 
     constructor() {
     }
@@ -31,15 +33,59 @@ export class ActivityOverviewComponent implements OnInit {
         }
     }
 
-    addCategoryToSearch(){
-        this.categorysearch = [];
+    addCategoryToSearch() {
+        this.categorySearch = [];
+
+        // Loop door alle category knoppen.
         for (let i = 0; i < this.categoryArray.length; i++) {
             let currentButton = document.getElementById(this.categoryArray[i])
-            if(currentButton.getAttribute("aria-pressed") === "true"){
-                this.categorysearch.push(this.categoryArray[i])
+
+            // Check of de huidige knop is ingedrukt.
+            if (currentButton.getAttribute("aria-pressed") === "true") {
+                // Als de knop is ingedrukt wordt hij in een array gezet.
+                this.categorySearch.push(this.categoryArray[i])
             }
         }
-        console.log(this.categorysearch)
+
+        for (let i = 0; i < this.activityArray.length; i++) {
+            for (let j = 0; j < this.categorySearch.length; j++) {
+                let currentCategory = this.categorySearch[j]
+                console.log(currentCategory)
+                if (this.activityArray[i].categories.find(x => x === currentCategory) == false) {
+                    this.activityArray.splice(this.activityArray[i]);
+                }
+            }
+        }
+        console.log(this.categorySearch)
+        console.log(this.activityArray)
+    }
+
+    filterSearch() {
+        this.categorySearch = [];
+        this.filteredActivityArray = [];
+
+        for (let category of this.categoryArray) {
+            let currentCategory = <HTMLInputElement>document.getElementById(category);
+            if (currentCategory.checked) {
+                this.categorySearch.push(category)
+            }
+        }
+
+        if (this.categorySearch.length == 0) {
+            this.filteredActivityArray = this.activityArray
+        }
+
+        console.log("Geselecteerde categoriën: " + this.categorySearch)
+
+        for (let activity of this.activityArray) {
+            for (let currentCategory of this.categorySearch) {
+                if (activity.categories.includes(currentCategory)) {
+                    if (!this.filteredActivityArray.includes(activity)){
+                        this.filteredActivityArray.push(activity)
+                    }
+                }
+            }
+        }
     }
 }
 
