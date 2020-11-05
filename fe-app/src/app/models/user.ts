@@ -6,13 +6,17 @@ import {Gender} from "./gender";
 
 export class User {
 
-    constructor(private _firstName, private _lastName: number,
+    constructor(private _id: number, private _firstName, private _lastName: string,
                 private _birthDate: Date, private _gender: Gender,
-                private _profilePicture: string, email: string,
+                private _profilePicture: string, private _email: string,
                 private _password,
-                private _interests: any[]) {
+                private _interests: number[]) {
     }
 
+    static makeTrueCopy(user: User): User {
+        // @ts-ignore
+        return user != null ? Object.assign(new User(), user) : null;
+    }
 
     get firstName() {
         return this._firstName;
@@ -22,11 +26,12 @@ export class User {
         this._firstName = value;
     }
 
-    get lastName(): number {
+
+    get lastName(): string {
         return this._lastName;
     }
 
-    set lastName(value: number) {
+    set lastName(value: string) {
         this._lastName = value;
     }
 
@@ -62,12 +67,28 @@ export class User {
         this._password = value;
     }
 
-    get interests(): string[] {
+
+    get email(): string {
+        return this._email;
+    }
+
+    set email(value: string) {
+        this._email = value;
+    }
+
+    get id(): number {
+        return this._id;
+    }
+
+    set id(value: number) {
+        this._id = value;
+    }
+
+    get interests(): number[] {
         return this._interests;
     }
 
-    set interests(value: string[]) {
+    set interests(value: number[]) {
         this._interests = value;
     }
-
 }

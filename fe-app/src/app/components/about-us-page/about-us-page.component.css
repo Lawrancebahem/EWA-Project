@@ -1,59 +1,48 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.header{
+  background: url("../../../assets/Images/ouderenKaarten.jpg") no-repeat top;
+  height: 250px;
+  background-size: 100%;
 }
 
-
-body{
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-white-smoke);
+.header h1{
+  text-align: center;
+  padding-top: 7%;
 }
 
-.aboutUs{
-  background-size: 55%;
-  background: var(--color-white-smoke) url("../../../assets/Images/pic.jpg") no-repeat left;
-  overflow: hidden;
-  padding: 100px 0;
+.textMenu{
+  margin-top: 5rem;
+  margin-left: 3rem;
 }
 
-.inner-container{
-  width: 55%;
-  float: right;
-  background-color: var(--color-white-smoke);
-  padding: 150px;
-}
-
-.inner-container h1{
-  margin-bottom: 30px;
+h1{
   font-size: 30px;
-  font-weight: 900;
 }
 
-@media screen and (max-width:1200px){
-  .inner-container{
-    padding: 80px;
-  }
+.container{
+  margin-top: 2rem;
+  box-shadow:
+    inset 0 -3em 3em rgba(0,0,0,0.1),
+    0 0  0 2px rgb(255,255,255),
+    0.3em 0.3em 1em rgba(0,0,0,0.3);
 }
 
-@media screen and (max-width:1000px){
-  .aboutUs{
-    background-size: 100%;
-    padding: 100px 40px;
-  }
-  .inner-container{
-    width: 100%;
-  }
+/**
+If you click on a word there is no border
+And the cursor changes into a pointer(hand)
+ */
+li{
+  border-style: none;
+  cursor: pointer;
 }
 
-@media screen and (max-width:600px){
-  .aboutUs{
-    padding: 0;
-  }
-  .inner-container{
-    padding: 60px;
-  }
+/**
+When you go with you mouse over the word it change the color to grey
+ */
+li:hover{
+  color: var(--color-default);
+}
+
+.col-md-8{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
