@@ -1,0 +1,15 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-matching-page',
+  templateUrl: './matching-page.component.html',
+  styleUrls: ['./matching-page.component.css']
+})
+export class MatchingPageComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}

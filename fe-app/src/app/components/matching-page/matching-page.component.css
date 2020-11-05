@@ -1,0 +1,20 @@
+header {
+ margin-top: 1rem;
+}
+
+.container {
+    background-color: var(--color-white-smoke);
+    margin-top: -2%;
+}
+
+.activity-box {
+    align-items: center;
+    height: 80%;
+    width: 75%;
+    margin-left: 11%;
+}
+
+.activity-card {
+    width: 80%;
+    background-color: white;
+}

@@ -8,6 +8,7 @@ import {ActivitiesHomePageComponent} from "./components/HomePage/activities-home
 import {ActivityOverviewComponent} from "./components/activityOverview/activity-overview/activity-overview.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {AboutUsPageComponent} from "./components/about-us-page/about-us-page.component";
+import {MatchingPageComponent} from "./components/matching-page/matching-page.component";
 
 const routes: Routes = [
   {path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:'activityoverview', component:ActivityOverviewComponent},
   {path:'profile', component:ProfileComponent},
   {path:'aboutUs', component:AboutUsPageComponent},
+  {path:'matching', component:MatchingPageComponent},
 ];
 
 @NgModule({
