@@ -23,6 +23,23 @@ img {
     height: 17rem;
 }
 
+.activity-card:hover {
+    cursor: pointer;
+    transition: .5s;
+    border-color: var(--color-blue);
+    box-shadow: 7px 7px 7px var(--color-blue);
+    transform: translateY(-10px);
+}
+
+.toevoegbutton {
+    width: 45%;
+}
+
+.verwijderbutton {
+    margin-left: 10%;
+    width: 45%;
+}
+
 @media screen and (max-width: 780px) {
     h4 {
         font-size: 120%;
