@@ -16,6 +16,11 @@ header {
 
 .activity-card {
     background-color: white;
+    height: 40rem;
+}
+
+img {
+    height: 17rem;
 }
 
 @media screen and (max-width: 780px) {
