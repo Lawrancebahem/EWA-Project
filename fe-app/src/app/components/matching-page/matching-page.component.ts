@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as activities from "../../json/activities.json";
 
 @Component({
   selector: 'app-matching-page',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./matching-page.component.css']
 })
 export class MatchingPageComponent implements OnInit {
+
+  activityArray: any = (activities as any).default;
 
   constructor() { }
 
