@@ -1,82 +1,3 @@
-/**{*/
-/*  margin: 0;*/
-/*  padding: 0;*/
-/*  box-sizing: border-box;*/
-/*}*/
-
-
-/*body{*/
-/*  min-height: 100vh;*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  justify-content: center;*/
-/*  background-color: var(--color-white-smoke);*/
-/*}*/
-
-/*.aboutUs{*/
-/*  background: var(--color-white-smoke) url("../../../assets/Images/ouderen.jpg") no-repeat left;*/
-/*  background-size: 55%;*/
-/*  overflow: hidden;*/
-/*  padding: 100px 0;*/
-/*}*/
-
-
-/*.inner-container{*/
-/*  width: 55%;*/
-/*  float: right;*/
-/*  background-color: var(--color-white-smoke);*/
-/*  padding: 140px;*/
-/*  box-shadow: 10px 10px 8px rgba(0,0,0,0.3);*/
-/*}*/
-
-/*.inner-container h1{*/
-/*  margin-bottom: 30px;*/
-/*  font-size: 30px;*/
-/*  font-weight: 900;*/
-/*}*/
-/*.text{*/
-/*  font-size: 13px;*/
-/*  color: #545454;*/
-/*  line-height: 30px;*/
-/*  text-align: justify;*/
-/*  margin-bottom: 40px;*/
-/*}*/
-
-/*.inner-container h1{*/
-/*  margin-bottom: 30px;*/
-/*  font-size: 30px;*/
-/*  font-weight: 900;*/
-/*}*/
-
-/*@media screen and (max-width:1200px){*/
-/*  .inner-container{*/
-/*    padding: 80px;*/
-/*  }*/
-/*}*/
-
-/*@media screen and (max-width:1000px){*/
-/*  .aboutUs{*/
-/*    background-size: 100%;*/
-/*    padding: 100px 40px;*/
-/*  }*/
-/*  .inner-container{*/
-/*    width: 100%;*/
-/*  }*/
-/*}*/
-
-/*@media screen and (max-width:600px){*/
-/*  .aboutUs{*/
-/*    padding: 0;*/
-/*  }*/
-/*  .inner-container{*/
-/*    padding: 60px;*/
-/*  }*/
-/*}*/
-
-body, html{
-  background-color: var(--color-white-smoke);
-}
-
 .header{
   background: url("../../../assets/Images/ouderenKaarten.jpg") no-repeat top;
   height: 250px;
@@ -105,7 +26,23 @@ h1{
     0.3em 0.3em 1em rgba(0,0,0,0.3);
 }
 
+/**
+If you click on a word there is no border
+And the cursor changes into a pointer(hand)
+ */
 li{
   border-style: none;
+  cursor: pointer;
 }
 
+/**
+When you go with you mouse over the word it change the color to grey
+ */
+li:hover{
+  color: var(--color-default);
+}
+
+.col-md-8{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

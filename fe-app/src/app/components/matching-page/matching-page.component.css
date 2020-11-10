@@ -1,0 +1,86 @@
+header {
+ margin-top: 1rem;
+}
+
+.container {
+    background-color: var(--color-white-smoke);
+    margin-top: -2%;
+}
+
+.activity-box {
+    align-items: center;
+    height: 80%;
+    width: 75%;
+    margin-left: 11%;
+}
+
+.activity-card {
+    background-color: white;
+    height: 40rem;
+}
+
+img {
+    height: 17rem;
+}
+
+.activity-card:hover {
+    cursor: pointer;
+    transition: .5s;
+    border-color: var(--color-blue);
+    box-shadow: 7px 7px 7px var(--color-blue);
+    transform: translateY(-10px);
+}
+
+.toevoegbutton {
+    width: 45%;
+}
+
+.verwijderbutton {
+    margin-left: 10%;
+    width: 45%;
+}
+
+@media screen and (max-width: 780px) {
+    h4 {
+        font-size: 120%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    h1 {
+        font-size: 180%;
+    }
+    h4 {
+        font-size: 100%;
+    }
+}
+
+@media screen and (max-width: 545px) {
+    h4 {
+        font-size: 80%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    h4 {
+        font-size: 70%;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    h1 {
+        font-size: 150%;
+    }
+    h4 {
+        font-size: 60%;
+    }
+}
+
+@media screen and (max-width: 325px) {
+    h1 {
+        font-size: 50%;
+    }
+    h4 {
+        font-size: 30%;
+    }
+}
