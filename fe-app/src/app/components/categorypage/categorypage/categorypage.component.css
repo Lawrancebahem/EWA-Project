@@ -26,8 +26,6 @@ img{
   box-sizing: border-box;
   padding: .2rem;
   max-width: 100%;
-
-
 }
 
 .activity {
@@ -39,6 +37,11 @@ img{
   border-radius: var(--border-radius);
   max-width: 31%;
   box-shadow: 5px 5px 5px var(--color-default);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
 .activity:hover {
@@ -51,6 +54,7 @@ img{
 
 .card-img-top{
   border-radius: var(--border-radius);
+  max-height: 250px;
 }
 
 .card-title {

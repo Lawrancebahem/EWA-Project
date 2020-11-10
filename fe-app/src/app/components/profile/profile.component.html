@@ -84,7 +84,7 @@
         <div class="user-info">
             <div class="profile-picture" id="profileImage">
                 <a>
-                    <mat-icon class="edit-icon" (click)="onEditPicture()" data-toggle="modal" data-target="#myModal">edit</mat-icon>
+                    <mat-icon class="edit-icon" data-toggle="modal" data-target="#myModal">edit</mat-icon>
                 </a>
             </div>
         </div>
@@ -203,13 +203,13 @@
             </div>
 
             <div class="image-preview p-5">
-                <img id="profile-picture" class="profile-picture">
+                <img id="profile-picture-preview" class="profile-picture">
             </div>
-            <label class="input-group-text m-1">Upload uw foto (optional) <input id="profile-picture-lable"
-                                                                                      class="m-4"
-                                                                                      type="file"></label>
+            <label class="input-group-text m-1">Upload uw foto (optional)
+                <input id="profile-picture-lable" class="m-4" type="file" #uploadedProfile>
+            </label>
             <div class="modal-footer p-0">
-                <button id="add-modal" type="button" class="button--primary " data-dismiss="modal ">Add</button>
+                <button (click)="onEditPicture()" id="add-modal" type="button" class="button--primary " data-dismiss="modal ">Add</button>
 
                 <button id="close-modal" type="button" class="button--primary" data-dismiss="modal">Close</button>
             </div>

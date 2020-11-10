@@ -38,10 +38,10 @@ export class RegisterComponent implements OnInit {
     public register() {
         this.submitted = true;
         setTimeout(() => {
-            const errors = document.querySelectorAll('.errors');
+            const errors = document.querySelectorAll('.errors'); // check if there is error
             if (errors.length > 0) return;
 
-            const genderElement = Array.from(document.querySelector('.gender-form')
+            const genderElement = Array.from(document.querySelector('.gender-form') // get the gender value
                 .querySelectorAll('input[name=gender]:checked')).map((gender) => {
                 return gender.getAttribute('value')
             })

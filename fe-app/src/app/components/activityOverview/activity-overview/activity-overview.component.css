@@ -14,8 +14,8 @@ header h1 {
 }
 
 img{
-    height: 350px;
-    width: 100%;
+    max-height: 350px;
+    border-radius: var(--border-radius);
 }
 
 .btn{
@@ -47,8 +47,14 @@ img{
     box-sizing: border-box;
     box-shadow: 5px 5px 5px var(--color-default);
     max-width: 35%;
-    border-radius: .25rem;
-    height: 630px;
+    border-radius: var(--border-radius);
+    height: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+
 }
 
 .activity:hover {
