@@ -60,19 +60,23 @@
                 <a class="nav-link dropdown-toggle button--primary text-white" id="navbarDropdownMenuLink-333"
                    data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"><img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+                    <i class="fas fa-user"><img src="/assets/Images/picProfile.png"
                                                 class="rounded-circle z-depth-0 "
                                                 alt="avatar image" height="35">Chantal</i>
                 </a>
                 <div id="dropDown" class="dropdown-menu dropdown-menu-right dropdown-default"
                      aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item  text-white button--primary" routerLink="/profile">My profile</a>
-                    <a class="dropdown-item  text-white button--primary" routerLink="/register">Settings</a>
-                    <a class="dropdown-item  text-white button--primary" (click)="logout()">Log out</a>
+                    <a class="dropdown-item  text-white button--primary" routerLink="/profile">Mijn Profiel</a>
+<!--                    <a class="dropdown-item  text-white button&#45;&#45;primary" routerLink="/register">Instellingen</a>-->
+                    <a class="dropdown-item  text-white button--primary" (click)="logout()">Log uit</a>
                 </div>
             </li>
 
             <ng-template #notLoggedIn>
+
+              <li class="nav-item">
+                <a class="nav-link button--primary text-white" routerLink="/aboutUs">About Us</a>
+              </li>
 
                 <li class="nav-item ">
                     <a class="nav-link button--primary text-white" routerLink="/login">Login</a>

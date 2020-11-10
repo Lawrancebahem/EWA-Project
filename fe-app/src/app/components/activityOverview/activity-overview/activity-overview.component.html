@@ -1,4 +1,4 @@
-<header id="header">
+<header id="header" xmlns:filter="http://www.w3.org/1999/xhtml" xmlns:filter="http://www.w3.org/1999/xhtml">
     <h1>Alle activiteiten</h1>
 </header>
 
@@ -11,14 +11,26 @@
                [(ngModel)]="activitySearchText">
     </div>
 
-    <div class="filterlist" id="filterlist">
+
+    <div class="filterlist " id="filterlist">
         <h1>Filters:</h1>
-        <button type="button" class="btn button--primary" data-toggle="button"
-                *ngFor="let category of categoryArray">
-            {{category}}
-        </button>
+        <a class="btn-link" (click)="clearFilters()">leeg filters</a>
+
+        <p class="custom-control-label">Categoriën:</p>
+        <div class="custom-control custom-checkbox" *ngFor="let category of categoryArray">
+            <input type="checkbox" class="custom-control-input" id="{{category}}">
+            <label class="custom-control-label" for="{{category}}">{{category}}</label>
+        </div>
+        <button class="btn btn-primary" (click)="filterSearch()">Zoek</button>
+
+        <!--        <button type="button" class="btn button&#45;&#45;primary" id="{{category}}"-->
+        <!--                *ngFor="let category of categoryArray" (click)="addCategoryToSearch()">-->
+        <!--            {{category}}-->
+        <!--        </button>-->
+        <!--        </div>-->
     </div>
-    <div class="activity col-2 mb-4" *ngFor="let activity of activityArray | filter: activitySearchText">
+
+    <div class="activity col-2 mb-4" *ngFor="let activity of filteredActivityArray | filter: activitySearchText ">
         <div class="card" id="{{activity.id}}">
             <img class="card-img-top" src="../../../../assets/Images/activityImage/{{activity.image}}"
                  alt="{{activity.activityTitle}}">
@@ -30,4 +42,5 @@
             </p>
         </div>
     </div>
+
 </div>
