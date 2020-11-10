@@ -11,6 +11,7 @@ public class User {
     private LocalDate birthDate;
     private Gender gender;
     private String profilePicture;
+    private String email;
     private String password;
     private int interests[];
 
@@ -23,6 +24,7 @@ public class User {
         this.profilePicture = "profilePicture";
         this.password = "password";
         this.interests = new int[9];
+        this.email ="";
     }
 
     public long getId() {
@@ -98,6 +100,13 @@ public class User {
         this.interests = interests;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     enum Gender {
         MAN,

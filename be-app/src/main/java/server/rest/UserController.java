@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import server.exception.ResourceNotFound;
+import server.models.Login;
 import server.models.User;
 import server.repositories.EntityRepository;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +40,10 @@ public class UserController {
         User savedUser = this.userRepository.saveOrUpdate(user);
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}").buildAndExpand(savedUser).toUri();
         return ResponseEntity.created(location).body(savedUser);
+    }
+
+    @PostMapping("/login")
+    public boolean login(@RequestBody Login login){
+        return this.userRepository.authenticateLogin(login);
     }
 }

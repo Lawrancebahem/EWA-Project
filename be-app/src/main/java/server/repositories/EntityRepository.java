@@ -1,5 +1,7 @@
 package server.repositories;
 
+import server.models.Login;
+
 import java.util.List;
 
 public interface EntityRepository<T> {
@@ -12,6 +14,8 @@ public interface EntityRepository<T> {
     default T saveOrUpdate(T t) {
         return null;
     }
+
+    boolean authenticateLogin(Login login);
 
     default boolean deleteById(long id) {
         return false;

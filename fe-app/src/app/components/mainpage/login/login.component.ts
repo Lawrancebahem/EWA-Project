@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../../services/authenticationService/authentication.service";
+import {response} from "express";
 
 @Component({
     selector: 'app-login',
@@ -17,19 +18,20 @@ export class LoginComponent implements OnInit {
     }
 
     /**
-     * To authenticate if the user has entered the right information
-     * @param user
+     * To authenticate if the login has entered the right information
+     * @param login
      */
-    public login(user) {
-        const isLogged = this.authenticationService.login(user);
-        if (isLogged) {
-            this.router.navigate(['/home']);
-            this.showError = false;
-            this.authenticationService.isLoggedIn = true;
-        } else {
-            this.showError = true;
-            this.authenticationService.isLoggedIn = false;
-        }
+    public login(login) {
+        this.authenticationService.login(login).subscribe(response => {
+            this.authenticationService.isLoggedIn = Boolean(response)
+            if (this.authenticationService.isLoggedIn) {
+                this.router.navigate(['/home']);
+                this.showError = false;
+                this.authenticationService.isLoggedIn = true;
+            } else {
+                this.showError = true;
+                this.authenticationService.isLoggedIn = false;
+            }
+        })
     }
-
 }

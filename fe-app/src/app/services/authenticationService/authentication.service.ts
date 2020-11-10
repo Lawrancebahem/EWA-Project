@@ -2,11 +2,18 @@ import {Injectable} from '@angular/core';
 // @ts-ignore
 import {User} from "../../models/user";
 import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
+import {shareReplay} from "rxjs/operators";
+import {response} from "express";
+import {Observable, Subject} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthenticationService {
+
+
 
     error_messages = {
         'firstName': [
@@ -59,8 +66,8 @@ export class AuthenticationService {
     })
 
 
-    public isLoggedIn: boolean;
-
+    public isLoggedIn: boolean = false;
+    public subject:Subject<boolean> = new Subject<boolean>();
 
     //some fake users
     private users: any[] = [
@@ -69,7 +76,7 @@ export class AuthenticationService {
         {email: "tico.vermeer@hva.nl", password: "admin"},
     ];
 
-    constructor() {
+    constructor(private  httpClient:HttpClient) {
         let userLogged = localStorage.getItem("loggedIndUser");
         if (userLogged != '') {
             this.isLoggedIn = true;
@@ -77,20 +84,11 @@ export class AuthenticationService {
     }
 
     /**
-     * Authenticate when the user is trying to log in, and set the email in the local storage
-     * @param user
+     * Authenticate when the login is trying to log in, and set the email in the local storage
+     * @param login
      */
-    public login(user) {
-        for (let i of this.users) {
-            if (user.email.toLowerCase() === i.email.toLowerCase()) {
-                if (user.password.toLowerCase() == i.password.toLowerCase()) {
-                    localStorage.setItem("loggedIndUser", JSON.stringify(i.email));
-                    this.isLoggedIn = true;
-                    return this.isLoggedIn;
-                }
-            }
-        }
-        return false;
+    public login(login):Observable<any> {
+        return this.httpClient.post(`${environment.apiUrl}/user/login`, login).pipe(shareReplay(1));
     }
 
     /**

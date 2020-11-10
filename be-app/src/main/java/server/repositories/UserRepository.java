@@ -1,6 +1,7 @@
 package server.repositories;
 
 import org.springframework.stereotype.Service;
+import server.models.Login;
 import server.models.User;
 
 import java.util.ArrayList;
@@ -44,5 +45,15 @@ public class UserRepository implements EntityRepository<User> {
     @Override
     public boolean deleteById(long id) {
         return this.users.removeIf(user -> user.getId() == id);
+    }
+
+    @Override
+    public boolean authenticateLogin(Login login){
+        User foundUser = this.users.stream().filter(user -> user.getEmail().equalsIgnoreCase(login.getEmail())).findFirst().orElse(null);
+        if (foundUser != null){
+            return foundUser.getPassword().equalsIgnoreCase(login.getPassword());
+        }else {
+            return false;
+        }
     }
 }
