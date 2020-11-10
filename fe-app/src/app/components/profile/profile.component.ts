@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {mod} from "ngx-bootstrap/chronos/utils";
 
 @Component({
     selector: 'app-profile',
@@ -28,5 +29,11 @@ export class ProfileComponent implements OnInit {
         this.buttonInterestsText = "Wijzig mijn interesses"
         }
 
+    }
+
+    onEditPicture(){
+        let modal = document.getElementById("myModal");
+        const isVisible = "is-visible";
+        modal;
     }
 }
