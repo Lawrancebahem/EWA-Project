@@ -22,6 +22,6 @@ public class ConfigureAbleFactoryBean implements WebMvcConfigurer{
 
   @Override
   public void addCorsMappings(CorsRegistry registry) {
-    registry.addMapping("/**").allowedOrigins("http://localhost:4200", "https://digital-life-backend-staging.herokuapp.com");
+    registry.addMapping("/**").allowedOrigins("http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com");
   }
 }
