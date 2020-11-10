@@ -44,6 +44,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-/.idea/libraries/
-/.idea/libraries/
-/.idea/libraries/
+fe-app/node_modules
