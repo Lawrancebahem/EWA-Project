@@ -23,6 +23,7 @@ import {AboutUsPageComponent} from './components/about-us-page/about-us-page.com
 import {CustomDatePipe} from "./components/customDate/customDatePipe";
 import {MatchingPageComponent} from './components/matching-page/matching-page.component';
 import { MyActivitiesComponent } from './components/my-activities/my-activities.component';
+import { ActivityDetailsComponent } from './components/activitypages/activity-details/activity-details.component';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { MyActivitiesComponent } from './components/my-activities/my-activities.
         CustomDatePipe,
         MatchingPageComponent,
         MyActivitiesComponent,
+        ActivityDetailsComponent,
     ],
     imports: [
         BrowserModule,

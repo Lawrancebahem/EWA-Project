@@ -30,7 +30,7 @@
         <!--        </div>-->
     </div>
 
-    <div class="activity col-2 mb-4" *ngFor="let activity of filteredActivityArray | filter: activitySearchText ">
+    <div class="activity col-2 mb-4" *ngFor="let activity of filteredActivityArray | filter: activitySearchText" routerLink="/activityDetails/{{activity.id}}">
         <div class="card" id="{{activity.id}}">
             <img class="card-img-top" src="../../../../assets/Images/activityImage/{{activity.image}}"
                  alt="{{activity.activityTitle}}">
@@ -42,5 +42,4 @@
             </p>
         </div>
     </div>
-
 </div>

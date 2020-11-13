@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './activitywandelen.component.html',
   styleUrls: ['./activitywandelen.component.css']
 })
-export class ActivitywandelenComponent implements OnInit {
+export class ActivitywandelenComponent implements OnInit{
 
   constructor() { }
 

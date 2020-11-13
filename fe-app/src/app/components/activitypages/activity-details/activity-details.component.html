@@ -1,0 +1,40 @@
+<header id="header" style="background-image: linear-gradient(to bottom, rgba(220,220,220,0.7) 0%,rgba(220,220,220,0.7) 100%),
+    url('../../../../assets/Images/activityImage/{{activityToShow.image}}')">
+    <h1>{{activityToShow.activityTitle}}</h1>
+</header>
+
+<!--Dit is -->
+<div class="container--grid">
+
+    <div class="right-side">
+        <div class="right-side-grid">
+            <div class="activity-image-box">
+                <img class="activity-image" src="../../../../assets/Images/activityImage/{{activityToShow.image}}">
+            </div>
+            <div class="activity-description">
+                <h2 class="activity-description-title">Beschrijving:</h2>
+                <p>{{activityToShow.description}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="left-side">
+        <div class="left-sid-grid">
+            <div class="comment-box">
+                <textarea class="comment-box-input" placeholder="Typ hier uw reactie..."></textarea>
+                <button class="button button--primary float-right">Plaats reactie</button>
+            </div>
+
+            <div class="user-comments-box">
+                <h2 class="user-comments-box-title">Reacties:</h2>
+                <p *ngFor="let reaction of activityToShow.reactions">
+                    {{reaction.name}}: {{reaction.message}}
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
