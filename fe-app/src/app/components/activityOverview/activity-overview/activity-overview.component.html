@@ -16,7 +16,7 @@
         <h1>Filters:</h1>
         <a class="btn-link" (click)="clearFilters()">leeg filters</a>
 
-        <p class="custom-control-label">Categoriën:</p>
+        <h4>Categoriën:</h4>
         <div class="custom-control custom-checkbox" *ngFor="let category of categoryArray">
             <input type="checkbox" class="custom-control-input" id="{{category}}">
             <label class="custom-control-label" for="{{category}}">{{category}}</label>
