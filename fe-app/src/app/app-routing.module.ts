@@ -19,7 +19,7 @@ const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'activities', component: ActivitywandelenComponent},
     {path: 'category', component: CategorypageComponent},
-    {path: 'activityoverview',component: ActivityOverviewComponent},
+    {path: 'activityOverview',component: ActivityOverviewComponent},
     {path: 'profile', component: ProfileComponent},
     {path: 'aboutUs', component: AboutUsPageComponent},
     {path: 'matching', component: MatchingPageComponent},
