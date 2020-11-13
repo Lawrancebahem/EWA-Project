@@ -113,4 +113,8 @@ public class User {
         WOMAN,
         OTHER
     }
+    
+    public class ShowInfo{
+
+    }
 }

@@ -2,13 +2,15 @@ package server.rest;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import server.exception.PreConditionalFailed;
 import server.exception.ResourceNotFound;
 import server.models.Login;
 import server.models.User;
 import server.repositories.EntityRepository;
-import org.springframework.http.ResponseEntity;
+
 import java.net.URI;
 import java.util.List;
 
@@ -21,12 +23,21 @@ public class UserController {
     public EntityRepository<User> userRepository;
 
 
+    /**
+     * Get all users
+     * @return
+     */
     @GetMapping("/all")
     public List<User> findAll(){
         return this.userRepository.findAll();
     }
 
 
+    /**
+     * To get a user by id
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
     public User findUserById(@PathVariable long id){
         User user = this.userRepository.findById(id);
@@ -34,16 +45,28 @@ public class UserController {
         return user;
     }
 
+    /**
+     * To register new user, and responding with the user in the body without the password
+     * @param user
+     * @return
+     */
     @PostMapping()
     public ResponseEntity<User> responseEntity(@RequestBody User user){
-        System.out.println("The user is " +user.getFirstName());
+        User foundUserByEmail = this.userRepository.findByEmail(user.getEmail());
+        if (foundUserByEmail != null) throw new PreConditionalFailed("This email : '" + user.getEmail() + "' is already in use");
         User savedUser = this.userRepository.saveOrUpdate(user);
-        URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}").buildAndExpand(savedUser).toUri();
-        return ResponseEntity.created(location).body(savedUser);
+        User clonedSavedUser = this.userRepository.getClonedObject(savedUser);//Get cloned user without password
+        URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}").buildAndExpand(clonedSavedUser).toUri();
+        return ResponseEntity.created(location).body(clonedSavedUser);
     }
 
+    /**
+     * Authenticate login
+     * @param login
+     * @return
+     */
     @PostMapping("/login")
-    public boolean login(@RequestBody Login login){
+    public User login(@RequestBody Login login){
         return this.userRepository.authenticateLogin(login);
     }
 }

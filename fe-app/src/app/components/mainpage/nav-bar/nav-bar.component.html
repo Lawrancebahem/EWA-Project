@@ -60,9 +60,9 @@
                 <a class="nav-link dropdown-toggle button--primary text-white" id="navbarDropdownMenuLink-333"
                    data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"><img src="/assets/Images/picProfile.png"
+                        <i class="fas fa-user"><img src="{{authenticateService.loggedInUser.profilePicture}}"
                                                 class="rounded-circle z-depth-0 "
-                                                alt="avatar image" height="35">Chantal</i>
+                                                alt="avatar image" height="35">{{authenticateService.loggedInUser.firstName}}</i>
                 </a>
                 <div id="dropDown" class="dropdown-menu dropdown-menu-right dropdown-default"
                      aria-labelledby="navbarDropdownMenuLink-333">
