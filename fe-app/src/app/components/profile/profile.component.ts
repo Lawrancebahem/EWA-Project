@@ -46,6 +46,7 @@ export class ProfileComponent implements OnInit {
         const imagePreview = document.querySelector("#profile-picture-preview")
         this.convertImage.convertToBase64(profilePicture, data => {
             imagePreview.setAttribute("src", data);
+            console.log(data);
         })
         //Close the modal after 1.5sec
         setTimeout(function (){

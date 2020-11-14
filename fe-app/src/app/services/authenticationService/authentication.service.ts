@@ -14,7 +14,6 @@ import {Observable, Subject} from "rxjs";
 export class AuthenticationService {
 
 
-
     error_messages = {
         'firstName': [
             {type: 'required', message: 'Voornaam Name is verplicht veld.'},
@@ -56,7 +55,7 @@ export class AuthenticationService {
         firstName: new FormControl('', Validators.required),
         lastName: new FormControl('', Validators.required),
         birthDate: new FormControl('', Validators.required),
-        email: new FormControl('', [Validators.required, Validators.email]),
+        email: new FormControl('', [Validators.required, Validators.email,Validators.pattern("^[A-Z-a-z0-9._%+-]+@[A-Z-a-z0-9.-]+\\.[a-z]{2,4}$")]),
         password: new FormControl('', Validators.compose([
             Validators.required,
         ])),
@@ -67,16 +66,9 @@ export class AuthenticationService {
 
 
     public isLoggedIn: boolean = false;
-    public subject:Subject<boolean> = new Subject<boolean>();
+    public loggedInUser:User;
 
-    //some fake users
-    private users: any[] = [
-        {email: "Lawrancebahem@gmail.com", password: "admin"},
-        {email: "admin", password: "admin"},
-        {email: "tico.vermeer@hva.nl", password: "admin"},
-    ];
-
-    constructor(private  httpClient:HttpClient) {
+    constructor(private  httpClient: HttpClient) {
         let userLogged = localStorage.getItem("loggedIndUser");
         if (userLogged != '') {
             this.isLoggedIn = true;
@@ -87,7 +79,7 @@ export class AuthenticationService {
      * Authenticate when the login is trying to log in, and set the email in the local storage
      * @param login
      */
-    public login(login):Observable<any> {
+    public login(login): Observable<any> {
         return this.httpClient.post(`${environment.apiUrl}/user/login`, login).pipe(shareReplay(1));
     }
 
@@ -103,24 +95,24 @@ export class AuthenticationService {
 
     }
 
-
+    /**
+     * Check the equality of the passwords in the registration form
+     * @param confirm
+     */
     public checkPasswords(confirm): boolean { // here we have the 'passwords' group
         let pass = this.registerForm.get('password').value;
         return pass === confirm;
 
     }
 
-    // public validateEmail(element){
-    //   let emailRegex = '(?:[a-z0-9!#$%&'+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'+/=?^_`{|}~-]+)|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])")@(?:(?:[a-z0-9](?:[a-z0-9-][a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-][a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
-    //   if(element.val() === ''){
-    //     showError(element, "Vul een email in");
-    //     isValidData = false;
-    //   }
-    //   else if(!element.val().match(emailRegex)){
-    //     showError(element, "Incorrecte email");
-    //     isValidData = false;
-    //   }
+    /**
+     * validate email
+     * @param element
+     */
+    // public validateEmail(element) {
+    //     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    //     return element.value.match(emailRegex);
+    //
     // }
-
 
 }

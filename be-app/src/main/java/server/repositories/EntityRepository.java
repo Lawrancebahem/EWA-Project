@@ -15,9 +15,17 @@ public interface EntityRepository<T> {
         return null;
     }
 
-    boolean authenticateLogin(Login login);
+    default T findByEmail(String email) {
+        return null;
+    }
+
+    T authenticateLogin(Login login);
 
     default boolean deleteById(long id) {
         return false;
     }
+
+    default T getClonedObject(T savedUser){
+        return null;
+    };
 }

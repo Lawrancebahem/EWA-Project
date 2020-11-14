@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../../services/authenticationService/authentication.service";
 import {response} from "express";
+import {User} from "../../../models/user";
 
 @Component({
     selector: 'app-login',
@@ -23,11 +24,13 @@ export class LoginComponent implements OnInit {
      */
     public login(login) {
         this.authenticationService.login(login).subscribe(response => {
-            this.authenticationService.isLoggedIn = Boolean(response)
+            this.authenticationService.loggedInUser = User.makeTrueCopy(response);
+            this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
             if (this.authenticationService.isLoggedIn) {
                 this.router.navigate(['/home']);
                 this.showError = false;
                 this.authenticationService.isLoggedIn = true;
+                // localStorage.setItem("loggedIndUser", "");
             } else {
                 this.showError = true;
                 this.authenticationService.isLoggedIn = false;

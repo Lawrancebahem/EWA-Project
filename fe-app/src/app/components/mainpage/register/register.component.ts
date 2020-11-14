@@ -8,6 +8,10 @@ import {User} from "../../../models/user";
 import {UserService} from "../../../services/userService/user.service";
 import {response} from "express";
 import {ImageBase64Service} from "../../../services/convetImageService/image-base64.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {ErrorHandler} from "../../../services/error-handler/error-handler";
+import {catchError, shareReplay} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-register',
@@ -24,8 +28,12 @@ export class RegisterComponent implements OnInit {
     @ViewChild('password') password: ElementRef;
     noGenderSelected: boolean;
     submitted: boolean;
+    public emailAlreadyInUse ="";
 
-    constructor(public authenticationService: AuthenticationService, public userService: UserService, private convertImage: ImageBase64Service) {
+    constructor(public authenticationService: AuthenticationService,
+                public userService: UserService,
+                private convertImage: ImageBase64Service,
+                private router: Router) {
     }
 
     ngOnInit(): void {
@@ -37,6 +45,7 @@ export class RegisterComponent implements OnInit {
      */
     public register() {
         this.submitted = true;
+        if (this.authenticationService.registerForm.invalid) return;
         setTimeout(() => {
             const errors = document.querySelectorAll('.errors'); // check if there is error
             if (errors.length > 0) return;
@@ -70,10 +79,13 @@ export class RegisterComponent implements OnInit {
                     "password": password,
                     "interests": interests,
                 }
-                this.userService.saveOrUpdate(object).subscribe((response) => {
-                    console.log(response);
-                }, error => {
-                    console.log(error);
+                this.userService.saveOrUpdate(object).pipe(shareReplay(1)).subscribe((response) => {
+                    this.authenticationService.loggedInUser = User.makeTrueCopy(response);
+                    this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
+                    this.router.navigate(['/home']);
+                },error  => {
+                    this.emailAlreadyInUse = error.error.message;
+                    console.log(error.error.message);
                 });
             })
         }, 1)

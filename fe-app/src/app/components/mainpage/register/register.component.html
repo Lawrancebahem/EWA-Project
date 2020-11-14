@@ -77,6 +77,7 @@
                             authenticationService.registerForm.get('email').invalid}">
                     <p *ngIf="submitted && email.value.length === 0" class="error">Email is
                         een verplicht veld</p>
+                    <p class="error" *ngIf="emailAlreadyInUse">{{emailAlreadyInUse}}</p>
                 </div>
 
                 <div class="form--input" >

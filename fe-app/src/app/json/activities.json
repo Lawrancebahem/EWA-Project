@@ -25,7 +25,10 @@
       "avontuur"
     ],
     "location": "Muiden",
-    "reactions": []
+    "reactions": [
+      {"name": "Anke", "message": "Heel erg mooi!!!"},
+      {"name": "Bert", "message": "Echt ongelofelijk leuk om te bekijken"}
+    ]
   },
   {
     "id": 3,

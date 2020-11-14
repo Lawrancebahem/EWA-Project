@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 // @ts-ignore
 import *  as  activities from '../../../json/activities.json';
-import {forEachComment} from "tslint";
-
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {ActivityService} from "../../../services/activityService/activity.service";
 
 @Component({
     selector: 'app-activity-overview',
@@ -15,13 +15,25 @@ export class ActivityOverviewComponent implements OnInit {
     activitySearchText;
     categorySearch = [];
     filteredActivityArray = this.activityArray;
+    selectedActivity;
 
-    constructor() {
-    }
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private activityService: ActivityService
+    ) {}
 
     ngOnInit(): void {
         this.getAllCategories();
-        this.categoryArray.sort((a, b) => a > b ? 1 : -1)
+        this.getAllActivities();
+        this.categoryArray.sort((a, b) => a > b ? 1 : -1);
+        this.route.queryParams.subscribe(params => {
+            this.selectedActivity = params['selectedActivity'];
+        });
+    }
+
+    getAllActivities(){
+        this.activityArray = this.activityService.findAll()
     }
 
     getAllCategories(): any {
@@ -100,5 +112,9 @@ export class ActivityOverviewComponent implements OnInit {
             currentfilter.checked = false;
         }
         this.filterSearch();
+    }
+
+    goToActivityDetails(){
+
     }
 }
