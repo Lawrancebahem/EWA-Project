@@ -1,42 +1,64 @@
 <app-banner></app-banner>
-<app-zoekbalk-home-page></app-zoekbalk-home-page>
+<div class="container-fluid">
+    <div class="form-inline" role="form">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<div class="row row-cols-1 row-cols-md-2">
-    <div class="col mb-4" routerLink="/category">
-        <div class="card">
-            <img src="../../../../assets/Images/activityImage/wandeling.jpg" class="card-img-top" alt="wandeling">
-            <div class="card-body">
-                <h2 class="card-title">Herfst</h2>
-                <p class="card-text">Wandelen in mooiste natuurgebieden van Nederland,</p>
+        <label>
+            <select class="form-control form-control-lg" style="padding-right: 3rem">
+                <input id="categorieën" placeholder="Categorieën">
+                <option>Categorie 1</option>
+                <option routerLink="/category">Herfst</option>
+                <option>Categorie 3</option>
+                <option>Categorie 4</option>
+            </select>
+        </label>
+
+        <label>
+            <select class="form-control form-control-lg" style="padding-right: 3rem">
+                <input id="eigenschap" placeholder="Eigenschap">
+                <option>Eigenschap 1</option>
+                <option>Eigenschap 2</option>
+                <option>Eigenschap 3</option>
+                <option>Eigenschap 4</option>
+            </select>
+        </label>
+
+        <label>
+            <select class="form-control form-control-lg" style="padding-right: 3rem">
+                <input id="provincies" placeholder="Provincie">
+                <option>Provincie 1</option>
+                <option>Provincie 2</option>
+                <option>Provincie 3</option>
+                <option>Provincie 4</option>
+            </select>
+        </label>
+
+        <label for="example-date-input">
+            <input class="form-control form-control-lg" type="date" id="example-date-input">
+        </label>
+
+    </div>
+
+    <div class="searchBar">
+        <div class="input-group" >
+            <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" style="height: 3rem">
+            <div class="input-group-append">
+                <button class="btn text-white" type="button">
+                    <mat-icon>search</mat-icon>
+                </button>
+
+
             </div>
         </div>
     </div>
-    <div class="col mb-4">
-        <div class="card">
-            <img src="../../../../assets/Images/activityImage/fietsen.jpg" class="card-img-top" alt="fietsen">
-            <div class="card-body">
-                <h2 class="card-title">Fietsen met vriendin</h2>
-                <p class="card-text">Gezellig fietsen met uw vriendin door de mooiste paden van Nederland met onze begeleiders.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col mb-4">
-        <div class="card">
-            <img src="../../../../assets/Images/activityImage/bowlen.jpg" class="card-img-top" alt="bowlen">
-            <div class="card-body">
-                <h2 class="card-title">Disco Bowlen</h2>
-                <p class="card-text">Zin in bowlen? Kom lekker met uw vriendin of familie disco Bowlen.</p>
-            </div>
-        </div>
-    </div>
-    <div class="col mb-4">
-        <div class="card">
-            <img src="../../../../assets/Images/activityImage/mondkapjes.jpg" class="card-img-top" alt="mondkapje">
-            <div class="card-body">
-                <h2 class="card-title">Mondkapjes maken</h2>
-                <p class="card-text">Geen zin om naar buiten te gaan? Maak thuis leuke mondkapjes voor je zelf of vriendin.</p>
-            </div>
+
+</div>
+
+<div class="col mb-4" routerLink="/category" *ngFor="let category of categoryArray | filter: searchText" >
+    <div class="card">
+        <img src="../../../../assets/Images/activityImage/{{category.image}}" class="card-img-top" alt="{{category.categoryTitle}}}">
+        <div class="card-body">
+            <h2 class="card-title">{{category.categoryTitle}}</h2>
+            <p class="card-text">{{category.description}}</p>
         </div>
     </div>
 </div>

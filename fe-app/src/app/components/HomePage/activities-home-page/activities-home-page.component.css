@@ -1,5 +1,5 @@
 .row.row-cols-1.row-cols-md-2 {
-   margin: 1rem;
+    margin: 1rem;
 }
 .col.mb-4 {
     display: flex;
@@ -33,3 +33,32 @@
     }
 }
 
+/*zoekbalk css*/
+
+
+.container-fluid{
+    background-color: var(--color-default);
+    padding: 1rem;
+}
+
+
+.form-inline{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.searchBar{
+    width: 50%;
+    margin: 25px auto;
+}
+
+@media screen  and (max-width: 850px){
+    .form-inline{
+        flex-direction: column;
+    }
+
+    label {
+        padding-top: 12px;
+    }
+}
