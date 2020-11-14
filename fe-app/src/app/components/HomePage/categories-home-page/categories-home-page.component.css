@@ -1,8 +1,11 @@
+/***** categories css *******/
 .row.row-cols-1.row-cols-md-2 {
     margin: 1rem;
 }
 .col.mb-4 {
     display: flex;
+    justify-content: center;
+    padding-top: 40px;
 }
 
 /*.card {*/
@@ -16,9 +19,10 @@
 .card{
     border-radius: var(--border-radius);
     cursor: pointer;
+    width: 800px;
 }
 .card-img-top{
-    max-height: 350px;
+    max-height: 420px;
     border-radius: var(--border-radius);
 }
 @media screen and (max-width: 1124px) {
@@ -33,7 +37,7 @@
     }
 }
 
-/*zoekbalk css*/
+/***** zoekbalk css ********/
 
 
 .container-fluid{
@@ -51,6 +55,10 @@
 .searchBar{
     width: 50%;
     margin: 25px auto;
+}
+
+.input-group-append .btn.text-white {
+    background-color: black;
 }
 
 @media screen  and (max-width: 850px){

@@ -4,7 +4,7 @@ import {RegisterComponent} from "./components/mainpage/register/register.compone
 import {LoginComponent} from "./components/mainpage/login/login.component";
 import {ActivitywandelenComponent} from "./components/activitypages/activitywandelen/activitywandelen.component";
 import {CategorypageComponent} from "./components/categorypage/categorypage/categorypage.component";
-import {ActivitiesHomePageComponent} from "./components/HomePage/activities-home-page/activities-home-page.component";
+import {CategoriesHomePageComponent} from "./components/HomePage/categories-home-page/categories-home-page.component";
 import {ActivityOverviewComponent} from "./components/activityOverview/activity-overview/activity-overview.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {AboutUsPageComponent} from "./components/about-us-page/about-us-page.component";
@@ -14,7 +14,7 @@ import {ActivityDetailsComponent} from "./components/activitypages/activity-deta
 
 const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
-    {path: 'home', component: ActivitiesHomePageComponent},
+    {path: 'home', component: CategoriesHomePageComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'activities', component: ActivitywandelenComponent},

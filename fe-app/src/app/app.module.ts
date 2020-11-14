@@ -7,7 +7,7 @@ import {HeaderComponent} from './components/mainpage/header/header.component';
 import {NavBarComponent} from './components/mainpage/nav-bar/nav-bar.component';
 import {BannerComponent} from './components/HomePage/bannerHomePage/banner.component';
 import {ZoekbalkHomePageComponent} from './components/HomePage/search-home-page/zoekbalk-home-page.component';
-import {ActivitiesHomePageComponent} from './components/HomePage/activities-home-page/activities-home-page.component';
+import {CategoriesHomePageComponent} from './components/HomePage/categories-home-page/categories-home-page.component';
 import {RegisterComponent} from "./components/mainpage/register/register.component";
 import {LoginComponent} from "./components/mainpage/login/login.component";
 import {CategorypageComponent} from "./components/categorypage/categorypage/categorypage.component";
@@ -32,7 +32,7 @@ import { ActivityDetailsComponent } from './components/activitypages/activity-de
         NavBarComponent,
         BannerComponent,
         ZoekbalkHomePageComponent,
-        ActivitiesHomePageComponent,
+        CategoriesHomePageComponent,
         RegisterComponent,
         LoginComponent,
         CategorypageComponent,

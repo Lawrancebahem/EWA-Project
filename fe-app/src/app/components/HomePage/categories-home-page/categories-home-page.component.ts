@@ -5,10 +5,10 @@ import {CategoryService} from "../../../services/categoryService/category.servic
 
 @Component({
   selector: 'app-activities-home-page',
-  templateUrl: './activities-home-page.component.html',
-  styleUrls: ['./activities-home-page.component.css']
+  templateUrl: './categories-home-page.component.html',
+  styleUrls: ['./categories-home-page.component.css']
 })
-export class ActivitiesHomePageComponent implements OnInit {
+export class CategoriesHomePageComponent implements OnInit {
   categoryArray: any = (categories as any).default;
   searchText;
   categorySearch = [];
