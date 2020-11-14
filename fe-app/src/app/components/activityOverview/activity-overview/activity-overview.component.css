@@ -101,6 +101,19 @@ img{
     border-bottom-right-radius: 45px;
 }
 
+#filterlist .btn-link {
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 3px;
+    color: #808080;
+    background-color: black;
+}
+
+#filterlist .btn.btn-primary {
+    background-color: #714015;
+}
+
 .activitySearch{
     margin: 25px;
     margin-top: 0;
