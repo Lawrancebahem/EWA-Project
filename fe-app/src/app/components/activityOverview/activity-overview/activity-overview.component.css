@@ -5,15 +5,15 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    background:
+            linear-gradient(rgba(255, 255, 255, .7),rgba(255, 255, 255, .7)) no-repeat,
+            linear-gradient(var(--color-default), var(--color-default)) no-repeat;
 }
 
 
 header h1 {
     font-size: 70px;
     text-shadow: 0 0 20px white;
-    background:
-            linear-gradient(rgba(255, 255, 255, .7),rgba(255, 255, 255, .7)) no-repeat,
-            linear-gradient(var(--color-default), var(--color-default)) no-repeat;
     padding: 25px;
     border-radius: 15px;
 }
