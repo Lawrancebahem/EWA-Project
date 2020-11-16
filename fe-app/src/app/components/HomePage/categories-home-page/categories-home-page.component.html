@@ -50,7 +50,7 @@
 
 </div>
 
-<div class="col mb-4" routerLink="/category" *ngFor="let category of categoryArray | filter: searchText" >
+<div class="col mb-4" routerLink="/category/{{category.categoryTitle}}" *ngFor="let category of categoryArray | filter: searchText" >
     <div class="card">
         <img src="../../../../assets/Images/activityImage/{{category.image}}" class="card-img-top" alt="{{category.categoryTitle}}}">
         <div class="card-body">

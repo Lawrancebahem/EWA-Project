@@ -18,7 +18,9 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'activities', component: ActivitywandelenComponent},
-    {path: 'category', component: CategorypageComponent},
+    {path: 'category', children: [
+            { path: ':categoryTitle', component: CategorypageComponent}
+        ]},
     {path: 'activityOverview',component: ActivityOverviewComponent},
     {path: 'profile', component: ProfileComponent},
     {path: 'aboutUs', component: AboutUsPageComponent},

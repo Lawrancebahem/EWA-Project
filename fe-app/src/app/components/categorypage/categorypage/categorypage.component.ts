@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as activities from "../../../json/activities.json";
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-categorypage',
@@ -9,12 +11,24 @@ import * as activities from "../../../json/activities.json";
 export class CategorypageComponent implements OnInit {
 
   activityArray: any = (activities as any).default;
-  category = "herfst";
+  category;
   searchtext: any;
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) { }
+
+  private childParamsSubscription: Subscription = null;
 
   ngOnInit(): void {
+    this.childParamsSubscription =
+        this.activatedRoute.params.subscribe((params: Params) => {
+              this.setCategory(params['categoryTitle'] || -1);
+            }
+        );
+    console.log(this.category)
+  }
+
+  setCategory(value){
+  this.category = value;
   }
 
 }
