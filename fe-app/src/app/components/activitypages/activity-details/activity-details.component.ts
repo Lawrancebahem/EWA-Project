@@ -3,6 +3,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {ActivityService} from "../../../services/activityService/activity.service";
 import {Activity} from "../../../models/activity";
+import {SpeechServiceService} from "../../../services/speech-voice-service/speech-service.service";
 
 @Component({
   selector: 'app-activity-details',
@@ -16,7 +17,8 @@ export class ActivityDetailsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
-              private activityService: ActivityService) {
+              private activityService: ActivityService,
+              public speechRecognition:SpeechServiceService) {
   }
 
   private childParamsSubscription: Subscription = null;

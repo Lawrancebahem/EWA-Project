@@ -14,6 +14,7 @@
             <div class="activity-description">
                 <h2 class="activity-description-title">Beschrijving:</h2>
                 <p>{{activityToShow.description}}</p>
+                <button class="button--primary float-right m-1" (click)="speechRecognition.speak(activityToShow.description)">Lees</button>
             </div>
         </div>
     </div>
