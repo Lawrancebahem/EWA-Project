@@ -1,8 +1,9 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterContentChecked, AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {mod} from "ngx-bootstrap/chronos/utils";
 import {User} from "../../models/user";
 import {ImageBase64Service} from "../../services/convetImageService/image-base64.service";
 import {UserService} from "../../services/userService/user.service";
+import {AuthenticationService} from "../../services/authenticationService/authentication.service";
 
 @Component({
     selector: 'app-profile',
@@ -16,10 +17,16 @@ export class ProfileComponent implements OnInit {
     public buttonInterestsText = "Wijzig mijn interesses"
     public hasChanged:boolean= false;
 
-    constructor( public userService: UserService ,private convertImage:ImageBase64Service) {
+    constructor( public userService: UserService ,private convertImage:ImageBase64Service, public authenticationService:AuthenticationService) {
     }
 
     ngOnInit(): void {
+        // if (this.authenticationService.isLoggedIn){
+        //     let image = document.getElementById("profileImage");
+        //     let userProfilePicture = this.authenticationService.loggedInUser.profilePicture;
+        //     image.style.backgroundImage = userProfilePicture;
+        //     // image.setAttribute("src", userProfilePicture);
+        // }
     }
 
     /**
