@@ -16,6 +16,9 @@ header {
 header h1 {
   font-size: 70px;
   text-shadow: 0 0 20px white;
+  background-color: gray;
+  padding: 25px;
+  border-radius: 70px;
 }
 
 img{
