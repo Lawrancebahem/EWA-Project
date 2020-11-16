@@ -56,6 +56,10 @@
                 <a class="nav-link text-white button--primary" routerLink="/activityOverview">Alle Activiteiten</a>
             </li>
 
+            <li *ngIf="authenticateService.isLoggedIn" class="nav-item">
+                <a class="nav-link text-white button--primary" routerLink="/matching">Matching</a>
+            </li>
+
             <li *ngIf="authenticateService.isLoggedIn; else notLoggedIn" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle button--primary text-white" id="navbarDropdownMenuLink-333"
                    data-toggle="dropdown"

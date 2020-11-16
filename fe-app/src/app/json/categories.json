@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "image": "../fall%20background.jpg",
+    "categoryTitle": "Herfst",
+    "description": "Wandelen in mooiste natuurgebieden van Nederland.",
+    "location": "overal",
+    "date": ""
+  },
+  {
+    "id": 2,
+    "image": "fietsen.jpg",
+    "categoryTitle": "Fietsen",
+    "description": "Gezellig fietsen met uw vriendin door de mooiste fietsroutes van Nederland met onze begeleiders.",
+    "location": "overal",
+    "date": ""
+  },
+  {
+    "id": 3,
+    "image": "bowlen.jpg",
+    "categoryTitle": "Disco",
+    "description": "Zin om lekker je heupen te schudden? Er zijn genoeg disco's in Nederland",
+    "location": "overal",
+    "date": ""
+  },
+  {
+    "id": 4,
+    "image": "mondkapjes.jpg",
+    "categoryTitle": "Binnen",
+    "description": "Geen zin om naar buiten te gaan? Er zijn genoeg activiteiten die je thuis kan doen",
+    "location": "overal",
+    "date": ""
+  }
+]
