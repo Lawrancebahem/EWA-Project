@@ -3,7 +3,6 @@ import * as activities from "../../../json/activities.json";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {Category} from "../../../models/category";
-import {ActivityService} from "../../../services/activityService/activity.service";
 import {CategoryService} from "../../../services/categoryService/category.service";
 
 @Component({
@@ -13,16 +12,14 @@ import {CategoryService} from "../../../services/categoryService/category.servic
 })
 export class CategorypageComponent implements OnInit {
 
-  private selectedCategory;
   activityArray: any = (activities as any).default;
-  category;
-  activitiesOfCategory;
-  searchtext: any;
+  categoryTitle;
+  categoryObject;
+  searchText: any;
 
   constructor(private activatedRoute: ActivatedRoute,
               private categoryService: CategoryService
               ) {
-
   }
 
   private childParamsSubscription: Subscription = null;
@@ -32,16 +29,14 @@ export class CategorypageComponent implements OnInit {
 
     this.childParamsSubscription =
         this.activatedRoute.params.subscribe((params: Params) => {
-              this.setCategory(params['categoryTitle'] || -1);
-              this.activitiesOfCategory = Category.trueCopy(this.categoryService.findyById(this.selectedCategory))
+              this.setcategoryTitle(params['categoryTitle'] || -1);
+              this.categoryObject = Category.trueCopy(this.categoryService.findByTitle(this.categoryTitle));
             }
         );
-    console.log(this.category);
-    console.log(this.activitiesOfCategory);
   }
 
-  setCategory(param: any){
-  this.category = param;
+  setcategoryTitle(param: any){
+  this.categoryTitle = param;
   }
 
 }

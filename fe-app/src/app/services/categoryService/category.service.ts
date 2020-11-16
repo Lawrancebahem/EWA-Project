@@ -18,4 +18,8 @@ export class CategoryService {
     return this.categoryArray.filter(x => x.id == categoryId)[0];
   }
 
+  findByTitle(categoryTitle){
+    return this.categoryArray.filter( x => x.categoryTitle == categoryTitle)[0]
+  }
+
 }

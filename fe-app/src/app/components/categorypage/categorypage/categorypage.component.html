@@ -1,19 +1,20 @@
-<header id="header">
+<header id="header" style="background-image: linear-gradient(to bottom, rgba(220,220,220,0.7) 0%,rgba(220,220,220,0.7) 100%),
+    url('../../../../assets/Images/activityImage/{{categoryObject.image}}')">
     <div class="backgroundCategoryPage" >
 <!--        [ngStyle]="{'background-image': 'url(' + photo + ')'}"-->
 <!--        <img src="../assets/Images/activityImage/{{activitiesOfCategory.image}}">-->
     </div>
-    <h1>{{category}}</h1>
+    <h1>{{categoryTitle}}</h1>
 </header>
 
 <div class="search-div">
-    <input class="form-control" type="search" [(ngModel)]="searchtext"
-           placeholder="Zoek hier naar activiteiten gerelateerd aan {{category}}">
+    <input class="form-control" type="search" [(ngModel)]="searchText"
+           placeholder="Zoek hier naar activiteiten gerelateerd aan {{categoryTitle}}">
     <mat-icon>search</mat-icon>
 </div>
 
 <div class="activity-overview row-cols-1 row-cols-md-3">
-    <div class="activity col-2 mb-4" *ngFor="let activity of activityArray | filter: category | filter: searchtext" routerLink="/activityDetails/{{activity.id}}">
+    <div class="activity col-2 mb-4" *ngFor="let activity of activityArray | filter: categoryTitle | filter: searchText" routerLink="/activityDetails/{{activity.id}}">
         <img class="card-img-top" src="../../../../assets/Images/activityImage/{{activity.image}}"
              alt="{{activity.activityTitle}}">
         <h4 class="card-title">

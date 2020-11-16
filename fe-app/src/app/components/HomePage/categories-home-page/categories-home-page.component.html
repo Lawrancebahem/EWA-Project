@@ -5,10 +5,9 @@
         <label>
             <select class="form-control form-control-lg" style="padding-right: 3rem">
                 <input id="categorieën" placeholder="Categorieën">
-                <option>Categorie 1</option>
-                <option routerLink="/category">Herfst</option>
-                <option>Categorie 3</option>
-                <option>Categorie 4</option>
+                <option>Categorieën</option>
+                <optgroup disabled label="------------------"></optgroup>
+                <option *ngFor="let category of categoryArray" routerLink="/category/{{category.categoryTitle}}">{{category.categoryTitle}}</option>
             </select>
         </label>
 
