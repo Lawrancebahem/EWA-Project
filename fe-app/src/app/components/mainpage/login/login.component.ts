@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['/home']);
                 this.showError = false;
                 this.authenticationService.isLoggedIn = true;
-                // localStorage.setItem("loggedIndUser", "");
+                console.log(this.authenticationService.loggedInUser.id);
+                localStorage.setItem("loggedIndUser", JSON.stringify(this.authenticationService.loggedInUser.id));
             } else {
                 this.showError = true;
                 this.authenticationService.isLoggedIn = false;

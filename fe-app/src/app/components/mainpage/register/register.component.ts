@@ -89,6 +89,7 @@ export class RegisterComponent implements OnInit {
                 this.userService.saveOrUpdate(object).pipe(shareReplay(1)).subscribe((response) => {
                     this.authenticationService.loggedInUser = User.makeTrueCopy(response);
                     this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
+                    localStorage.setItem("loggedIndUser", JSON.stringify(this.authenticationService.loggedInUser.id));
                     this.router.navigate(['/home']);
                 },error  => {
                     this.emailAlreadyInUse = error.error.message;

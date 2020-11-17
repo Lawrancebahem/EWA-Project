@@ -42,6 +42,7 @@ public class UserController {
     public User findUserById(@PathVariable long id){
         User user = this.userRepository.findById(id);
         if (user == null) throw new  ResourceNotFound("The given id does not exist");
+        User clonedObject = this.userRepository.getClonedObject(user);
         return user;
     }
 

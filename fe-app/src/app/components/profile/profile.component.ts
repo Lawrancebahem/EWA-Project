@@ -33,8 +33,6 @@ export class ProfileComponent implements OnInit {
         //     image.style.backgroundImage = userProfilePicture;
         //     // image.setAttribute("src", userProfilePicture);
         // }
-
-        console.log(this.authenticationService.loggedInUser.interests);
     }
 
     /**

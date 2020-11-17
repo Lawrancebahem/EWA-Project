@@ -13,7 +13,7 @@ export class User {
                 private _interests: number[]) {
     }
 
-    static makeTrueCopy(user: User): User {
+    static makeTrueCopy(user): User {
         // @ts-ignore
         return user != null ? Object.assign(new User(), user) : null;
     }
