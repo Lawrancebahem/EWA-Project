@@ -1,0 +1,35 @@
+export class Interest {
+    private _id;
+    private _name;
+    private _image;
+
+
+    public static trueCopy(interest: Interest): Interest {
+        return Object.assign(new Interest(), interest)
+    }
+
+
+    get id() {
+        return this._id;
+    }
+
+    set id(value) {
+        this._id = value;
+    }
+
+    get name() {
+        return this._name;
+    }
+
+    set name(value) {
+        this._name = value;
+    }
+
+    get image() {
+        return this._image;
+    }
+
+    set image(value) {
+        this._image = value;
+    }
+}

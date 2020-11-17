@@ -4,7 +4,11 @@ import {User} from "../../models/user";
 import {ImageBase64Service} from "../../services/convetImageService/image-base64.service";
 import {UserService} from "../../services/userService/user.service";
 import {AuthenticationService} from "../../services/authenticationService/authentication.service";
-
+// @ts-ignore
+import interests from '../../json/interests.json'
+// @ts-ignore
+import {Interest} from "../../models/Interest";
+// @ts-ignore
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
@@ -13,11 +17,13 @@ import {AuthenticationService} from "../../services/authenticationService/authen
 export class ProfileComponent implements OnInit {
     @ViewChild('uploadedProfile') uploadedProfile: ElementRef;
     public editMyInterestsIsClicked = false;
-    public myInterestsText = "Mijn interesses";
-    public buttonInterestsText = "Wijzig mijn interesses"
     public hasChanged:boolean= false;
+    public arrayInterests: Interest[] = interests;
 
-    constructor( public userService: UserService ,private convertImage:ImageBase64Service, public authenticationService:AuthenticationService) {
+    constructor( public userService: UserService ,
+                 private convertImage:ImageBase64Service,
+                 public authenticationService:AuthenticationService) {
+
     }
 
     ngOnInit(): void {
@@ -27,21 +33,8 @@ export class ProfileComponent implements OnInit {
         //     image.style.backgroundImage = userProfilePicture;
         //     // image.setAttribute("src", userProfilePicture);
         // }
-    }
 
-    /**
-     * When the user clicks on the button, all interests will be displayed
-     */
-    editMyInterests() {
-        this.editMyInterestsIsClicked = !this.editMyInterestsIsClicked;
-        if (this.editMyInterestsIsClicked){
-          this.myInterestsText = "Selecteer interesses";
-          this.buttonInterestsText = "Interesses opslaan"
-        }else {
-          this.myInterestsText = "Mijn interesses";
-        this.buttonInterestsText = "Wijzig mijn interesses"
-        }
-
+        console.log(this.authenticationService.loggedInUser.interests);
     }
 
     /**
