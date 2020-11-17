@@ -19,7 +19,7 @@
 .card{
     border-radius: var(--border-radius);
     cursor: pointer;
-    width:720px;
+    width:48%;
     height: 550px;
     float: left;
     margin: 15px;
