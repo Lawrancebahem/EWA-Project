@@ -81,9 +81,15 @@ img{
   align-items: center;
   padding: 1rem;
 }
-.search-div
-@media screen and (max-width: 767px) {
+
+@media screen and (max-width: 780px) {
   .activity {
+    width: 90%;
+    max-width: 90%;
+  }
+
+  .card{
+    width: 90%;
     max-width: 90%;
   }
 }
