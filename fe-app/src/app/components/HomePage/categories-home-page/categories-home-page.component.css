@@ -19,8 +19,23 @@
 .card{
     border-radius: var(--border-radius);
     cursor: pointer;
-    width: 800px;
+    width:720px;
+    height: 550px;
+    float: left;
+    margin: 15px;
+    border-color: var(--color-default);
+    box-shadow: 7px 7px 7px var(--color-default);
+
 }
+
+.card:hover {
+    transform: translateY(-10px);
+    cursor: pointer;
+    transition: .2s;
+    border-color: var(--color-blue);
+    box-shadow: 7px 7px 7px var(--color-blue);
+}
+
 .card-img-top{
     max-height: 420px;
     border-radius: var(--border-radius);
