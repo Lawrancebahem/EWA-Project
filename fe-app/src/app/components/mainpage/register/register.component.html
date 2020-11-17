@@ -32,7 +32,7 @@
 
                 <div class="form--input">
                     <span>Geboortedatum</span>
-                    <input formControlName="birthDate" class="form-control" #birthDate placeholder="yyyy-MM-dd"
+                    <input  formControlName="birthDate" class="form-control" #birthDate placeholder="yyyy-MM-dd"
                            min="1996-01-01" type="date" name="Geboortedatum" id="birthdate" required [ngClass]="{'is-invalid':
                             authenticationService.registerForm.get('birthDate').touched &&
                             authenticationService.registerForm.get('birthDate').invalid}">

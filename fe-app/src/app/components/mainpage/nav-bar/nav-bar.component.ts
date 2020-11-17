@@ -2,9 +2,13 @@ import {Component, OnInit} from '@angular/core';
 // @ts-ignore
 
 import * as annyang from 'annyang';
-import { Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {SpeechServiceService} from "../../../services/speech-voice-service/speech-service.service";
 import {AuthenticationService} from "../../../services/authenticationService/authentication.service";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
+import {shareReplay} from "rxjs/operators";
+import {User} from "../../../models/user";
 
 @Component({
     selector: 'app-nav-bar',
@@ -15,13 +19,22 @@ export class NavBarComponent implements OnInit {
     isLoggedIn: boolean;
 
     constructor(private router: Router,
-        public speechService: SpeechServiceService, public authenticateService: AuthenticationService) {
+                public speechService: SpeechServiceService,
+                public authenticateService: AuthenticationService,
+                public httpClient: HttpClient) {
 
     }
 
     ngOnInit(): void {
+        this.authenticateService.isLoggedIn = false;
         annyang.setLanguage(this.speechService.languages[0])
-
+        let userId = this.authenticateService.getSessionId();
+        if (userId != -1) {
+            this.httpClient.get(`${environment.apiUrl}/user/` + userId).pipe(shareReplay(1)).subscribe((user) => {
+                this.authenticateService.loggedInUser = User.makeTrueCopy(user);
+                this.authenticateService.isLoggedIn = true;
+            })
+        }
     }
 
     //To logout from the drop down

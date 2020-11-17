@@ -87,7 +87,7 @@ export class AuthenticationService {
      * Log out, and remove the email from the local storage
      */
     public logout() {
-        localStorage.setItem("loggedIndUser", "");
+        localStorage.setItem("loggedIndUser", '-1');
         this.isLoggedIn = false;
     }
 
@@ -102,6 +102,11 @@ export class AuthenticationService {
     public checkPasswords(confirm): boolean { // here we have the 'passwords' group
         let pass = this.registerForm.get('password').value;
         return pass === confirm;
+
+    }
+
+    public getSessionId():number{
+        return JSON.parse(localStorage.getItem("loggedIndUser"));
 
     }
 

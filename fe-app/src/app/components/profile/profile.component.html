@@ -13,7 +13,7 @@
      style="background-image:url('assets/Images/flowers.jpeg')"></div>
 
 <div class="wrapper">
-    <div class="container container--profile">
+    <div *ngIf="authenticationService.isLoggedIn" class="container container--profile">
         <div class="profile--left">
 
             <form action="" method="POST">
@@ -23,51 +23,64 @@
 
                         <div class="form--input">
                             <span>Voornaam</span>
-                            <input (keyup)="hasChanged = true" type="text" class="color" id="surname" name="Voornaam"
+                            <input [value]="authenticationService.loggedInUser.firstName" (keyup)="hasChanged = true"
+                                   type="text" class="color" id="surname" name="Voornaam"
                                    required maxlength="20">
                         </div>
 
                         <div class="form--input">
                             <span>Achternaam</span>
-                            <input (keyup)="hasChanged = true" type="text" name="Achternaam" id="lastname" required
+                            <input [value]="authenticationService.loggedInUser.lastName" (keyup)="hasChanged = true"
+                                   type="text" name="Achternaam" id="lastname" required
                                    maxlength="20">
                         </div>
 
                         <div class="form--input">
                             <span>Geboortedatum</span>
-                            <input (keyup)="hasChanged = true" type="date" name="Geboortedatum" id="birthdate" required>
+                            <input [value]="authenticationService.loggedInUser.birthDate | date:'yyyy-MM-dd'"
+                                   (keyup)="hasChanged = true" type="date" name="Geboortedatum" id="birthdate"
+                                   placeholder="yyyy-MM-dd" required>
                         </div>
 
                         <div class="form--radio">
-                            <label  for="choice_man">
-                                <input (keyup)="hasChanged = true" type="radio" id="choice_man" name="gender" value="man" checked>
+                            <label for="choice_man">
+                                <input [checked]="authenticationService.loggedInUser.gender.toString() === 'MAN' "
+                                       (keyup)="hasChanged = true" type="radio" id="choice_man" name="gender"
+                                       value="man" checked>
                                 <span>Man</span>
                             </label>
                             <label for="choice_woman">
-                                <input (keyup)="hasChanged = true" type="radio" id="choice_woman" name="gender" value="vrouw">
+                                <input [checked]="authenticationService.loggedInUser.gender.toString() === 'WOMAN' "
+                                       (keyup)="hasChanged = true" type="radio" id="choice_woman" name="gender"
+                                       value="vrouw">
                                 <span>Vrouw</span>
                             </label>
                             <label for="choice_diff">
-                                <input (keyup)="hasChanged = true" type="radio" id="choice_diff" name="gender" value="anders">
+                                <input [checked]="authenticationService.loggedInUser.gender.toString() === 'OTHER' "
+                                       (keyup)="hasChanged = true" type="radio" id="choice_diff" name="gender"
+                                       value="anders">
                                 <span>Anders</span>
                             </label>
                         </div>
                         <div class="form--input">
                             <span>Email</span>
-                            <input (keyup)="hasChanged = true" id="email" type="email" name="mailadres" maxlength="40">
+                            <input [value]="authenticationService.loggedInUser.email" (keyup)="hasChanged = true"
+                                   id="email" type="email" name="mailadres" maxlength="40">
                         </div>
 
                         <div class="form--input">
                             <span>Wachtwoord</span>
                             <div class="show-password">
                                 <i class="fa fa-eye"></i>
-                                <input (keyup)="hasChanged = true" class="form_input" type="password" name="wachtwoord" id="password1"
+                                <input (keyup)="hasChanged = true" class="form_input" type="password" name="wachtwoord"
+                                       id="password1"
                                        maxlength="30" required="required">
                             </div>
                             <span>Bevestiging wachtwoord</span>
                             <div class="show-password">
                                 <i class="fa fa-eye"></i>
-                                <input (keyup)="hasChanged = true" class="form_input" type="password" name="wachtwoord" id="password2"
+                                <input (keyup)="hasChanged = true" class="form_input" type="password" name="wachtwoord"
+                                       id="password2"
                                        maxlength="30" required="required">
                             </div>
                         </div>
@@ -82,7 +95,7 @@
         </div>
         <!--            user info-->
         <div class="user-info">
-            <div class="profile-picture" id="profileImage">
+            <div class="profile-picture" id="profileImage" style="background-image:url('{{authenticationService.loggedInUser.profilePicture}}')">
                 <a>
                     <mat-icon class="edit-icon" data-toggle="modal" data-target="#myModal">edit</mat-icon>
                 </a>
@@ -90,10 +103,11 @@
         </div>
 
         <div class="profile--right">
-            <div class="pictures-section" id="pictures-section">
-
+            <div *ngIf="authenticationService.isLoggedIn" class="pictures-section" id="pictures-section">
                 <label *ngFor="let interest of arrayInterests" for="{{interest.name}}" class="interest">
-                    <input name="interest" value="{{interest.id}}" type="checkbox" [checked]="authenticationService.loggedInUser && authenticationService.loggedInUser.interests.includes(interest.id)" id="{{interest.name}}">
+                    <input name="interest" value="{{interest.id}}" type="checkbox"
+                           [checked]="authenticationService.loggedInUser && authenticationService.loggedInUser.interests.includes(interest.id)"
+                           id="{{interest.name}}">
                     <div class="interest--checked fas fa-check"></div>
                     <div class="interest--image"
                          style="background-image:url('{{interest.image}}')"></div>
@@ -137,8 +151,6 @@
 </div>
 
 
-
-
 <div class="modal fade h-50" id="myModal">
     <div class="modal-dialog">
 
@@ -154,7 +166,9 @@
                 <input id="profile-picture-lable" class="m-4" type="file" #uploadedProfile>
             </label>
             <div class="modal-footer p-0">
-                <button (click)="onEditPicture()" id="add-modal" type="button" class="button--primary " data-dismiss="modal ">Add</button>
+                <button (click)="onEditPicture()" id="add-modal" type="button" class="button--primary "
+                        data-dismiss="modal ">Add
+                </button>
 
                 <button id="close-modal" type="button" class="button--primary" data-dismiss="modal">Close</button>
             </div>
