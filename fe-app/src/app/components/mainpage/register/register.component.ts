@@ -12,7 +12,10 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {ErrorHandler} from "../../../services/error-handler/error-handler";
 import {catchError, shareReplay} from "rxjs/operators";
 import {Router} from "@angular/router";
-
+// @ts-ignore
+import interests from '../../../json/interests.json'
+// @ts-ignore
+import {Interest} from "../../../models/Interest";
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
@@ -29,11 +32,12 @@ export class RegisterComponent implements OnInit {
     noGenderSelected: boolean;
     submitted: boolean;
     public emailAlreadyInUse ="";
-
+    public arrayInterests: Interest[] = interests;
     constructor(public authenticationService: AuthenticationService,
                 public userService: UserService,
                 private convertImage: ImageBase64Service,
                 private router: Router) {
+
     }
 
     ngOnInit(): void {
@@ -44,6 +48,8 @@ export class RegisterComponent implements OnInit {
      * Register, once the user clicked the register button we get all the input values
      */
     public register() {
+
+        let test = document.getElementById("shopping");
         this.submitted = true;
         if (this.authenticationService.registerForm.invalid) return;
         setTimeout(() => {
@@ -79,6 +85,7 @@ export class RegisterComponent implements OnInit {
                     "password": password,
                     "interests": interests,
                 }
+                console.log(object);
                 this.userService.saveOrUpdate(object).pipe(shareReplay(1)).subscribe((response) => {
                     this.authenticationService.loggedInUser = User.makeTrueCopy(response);
                     this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
