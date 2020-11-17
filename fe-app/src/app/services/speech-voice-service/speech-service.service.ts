@@ -17,8 +17,8 @@ export class SpeechServiceService {
     private utterance = new SpeechSynthesisUtterance("Dagje uit");
     private colorsDutch = ["zwart", "groen", "wit", "geel", "rood", "blauw"] // this is for the dutch speakers
     private colors = ["black", "green", "white", "yellow", "red", "blue"] // to apply the requested color in css
-    private navigationsDutch = ['home', 'activiteiten', 'registratie', 'login', 'profiel']// navigations in Dutch
-    private navigations = ['home', 'activityoverview', 'register', 'login', 'profile'] // navigations in English
+    private navigationsDutch = ['home', 'activiteiten', 'registratie', 'login', 'profiel',"matching", "mijn activiteiten", "alle activiteiten"]// navigations in Dutch
+    private navigations = ['home', 'activityoverview', 'register', 'login', 'profile',"matching", "myAcitivities","activityOverview", ""] // navigations in English
 
     // commands = {
     //   'home pagina': this.getHomePage(),
@@ -28,10 +28,10 @@ export class SpeechServiceService {
 
     constructor(private ngZone: NgZone, private router: Router, private injector: Injector) {
         this.utterance.lang = 'nl-NL';
-        if (!this.introduced) {
+        if (!this.isAlreadyIntroduced()) {
             this.speak("Hello mijn naam is dagje uit, om te navigeren in de applicatie of om de kleuren " +
                 "te wijzigen, kunt u gebruik maken van de spraak functie links bovenin")
-            this.introduced = true;
+            localStorage.setItem("introduced", "1");
         }
     }
 
@@ -79,13 +79,13 @@ export class SpeechServiceService {
             if (word.length > 0 && word.indexOf(" ") > -1) {
                 let arrayOfWords = word.split(" ");
                 for (let j = 0; arrayOfWords.length; j++) {
-                    foundWord = this.checkWordsInSentence(arrayOfWords[j]);
+                    foundWord = this.checkWordsInSentence(arrayOfWords[j], array);
                     if (foundWord !== "") {
                         return foundWord;
                     }
                 }
             } else {
-                foundWord = this.checkWordsInSentence(word);
+                foundWord = this.checkWordsInSentence(word, array);
                 if (foundWord !== "") {
                     return foundWord;
                 }
@@ -100,15 +100,16 @@ export class SpeechServiceService {
      * then we need to loop through the characters of that
      * word to check if these characters kind of a command
      * @param word
+     * @param arrayOfSentences
      * @private
      */
-    private checkWordsInSentence(word: string) {
+    private checkWordsInSentence(word: string, arrayOfSentences:string[]) {
         try {
             let letters = "";
             let foundWord = "";
             for (let j = 0; j < word.length; j++) {
                 letters += word[j];
-                foundWord = this.isWordACommand(letters);
+                foundWord = this.isWordACommand(letters, arrayOfSentences);
                 if (foundWord !== "") {
                     return foundWord;
                 }
@@ -119,16 +120,25 @@ export class SpeechServiceService {
         }
     }
 
+
     /**
      * To check if a certain word a command of the user
      * @param text
+     * @param arrayOfSentences
      * @private
      */
-    private isWordACommand(text: string): string {
+    private isWordACommand(text: string , arrayOfSentences:string[] ): string {
         if (text === 'homepagina' || text === 'home') {
             return "home";
         } else if (text.toLowerCase() === 'activiteiten pagina' || text.toLowerCase() === 'activiteiten') {
-            return "activiteiten"
+            let foundCommand = arrayOfSentences.map((word)=>{
+                if (word.indexOf("mijn") > -1 || word.indexOf("mijne") > -1){
+                    return "mijn activiteiten";
+                }else if (word.indexOf("alle") > -1 || word.indexOf("all") > -1){
+                    return "alle activiteiten";
+                }
+            })
+            return foundCommand[0];
         } else if (text === "registratiepagina" || text.toLowerCase() === "registratie") {
             return "registratie"
         } else if (text.toLowerCase() === "loginpagina" || text.toLowerCase() === "login" || text.toLowerCase() === "inlog") {
@@ -145,7 +155,14 @@ export class SpeechServiceService {
             return "blauw"
         } else if (text.toLowerCase() === "profielpagina" || text.toLowerCase() === "profiel") {
             return "profiel";
-        } else {
+        }else if (text.toLocaleLowerCase() === "matchingpagina" || text.toLocaleLowerCase() === "matching"){
+            return "matching";
+        }else if (text.toLocaleLowerCase() === "alle activiteiten"){
+            return "alle activiteiten"
+        }else if (text.toLocaleLowerCase() === "mijn activiteiten") {
+            return "mijn activiteiten";
+        }
+        else {
             return "";
         }
     }
@@ -185,5 +202,10 @@ export class SpeechServiceService {
         this.previousMessage = message;
         this.synthesis.speak(this.utterance);
         // this.synthesis.cancel();
+    }
+
+
+    public isAlreadyIntroduced():boolean{
+        return JSON.parse(localStorage.getItem("introduced")) > -1;
     }
 }
