@@ -1,21 +1,16 @@
 export class Interest {
-    private _id;
-    private _name;
-    private _image;
 
+    private _name;
+
+    constructor(name) {
+        this._name = name;
+    }
 
     public static trueCopy(interest: Interest): Interest {
-        return Object.assign(new Interest(), interest)
+
+        return Object.assign(new Interest("****"), interest)
     }
 
-
-    get id() {
-        return this._id;
-    }
-
-    set id(value) {
-        this._id = value;
-    }
 
     get name() {
         return this._name;
@@ -23,13 +18,5 @@ export class Interest {
 
     set name(value) {
         this._name = value;
-    }
-
-    get image() {
-        return this._image;
-    }
-
-    set image(value) {
-        this._image = value;
     }
 }

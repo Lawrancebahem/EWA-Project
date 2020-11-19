@@ -1,21 +1,16 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-
-
-import {CustomDatePipe} from "../../customDate/customDatePipe";
 import {AuthenticationService} from "../../../services/authenticationService/authentication.service";
 import {Gender} from "../../../models/gender";
 import {User} from "../../../models/user";
 import {UserService} from "../../../services/userService/user.service";
-import {response} from "express";
 import {ImageBase64Service} from "../../../services/convetImageService/image-base64.service";
-import {HttpErrorResponse} from "@angular/common/http";
-import {ErrorHandler} from "../../../services/error-handler/error-handler";
-import {catchError, shareReplay} from "rxjs/operators";
+import {shareReplay} from "rxjs/operators";
 import {Router} from "@angular/router";
 // @ts-ignore
 import interests from '../../../json/interests.json'
 // @ts-ignore
 import {Interest} from "../../../models/Interest";
+
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
@@ -31,8 +26,9 @@ export class RegisterComponent implements OnInit {
     @ViewChild('password') password: ElementRef;
     noGenderSelected: boolean;
     submitted: boolean;
-    public emailAlreadyInUse ="";
-    public arrayInterests: Interest[] = interests;
+    public emailAlreadyInUse = "";
+    public arrayInterests: { name, image }[] = interests;
+
     constructor(public authenticationService: AuthenticationService,
                 public userService: UserService,
                 private convertImage: ImageBase64Service,
@@ -60,10 +56,11 @@ export class RegisterComponent implements OnInit {
                 .querySelectorAll('input[name=gender]:checked')).map((gender) => {
                 return gender.getAttribute('value')
             })
-            const interests = Array.from(document.querySelector('#pictures-section')
+            const interests:Interest = Array.from(document.querySelector('#pictures-section')
                 .querySelectorAll('input[name=interest]:checked')).map(interest => {
-                return Number(interest.getAttribute('value'));
+                return String(interest.getAttribute('value'));
             });
+            console.log(interests);
             this.noGenderSelected = genderElement.length == 0;
             if (this.noGenderSelected) return;
             const firstName = this.firstName.nativeElement.value;
@@ -82,8 +79,7 @@ export class RegisterComponent implements OnInit {
                     "gender": gender,
                     "profilePicture": profilePicture == undefined ? "" : data,
                     "email": email,
-                    "password": password,
-                    "interests": interests,
+                    "password": password
                 }
                 console.log(object);
                 this.userService.saveOrUpdate(object).pipe(shareReplay(1)).subscribe((response) => {
@@ -91,7 +87,7 @@ export class RegisterComponent implements OnInit {
                     this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
                     localStorage.setItem("loggedIndUser", JSON.stringify(this.authenticationService.loggedInUser.id));
                     this.router.navigate(['/home']);
-                },error  => {
+                }, error => {
                     this.emailAlreadyInUse = error.error.message;
                     console.log(error.error.message);
                 });

@@ -2,6 +2,8 @@
  * User class that holds the informations of a user
  */
 import {Gender} from "./gender";
+// @ts-ignore
+import {Interest} from "./Interest";
 
 
 export class User {
@@ -10,7 +12,7 @@ export class User {
                 private _birthDate: Date, private _gender: Gender,
                 private _profilePicture: string, private _email: string,
                 private _password,
-                private _interests: number[]) {
+                private _interests: Interest[]) {
     }
 
     static makeTrueCopy(user): User {
@@ -84,11 +86,12 @@ export class User {
         this._id = value;
     }
 
-    get interests(): number[] {
+
+    get interests(): Interest[] {
         return this._interests;
     }
 
-    set interests(value: number[]) {
+    set interests(value: Interest[]) {
         this._interests = value;
     }
 }

@@ -112,6 +112,7 @@ public class UserRepository implements EntityRepository<User> {
         clonedUser.setGender(savedUser.getGender());
         clonedUser.setInterests(savedUser.getInterests());
         clonedUser.setProfilePicture(savedUser.getProfilePicture());
+        clonedUser.setInterests(savedUser.getInterests());
         clonedUser.setPassword("*********");
         return clonedUser;
     }

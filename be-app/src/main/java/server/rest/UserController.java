@@ -53,6 +53,7 @@ public class UserController {
      */
     @PostMapping()
     public ResponseEntity<User> responseEntity(@RequestBody User user){
+        System.out.println("The received user is " + user);
         User foundUserByEmail = this.userRepository.findByEmail(user.getEmail());
         if (foundUserByEmail != null) throw new PreConditionalFailed("This email : '" + user.getEmail() + "' is already in use");
         User savedUser = this.userRepository.saveOrUpdate(user);

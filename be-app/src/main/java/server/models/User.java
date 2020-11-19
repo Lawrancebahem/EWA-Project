@@ -1,30 +1,45 @@
 package server.models;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue
     private long id;
+    @Transient
     public static long uniqueId = 100;
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     private String profilePicture;
     private String email;
     private String password;
-    private int interests[];
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_interest",
+            joinColumns = @JoinColumn(name = "name"),
+            inverseJoinColumns = @JoinColumn(name = "id")
+    )
+    private List<Interest> interests;
 
     public User() {
-        this.id = uniqueId++;
+//        this.id = uniqueId++;
         this.firstName = "firstName";
         this.lastName = "lastName";
         this.birthDate = LocalDate.now();
         this.gender = Gender.MAN;
         this.profilePicture = "profilePicture";
         this.password = "password";
-        this.interests = new int[9];
-        this.email ="";
+        this.interests = new ArrayList<>();
+        this.email = "";
     }
 
     public long getId() {
@@ -64,9 +79,6 @@ public class User {
         return password;
     }
 
-    public int[] getInterests() {
-        return interests;
-    }
 
     public static void setUniqueId(long uniqueId) {
         User.uniqueId = uniqueId;
@@ -96,7 +108,11 @@ public class User {
         this.password = password;
     }
 
-    public void setInterests(int[] interests) {
+    public List<Interest> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(List<Interest> interests) {
         this.interests = interests;
     }
 
@@ -113,8 +129,8 @@ public class User {
         WOMAN,
         OTHER
     }
-    
-    public class ShowInfo{
+
+    public class ShowInfo {
 
     }
 }

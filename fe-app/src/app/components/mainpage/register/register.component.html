@@ -110,7 +110,7 @@
                 <div class="pictures-section" id="pictures-section">
 
                     <label *ngFor="let interest of arrayInterests" for="{{interest.name}}" class="interest">
-                        <input name="interest" value="{{interest.id}}" type="checkbox" id="{{interest.name}}">
+                        <input name="interest" value="{{interest.name}}" type="checkbox" id="{{interest.name}}">
                         <div class="interest--checked fas fa-check"></div>
                         <div class="interest--image"
                              style="background-image:url('{{interest.image}}')"></div>
