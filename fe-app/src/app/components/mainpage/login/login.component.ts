@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../../services/authenticationService/authentication.service";
 import {response} from "express";
 import {User} from "../../../models/user";
+import {shareReplay} from "rxjs/operators";
+import {UserService} from "../../../services/userService/user.service";
 
 @Component({
     selector: 'app-login',
@@ -12,7 +14,9 @@ import {User} from "../../../models/user";
 export class LoginComponent implements OnInit {
     showError: boolean;
 
-    constructor(private router: Router, private activeRout: ActivatedRoute, public authenticationService: AuthenticationService) {
+    constructor(private router: Router, private activeRout: ActivatedRoute,
+                public authenticationService: AuthenticationService,
+                private userService: UserService) {
     }
 
     ngOnInit(): void {
@@ -28,10 +32,13 @@ export class LoginComponent implements OnInit {
             this.authenticationService.loggedInUser = User.makeTrueCopy(response);
             this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
             if (this.authenticationService.isLoggedIn) {
+                this.userService.getUserInterests(this.authenticationService.loggedInUser.id).subscribe((interestsArray) => {
+                    console.log(interestsArray);
+                    this.authenticationService.loggedInUser.interests = interestsArray;
+                })
                 this.router.navigate(['/home']);
                 this.showError = false;
                 this.authenticationService.isLoggedIn = true;
-                console.log(this.authenticationService.loggedInUser.id);
                 localStorage.setItem("loggedIndUser", JSON.stringify(this.authenticationService.loggedInUser.id));
             } else {
                 this.showError = true;

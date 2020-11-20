@@ -1,12 +1,47 @@
 package server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import server.repositories.Identifiable;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
-public class User {
+//Mapping the attributes
+@SqlResultSetMapping(name = "userInfo",
+        entities = {
+                @EntityResult(entityClass = User.class, fields = {
+                        @FieldResult(name = "id", column = "ID"),
+                        @FieldResult(name = "birthDate", column = "BIRTH_DATE"),
+                        @FieldResult(name = "email", column = "EMAIL"),
+                        @FieldResult(name = "firstName", column = "FIRST_NAME"),
+                        @FieldResult(name = "gender", column = "GENDER"),
+                        @FieldResult(name = "lastName", column = "LAST_NAME"),
+                        @FieldResult(name = "password", column = "PASSWORD"),
+                        @FieldResult(name = "profilePicture", column = "PROFILE_PICTURE"),
+
+                })}
+)
+
+@NamedNativeQueries({
+
+        @NamedNativeQuery(
+                name = "FindByEmail",
+                query = "SELECT * FROM User u WHERE lower(u.email) = :email",
+                resultSetMapping = "userInfo"
+        ),
+
+        @NamedNativeQuery(
+                name = "AuthenticateLogin",
+                query = "SELECT * FROM User u WHERE lower(u.email) = :email AND lower(u.password) = :password",
+                resultSetMapping = "userInfo"
+        )
+})
+public class User implements Identifiable, Serializable {
 
     @Id
     @GeneratedValue
@@ -16,22 +51,22 @@ public class User {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
-    @Enumerated(EnumType.STRING)
+    //    @Enumerated(EnumType.STRING)
     private Gender gender;
     private String profilePicture;
     private String email;
     private String password;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "user_interest",
-            joinColumns = @JoinColumn(name = "name"),
-            inverseJoinColumns = @JoinColumn(name = "id")
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "interest_id")
     )
     private List<Interest> interests;
 
     public User() {
-//        this.id = uniqueId++;
         this.firstName = "firstName";
         this.lastName = "lastName";
         this.birthDate = LocalDate.now();
@@ -42,10 +77,12 @@ public class User {
         this.email = "";
     }
 
+    @Override
     public long getId() {
-        return id;
+        return this.id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
@@ -133,4 +170,6 @@ public class User {
     public class ShowInfo {
 
     }
+
+
 }

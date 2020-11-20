@@ -4,28 +4,30 @@ import server.models.Login;
 
 import java.util.List;
 
-public interface EntityRepository<T> {
+public interface EntityRepository<T extends Identifiable> {
 
 
     List<T> findAll();
 
     T findById(long id);
 
-    default T saveOrUpdate(T t) {
+    T saveOrUpdate(T t);
+
+    boolean deleteById(long id);
+
+    default T getClonedObject(T savedUser) {
         return null;
     }
+
+    default T authenticateLogin(Login login){
+        return null;
+    };
 
     default T findByEmail(String email) {
         return null;
     }
 
-    T authenticateLogin(Login login);
-
-    default boolean deleteById(long id) {
-        return false;
+    default int[]getUsersInterests(long userId){
+        return new int[]{};
     }
-
-    default T getClonedObject(T savedUser){
-        return null;
-    };
 }

@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
     noGenderSelected: boolean;
     submitted: boolean;
     public emailAlreadyInUse = "";
-    public arrayInterests: { name, image }[] = interests;
+    public arrayInterests: { id, name, image }[] = interests;
 
     constructor(public authenticationService: AuthenticationService,
                 public userService: UserService,
@@ -58,9 +58,9 @@ export class RegisterComponent implements OnInit {
             })
             const interests:Interest = Array.from(document.querySelector('#pictures-section')
                 .querySelectorAll('input[name=interest]:checked')).map(interest => {
-                return String(interest.getAttribute('value'));
+                return Number(interest.getAttribute('value'));
             });
-            console.log(interests);
+
             this.noGenderSelected = genderElement.length == 0;
             if (this.noGenderSelected) return;
             const firstName = this.firstName.nativeElement.value;
@@ -81,12 +81,17 @@ export class RegisterComponent implements OnInit {
                     "email": email,
                     "password": password
                 }
-                console.log(object);
-                this.userService.saveOrUpdate(object).pipe(shareReplay(1)).subscribe((response) => {
+                this.userService.saveOrUpdate(object).pipe(shareReplay(1)).subscribe((response) => { // insert a new user
                     this.authenticationService.loggedInUser = User.makeTrueCopy(response);
+                    this.userService.insertUserInterests(interests, this.authenticationService.loggedInUser.id) // insert the user's interests
+                        .pipe(shareReplay(1)).subscribe((response)=>{
+                            this.authenticationService.loggedInUser.interests = interests;
+                    },error => {
+                            console.log(error);
+                    })
                     this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
-                    localStorage.setItem("loggedIndUser", JSON.stringify(this.authenticationService.loggedInUser.id));
-                    this.router.navigate(['/home']);
+                    localStorage.setItem("loggedIndUser", JSON.stringify(this.authenticationService.loggedInUser.id));//Set the session to the registered user
+                    this.router.navigate(['/home']); // navigate to the home page
                 }, error => {
                     this.emailAlreadyInUse = error.error.message;
                     console.log(error.error.message);

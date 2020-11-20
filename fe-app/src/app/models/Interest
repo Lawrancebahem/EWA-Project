@@ -1,16 +1,22 @@
 export class Interest {
 
-    private _name;
+    constructor(private name:string, private id:number) {
 
-    constructor(name) {
-        this._name = name;
     }
 
     public static trueCopy(interest: Interest): Interest {
 
-        return Object.assign(new Interest("****"), interest)
+        return Object.assign(new Interest("****",0), interest)
     }
 
+
+    get id(): number {
+        return this._id;
+    }
+
+    set id(value: number) {
+        this._id = value;
+    }
 
     get name() {
         return this._name;

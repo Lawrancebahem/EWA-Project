@@ -1,38 +1,47 @@
 [
   {
+    "id": 1,
     "name":"muziek",
     "image": "../../../../assets/Images/Interests/muziek.jpg"
   },
   {
+    "id": 2,
     "name":"strand",
     "image": "../../../../assets/Images/Interests/strand.jpg"
   },
 
   {
+    "id": 3,
     "name":"avontuur",
     "image": "../../../../assets/Images/Interests/avontuur.jpg"
   },
   {
+    "id": 4,
     "name":"dieren",
     "image": "../../../../assets/Images/Interests/dieren.jpg"
   },
   {
+    "id": 5,
     "name":"shopping",
     "image": "../../../../assets/Images/Interests/shopping.jpg"
   },
   {
+    "id": 6,
     "name":"sporten",
     "image": "../../../../assets/Images/Interests/sporten.jpg"
   },
   {
+    "id": 7,
     "name":"wintersport",
     "image": "../../../../assets/Images/Interests/wintersport.jpg"
   },
   {
+    "id": 8,
     "name":"lezen",
     "image": "../../../../assets/Images/Interests/lezen.jpeg"
   },
   {
+    "id": 9,
     "name":"museum",
     "image": "../../../../assets/Images/Interests/musea.jpg"
   }

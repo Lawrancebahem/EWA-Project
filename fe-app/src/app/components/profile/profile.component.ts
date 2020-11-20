@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
     @ViewChild('uploadedProfile') uploadedProfile: ElementRef;
     public editMyInterestsIsClicked = false;
     public hasChanged:boolean= false;
-    public arrayInterests: {name, image}[] = interests;
+    public arrayInterests: {id, name, image}[] = interests;
 
     constructor( public userService: UserService ,
                  private convertImage:ImageBase64Service,
