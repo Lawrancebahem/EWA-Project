@@ -87,6 +87,12 @@ public class UserController {
         this.userRepositoryJpa.saveOrUpdate(foundUser);// add/merge the user
         return true;
     }
+
+    /**
+     * Get the interests of a certain user based on the given id
+     * @param id
+     * @return
+     */
     @GetMapping("/interests/{id}")
     public int[]getUserInterests(@PathVariable long id){
        return this.interestEntityRepositoryJpa.getUsersInterests(id);

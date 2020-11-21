@@ -27,6 +27,11 @@ import java.util.List;
                 })}
 )
 
+/**
+ * Native queries
+ * findByEmail: To find a certain user based on email
+ * and AuthenticateLogin to authenticate login based on given email and password
+ */
 @NamedNativeQueries({
 
         @NamedNativeQuery(
@@ -53,6 +58,7 @@ public class User implements Identifiable, Serializable {
     private LocalDate birthDate;
     //    @Enumerated(EnumType.STRING)
     private Gender gender;
+    @Column(name = "PROFILE_PICTURE", columnDefinition = "longtext")
     private String profilePicture;
     private String email;
     private String password;

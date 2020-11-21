@@ -17,6 +17,7 @@ public abstract class AbstractEntityRepositoryJpa<E extends Identifiable> implem
 
     @PersistenceContext
     protected EntityManager em;
+
     private Class<E> theEntityClass;
 
     public AbstractEntityRepositoryJpa(Class<E> theEntityClass) {
@@ -37,6 +38,11 @@ public abstract class AbstractEntityRepositoryJpa<E extends Identifiable> implem
         return em.createQuery(query.select(root)).getResultList();
     }
 
+    /**
+     * Find a certain object based on id
+     * @param id
+     * @return
+     */
     @Override
     public E findById(long id) {
         return this.em.find(theEntityClass, id);
