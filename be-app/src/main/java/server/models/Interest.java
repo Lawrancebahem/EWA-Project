@@ -27,13 +27,11 @@ public class Interest implements Identifiable {
     private long interestId;
     private String name;
 
-    @ManyToMany(mappedBy = "interests")
-    List<User> personUSES;
+    @ManyToMany(mappedBy = "interests", fetch = FetchType.EAGER)
+    List<User> users;
 
     public Interest() {
     }
-
-
 
     public String getName() {
         return name;
@@ -45,11 +43,11 @@ public class Interest implements Identifiable {
 
 
     public List<User> getUsers() {
-        return personUSES;
+        return users;
     }
 
     public void setUsers(List<User> userUSES) {
-        this.personUSES = userUSES;
+        this.users = userUSES;
     }
 
     @Override

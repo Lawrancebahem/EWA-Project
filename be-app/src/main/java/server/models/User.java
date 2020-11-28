@@ -86,7 +86,7 @@ public class User implements Identifiable, Serializable {
     private boolean admin;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_interest",
             joinColumns = @JoinColumn(name = "id"),
@@ -104,6 +104,19 @@ public class User implements Identifiable, Serializable {
         this.interests = new ArrayList<>();
         this.email = "";
         this.admin = false;
+    }
+
+
+    public User(String firstName, String lastName, LocalDate birthDate, Gender gender, String profilePicture, String email, String password, boolean admin) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.gender = gender;
+        this.profilePicture = profilePicture;
+        this.email = email;
+        this.password = password;
+        this.admin = admin;
+        this.interests = new ArrayList<>();
     }
 
     @Override
