@@ -13,7 +13,7 @@ insert into INTEREST values
 
 
 -- ID  	BIRTH_DATE  	EMAIL  	FIRST_NAME  	GENDER  	LAST_NAME  	PASSWORD  	PROFILE_PICTURE
-insert into user values (1000,CURRENT_DATE, 'lawrancebahem@gmail.com', 'lawrance', 0, 'Bahem', 'admin', '/assets/Images/picProfile.png');
+insert into user values (1000,true,CURRENT_DATE, 'lawrancebahem@gmail.com', 'lawrance', 0, 'Bahem', 'admin', '/assets/Images/picProfile.png');
 
 
 

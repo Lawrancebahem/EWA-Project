@@ -79,7 +79,8 @@ export class RegisterComponent implements OnInit {
                     "gender": gender,
                     "profilePicture": profilePicture == undefined ? "" : data,
                     "email": email,
-                    "password": password
+                    "password": password,
+                    "admin":false
                 }
                 this.userService.saveOrUpdate(object).pipe(shareReplay(1)).subscribe((response) => { // insert a new user
                     this.authenticationService.loggedInUser = User.makeTrueCopy(response);

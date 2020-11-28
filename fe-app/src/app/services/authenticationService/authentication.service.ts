@@ -80,7 +80,7 @@ export class AuthenticationService {
      * @param login
      */
     public login(login): Observable<any> {
-        return this.httpClient.post(`${environment.apiUrl}/user/login`, login).pipe(shareReplay(1));
+        return this.httpClient.post(`${environment.apiUrl}/authenticate/login`, login).pipe(shareReplay(1));
     }
 
     /**

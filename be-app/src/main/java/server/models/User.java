@@ -1,6 +1,7 @@
 package server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import server.repositories.Identifiable;
 
 import javax.persistence.*;
@@ -12,49 +13,68 @@ import java.util.List;
 
 @Entity
 //Mapping the attributes
-@SqlResultSetMapping(name = "userInfo",
-        entities = {
-                @EntityResult(entityClass = User.class, fields = {
-                        @FieldResult(name = "id", column = "ID"),
-                        @FieldResult(name = "birthDate", column = "BIRTH_DATE"),
-                        @FieldResult(name = "email", column = "EMAIL"),
-                        @FieldResult(name = "firstName", column = "FIRST_NAME"),
-                        @FieldResult(name = "gender", column = "GENDER"),
-                        @FieldResult(name = "lastName", column = "LAST_NAME"),
-                        @FieldResult(name = "password", column = "PASSWORD"),
-                        @FieldResult(name = "profilePicture", column = "PROFILE_PICTURE"),
-
-                })}
-)
+//@SqlResultSetMapping(name = "userInfo",
+//        entities = {
+//                @EntityResult(entityClass = User.class, fields = {
+//                        @FieldResult(name = "id", column = "ID"),
+//                        @FieldResult(name = "admin", column = "ADMIN"),
+//                        @FieldResult(name = "birthDate", column = "BIRTH_DATE"),
+//                        @FieldResult(name = "email", column = "EMAIL"),
+//                        @FieldResult(name = "firstName", column = "FIRST_NAME"),
+//                        @FieldResult(name = "gender", column = "GENDER"),
+//                        @FieldResult(name = "lastName", column = "LAST_NAME"),
+//                        @FieldResult(name = "password", column = "PASSWORD"),
+//                        @FieldResult(name = "profilePicture", column = "PROFILE_PICTURE"),
+//
+//                })}
+//)
 
 /**
  * Native queries
  * findByEmail: To find a certain user based on email
  * and AuthenticateLogin to authenticate login based on given email and password
  */
-@NamedNativeQueries({
+//@NamedNativeQueries({
+//
+//        @NamedNativeQuery(
+//                name = "FindByEmail",
+//                query = "SELECT * FROM User u WHERE lower(u.email) = :email",
+//                resultSetMapping = "userInfo"
+//        ),
+//
+//        @NamedNativeQuery(
+//                name = "AuthenticateLogin",
+//                query = "SELECT * FROM User u WHERE lower(u.email) = :email AND lower(u.password) = :password",
+//                resultSetMapping = "userInfo"
+//        )
+//})
 
-        @NamedNativeQuery(
+
+@NamedQueries({
+
+        @NamedQuery(
                 name = "FindByEmail",
-                query = "SELECT * FROM User u WHERE lower(u.email) = :email",
-                resultSetMapping = "userInfo"
+                query = "SELECT u FROM User u WHERE lower(u.email) = :email"
         ),
 
-        @NamedNativeQuery(
+        @NamedQuery(
                 name = "AuthenticateLogin",
-                query = "SELECT * FROM User u WHERE lower(u.email) = :email AND lower(u.password) = :password",
-                resultSetMapping = "userInfo"
+                query = "SELECT u FROM User u WHERE lower(u.email) = :email AND lower(u.password) = :password"
         )
 })
+
+
+@SequenceGenerator(name = "userIds", initialValue = 1001)
 public class User implements Identifiable, Serializable {
 
-    @Id
-    @GeneratedValue
+    @Id()
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userIds")
     private long id;
     @Transient
     public static long uniqueId = 100;
     private String firstName;
     private String lastName;
+    @JsonSerialize(using = CustomDateSerializer.class)
     private LocalDate birthDate;
     //    @Enumerated(EnumType.STRING)
     private Gender gender;
@@ -62,6 +82,7 @@ public class User implements Identifiable, Serializable {
     private String profilePicture;
     private String email;
     private String password;
+    private boolean admin;
 
     @JsonIgnore
     @ManyToMany
@@ -81,6 +102,7 @@ public class User implements Identifiable, Serializable {
         this.password = "password";
         this.interests = new ArrayList<>();
         this.email = "";
+        this.admin = false;
     }
 
     @Override
@@ -167,7 +189,15 @@ public class User implements Identifiable, Serializable {
         this.email = email;
     }
 
-    enum Gender {
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public enum Gender {
         MAN,
         WOMAN,
         OTHER
@@ -176,6 +206,5 @@ public class User implements Identifiable, Serializable {
     public class ShowInfo {
 
     }
-
 
 }

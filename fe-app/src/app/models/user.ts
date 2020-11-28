@@ -12,7 +12,7 @@ export class User {
                 private _birthDate: Date, private _gender: Gender,
                 private _profilePicture: string, private _email: string,
                 private _password,
-                private _interests: number[]) {
+                private _interests: number[], private _admin:boolean) {
     }
 
     static makeTrueCopy(user): User {
@@ -93,5 +93,14 @@ export class User {
 
     set interests(value: number[]) {
         this._interests = value;
+    }
+
+
+    get admin(): boolean {
+        return this._admin;
+    }
+
+    set admin(value: boolean) {
+        this._admin = value;
     }
 }

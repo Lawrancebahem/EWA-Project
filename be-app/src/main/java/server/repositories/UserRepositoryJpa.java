@@ -72,6 +72,7 @@ public class UserRepositoryJpa extends AbstractEntityRepositoryJpa<User> {
         clonedUser.setInterests(savedUser.getInterests());
         clonedUser.setProfilePicture(savedUser.getProfilePicture());
         clonedUser.setInterests(savedUser.getInterests());
+        clonedUser.setAdmin(savedUser.isAdmin());
         clonedUser.setPassword("*********");
         return clonedUser;
     }
