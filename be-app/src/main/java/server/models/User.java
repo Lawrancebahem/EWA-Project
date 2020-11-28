@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Entity
+
 //Mapping the attributes
 //@SqlResultSetMapping(name = "userInfo",
 //        entities = {
@@ -63,7 +63,8 @@ import java.util.List;
         )
 })
 
-
+@Entity
+@Table(name = "\"User\"")
 @SequenceGenerator(name = "userIds", initialValue = 1001)
 public class User implements Identifiable, Serializable {
 
@@ -76,9 +77,9 @@ public class User implements Identifiable, Serializable {
     private String lastName;
     @JsonSerialize(using = CustomDateSerializer.class)
     private LocalDate birthDate;
-    //    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private Gender gender;
-    @Column(name = "PROFILE_PICTURE", columnDefinition = "longtext")
+    @Column(name = "PROFILE_PICTURE", columnDefinition = "text")
     private String profilePicture;
     private String email;
     private String password;

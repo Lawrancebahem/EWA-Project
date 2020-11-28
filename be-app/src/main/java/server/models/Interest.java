@@ -28,7 +28,7 @@ public class Interest implements Identifiable {
     private String name;
 
     @ManyToMany(mappedBy = "interests")
-    List<User> users;
+    List<User> personUSES;
 
     public Interest() {
     }
@@ -45,11 +45,11 @@ public class Interest implements Identifiable {
 
 
     public List<User> getUsers() {
-        return users;
+        return personUSES;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUsers(List<User> userUSES) {
+        this.personUSES = userUSES;
     }
 
     @Override

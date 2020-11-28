@@ -11,7 +11,7 @@ import server.exception.UnAuthorizedException;
 import server.models.Login;
 import server.models.User;
 import server.repositories.EntityRepository;
-import server.service.ConfigureAbleFactoryBean;
+import server.service.APIFactoryConfiguration;
 import server.utilities.JWToken;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +23,7 @@ public class AuthenticateController {
 
 
   @Autowired
-  ConfigureAbleFactoryBean apiConfig;
+  APIFactoryConfiguration apiConfig;
 
   @Autowired
   @Qualifier("userRepositoryJpa")
@@ -36,7 +36,7 @@ public class AuthenticateController {
     Login login = new Login(email,password);
     User user = userRepositoryJpa.authenticateLogin(login);
     if (user != null) {
-      JWToken jwToken = new JWToken(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(),user.isAdmin());
+      JWToken jwToken = new JWToken(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.isAdmin());
       String tokenString = jwToken.encode(this.apiConfig.getIssuer(), this.apiConfig.getPassPhrase(),
         this.apiConfig.getTokenDurationOfValidity());
       return ResponseEntity.accepted().header(HttpHeaders.AUTHORIZATION, "Bearer " + tokenString).body(user);
