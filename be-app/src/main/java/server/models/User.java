@@ -92,8 +92,8 @@ public class User implements Identifiable, Serializable {
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "interest_id")
     )
-    private List<Interest> interests;
 
+    private List<Interest> interests;
     public User() {
         this.firstName = "firstName";
         this.lastName = "lastName";
