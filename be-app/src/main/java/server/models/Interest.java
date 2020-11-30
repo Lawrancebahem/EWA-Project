@@ -26,7 +26,7 @@ public class Interest implements Identifiable {
     @GeneratedValue
     private long interestId;
     private String name;
-
+    
     @ManyToMany(mappedBy = "interests", fetch = FetchType.EAGER)
     List<User> users;
 
