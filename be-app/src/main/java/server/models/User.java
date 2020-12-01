@@ -93,6 +93,15 @@ public class User implements Identifiable, Serializable {
             inverseJoinColumns = @JoinColumn(name = "interest_id")
     )
 
+    @OneToMany(
+            mappedBy = "User",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Reaction> reactions;
+
+
+
     private List<Interest> interests;
     public User() {
         this.firstName = "firstName";

@@ -1,12 +1,14 @@
 package server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import server.repositories.Identifiable;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "Category")
-public class Category {
+//@Table(name = "Category")
+public class Category implements Identifiable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,22 +16,20 @@ public class Category {
     private long idCategory;
     @Column
     private String name;
-    @Column
+    @Column(name = "categoryImage", columnDefinition = "text")
     private String image;
 
-    // TODO
-//    @JsonIgnore
-//    @ManyToMany
-//    @JoinTable(
-//            name = "",
-//            joinColumns = @JoinColumn(name = ""),
-//            inverseJoinColumns = @JoinColumn(name = "")
-//    )
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
+    List<Activity> activities;
 
     public Category(long idCategory, String name, String image) {
         this.idCategory = idCategory;
         this.name = name;
         this.image = image;
+    }
+
+    public Category() {
+
     }
 
 
@@ -59,5 +59,15 @@ public class Category {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    @Override
+    public long getId() {
+        return 0;
+    }
+
+    @Override
+    public void setId(long id) {
+
     }
 }
