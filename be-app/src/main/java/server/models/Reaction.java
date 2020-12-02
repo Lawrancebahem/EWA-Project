@@ -5,6 +5,7 @@ import server.repositories.Identifiable;
 import javax.persistence.*;
 
 @Entity
+@Table
 public class Reaction implements Identifiable {
 
     @Id
@@ -16,6 +17,7 @@ public class Reaction implements Identifiable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+
 
     public Reaction(long idReaction, String message) {
         this.idReaction = idReaction;
