@@ -8,6 +8,17 @@ import java.util.List;
 
 @Entity
 //@Table(name = "Category")
+@NamedQueries({
+        @NamedQuery(
+                name = "findAllReactions",
+                query = "select r from Reaction r"
+        ),
+
+        @NamedQuery(
+                name = "findActivityById",
+                query = "select a from Activity a where a.idActivity = :id"
+        )
+})
 public class Category implements Identifiable {
 
     @Id

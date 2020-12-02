@@ -7,6 +7,17 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = "findAllActivities",
+                query = "select a from Activity a"
+        ),
+
+        @NamedQuery(
+                name = "findActivityById",
+                query = "select a from Activity a where a.idActivity = :id"
+        )
+})
 public class Activity implements Identifiable {
 
     @Id

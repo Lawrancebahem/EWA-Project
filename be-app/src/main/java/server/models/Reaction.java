@@ -6,6 +6,17 @@ import javax.persistence.*;
 
 @Entity
 @Table
+@NamedQueries({
+        @NamedQuery(
+                name = "findAllReactions",
+                query = "select r from Reaction r"
+        ),
+
+        @NamedQuery(
+                name = "findActivityById",
+                query = "select a from Activity a where a.idActivity = :id"
+        )
+})
 public class Reaction implements Identifiable {
 
     @Id

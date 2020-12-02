@@ -7,6 +7,7 @@ import server.models.User;
 
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service("userRepositoryJpa")
 @Transactional
