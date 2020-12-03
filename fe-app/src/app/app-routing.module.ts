@@ -11,6 +11,7 @@ import {AboutUsPageComponent} from "./components/about-us-page/about-us-page.com
 import {MatchingPageComponent} from "./components/matching-page/matching-page.component";
 import {MyActivitiesComponent} from "./components/my-activities/my-activities.component";
 import {ActivityDetailsComponent} from "./components/activitypages/activity-details/activity-details.component";
+import {AdminComponent} from "./components/admin/admin.component";
 
 const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -26,6 +27,7 @@ const routes: Routes = [
     {path: 'aboutUs', component: AboutUsPageComponent},
     {path: 'matching', component: MatchingPageComponent},
     {path: 'myAcitivities', component: MyActivitiesComponent},
+    {path: 'admin', component: AdminComponent},
     {path: 'activityDetails', children:[
             {path: ':id', component: ActivityDetailsComponent}
         ]}

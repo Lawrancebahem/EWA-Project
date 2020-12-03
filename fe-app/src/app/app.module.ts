@@ -24,6 +24,7 @@ import {CustomDatePipe} from "./components/customDate/customDatePipe";
 import {MatchingPageComponent} from './components/matching-page/matching-page.component';
 import { MyActivitiesComponent } from './components/my-activities/my-activities.component';
 import { ActivityDetailsComponent } from './components/activitypages/activity-details/activity-details.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
     declarations: [
@@ -44,6 +45,7 @@ import { ActivityDetailsComponent } from './components/activitypages/activity-de
         MatchingPageComponent,
         MyActivitiesComponent,
         ActivityDetailsComponent,
+        AdminComponent,
     ],
     imports: [
         BrowserModule,
