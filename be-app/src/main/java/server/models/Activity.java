@@ -1,11 +1,24 @@
 package server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import server.repositories.Identifiable;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Acitivity")
-public class Activity {
+@NamedQueries({
+        @NamedQuery(
+                name = "findAllActivities",
+                query = "select a from Activity a"
+        ),
+
+        @NamedQuery(
+                name = "findActivityById",
+                query = "select a from Activity a where a.idActivity = :id"
+        )
+})
+public class Activity implements Identifiable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,11 +28,26 @@ public class Activity {
     private String title;
     @Column
     private String description;
-    @Column
+    @Column(name = "activityImage", columnDefinition = "text")
     private String image;
     @Column
     private String location;
 
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "activity_category",
+            joinColumns = @JoinColumn(name = "idActivity"),
+            inverseJoinColumns = @JoinColumn(name = "idCategory")
+    )
+    private List<Category> categories;
+
+    @OneToMany(
+            mappedBy = "Activity",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Reaction> reactions;
 
 
     public Activity(long idActivity, String title, String description, String image, String location) {
@@ -28,6 +56,10 @@ public class Activity {
         this.description = description;
         this.image = image;
         this.location = location;
+    }
+
+    public Activity() {
+
     }
 
 
@@ -72,5 +104,15 @@ public class Activity {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    @Override
+    public long getId() {
+        return 0;
+    }
+
+    @Override
+    public void setId(long id) {
+
     }
 }

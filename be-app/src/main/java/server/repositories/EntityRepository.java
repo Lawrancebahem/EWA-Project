@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface EntityRepository<T extends Identifiable> {
 
-
     List<T> findAll();
 
     T findById(long id);
@@ -29,5 +28,9 @@ public interface EntityRepository<T extends Identifiable> {
 
     default int[]getUsersInterests(long userId){
         return new int[]{};
+    }
+
+    default List<T> findByQuery(String queryName, Object... params) {
+        return null;
     }
 }
