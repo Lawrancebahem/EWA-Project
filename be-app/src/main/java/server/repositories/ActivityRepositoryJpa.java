@@ -15,30 +15,4 @@ public class ActivityRepositoryJpa extends AbstractEntityRepositoryJpa<Activity>
         super(Activity.class);
     }
 
-    @Override
-    public List<Activity> findByQuery(String queryName, Object... params) {
-        TypedQuery<Activity> namedQuery = em.createNamedQuery(queryName, Activity.class);
-        namedQuery.setParameter(1, params[0]);
-        return namedQuery.getResultList();
-    }
-
-    @Override
-    public List<Activity> findAll() {
-        return super.findAll();
-    }
-
-    @Override
-    public Activity findById(long id) {
-        return super.findById(id);
-    }
-
-    @Override
-    public Activity saveOrUpdate(Activity activity) {
-        return super.saveOrUpdate(activity);
-    }
-
-    @Override
-    public boolean deleteById(long id) {
-        return super.deleteById(id);
-    }
 }

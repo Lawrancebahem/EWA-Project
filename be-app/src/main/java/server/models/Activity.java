@@ -1,6 +1,7 @@
 package server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import server.repositories.Identifiable;
 
 import javax.persistence.*;
@@ -39,12 +40,9 @@ public class Activity implements Identifiable {
     )
     private List<Category> categories;
 
-//    @OneToMany(
-//            mappedBy = "Activity",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
-//    )
-//    private List<Reaction> reactions;
+    @JsonIgnore
+    @OneToMany(mappedBy = "activity")
+    private List<Reaction> reactions;
 
 
     public Activity(long idActivity, String title, String description, String image, String location) {

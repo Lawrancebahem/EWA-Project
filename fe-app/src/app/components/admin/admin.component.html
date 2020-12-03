@@ -45,31 +45,28 @@
         </table>
     </div>
 
-    <div *ngIf="activityOverview">
+    <div *ngIf="activityOverview && adminService.activityArray.length > 0">
         <table class="table table-striped">
             <thead>
             <tr>
 
                 <th>Id</th>
                 <th>Titel</th>
-                <th>Status</th>
                 <th>Omschrijving</th>
                 <th>locatie</th>
                 <th>Foto</th>
-                <th>Categorien</th>
                 <th>Verwijderen</th>
             </tr>
             </thead>
             <tbody>
+            <tr *ngFor="let activity of adminService.activityArray">
+                <td>{{activity.idActivity}}</td>
+                <td>{{activity.title}}</td>
+                <td>{{activity.description}}</td>
+                <td>{{activity.location}}</td>
+                <td>{{activity.image}}</td>
+                <td><mat-icon (click)="deleteActivity(activity.idActivity)" class="icon-size">delete</mat-icon></td>
             <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>2</td>
-                <td>2</td>
-                <td>2</td>
-                <td>2</td>
-                <td>2</td>
-                <td><mat-icon class="icon-size">delete</mat-icon></td>
             </tbody>
         </table>
     </div>

@@ -1,5 +1,6 @@
 package server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import server.repositories.Identifiable;
 
@@ -21,9 +22,14 @@ public class Reaction implements Identifiable {
     @Column(name = "message", columnDefinition = "text")
     private String message;
 
-    @JsonIgnoreProperties("reactions")
-    @ManyToOne
+    //    @JsonIgnoreProperties("reactions")
+    @ManyToOne(fetch = FetchType.LAZY)
+
     private User user;
+
+    //    @JsonIgnoreProperties("reactions")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Activity activity;
 
 
     public Reaction(long idReaction, String message) {
@@ -47,6 +53,7 @@ public class Reaction implements Identifiable {
 
     /**
      * Getters and Setters
+     *
      * @return Getters and Setters
      */
 

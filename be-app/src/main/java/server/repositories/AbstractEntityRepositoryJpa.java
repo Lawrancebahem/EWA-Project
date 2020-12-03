@@ -2,6 +2,7 @@ package server.repositories;
 
 
 import server.exception.ResourceNotFound;
+import server.models.Activity;
 import server.models.User;
 
 import javax.persistence.EntityManager;
@@ -87,5 +88,18 @@ public abstract class AbstractEntityRepositoryJpa<E extends Identifiable> implem
             return true;
         }
         throw new ResourceNotFound("The given id does not exist");
+    }
+
+    /**
+     * To find a certain object based on the named query
+     * @param queryName
+     * @param params
+     * @return
+     */
+    @Override
+    public List<E> findByQuery(String queryName, Object... params) {
+        TypedQuery<E> namedQuery = em.createNamedQuery(queryName, theEntityClass);
+        namedQuery.setParameter(1, params[0]);
+        return namedQuery.getResultList();
     }
 }

@@ -1,12 +1,13 @@
 package server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import server.repositories.Identifiable;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "\"Category\"")
+@Table(name = "\"category\"")
 @NamedQueries({
         @NamedQuery(
                 name = "findCategoryById",
@@ -21,7 +22,7 @@ public class Category implements Identifiable {
     private String name;
     @Column(name = "categoryImage", columnDefinition = "text")
     private String image;
-    //
+
     @ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
     List<Activity> activities;
 

@@ -94,7 +94,9 @@ public class User implements Identifiable, Serializable {
             inverseJoinColumns = @JoinColumn(name = "interest_id")
     )
     private List<Interest> interests;
-    @JsonIgnoreProperties("user")
+
+
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Reaction> reactions;
 
