@@ -1,21 +1,16 @@
 package server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import server.repositories.Identifiable;
 
 import javax.persistence.*;
 
 @Entity
-@Table
 @NamedQueries({
         @NamedQuery(
                 name = "findAllReactions",
                 query = "select r from Reaction r"
         ),
-
-        @NamedQuery(
-                name = "findActivityById",
-                query = "select a from Activity a where a.idActivity = :id"
-        )
 })
 public class Reaction implements Identifiable {
 
@@ -26,7 +21,8 @@ public class Reaction implements Identifiable {
     @Column(name = "message", columnDefinition = "text")
     private String message;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("reactions")
+    @ManyToOne
     private User user;
 
 

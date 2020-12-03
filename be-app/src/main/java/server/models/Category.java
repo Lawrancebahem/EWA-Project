@@ -1,35 +1,27 @@
 package server.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import server.repositories.Identifiable;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-//@Table(name = "Category")
+@Table(name = "\"Category\"")
 @NamedQueries({
         @NamedQuery(
-                name = "findAllReactions",
-                query = "select r from Reaction r"
-        ),
-
-        @NamedQuery(
-                name = "findActivityById",
-                query = "select a from Activity a where a.idActivity = :id"
+                name = "findCategoryById",
+                query = "select a from Category a where a.idCategory = :id"
         )
 })
 public class Category implements Identifiable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
+    @GeneratedValue
     private long idCategory;
-    @Column
     private String name;
     @Column(name = "categoryImage", columnDefinition = "text")
     private String image;
-
+    //
     @ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
     List<Activity> activities;
 
@@ -46,6 +38,7 @@ public class Category implements Identifiable {
 
     /**
      * Getters and Setters
+     *
      * @return Getters and Setters
      */
     public long getIdCategory() {

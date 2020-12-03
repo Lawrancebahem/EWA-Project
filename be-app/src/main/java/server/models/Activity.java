@@ -22,13 +22,10 @@ public class Activity implements Identifiable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
     private long idActivity;
-    @Column
     private String title;
-    @Column
     private String description;
-    @Column(name = "activityImage", columnDefinition = "text")
+    @Column(name = "activityimage", columnDefinition = "text")
     private String image;
     @Column
     private String location;
@@ -37,17 +34,17 @@ public class Activity implements Identifiable {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "activity_category",
-            joinColumns = @JoinColumn(name = "idActivity"),
-            inverseJoinColumns = @JoinColumn(name = "idCategory")
+            joinColumns = @JoinColumn(name = "idctivity"),
+            inverseJoinColumns = @JoinColumn(name = "idcategory")
     )
     private List<Category> categories;
 
-    @OneToMany(
-            mappedBy = "Activity",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<Reaction> reactions;
+//    @OneToMany(
+//            mappedBy = "Activity",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true
+//    )
+//    private List<Reaction> reactions;
 
 
     public Activity(long idActivity, String title, String description, String image, String location) {

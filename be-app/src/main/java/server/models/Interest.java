@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "\"interest\"")
 //@SqlResultSetMapping(name = "interestId",
 //        entities = {
 //                @EntityResult(entityClass = Interest.class, fields = {

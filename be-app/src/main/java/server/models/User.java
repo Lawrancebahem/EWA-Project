@@ -1,6 +1,7 @@
 package server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import server.repositories.Identifiable;
 
@@ -64,7 +65,7 @@ import java.util.List;
 })
 
 @Entity
-@Table(name = "\"User\"")
+@Table(name = "\"user\"")
 @SequenceGenerator(name = "userIds", initialValue = 1001)
 public class User implements Identifiable, Serializable {
 
@@ -93,12 +94,8 @@ public class User implements Identifiable, Serializable {
             inverseJoinColumns = @JoinColumn(name = "interest_id")
     )
     private List<Interest> interests;
-
-    @OneToMany(
-            mappedBy = "User",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @JsonIgnoreProperties("user")
+    @OneToMany(mappedBy = "user")
     private List<Reaction> reactions;
 
 
@@ -110,6 +107,7 @@ public class User implements Identifiable, Serializable {
         this.profilePicture = "profilePicture";
         this.password = "password";
         this.interests = new ArrayList<>();
+        this.reactions = new ArrayList<>();
         this.email = "";
         this.admin = false;
     }
