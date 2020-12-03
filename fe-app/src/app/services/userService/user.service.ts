@@ -23,8 +23,14 @@ export class UserService {
    * To save or update a user
    * @param user
    */
-  public saveOrUpdate(user:User):Observable<any>{
+  public save(user:User):Observable<any>{
     return this.httpClient.post<User>(`${environment.apiUrl}/user`, user).pipe(shareReplay(1));
+  }
+
+
+  public update(user:User){
+    return this.httpClient.put<User>(`${environment.apiUrl}/user/update`, user).pipe(shareReplay(1));
+
   }
 
   /**

@@ -23,26 +23,26 @@
 
                         <div class="form--input">
                             <span>Voornaam</span>
-                            <input [value]="authenticationService.loggedInUser.firstName" (keyup)="hasChanged = true"
+                            <input #firstName [value]="authenticationService.loggedInUser.firstName" (keyup)="hasChanged = true"
                                    type="text" class="color" id="surname" name="Voornaam"
                                    required maxlength="20">
                         </div>
 
                         <div class="form--input">
                             <span>Achternaam</span>
-                            <input [value]="authenticationService.loggedInUser.lastName" (keyup)="hasChanged = true"
+                            <input #lastName [value]="authenticationService.loggedInUser.lastName" (keyup)="hasChanged = true"
                                    type="text" name="Achternaam" id="lastname" required
                                    maxlength="20">
                         </div>
 
                         <div class="form--input">
                             <span>Geboortedatum</span>
-                            <input [value]="authenticationService.loggedInUser.birthDate | date:'yyyy-MM-dd'"
+                            <input #birthDate [value]="authenticationService.loggedInUser.birthDate | date:'yyyy-MM-dd'"
                                    (keyup)="hasChanged = true" type="date" name="Geboortedatum" id="birthdate"
                                    placeholder="yyyy-MM-dd" required>
                         </div>
 
-                        <div class="form--radio">
+                        <div class="form--radio gender-form">
                             <label for="choice_man">
                                 <input [checked]="authenticationService.loggedInUser.gender.toString() === 'MAN' "
                                        (keyup)="hasChanged = true" type="radio" id="choice_man" name="gender"
@@ -64,7 +64,7 @@
                         </div>
                         <div class="form--input">
                             <span>Email</span>
-                            <input [value]="authenticationService.loggedInUser.email" (keyup)="hasChanged = true"
+                            <input #email [value]="authenticationService.loggedInUser.email" (keyup)="hasChanged = true"
                                    id="email" type="email" name="mailadres" maxlength="40">
                         </div>
 
@@ -72,20 +72,20 @@
                             <span>Wachtwoord</span>
                             <div class="show-password">
                                 <i class="fa fa-eye"></i>
-                                <input (keyup)="hasChanged = true" class="form_input" type="password" name="wachtwoord"
+                                <input #password (keyup)="hasChanged = true" class="form_input" type="password" name="wachtwoord"
                                        id="password1"
                                        maxlength="30" required="required">
                             </div>
                             <span>Bevestiging wachtwoord</span>
                             <div class="show-password">
                                 <i class="fa fa-eye"></i>
-                                <input (keyup)="hasChanged = true" class="form_input" type="password" name="wachtwoord"
+                                <input #passwordConfirm (keyup)="hasChanged = true" class="form_input" type="password" name="wachtwoord"
                                        id="password2"
                                        maxlength="30" required="required">
                             </div>
                         </div>
                         <div>
-                            <button *ngIf="hasChanged" [disabled]="!hasChanged" id="save"
+                            <button (click)="onUpdate()" *ngIf="hasChanged" [disabled]="!hasChanged" id="save"
                                     class="button button--primary button--form">Opslaan
                             </button>
                         </div>
@@ -103,7 +103,7 @@
         </div>
 
         <div class="profile--right">
-            <div *ngIf="authenticationService.isLoggedIn" class="pictures-section" id="pictures-section">
+            <div *ngIf="authenticationService.isLoggedIn && authenticationService.loggedInUser.interests != null" class="pictures-section" id="pictures-section">
                 <label *ngFor="let interest of arrayInterests" for="{{interest.name}}" class="interest">
                     <input name="interest" value="{{interest.id}}" type="checkbox"
                            [checked]="authenticationService.loggedInUser && authenticationService.loggedInUser.interests.includes(interest.id)"
@@ -150,7 +150,7 @@
     </div>
 </div>
 
-
+<!--modal fo editing the profile picture-->
 <div class="modal fade h-50" id="myModal">
     <div class="modal-dialog">
 

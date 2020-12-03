@@ -9,6 +9,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {shareReplay} from "rxjs/operators";
 import {User} from "../../../models/user";
+import {UserService} from "../../../services/userService/user.service";
 
 @Component({
     selector: 'app-nav-bar',
@@ -21,7 +22,8 @@ export class NavBarComponent implements OnInit {
     constructor(private router: Router,
                 public speechService: SpeechServiceService,
                 public authenticateService: AuthenticationService,
-                public httpClient: HttpClient) {
+                public httpClient: HttpClient,
+                private userService:UserService) {
 
     }
 
@@ -32,6 +34,10 @@ export class NavBarComponent implements OnInit {
         if (userId != -1) {
             this.httpClient.get(`${environment.apiUrl}/user/` + userId).pipe(shareReplay(1)).subscribe((user) => {
                 this.authenticateService.loggedInUser = User.makeTrueCopy(user);
+                this.userService.getUserInterests(this.authenticateService.loggedInUser.id).subscribe((interestsArray) => {
+                    console.log(interestsArray);
+                    this.authenticateService.loggedInUser.interests = interestsArray;
+                })
                 this.authenticateService.isLoggedIn = true;
             })
         }

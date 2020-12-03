@@ -59,7 +59,7 @@ public class UserController {
      * @return
      */
     @PostMapping()
-    public ResponseEntity<User> responseEntity(@RequestBody User user){
+    public ResponseEntity<User> registerNewUser(@RequestBody User user){
         System.out.println("The received user is " + user);
         User foundUserByEmail = this.userRepositoryJpa.findByEmail(user.getEmail());
         if (foundUserByEmail != null) throw new PreConditionalFailed("This email : '" + user.getEmail() + "' is already in use");
@@ -86,6 +86,13 @@ public class UserController {
         }
         this.userRepositoryJpa.saveOrUpdate(foundUser);// add/merge the user
         return true;
+    }
+
+    @PutMapping("/update")
+    public User updateUser(@RequestBody User updatedUser){
+        User user =  this.userRepositoryJpa.saveOrUpdate(updatedUser);
+        User clonedUser = this.userRepositoryJpa.getClonedObject(user);
+        return clonedUser;
     }
 
     /**

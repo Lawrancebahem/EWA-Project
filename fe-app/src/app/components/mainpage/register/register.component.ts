@@ -82,7 +82,7 @@ export class RegisterComponent implements OnInit {
                     "password": password,
                     "admin":false
                 }
-                this.userService.saveOrUpdate(object).pipe(shareReplay(1)).subscribe((response) => { // insert a new user
+                this.userService.save(object).pipe(shareReplay(1)).subscribe((response) => { // insert a new user
                     this.authenticationService.loggedInUser = User.makeTrueCopy(response);
                     this.userService.insertUserInterests(interests, this.authenticationService.loggedInUser.id) // insert the user's interests
                         .pipe(shareReplay(1)).subscribe((response)=>{

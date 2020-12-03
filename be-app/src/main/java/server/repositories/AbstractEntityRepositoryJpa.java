@@ -45,6 +45,7 @@ public abstract class AbstractEntityRepositoryJpa<E extends Identifiable> implem
      */
     @Override
     public E findById(long id) {
+        System.out.println("Is trying to find this user with this id " + id);
         return this.em.find(theEntityClass, id);
     }
 
