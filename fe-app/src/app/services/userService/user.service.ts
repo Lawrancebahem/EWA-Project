@@ -23,32 +23,37 @@ export class UserService {
    * To save or update a user
    * @param user
    */
-  public saveOrUpdate(user:User):Observable<any>{
-    return this.httpClient.post<User>(`${environment.apiUrl}/user`, user).pipe(shareReplay(1));
+  public registerUser(user:User):Observable<any>{
+    return this.httpClient.post<User>(`${environment.apiUrl}/authenticate/register`, user,{observe: "response"}).pipe(shareReplay(1));
+  }
+
+
+  public update(user:User){
+    return this.httpClient.put<User>(`${environment.apiUrl}/user/update`, user).pipe(shareReplay(1));
+
   }
 
   /**
    * To insert user's ineterests
    * @param interests
-   * @param userId
    */
-  public insertUserInterests(interests:Interest[], userId):Observable<any>{
-    return this.httpClient.post<User>(`${environment.apiUrl}/user/interests/`+ userId, interests).pipe(shareReplay(1));
+  public insertUserInterests(interests: number[]):Observable<any>{
+    return this.httpClient.post<User>(`${environment.apiUrl}/user/interests`, interests).pipe(shareReplay(1));
   }
 
   /**
-   * To get all users
+   * To get all users(just for admin)
    */
-  public findAll():User[]{
-    return this.users;
+  public findAll():Observable<User[]>{
+    return this.httpClient.get<User[]>(`${environment.apiUrl}/user/all`).pipe(shareReplay(1));
   }
 
   /**
    * To get the user's interests
    * @param userId
    */
-  public getUserInterests(userId):Observable<number[]>{
-    return this.httpClient.get<number[]>(`${environment.apiUrl}/user/interests/`+ userId).pipe(shareReplay(1));
+  public getUserInterests():Observable<number[]>{
+    return this.httpClient.get<number[]>(`${environment.apiUrl}/user/my-interests`).pipe(shareReplay(1));
 
   }
 

@@ -1,0 +1,77 @@
+<nav>
+    <ul>
+
+
+
+        <li (click)="onUserOverview()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Gebruikers
+        <mat-icon class="align-middle">perm_identity</mat-icon></li>
+        <li (click)="onActivityOverview()">Activiteiten <mat-icon class="align-middle">local_activity</mat-icon></li>
+<!--        <li>SubMenu-->
+<!--            &lt;!&ndash; Sub menu &ndash;&gt;-->
+<!--            <ul class="menu&#45;&#45;sub">-->
+<!--                <li routerLink="overview1" routerLinkActive="active">Overview 1</li>-->
+<!--            </ul>-->
+<!--        </li>-->
+    </ul>
+</nav>
+
+<div class="border p-3">
+    <p>{{title}}</p>
+    <div *ngIf="userOverViewClicked && adminService.userArray.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Voornaam</th>
+                <th>Achternaam</th>
+                <th>Geboortedatum</th>
+                <th>Geslacht</th>
+                <th>Email</th>
+                <th>Wahtwoord</th>
+                <th>Profielfoto</th>
+                <th>Blokeer</th>
+                <th>Verwijderen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  *ngFor="let user of adminService.userArray">
+                <td>{{user.firstName | titlecase}}</td>
+                <td>{{user.lastName | titlecase}}</td>
+                <td>{{user.birthDate}}</td>
+                <td>{{user.gender}}</td>
+                <td>{{user.email | titlecase}}</td>
+                <td>{{user.password}}</td>
+                <td><img class="userProfile" src="{{user.profilePicture}}"></td>
+                <td><mat-icon (click)="blockUser(user.id)" class="icon-size">block</mat-icon></td>
+                <td><mat-icon (click)="deleteUser(user.id)" class="icon-size">delete</mat-icon></td>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="activityOverview && adminService.activityArray.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+
+                <th>Id</th>
+                <th>Titel</th>
+                <th>Omschrijving</th>
+                <th>locatie</th>
+                <th>Foto</th>
+                <th>Verwijderen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let activity of adminService.activityArray">
+                <td>{{activity.idActivity}}</td>
+                <td>{{activity.title}}</td>
+                <td>{{activity.description}}</td>
+                <td>{{activity.location}}</td>
+                <td>{{activity.image}}</td>
+                <td><mat-icon (click)="deleteActivity(activity.idActivity)" class="icon-size">delete</mat-icon></td>
+            <tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--<button class="float-right btn-primary m-2">Add Scooter</button>-->

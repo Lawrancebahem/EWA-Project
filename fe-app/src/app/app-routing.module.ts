@@ -1,13 +1,14 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {RegisterComponent} from "./components/mainpage/register/register.component";
-import {LoginComponent} from "./components/mainpage/login/login.component";
+import {RegisterComponent} from "./components/register/register.component";
+import {LoginComponent} from "./components/login/login.component";
+import {AdminComponent} from "./components/admin/admin.component";
+import {CategoriesHomePageComponent} from "./components/HomePage/categories-home-page/categories-home-page.component";
 import {ActivitywandelenComponent} from "./components/activitypages/activitywandelen/activitywandelen.component";
 import {CategorypageComponent} from "./components/categorypage/categorypage/categorypage.component";
-import {CategoriesHomePageComponent} from "./components/HomePage/categories-home-page/categories-home-page.component";
 import {ActivityOverviewComponent} from "./components/activityOverview/activity-overview/activity-overview.component";
-import {ProfileComponent} from "./components/profile/profile.component";
 import {AboutUsPageComponent} from "./components/about-us-page/about-us-page.component";
+import {ProfileComponent} from "./components/profile/profile.component";
 import {MatchingPageComponent} from "./components/matching-page/matching-page.component";
 import {MyActivitiesComponent} from "./components/my-activities/my-activities.component";
 import {ActivityDetailsComponent} from "./components/activitypages/activity-details/activity-details.component";
@@ -26,6 +27,7 @@ const routes: Routes = [
     {path: 'aboutUs', component: AboutUsPageComponent},
     {path: 'matching', component: MatchingPageComponent},
     {path: 'myAcitivities', component: MyActivitiesComponent},
+    {path: 'admin', component: AdminComponent},
     {path: 'activityDetails', children:[
             {path: ':id', component: ActivityDetailsComponent}
         ]}

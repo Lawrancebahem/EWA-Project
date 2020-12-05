@@ -16,10 +16,4 @@ public class CategoryRepositoryJpa extends AbstractEntityRepositoryJpa<Category>
         super(Category.class);
     }
 
-    @Override
-    public List<Category> findByQuery(String queryName, Object... params) {
-        TypedQuery<Category> namedQuery = em.createNamedQuery(queryName, Category.class);
-        namedQuery.setParameter(1, params[0]);
-        return namedQuery.getResultList();
-    }
 }

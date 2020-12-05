@@ -16,10 +16,4 @@ public class ReactionRepositoryJpa extends AbstractEntityRepositoryJpa<Reaction>
         super(Reaction.class);
     }
 
-    @Override
-    public List<Reaction> findByQuery(String queryName, Object... params) {
-        TypedQuery<Reaction> namedQuery = em.createNamedQuery(queryName, Reaction.class);
-        namedQuery.setParameter(1, params[0]);
-        return namedQuery.getResultList();
-    }
 }

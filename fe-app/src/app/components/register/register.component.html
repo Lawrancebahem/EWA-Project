@@ -63,7 +63,7 @@
 
                 <div class="pictures_uploaden">
                     <div>
-                        <img class="upload_picture" src="../../../../assets/Images/picProfile.png">
+                        <img class="upload_picture" src="../../../assets/Images/picProfile.png">
                         <p>Profielfoto</p>
                         <input #profilePicture id="profile_image" type="file" name="profile_img">
                     </div>
@@ -90,7 +90,7 @@
                             authenticationService.registerForm.get('password').touched &&
                             authenticationService.registerForm.get('password').invalid}">
                         <p *ngIf="submitted && authenticationService.registerForm.get('password').invalid" class="error">
-                            Wachtowoord is een verplicht veld</p>
+                            Wachtwoord is een verplicht veld</p>
                     </div>
                     <span>Bevestiging wachtwoord</span>
                     <div class="show-password">

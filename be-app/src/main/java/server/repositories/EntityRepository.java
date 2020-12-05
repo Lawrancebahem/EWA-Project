@@ -1,7 +1,10 @@
 package server.repositories;
 
+import org.springframework.http.HttpHeaders;
 import server.models.Login;
+import server.utilities.JWToken;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface EntityRepository<T extends Identifiable> {
@@ -33,4 +36,5 @@ public interface EntityRepository<T extends Identifiable> {
     default List<T> findByQuery(String queryName, Object... params) {
         return null;
     }
+
 }

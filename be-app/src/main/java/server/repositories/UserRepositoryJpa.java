@@ -18,7 +18,6 @@ public class UserRepositoryJpa extends AbstractEntityRepositoryJpa<User> {
         super(User.class);
     }
 
-
     /**
      * find a user by a email, if is the email does not exist return null
      * @param email
@@ -64,7 +63,7 @@ public class UserRepositoryJpa extends AbstractEntityRepositoryJpa<User> {
     @Override
     public User getClonedObject(User savedUser) {
         User clonedUser = new User();
-        clonedUser.setId(savedUser.getId());
+        clonedUser.setId(savedUser.getId()); // hide the id
         clonedUser.setBirthDate(savedUser.getBirthDate());
         clonedUser.setEmail(savedUser.getEmail());
         clonedUser.setFirstName(savedUser.getFirstName());

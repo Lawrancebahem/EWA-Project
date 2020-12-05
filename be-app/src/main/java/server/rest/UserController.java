@@ -1,18 +1,25 @@
 package server.rest;
 
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import server.exception.PreConditionalFailed;
 import server.exception.ResourceNotFound;
+import server.exception.UnAuthorizedException;
 import server.models.Interest;
 import server.models.Login;
 import server.models.User;
 import server.repositories.EntityRepository;
+import server.service.APIConfiguration;
+import server.utilities.JWToken;
 
+import javax.naming.AuthenticationException;
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.util.List;
 
@@ -29,56 +36,99 @@ public class UserController {
     @Qualifier("interestRepositoryJpa")
     public EntityRepository<Interest> interestEntityRepositoryJpa;
 
+    @Autowired
+    private APIConfiguration api;
 
     /**
      * Get all users
+     *
      * @return
      */
+//    @JsonView(User.ShowInfoAdmin.class)
     @GetMapping("/all")
-    public List<User> findAll(){
+    public List<User> findAll(HttpServletRequest request) throws AuthenticationException {
+        JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
+        boolean isAdmin = this.userRepositoryJpa.findById(userJwToken.getId()).isAdmin();
+        if (!isAdmin) throw new UnAuthorizedException("You are not authorized administrator");
         return this.userRepositoryJpa.findAll();
     }
 
 
     /**
      * To get a user by id
-     * @param id
+     *
      * @return
      */
-    @GetMapping("/{id}")
-    public User findUserById(@PathVariable long id){
-        User user = this.userRepositoryJpa.findById(id);
-        if (user == null) throw new  ResourceNotFound("The given id does not exist");
-        User clonedObject = this.userRepositoryJpa.getClonedObject(user);
-        return clonedObject;
+    @GetMapping()
+    public User findUserById(HttpServletRequest request) throws AuthenticationException {
+
+        JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
+        long userId = userJwToken.getId();
+        System.out.println("The user is " + userId + " name " + userJwToken.getEmail());
+        User user = this.userRepositoryJpa.findById(userId);
+        if (user == null) throw new ResourceNotFound("The user not found");
+        return this.userRepositoryJpa.getClonedObject(user);
+
+
     }
 
     /**
      * To register new user, and responding with the user in the body without the password
+     *
      * @param user
      * @return
      */
     @PostMapping()
-    public ResponseEntity<User> responseEntity(@RequestBody User user){
-        System.out.println("The received user is " + user);
+    public ResponseEntity<User> registerNewUser(@RequestBody User user) {
+
         User foundUserByEmail = this.userRepositoryJpa.findByEmail(user.getEmail());
-        if (foundUserByEmail != null) throw new PreConditionalFailed("This email : '" + user.getEmail() + "' is already in use");
+        if (foundUserByEmail != null)
+            throw new PreConditionalFailed("This email : '" + user.getEmail() + "' is already in use");
         User savedUser = this.userRepositoryJpa.saveOrUpdate(user);
         User clonedSavedUser = this.userRepositoryJpa.getClonedObject(savedUser);//Get cloned user without password
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}").buildAndExpand(clonedSavedUser).toUri();
         return ResponseEntity.created(location).body(clonedSavedUser);
     }
 
+
+    @PutMapping("/update")
+    public User updateUser(@RequestBody User updatedUser, HttpServletRequest request) {
+        JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
+        long userId = userJwToken.getId();
+        updatedUser.setId(userId);
+        User user = this.userRepositoryJpa.saveOrUpdate(updatedUser);
+        return this.userRepositoryJpa.getClonedObject(user);
+    }
+
+
     /**
-     * To insert the user's interests if theres any
+     * Get the interests of a certain user based on the JWToken
+     *
+     * @return user's interests in an array
+     */
+    @GetMapping("/my-interests")
+    public int[] getUserInterests(HttpServletRequest request) {
+        JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
+        if (userJwToken != null) {
+            return this.interestEntityRepositoryJpa.getUsersInterests(userJwToken.getId());
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * To insert/update the user's interests, if there are any
+     *
      * @param interestsIds
-     * @param userId
      * @return
      */
-    @PostMapping("/interests/{userId}")
-    public boolean responseEntityInterests(@RequestBody int [] interestsIds, @PathVariable long userId){
+    @PostMapping("/interests")
+    public boolean responseEntityInterests(@RequestBody int[] interestsIds, HttpServletRequest request) {
+
+        JWToken userJWToken = this.api.getUserJWTokenDecoded(request);
+        long userId = userJWToken.getId();
         User foundUser = this.userRepositoryJpa.findById(userId); // get the user
-        for (int interestId : interestsIds){// loop through the interests id's
+        for (int interestId : interestsIds) {// loop through the interests id's
             Interest interest = this.interestEntityRepositoryJpa.findById(interestId); // get the interest
             foundUser.getInterests().add(interest); //add the interest to the user
             interest.getUsers().add(foundUser); // add the user to the interest
@@ -89,21 +139,13 @@ public class UserController {
     }
 
     /**
-     * Get the interests of a certain user based on the given id
-     * @param id
-     * @return
-     */
-    @GetMapping("/interests/{id}")
-    public int[]getUserInterests(@PathVariable long id){
-       return this.interestEntityRepositoryJpa.getUsersInterests(id);
-    }
-    /**
      * Authenticate login
+     *
      * @param login
      * @return
      */
     @PostMapping("/login")
-    public User login(@RequestBody Login login){
+    public User login(@RequestBody Login login) {
         return this.userRepositoryJpa.authenticateLogin(login);
     }
 }
