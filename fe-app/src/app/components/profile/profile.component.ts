@@ -68,7 +68,8 @@ export class ProfileComponent implements OnInit {
     public onUpdate() {
         this.submitted = true;
         setTimeout(() => {
-            const errors = document.querySelectorAll('.errors'); // check if there is error
+            const errors = document.querySelectorAll('.error'); // check if there is error
+            console.log("erros " + errors.length)
             if (errors.length > 0) return;
 
             const genderElement = Array.from(document.querySelector('.gender-form') // get the gender value
@@ -117,6 +118,6 @@ export class ProfileComponent implements OnInit {
                     console.log(error.error.message);
                 });
             })
-        }, 1)
+        }, 5)
     }
 }

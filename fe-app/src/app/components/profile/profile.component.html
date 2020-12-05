@@ -26,13 +26,16 @@
                             <input #firstName [value]="authenticationService.loggedInUser.firstName" (keyup)="hasChanged = true"
                                    type="text" class="color" id="surname" name="Voornaam"
                                    required maxlength="20">
+                            <p *ngIf="submitted && firstName.value.length == 0" class="error">De voornaam is verplicht</p>
                         </div>
+
 
                         <div class="form--input">
                             <span>Achternaam</span>
                             <input #lastName [value]="authenticationService.loggedInUser.lastName" (keyup)="hasChanged = true"
                                    type="text" name="Achternaam" id="lastname" required
                                    maxlength="20">
+                            <p *ngIf="submitted && lastName.value.length == 0" class="error">De achternaam is verplicht</p>
                         </div>
 
                         <div class="form--input">
@@ -66,6 +69,8 @@
                             <span>Email</span>
                             <input #email [value]="authenticationService.loggedInUser.email" (keyup)="hasChanged = true"
                                    id="email" type="email" name="mailadres" maxlength="40">
+                            <p *ngIf="submitted && email.value.length == 0" class="error">De email is verplicht</p>
+
                         </div>
 
                         <div class="form--input">
@@ -75,14 +80,21 @@
                                 <input #password (keyup)="hasChanged = true" class="form_input" type="password" name="wachtwoord"
                                        id="password1"
                                        maxlength="30" required="required">
+                                <p *ngIf="submitted && password.value.length == 0 " class="error">
+                                    Wachtwoord is verplicht
+                                </p>
                             </div>
                             <span>Bevestiging wachtwoord</span>
                             <div class="show-password">
                                 <i class="fa fa-eye"></i>
-                                <input #passwordConfirm (keyup)="hasChanged = true" class="form_input" type="password" name="wachtwoord"
+                                <input #passwordConfirm (keyup)="hasChanged = true"  class="form_input" type="password" name="wachtwoord"
                                        id="password2"
                                        maxlength="30" required="required">
+                                <p *ngIf="submitted && password.value != passwordConfirm.value " class="error">
+                                    Het is niet juist
+                                </p>
                             </div>
+
                         </div>
                         <div>
                             <button (click)="onUpdate()" *ngIf="hasChanged" [disabled]="!hasChanged" id="save"

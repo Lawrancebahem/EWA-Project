@@ -4,6 +4,8 @@ import {Observable} from "rxjs";
 import {User} from "../../models/user";
 import {shareReplay} from "rxjs/operators";
 import {environment} from "../../../environments/environment";
+import {Router} from "express";
+import {ActivatedRoute, Route} from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -20,6 +22,7 @@ export class SessionService {
 
     public signOut() {
         this.saveTokenIntoSessionStorage(null, null);
+
     }
 
     public isAuthenticated(): boolean {

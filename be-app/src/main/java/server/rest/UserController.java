@@ -16,6 +16,7 @@ import server.repositories.EntityRepository;
 import server.service.APIConfiguration;
 import server.utilities.JWToken;
 
+import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.util.List;
@@ -51,13 +52,18 @@ public class UserController {
      * @return
      */
     @GetMapping()
-    public User findUserById(HttpServletRequest request){
-        JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
-        long userId = userJwToken.getId();
-        System.out.println("The user is " + userId + " name " + userJwToken.getEmail());
-        User user = this.userRepositoryJpa.findById(userId);
-        if (user == null) throw new ResourceNotFound("The user not found");
-        return this.userRepositoryJpa.getClonedObject(user);
+    public User findUserById(HttpServletRequest request) throws AuthenticationException {
+        try {
+            JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
+            long userId = userJwToken.getId();
+            System.out.println("The user is " + userId + " name " + userJwToken.getEmail());
+            User user = this.userRepositoryJpa.findById(userId);
+            if (user == null) throw new ResourceNotFound("The user not found");
+            return this.userRepositoryJpa.getClonedObject(user);
+        }catch (Exception e){
+            throw new AuthenticationException("Session is expired");
+        }
+
     }
 
     /**

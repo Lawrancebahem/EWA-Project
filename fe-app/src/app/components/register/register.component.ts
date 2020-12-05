@@ -99,11 +99,11 @@ export class RegisterComponent implements OnInit {
                         this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
                         this.router.navigate(['/home']); // navigate to the home page
                     }, error => {
-                        // this.emailAlreadyInUse = error.error.message;
+                        this.emailAlreadyInUse = error.error.message;
                         console.log(error.error.message);
                     });
             })
-        }, 1)
+        }, 4)
 
     }
 
