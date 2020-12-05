@@ -42,10 +42,10 @@ export class UserService {
   }
 
   /**
-   * To get all users
+   * To get all users(just for admin)
    */
-  public findAll():User[]{
-    return this.users;
+  public findAll():Observable<User[]>{
+    return this.httpClient.get<User[]>(`${environment.apiUrl}/user/all`).pipe(shareReplay(1));
   }
 
   /**

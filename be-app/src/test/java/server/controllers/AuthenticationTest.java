@@ -46,7 +46,7 @@ public class AuthenticationTest {
     public void loginAsAdminAndGetAllUsers(){
 
         //Log in as admin
-        Login loginInfo = new Login("lawrancebahem@gmail.com", "admin");
+        Login loginInfo = new Login("lawrance@gmail.com", "admin");
         ResponseEntity<User> responseEntity = restTemplate.postForEntity("/authenticate/login", loginInfo, User.class);
         //Get the encryptedToken from the header
         String encryptedToken = responseEntity.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0).replace("Bearer","").trim();

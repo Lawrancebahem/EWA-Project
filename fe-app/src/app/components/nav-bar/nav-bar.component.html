@@ -72,9 +72,9 @@
                    data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"><img src="{{authenticateService.loggedInUser.profilePicture}}"
-                                                class="rounded-circle z-depth-0 "
+                                                class="userProfile"
                                                 alt="avatar image"
-                                                height="35">{{authenticateService.loggedInUser.firstName}}</i>
+                                                height="35">{{authenticateService.loggedInUser.firstName | titlecase}}</i>
                 </a>
                 <div id="dropDown" class="dropdown-menu dropdown-menu-right dropdown-default"
                      aria-labelledby="navbarDropdownMenuLink-333">

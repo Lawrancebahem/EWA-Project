@@ -2,6 +2,7 @@ package server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import server.repositories.Identifiable;
 
@@ -69,10 +70,10 @@ import java.util.List;
 @SequenceGenerator(name = "userIds", initialValue = 1001)
 public class User implements Identifiable, Serializable {
 
+//    @JsonView(ShowInfoAdmin.class)
     @JsonIgnore
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userIds")
-
     private long id;
     @Transient
     public static long uniqueId = 100;
@@ -227,7 +228,7 @@ public class User implements Identifiable, Serializable {
         OTHER
     }
 
-    public class ShowInfo {
+    public class ShowInfoAdmin {
 
     }
 

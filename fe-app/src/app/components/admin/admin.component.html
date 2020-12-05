@@ -1,7 +1,11 @@
 <nav>
     <ul>
-        <li (click)="onUserOverview()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Users</li>
-        <li (click)="onActivityOverview()">Activities</li>
+
+
+
+        <li (click)="onUserOverview()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Gebruikers
+        <mat-icon class="align-middle">perm_identity</mat-icon></li>
+        <li (click)="onActivityOverview()">Activiteiten <mat-icon class="align-middle">local_activity</mat-icon></li>
 <!--        <li>SubMenu-->
 <!--            &lt;!&ndash; Sub menu &ndash;&gt;-->
 <!--            <ul class="menu&#45;&#45;sub">-->
@@ -13,11 +17,10 @@
 
 <div class="border p-3">
     <p>{{title}}</p>
-    <div *ngIf="userOverViewClicked">
+    <div *ngIf="userOverViewClicked && adminService.userArray.length > 0">
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Voornaam</th>
                 <th>Achternaam</th>
                 <th>Geboortedatum</th>
@@ -30,17 +33,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>2</td>
-                <td>2</td>
-                <td>2</td>
-                <td>2</td>
-                <td>2</td>
-                <td>2</td>
-                <td><mat-icon class="icon-size">block</mat-icon></td>
-                <td><mat-icon class="icon-size">delete</mat-icon></td>
+            <tr  *ngFor="let user of adminService.userArray">
+                <td>{{user.firstName | titlecase}}</td>
+                <td>{{user.lastName | titlecase}}</td>
+                <td>{{user.birthDate}}</td>
+                <td>{{user.gender}}</td>
+                <td>{{user.email | titlecase}}</td>
+                <td>{{user.password}}</td>
+                <td><img class="userProfile" src="{{user.profilePicture}}"></td>
+                <td><mat-icon (click)="blockUser(user.id)" class="icon-size">block</mat-icon></td>
+                <td><mat-icon (click)="deleteUser(user.id)" class="icon-size">delete</mat-icon></td>
             </tbody>
         </table>
     </div>

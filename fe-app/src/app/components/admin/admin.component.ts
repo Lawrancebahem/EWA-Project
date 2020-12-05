@@ -17,14 +17,14 @@ export class AdminComponent implements OnInit {
   }
 
   public onUserOverview(){
-    this.title = "All list of all users:"
+    this.title = "Lijst van alle gebruikers:"
     this.userOverViewClicked = true;
     this.activityOverview = false;
-
+    this.adminService.getAllUsers();
   }
 
   public onActivityOverview(){
-    this.title = "All list of all activities:"
+    this.title = "Lijst van alle activiteiten:"
     this.userOverViewClicked = false;
     this.activityOverview = true;
     this.adminService.getAllActivities();
@@ -36,6 +36,14 @@ export class AdminComponent implements OnInit {
    * @param idActivity
    */
   deleteActivity(idActivity: any) {
+
+  }
+
+  blockUser(id: number) {
+
+  }
+
+  deleteUser(id: number) {
 
   }
 }
