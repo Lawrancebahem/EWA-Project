@@ -6,7 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import server.exception.UnAuthorizedException;
+import server.exception.AuthorizationException;
 import server.utilities.JWToken;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +39,7 @@ public class APIConfiguration implements WebMvcConfigurer {
         return tokenDurationOfValidity;
     }
 
+
     public int getRefreshExpiration() {
         return refreshExpiration;
     }
@@ -51,10 +52,7 @@ public class APIConfiguration implements WebMvcConfigurer {
     public JWToken getUserJWTokenDecoded(HttpServletRequest request) {
         String encryptedToken = request.getHeader(HttpHeaders.AUTHORIZATION);
         encryptedToken = encryptedToken.replace("Bearer", "");
-        System.out.println("The enc " + encryptedToken);
-        JWToken userJwToken = JWToken.decode(encryptedToken, getPassPhrase());
-        if (userJwToken == null) throw new UnAuthorizedException("The token is not valid");
-        return userJwToken;
+        return JWToken.decode(encryptedToken, getPassPhrase(), false);
     }
 
     @Override

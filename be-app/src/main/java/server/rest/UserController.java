@@ -1,16 +1,14 @@
 package server.rest;
 
 
-import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import server.exception.AuthorizationException;
 import server.exception.PreConditionalFailed;
 import server.exception.ResourceNotFound;
-import server.exception.UnAuthorizedException;
 import server.models.Interest;
 import server.models.Login;
 import server.models.User;
@@ -46,10 +44,10 @@ public class UserController {
      */
 //    @JsonView(User.ShowInfoAdmin.class)
     @GetMapping("/all")
-    public List<User> findAll(HttpServletRequest request) throws AuthenticationException {
+    public List<User> findAll(HttpServletRequest request) {
         JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
         boolean isAdmin = this.userRepositoryJpa.findById(userJwToken.getId()).isAdmin();
-        if (!isAdmin) throw new UnAuthorizedException("You are not authorized administrator");
+        if (!isAdmin) throw new AuthorizationException("You are not authorized administrator");
         return this.userRepositoryJpa.findAll();
     }
 
@@ -90,7 +88,12 @@ public class UserController {
         return ResponseEntity.created(location).body(clonedSavedUser);
     }
 
-
+    /**
+     * Tp update a user
+     * @param updatedUser
+     * @param request
+     * @return
+     */
     @PutMapping("/update")
     public User updateUser(@RequestBody User updatedUser, HttpServletRequest request) {
         JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
@@ -103,7 +106,6 @@ public class UserController {
 
     /**
      * Get the interests of a certain user based on the JWToken
-     *
      * @return user's interests in an array
      */
     @GetMapping("/my-interests")
@@ -118,7 +120,6 @@ public class UserController {
 
     /**
      * To insert/update the user's interests, if there are any
-     *
      * @param interestsIds
      * @return
      */

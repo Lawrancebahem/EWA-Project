@@ -88,6 +88,7 @@ public class User implements Identifiable, Serializable {
     private String email;
     private String password;
     private boolean admin;
+    private boolean isBlocked;
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
@@ -232,4 +233,11 @@ public class User implements Identifiable, Serializable {
 
     }
 
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
+    }
 }

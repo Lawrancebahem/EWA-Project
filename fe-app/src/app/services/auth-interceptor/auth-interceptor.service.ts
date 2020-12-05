@@ -5,6 +5,7 @@ import {SessionService} from "../sessionService/session.service";
 import {Router} from "express";
 import {environment} from "../../../environments/environment";
 import {shareReplay} from "rxjs/operators";
+import {sadOutline} from "ionicons/icons";
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +21,6 @@ export class AuthInterceptorService implements HttpInterceptor{
       const modifiedRequest = req.clone({setHeaders:{Authorization:token}});
       return next.handle(modifiedRequest);
     }else {
-      console.log("Token is not valid, asking to refresh")
-      let expiredToken = token;
-      let response = this.httpClient.get(`${environment.apiUrl}/token-refresh`).pipe(shareReplay(1));
-      response.subscribe((response)=>{
-        console.log("The new token is: " + response)
-      },error => {
-        console.log(error.error.message)
-      })
       return next.handle(req);
     }
   }

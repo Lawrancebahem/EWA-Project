@@ -28,7 +28,6 @@ export class AdminComponent implements OnInit {
     this.userOverViewClicked = false;
     this.activityOverview = true;
     this.adminService.getAllActivities();
-    console.log(this.adminService.activityArray);
   }
 
   /**

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import server.exception.AuthorizationException;
 import server.exception.PreConditionalFailed;
-import server.exception.UnAuthorizedException;
 import server.models.Login;
 import server.models.User;
 import server.repositories.EntityRepository;
@@ -44,13 +44,14 @@ public class AuthenticateController {
         Login login = new Login(email, password);
         User user = userRepositoryJpa.authenticateLogin(login);
         if (user != null) {
-            return this.getResponseBodyJWToken(user);
+            return this.getResponseBodyJWToken(user); // send the token in the header and the user in the body
         } else {
-            throw new UnAuthorizedException("Cannot authenticate user by email " + email + " and password #" + password.length());
+            throw new AuthorizationException("Cannot authenticate user by email " + email + " and password #" + password.length());
         }
     }
 
     /**
+     * Register new user, if the email is already in database throw an exception
      * @param user
      * @return
      */
@@ -60,15 +61,21 @@ public class AuthenticateController {
         if (foundUserByEmail != null)
             throw new PreConditionalFailed("This email : '" + user.getEmail() + "' is already in use");
         this.userRepositoryJpa.saveOrUpdate(user);
-        return this.getResponseBodyJWToken(user);
+        return this.getResponseBodyJWToken(user); // send the token in the header and the user in the body
     }
 
-    @PostMapping("/token-refresh")
+    /**
+     * Refresh the token, if the token is not valid any more throw an exception
+     * @param request
+     * @return
+     * @throws AuthenticationException
+     */
+    @GetMapping(value = "/token-refresh", produces = "application/json")
     public ResponseEntity<User> refreshToken(HttpServletRequest request) throws AuthenticationException {
         String encryptedToken = request.getHeader(HttpHeaders.AUTHORIZATION);
-        encryptedToken = encryptedToken.replace("Bearer", "");
-        JWToken userJwToken = JWToken.decode(encryptedToken, apiConfig.getPassPhrase());
-        if (userJwToken == null) throw new UnAuthorizedException("The token is not valid");
+        encryptedToken = encryptedToken.replace("Bearer ", "");
+        // ture that means, we need to extend the time duration of the token
+        JWToken userJwToken = JWToken.decode(encryptedToken, apiConfig.getPassPhrase(), true);
         if (!JWToken.isRenewable(userJwToken,apiConfig.getRefreshExpiration())){
             throw new AuthenticationException("Token is not renewable");
         }
