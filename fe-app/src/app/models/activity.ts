@@ -6,6 +6,7 @@ export class Activity {
     private _description;
     private _image;
     private _location;
+    private _show;
 
     public static trueCopy(activity: Activity): Activity {
         return Object.assign(new Activity(), activity)
@@ -23,6 +24,7 @@ export class Activity {
     get title() {
         return this._title;
     }
+
 
     set title(value) {
         this._title = value;
@@ -50,5 +52,13 @@ export class Activity {
 
     set location(value) {
         this._location = value;
+    }
+
+    get show() {
+        return this._show;
+    }
+
+    set show(value) {
+        this._show = value;
     }
 }

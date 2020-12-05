@@ -1,7 +1,6 @@
 package server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import server.repositories.Identifiable;
 
 import javax.persistence.*;
@@ -30,7 +29,7 @@ public class Activity implements Identifiable {
     private String image;
     @Column
     private String location;
-
+    private boolean show;
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -99,6 +98,14 @@ public class Activity implements Identifiable {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public boolean isShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
     }
 
     @Override
