@@ -5,7 +5,6 @@ import server.repositories.Identifiable;
 import javax.persistence.*;
 
 @Entity
-@Table
 @NamedQueries({
         @NamedQuery(
                 name = "findAllReactions",
