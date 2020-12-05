@@ -24,6 +24,8 @@ public class APIConfiguration implements WebMvcConfigurer {
     @Value("${jwt.duration-of-validity}")
     public int tokenDurationOfValidity;
 
+    @Value("${jwt.refresh-expiration-seconds}")
+    private int refreshExpiration;
 
     public String getIssuer() {
         return issuer;
@@ -35,6 +37,10 @@ public class APIConfiguration implements WebMvcConfigurer {
 
     public int getTokenDurationOfValidity() {
         return tokenDurationOfValidity;
+    }
+
+    public int getRefreshExpiration() {
+        return refreshExpiration;
     }
 
     /**
@@ -60,4 +66,5 @@ public class APIConfiguration implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedOrigins("http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com");
     }
+
 }

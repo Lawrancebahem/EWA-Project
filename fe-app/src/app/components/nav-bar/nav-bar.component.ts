@@ -44,7 +44,7 @@ export class NavBarComponent implements OnInit {
                     })
                     this.authenticateService.isLoggedIn = true;
                 }, error => {
-                    console.log("Session is expired")
+                    console.log(error.error.message)
                 })
         }
 

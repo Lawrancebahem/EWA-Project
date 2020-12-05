@@ -16,6 +16,7 @@ import server.repositories.EntityRepository;
 import server.service.APIConfiguration;
 import server.utilities.JWToken;
 
+import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 
@@ -64,6 +65,20 @@ public class AuthenticateController {
         return this.getResponseBodyJWToken(user);
     }
 
+    @PostMapping("/token-refresh")
+    public ResponseEntity<User> refreshToken(HttpServletRequest request) throws AuthenticationException {
+        String encryptedToken = request.getHeader(HttpHeaders.AUTHORIZATION);
+        encryptedToken = encryptedToken.replace("Bearer", "");
+        JWToken userJwToken = JWToken.decode(encryptedToken, apiConfig.getPassPhrase());
+        if (userJwToken == null) throw new UnAuthorizedException("The token is not valid");
+        if (!JWToken.isRenewable(userJwToken,apiConfig.getRefreshExpiration())){
+            throw new AuthenticationException("Token is not renewable");
+        }
+        JWToken newToken = new JWToken(userJwToken.getId(), userJwToken.getFirstName(), userJwToken.getLastName(), userJwToken.getEmail(),userJwToken.isAdmin());
+        String refreshedToken = newToken.encode(apiConfig.getIssuer(), apiConfig.getPassPhrase(), apiConfig.getRefreshExpiration());
+        return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, "Bearer " + refreshedToken).build();
+    }
+
     /**
      * Helper method to encode a JWToken and to avoid duplicate code
      * @param user
@@ -76,4 +91,5 @@ public class AuthenticateController {
         User clonedObject = this.userRepositoryJpa.getClonedObject(user);
         return ResponseEntity.accepted().header(HttpHeaders.AUTHORIZATION, "Bearer " + tokenString).body(clonedObject);
     }
+
 }

@@ -6,6 +6,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.util.Calendar;
 import java.util.Date;
 
 public class JWToken {
@@ -22,6 +23,8 @@ public class JWToken {
   private String lastName;
   private String email;
   private boolean admin;
+  private Date issuedAt;
+  private Date expiration;
 
   public JWToken(long id, String firstName, String lastName, String email, boolean admin) {
     this.id = id;
@@ -75,7 +78,8 @@ public class JWToken {
               claims.get(JWT_EMAIL_CLAIM).toString(),
               (boolean) claims.get(JWT_ADMIN_CLAIM)
       );
-
+      jwToken.setExpiration(claims.getExpiration());
+      jwToken.setIssuedAt(claims.getIssuedAt());
 
 
       return jwToken;
@@ -96,6 +100,25 @@ public class JWToken {
   }
 
 
+
+  public static boolean isRenewable(JWToken tokenInfo, int refreshExpiration) {
+
+    // If token is still valid there is no reason to issue a new one
+    if(tokenInfo.getExpiration().compareTo(new Date()) > 0) {
+      return false;
+    }
+
+    // Calculating the refresh time limit
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(tokenInfo.getIssuedAt());
+    cal.add(Calendar.SECOND,refreshExpiration);
+
+    System.out.println("max refresh: " + cal.getTime());
+    System.out.println("current date: " + new Date());
+
+    // max refresh time should be greater than current time
+    return cal.getTime().compareTo(new Date()) > 0;
+  }
 
   public static String getJwtAttributeName() {
     return JWT_ATTRIBUTE_NAME;
@@ -140,5 +163,22 @@ public class JWToken {
 
   public String getEmail() {
     return email;
+  }
+
+
+  public void setIssuedAt(Date issuedAt) {
+    this.issuedAt = issuedAt;
+  }
+
+  public void setExpiration(Date expiration) {
+    this.expiration = expiration;
+  }
+
+  public Date getIssuedAt() {
+    return issuedAt;
+  }
+
+  public Date getExpiration() {
+    return expiration;
   }
 }
