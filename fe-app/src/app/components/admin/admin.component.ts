@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AdminService} from "../../services/admin-service/admin.service";
+import {ImageBase64Service} from "../../services/convertImageService/image-base64.service";
 
 @Component({
   selector: 'app-admin',
@@ -7,11 +8,12 @@ import {AdminService} from "../../services/admin-service/admin.service";
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
+  @ViewChild('uploadedPicture') uploadedProfile: ElementRef;
   public userOverViewClicked:boolean;
   public activityOverview:boolean;
   public title:string;
-  constructor(public adminService:AdminService) { }
+  constructor(public adminService:AdminService,
+              private convertImage: ImageBase64Service) { }
 
   ngOnInit(): void {
   }
@@ -44,5 +46,20 @@ export class AdminComponent implements OnInit {
 
   deleteUser(id: number) {
 
+  }
+
+  addNewActivity() {
+
+    const closeModal = document.getElementById("close-modal");
+    const activityPicture = this.uploadedProfile.nativeElement.files[0];
+    const imagePreview = document.querySelector("#profile-picture-preview")
+    this.convertImage.convertToBase64(activityPicture, data => {
+      imagePreview.setAttribute("src", data);
+      console.log(data);
+    })
+    //Close the modal after 1.5sec
+    setTimeout(function () {
+      closeModal.click();
+    }, 1500)
   }
 }

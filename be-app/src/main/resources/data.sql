@@ -15,8 +15,8 @@ insert INTO "interest" values
 
 
 -- insert into "user" values (1000,true,CURRENT_DATE, 'lawrancebahem@gmail.com', 'lawrance', 0, 'Bahem', 'admin', '/assets/Images/picProfile.png');
-INSERT INTO "user"  VALUES (1052, false, '1999-05-04', 'tico@gmail.com', 'Tico', 0,false, 'Vermeer', 'admin', '/assets/Images/picProfile.png');
-INSERT INTO "user"  VALUES (1002, true, '1996-9-22', 'lawrance@gmail.com', 'Lawrance', 0,false , 'bahem', 'admin', '/assets/Images/picProfile.png');
+-- INSERT INTO "user"  VALUES (1052, false, '1999-05-04', 'tico@gmail.com', 'Tico', 0,false, 'Vermeer', 'admin', '/assets/Images/picProfile.png');
+-- INSERT INTO "user"  VALUES (1002, true, '1996-9-22', 'lawrance@gmail.com', 'Lawrance', 0,false , 'bahem', 'admin', '/assets/Images/picProfile.png');
 
 -- --
 -- --
@@ -35,9 +35,9 @@ INSERT INTO "user"  VALUES (1002, true, '1996-9-22', 'lawrance@gmail.com', 'Lawr
 /**
   Insert activities
  */
-INSERT INTO public.activity  VALUES (1, 'Wandelen in mooiste natuurgebieden van Nederland.', '../fall%20background.jpg', 'overal',true ,'Herfst');
-INSERT INTO public.activity  VALUES (2, 'Gezellig fietsen met uw vriendin door de mooiste fietsroutes van Nederland met onze begeleiders.', 'fietsen.jpg', 'overal',true, 'Fietsen');
-INSERT INTO public.activity VALUES (3, 'Zin om lekker je heupen te schudden? Er zijn genoeg discos in Nederland', 'bowlen.jpg', 'overal',true ,'Disco');
-INSERT INTO public.activity  VALUES (4, 'Geen zin om naar buiten te gaan? Er zijn genoeg activiteiten die je thuis kan doen', 'mondkapjes.jpg', 'overal',true ,'Binnen');
+-- INSERT INTO public.activity  VALUES (1, 'Wandelen in mooiste natuurgebieden van Nederland.', '../fall%20background.jpg', 'overal',true ,'Herfst');
+-- INSERT INTO public.activity  VALUES (2, 'Gezellig fietsen met uw vriendin door de mooiste fietsroutes van Nederland met onze begeleiders.', 'fietsen.jpg', 'overal',true, 'Fietsen');
+-- INSERT INTO public.activity VALUES (3, 'Zin om lekker je heupen te schudden? Er zijn genoeg discos in Nederland', 'bowlen.jpg', 'overal',true ,'Disco');
+-- INSERT INTO public.activity  VALUES (4, 'Geen zin om naar buiten te gaan? Er zijn genoeg activiteiten die je thuis kan doen', 'mondkapjes.jpg', 'overal',true ,'Binnen');
 
 select * from "interest";

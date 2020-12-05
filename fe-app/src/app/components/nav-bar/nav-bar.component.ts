@@ -46,6 +46,7 @@ export class NavBarComponent implements OnInit {
                     })
                     this.authenticateService.isLoggedIn = true;
                 }, error => {
+                    console.log(error.error.message)
                     //Make request to refresh the token
                     let response = this.httpClient.get(`${environment.apiUrl}/authenticate/token-refresh`,
                         {observe: "response"}).pipe(shareReplay(1));
@@ -56,8 +57,9 @@ export class NavBarComponent implements OnInit {
                         this.sessionService.saveTokenIntoSessionStorage(newToken, this.sessionService.currentUserName);
                     }, error => {
                         console.log(error.error.message)
+                        this.logout(); // log out and direct the user to log in page
                     })
-                    console.log(error.error.message)
+
                 })
         }
     }
