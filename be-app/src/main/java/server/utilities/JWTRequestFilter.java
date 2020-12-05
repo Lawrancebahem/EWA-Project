@@ -7,7 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import server.exception.UnAuthorizedException;
-import server.service.APIFactoryConfiguration;
+import server.service.APIConfiguration;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -24,7 +24,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
   private static final Set<String> SECURED_PATHS = Set.of("/user/all");
 
   @Autowired
-  private APIFactoryConfiguration api;
+  private APIConfiguration api;
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {

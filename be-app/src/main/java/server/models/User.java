@@ -69,8 +69,10 @@ import java.util.List;
 @SequenceGenerator(name = "userIds", initialValue = 1001)
 public class User implements Identifiable, Serializable {
 
+    @JsonIgnore
     @Id()
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userIds")
+
     private long id;
     @Transient
     public static long uniqueId = 100;

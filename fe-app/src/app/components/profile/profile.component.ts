@@ -1,7 +1,7 @@
 import {AfterContentChecked, AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {mod} from "ngx-bootstrap/chronos/utils";
 import {User} from "../../models/user";
-import {ImageBase64Service} from "../../services/convetImageService/image-base64.service";
+import {ImageBase64Service} from "../../services/convertImageService/image-base64.service";
 import {UserService} from "../../services/userService/user.service";
 import {AuthenticationService} from "../../services/authenticationService/authentication.service";
 // @ts-ignore
@@ -75,7 +75,7 @@ export class ProfileComponent implements OnInit {
                 .querySelectorAll('input[name=gender]:checked')).map((gender) => {
                 return gender.getAttribute('value')
             })
-            const interests: Interest = Array.from(document.querySelector('#pictures-section')
+            const interests: number[] = Array.from(document.querySelector('#pictures-section')
                 .querySelectorAll('input[name=interest]:checked')).map(interest => {
                 return Number(interest.getAttribute('value'));
             });
@@ -92,7 +92,7 @@ export class ProfileComponent implements OnInit {
             this.convertImage.convertToBase64(profilePicture, data => {
                 //Add the user's information
                 const object: User = <User>{
-                    "id": this.authenticationService.loggedInUser.id,
+                    "id":0,
                     "firstName": firstName,
                     "lastName": lastName,
                     "birthDate": birthdate,
@@ -106,7 +106,7 @@ export class ProfileComponent implements OnInit {
                 this.userService.update(object).pipe(shareReplay(1)).subscribe((response) => {
                     this.authenticationService.loggedInUser = User.makeTrueCopy(response);
                     // update the user's interests
-                    this.userService.insertUserInterests(interests, this.authenticationService.loggedInUser.id)
+                    this.userService.insertUserInterests(interests)
                         .pipe(shareReplay(1)).subscribe((response) => {
                         this.authenticationService.loggedInUser.interests = interests;
                     }, error => {

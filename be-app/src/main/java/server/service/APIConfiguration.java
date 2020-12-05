@@ -6,10 +6,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import server.utilities.JWToken;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Configuration
 @EnableWebMvc
-public class APIFactoryConfiguration implements WebMvcConfigurer{
+public class APIConfiguration implements WebMvcConfigurer{
 
   @Value("${jwt.issuer}")
   private String issuer;
@@ -31,6 +34,18 @@ public class APIFactoryConfiguration implements WebMvcConfigurer{
 
   public int getTokenDurationOfValidity() {
     return tokenDurationOfValidity;
+  }
+
+  /**
+   * To get the user JWToken decoded
+   * @param request
+   * @return
+   */
+  public JWToken getUserJWTokenDecoded(HttpServletRequest request){
+    String encryptedToken = request.getHeader(HttpHeaders.AUTHORIZATION);
+    encryptedToken = encryptedToken.replace("Bearer","");
+    System.out.println("The enc " + encryptedToken);
+    return JWToken.decode(encryptedToken, getPassPhrase());
   }
 
   @Override

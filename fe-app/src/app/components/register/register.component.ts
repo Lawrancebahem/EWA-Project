@@ -1,15 +1,16 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AuthenticationService} from "../../../services/authenticationService/authentication.service";
-import {Gender} from "../../../models/gender";
-import {User} from "../../../models/user";
-import {UserService} from "../../../services/userService/user.service";
-import {ImageBase64Service} from "../../../services/convetImageService/image-base64.service";
+import {AuthenticationService} from "../../services/authenticationService/authentication.service";
+import {Gender} from "../../models/gender";
+import {User} from "../../models/user";
+import {UserService} from "../../services/userService/user.service";
+import {ImageBase64Service} from "../../services/convertImageService/image-base64.service";
 import {shareReplay} from "rxjs/operators";
 import {Router} from "@angular/router";
 // @ts-ignore
-import interests from '../../../json/interests.json'
+import interests from '../../json/interests.json'
 // @ts-ignore
-import {Interest} from "../../../models/Interest";
+import {SessionService} from "../../services/sessionService/session.service";
+import {Interest} from "../../models/Interest";
 
 @Component({
     selector: 'app-register',
@@ -30,6 +31,7 @@ export class RegisterComponent implements OnInit {
     public arrayInterests: { id, name, image }[] = interests;
 
     constructor(public authenticationService: AuthenticationService,
+                public sessionService: SessionService,
                 public userService: UserService,
                 private convertImage: ImageBase64Service,
                 private router: Router) {
@@ -44,8 +46,6 @@ export class RegisterComponent implements OnInit {
      * Register, once the user clicked the register button we get all the input values
      */
     public register() {
-
-        let test = document.getElementById("shopping");
         this.submitted = true;
         if (this.authenticationService.registerForm.invalid) return;
         setTimeout(() => {
@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
                 .querySelectorAll('input[name=gender]:checked')).map((gender) => {
                 return gender.getAttribute('value')
             })
-            const interests:Interest = Array.from(document.querySelector('#pictures-section')
+            const interests: number[] = Array.from(document.querySelector('#pictures-section')
                 .querySelectorAll('input[name=interest]:checked')).map(interest => {
                 return Number(interest.getAttribute('value'));
             });
@@ -80,23 +80,28 @@ export class RegisterComponent implements OnInit {
                     "profilePicture": profilePicture == undefined ? "" : data,
                     "email": email,
                     "password": password,
-                    "admin":false
+                    "admin": false
                 }
-                this.userService.save(object).pipe(shareReplay(1)).subscribe((response) => { // insert a new user
-                    this.authenticationService.loggedInUser = User.makeTrueCopy(response);
-                    this.userService.insertUserInterests(interests, this.authenticationService.loggedInUser.id) // insert the user's interests
-                        .pipe(shareReplay(1)).subscribe((response)=>{
+                this.userService.registerUser(object).pipe(shareReplay(1))
+                    .subscribe((response) => { // insert a new user
+
+                        this.authenticationService.loggedInUser = User.makeTrueCopy(response.body);
+                        let token = response.headers.get("Authorization");
+                        let userName = this.authenticationService.loggedInUser.firstName
+                        this.sessionService.saveTokenIntoSessionStorage(token, userName) //Save the token in session storage
+
+                        this.userService.insertUserInterests(interests) // insert the user's interests
+                            .pipe(shareReplay(1)).subscribe((response) => {
                             this.authenticationService.loggedInUser.interests = interests;
-                    },error => {
+                        }, error => {
                             console.log(error);
-                    })
-                    this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
-                    localStorage.setItem("loggedIndUser", JSON.stringify(this.authenticationService.loggedInUser.id));//Set the session to the registered user
-                    this.router.navigate(['/home']); // navigate to the home page
-                }, error => {
-                    this.emailAlreadyInUse = error.error.message;
-                    console.log(error.error.message);
-                });
+                        })
+                        this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
+                        this.router.navigate(['/home']); // navigate to the home page
+                    }, error => {
+                        // this.emailAlreadyInUse = error.error.message;
+                        console.log(error.error.message);
+                    });
             })
         }, 1)
 

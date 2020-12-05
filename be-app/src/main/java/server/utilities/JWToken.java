@@ -3,6 +3,7 @@ package server.utilities;
 import io.jsonwebtoken.*;
 
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
@@ -17,7 +18,6 @@ public class JWToken {
 
 
   private long id;
-
   private String firstName;
   private String lastName;
   private String email;
@@ -31,6 +31,13 @@ public class JWToken {
     this.admin = admin;
   }
 
+  /**
+   * build a token of the the id, firstname, lastname, email and admin instances of the user
+   * @param issuer
+   * @param passPhrase
+   * @param expiration
+   * @return
+   */
   public String encode(String issuer, String passPhrase, int expiration){
     Key key = getKey(passPhrase);
     String token = Jwts.builder()
@@ -49,8 +56,13 @@ public class JWToken {
   }
 
 
+  /**
+   * Decode the JWToken, based on the passphrase of the profile properties
+   * @param token
+   * @param passPhrase
+   * @return
+   */
   public static JWToken decode(String token, String passPhrase){
-
 
     try {
       Key key = getKey(passPhrase);
@@ -72,11 +84,17 @@ public class JWToken {
     }
   }
 
+  /**
+   * Get the key in HS512
+   * @param passPhrase
+   * @return
+   */
   private static Key getKey(String passPhrase){
     byte [] hmacKey = passPhrase.getBytes(StandardCharsets.UTF_8);
     Key key = new SecretKeySpec(hmacKey, SignatureAlgorithm.HS512.getJcaName());
     return key;
   }
+
 
 
   public static String getJwtAttributeName() {

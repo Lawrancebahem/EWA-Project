@@ -3,6 +3,7 @@ package server.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -12,7 +13,10 @@ import server.models.Interest;
 import server.models.Login;
 import server.models.User;
 import server.repositories.EntityRepository;
+import server.service.APIConfiguration;
+import server.utilities.JWToken;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.util.List;
 
@@ -29,6 +33,8 @@ public class UserController {
     @Qualifier("interestRepositoryJpa")
     public EntityRepository<Interest> interestEntityRepositoryJpa;
 
+    @Autowired
+    private APIConfiguration api;
 
     /**
      * Get all users
@@ -42,15 +48,16 @@ public class UserController {
 
     /**
      * To get a user by id
-     * @param id
      * @return
      */
-    @GetMapping("/{id}")
-    public User findUserById(@PathVariable long id){
-        User user = this.userRepositoryJpa.findById(id);
-        if (user == null) throw new  ResourceNotFound("The given id does not exist");
-        User clonedObject = this.userRepositoryJpa.getClonedObject(user);
-        return clonedObject;
+    @GetMapping()
+    public User findUserById(HttpServletRequest request){
+        JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
+        long userId = userJwToken.getId();
+        System.out.println("The user is " + userId + " name " + userJwToken.getEmail());
+        User user = this.userRepositoryJpa.findById(userId);
+        if (user == null) throw new ResourceNotFound("The user not found");
+        return this.userRepositoryJpa.getClonedObject(user);
     }
 
     /**
@@ -60,7 +67,7 @@ public class UserController {
      */
     @PostMapping()
     public ResponseEntity<User> registerNewUser(@RequestBody User user){
-        System.out.println("The received user is " + user);
+
         User foundUserByEmail = this.userRepositoryJpa.findByEmail(user.getEmail());
         if (foundUserByEmail != null) throw new PreConditionalFailed("This email : '" + user.getEmail() + "' is already in use");
         User savedUser = this.userRepositoryJpa.saveOrUpdate(user);
@@ -69,14 +76,42 @@ public class UserController {
         return ResponseEntity.created(location).body(clonedSavedUser);
     }
 
+
+
+    @PutMapping("/update")
+    public User updateUser(@RequestBody User updatedUser, HttpServletRequest request){
+        JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
+        long userId = userJwToken.getId();
+        updatedUser.setId(userId);
+        User user = this.userRepositoryJpa.saveOrUpdate(updatedUser);
+        return this.userRepositoryJpa.getClonedObject(user);
+    }
+
+
     /**
-     * To insert the user's interests if theres any
+     * Get the interests of a certain user based on the JWToken
+     * @return user's interests in an array
+     */
+    @GetMapping("/my-interests")
+    public int[]getUserInterests(HttpServletRequest request){
+        JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
+        if (userJwToken != null){
+            return this.interestEntityRepositoryJpa.getUsersInterests(userJwToken.getId());
+        }else {
+            return null;
+        }
+    }
+
+    /**
+     * To insert/update the user's interests, if there are any
      * @param interestsIds
-     * @param userId
      * @return
      */
-    @PostMapping("/interests/{userId}")
-    public boolean responseEntityInterests(@RequestBody int [] interestsIds, @PathVariable long userId){
+    @PostMapping("/interests")
+    public boolean responseEntityInterests(@RequestBody int [] interestsIds, HttpServletRequest request){
+
+        JWToken userJWToken = this.api.getUserJWTokenDecoded(request);
+        long userId = userJWToken.getId();
         User foundUser = this.userRepositoryJpa.findById(userId); // get the user
         for (int interestId : interestsIds){// loop through the interests id's
             Interest interest = this.interestEntityRepositoryJpa.findById(interestId); // get the interest
@@ -88,22 +123,6 @@ public class UserController {
         return true;
     }
 
-    @PutMapping("/update")
-    public User updateUser(@RequestBody User updatedUser){
-        User user =  this.userRepositoryJpa.saveOrUpdate(updatedUser);
-        User clonedUser = this.userRepositoryJpa.getClonedObject(user);
-        return clonedUser;
-    }
-
-    /**
-     * Get the interests of a certain user based on the given id
-     * @param id
-     * @return
-     */
-    @GetMapping("/interests/{id}")
-    public int[]getUserInterests(@PathVariable long id){
-       return this.interestEntityRepositoryJpa.getUsersInterests(id);
-    }
     /**
      * Authenticate login
      * @param login
