@@ -35,9 +35,9 @@
 /**
   Insert activities
  */
--- INSERT INTO public.activity  VALUES (1, 'Wandelen in mooiste natuurgebieden van Nederland.', '../fall%20background.jpg', 'overal', 'Herfst');
--- INSERT INTO public.activity  VALUES (2, 'Gezellig fietsen met uw vriendin door de mooiste fietsroutes van Nederland met onze begeleiders.', 'fietsen.jpg', 'overal', 'Fietsen');
--- INSERT INTO public.activity VALUES (3, 'Zin om lekker je heupen te schudden? Er zijn genoeg discos in Nederland', 'bowlen.jpg', 'overal', 'Disco');
--- INSERT INTO public.activity  VALUES (4, 'Geen zin om naar buiten te gaan? Er zijn genoeg activiteiten die je thuis kan doen', 'mondkapjes.jpg', 'overal', 'Binnen');
+-- INSERT INTO public.activity  VALUES (1, 'Wandelen in mooiste natuurgebieden van Nederland.', '../fall%20background.jpg', 'overal',true ,'Herfst');
+-- INSERT INTO public.activity  VALUES (2, 'Gezellig fietsen met uw vriendin door de mooiste fietsroutes van Nederland met onze begeleiders.', 'fietsen.jpg', 'overal',true, 'Fietsen');
+-- INSERT INTO public.activity VALUES (3, 'Zin om lekker je heupen te schudden? Er zijn genoeg discos in Nederland', 'bowlen.jpg', 'overal',true ,'Disco');
+-- INSERT INTO public.activity  VALUES (4, 'Geen zin om naar buiten te gaan? Er zijn genoeg activiteiten die je thuis kan doen', 'mondkapjes.jpg', 'overal',true ,'Binnen');
 
 select * from "interest";

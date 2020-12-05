@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import server.exception.PreConditionalFailed;
 import server.exception.UnAuthorizedException;
 import server.models.Login;
@@ -18,9 +17,8 @@ import server.utilities.JWToken;
 
 import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
-import java.net.URI;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com"})
 @RestController
 @RequestMapping("/authenticate")
 public class AuthenticateController {
