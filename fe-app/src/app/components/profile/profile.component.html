@@ -13,7 +13,7 @@
      style="background-image:url('assets/Images/flowers.jpeg')"></div>
 
 <div class="wrapper">
-    <div *ngIf="authenticationService.isLoggedIn" class="container container--profile">
+    <div *ngIf="authenticationService.isLoggedIn" class="container container--profile" id="my-profile">
         <div class="profile--left">
 
             <form action="" method="POST">
@@ -97,7 +97,7 @@
 
                         </div>
                         <div>
-                            <button (click)="onUpdate()" *ngIf="hasChanged" [disabled]="!hasChanged" id="save"
+                            <button (click)="onUpdate(password.value , passwordConfirm.value)" *ngIf="hasChanged" [disabled]="!hasChanged" id="save"
                                     class="button button--primary button--form">Opslaan
                             </button>
                         </div>
