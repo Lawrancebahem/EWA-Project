@@ -24,7 +24,6 @@ public class Reaction implements Identifiable {
 
     //    @JsonIgnoreProperties("reactions")
     @ManyToOne(fetch = FetchType.LAZY)
-
     private User user;
 
     //    @JsonIgnoreProperties("reactions")

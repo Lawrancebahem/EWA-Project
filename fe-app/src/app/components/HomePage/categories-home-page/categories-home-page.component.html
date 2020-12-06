@@ -48,11 +48,17 @@
     </div>
 
 </div>
- <div class="card" routerLink="/category/{{category.categoryTitle}}" *ngFor="let category of categoryArray | filter: searchText">
+
+<div class="container-grid">
+
+    <div class="card" routerLink="/category/{{category.categoryTitle}}" *ngFor="let category of categoryArray | filter: searchText">
         <img src="../../../../assets/Images/activityImage/{{category.image}}" class="card-img-top" alt="{{category.categoryTitle}}}">
         <div class="card-body">
             <h2 class="card-title">{{category.categoryTitle}}</h2>
             <p class="card-text">{{category.description}}</p>
         </div>
     </div>
+
+
+</div>
 

@@ -71,10 +71,13 @@ export class NavBarComponent implements OnInit {
         this.router.navigate(['login'])
     }
 
-    checkIfBrowserSupportSupportSpeech() {
+    /**
+     * To check if browser supports speech recognition
+     */
+    checkIfBrowserSupportSpeech() {
 
         if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-            console.log("Supporte ")
+            console.log("Supported")
             this.speechService.startListening();
         }else {
             // speech recognition API not supported

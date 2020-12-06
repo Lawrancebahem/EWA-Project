@@ -90,6 +90,7 @@ public class User implements Identifiable, Serializable {
     private boolean admin;
     private boolean isBlocked;
 
+    //interests
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -100,9 +101,22 @@ public class User implements Identifiable, Serializable {
     private List<Interest> interests;
 
 
+    //activities (fetch type is lazy)
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "user_activity",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "idactivity")
+    )
+    private List<Activity>activities;
+
+    //Reaction
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Reaction> reactions;
+
+
 
 
     public User() {

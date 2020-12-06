@@ -30,11 +30,15 @@ public class Activity implements Identifiable {
     @Column
     private String location;
     private boolean show;
+
+    @ManyToMany(mappedBy = "activities")
+    List<User> users;
+
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "activity_category",
-            joinColumns = @JoinColumn(name = "idctivity"),
+            joinColumns = @JoinColumn(name = "idactivity"),
             inverseJoinColumns = @JoinColumn(name = "idcategory")
     )
     private List<Category> categories;

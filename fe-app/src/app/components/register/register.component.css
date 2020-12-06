@@ -98,9 +98,12 @@
     }
 
     .pictures-section{
-        position: relative;
         top: 1em;
+        margin: 0;
+        padding: 0;
         align-items: center;
+        grid-gap: .4rem;
+        justify-content: center;
     }
     .gallery__img {
         border-radius: 3%;
@@ -111,4 +114,10 @@
         font-family: Arial, serif;
         font-size: 13px;
     }
+
+    .interest--image{
+        height: 70px;
+        object-fit: cover;
+    }
+
 }
