@@ -4,6 +4,7 @@ import org.springframework.http.HttpHeaders;
 import server.models.Login;
 import server.utilities.JWToken;
 
+import javax.security.auth.login.AccountLockedException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface EntityRepository<T extends Identifiable> {
         return null;
     }
 
-    default T authenticateLogin(Login login){
+    default T authenticateLogin(Login login) throws AccountLockedException {
         return null;
     };
 

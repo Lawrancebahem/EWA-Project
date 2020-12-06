@@ -1,14 +1,14 @@
-insert INTO "interest" values
-
-(1,'muziek'),
-(2,'strand'),
-(3,'avontuur'),
-(4,'dieren'),
-(5,'shopping'),
-(6,'sporten'),
-(7,'wintersport'),
-(8,'lezen'),
-(9,'museum');
+-- insert INTO "interest" values
+--
+-- (1,'muziek'),
+-- (2,'strand'),
+-- (3,'avontuur'),
+-- (4,'dieren'),
+-- (5,'shopping'),
+-- (6,'sporten'),
+-- (7,'wintersport'),
+-- (8,'lezen'),
+-- (9,'museum');
 
 
 -- insert users

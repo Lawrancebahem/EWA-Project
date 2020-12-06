@@ -7,7 +7,6 @@ import {HeaderComponent} from './components/header/header.component';
 import {BannerComponent} from './components/HomePage/bannerHomePage/banner.component';
 import {ZoekbalkHomePageComponent} from './components/HomePage/search-home-page/zoekbalk-home-page.component';
 import {CategoriesHomePageComponent} from './components/HomePage/categories-home-page/categories-home-page.component';
-import {RegisterComponent} from "./components/register/register.component";
 import {LoginComponent} from "./components/login/login.component";
 import {CategorypageComponent} from "./components/categorypage/categorypage/categorypage.component";
 import {ActivitywandelenComponent} from './components/activitypages/activitywandelen/activitywandelen.component';
@@ -28,6 +27,7 @@ import {MyActivitiesComponent} from "./components/my-activities/my-activities.co
 import {ActivityDetailsComponent} from "./components/activitypages/activity-details/activity-details.component";
 import {AdminComponent} from "./components/admin/admin.component";
 import {NavBarComponent} from "./components/nav-bar/nav-bar.component";
+import {RegisterComponent} from "./components/register/register.component";
 
 @NgModule({
     declarations: [

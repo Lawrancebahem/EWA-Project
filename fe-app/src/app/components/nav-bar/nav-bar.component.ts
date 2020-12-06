@@ -55,11 +55,11 @@ export class NavBarComponent implements OnInit {
                         let newToken = response.headers.get("Authorization");
                         //set the refreshed token in the storage
                         this.sessionService.saveTokenIntoSessionStorage(newToken, this.sessionService.currentUserName);
+                        location.reload(); // refresh the page
                     }, error => {
                         console.log(error.error.message)
                         this.logout(); // log out and direct the user to log in page
                     })
-
                 })
         }
     }

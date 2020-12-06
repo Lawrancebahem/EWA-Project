@@ -16,6 +16,7 @@ import server.service.APIConfiguration;
 import server.utilities.JWToken;
 
 import javax.naming.AuthenticationException;
+import javax.security.auth.login.AccountLockedException;
 import javax.servlet.http.HttpServletRequest;
 
 @CrossOrigin(origins = {"http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com"})
@@ -38,7 +39,7 @@ public class AuthenticateController {
      * @return
      */
     @PostMapping(value = "/login", produces = "application/json")
-    public ResponseEntity<User> authenticate(@RequestBody ObjectNode signInfo, HttpServletRequest request) {
+    public ResponseEntity<User> authenticate(@RequestBody ObjectNode signInfo, HttpServletRequest request) throws AccountLockedException {
         String email = signInfo.get("email").asText();
         String password = signInfo.get("password").asText();
         Login login = new Login(email, password);

@@ -1,11 +1,14 @@
 package server.repositories;
 
 import org.springframework.stereotype.Service;
+import server.exception.AuthenticationException;
 import server.exception.PreConditionalFailed;
+import server.exception.ResourceNotFound;
 import server.models.Login;
 import server.models.User;
 
 import javax.persistence.Query;
+import javax.security.auth.login.AccountLockedException;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -28,8 +31,7 @@ public class UserRepositoryJpa extends AbstractEntityRepositoryJpa<User> {
         try {
             Query query = em.createNamedQuery("FindByEmail");
             query.setParameter("email", email.toLowerCase().trim());
-            User user = (User) query.getSingleResult();
-            return user;
+            return (User) query.getSingleResult();
         } catch (Exception x) {
             return null;
         }
@@ -41,14 +43,23 @@ public class UserRepositoryJpa extends AbstractEntityRepositoryJpa<User> {
      * @return
      */
     @Override
-    public User authenticateLogin(Login login) {
+    public User authenticateLogin(Login login) throws AccountLockedException {
         User foundUser = findByEmail(login.getEmail().trim()); // check the email
-        if (foundUser == null) throw new PreConditionalFailed("The email does not exist: " + login.getEmail());// throw an error if the email is not found
+        if (foundUser == null)
+            throw new ResourceNotFound("De email is niet gevonden: " + login.getEmail());// throw an error if the email is not found
         Query query = em.createNamedQuery("AuthenticateLogin");
         query.setParameter("email", login.getEmail().toLowerCase().trim());
         query.setParameter("password", login.getPassword().toLowerCase().trim());
-        User user = (User) query.getSingleResult();
+        User user;
+        try {
+            user = (User) query.getSingleResult();
+        }catch (Exception exception){
+            throw new AuthenticationException("De email/password kloppen niet");
+        }
         if (user != null) {
+            //If user's blocked, throw an exception
+            if (user.isBlocked()) throw new AccountLockedException("Het account is geblokeerd, " +
+                    "contact ons voor verdere informatie");
             return getClonedObject(user); // return a cloned object if the email and the password meet the ones in the database
         } else {
             return null;
@@ -74,6 +85,7 @@ public class UserRepositoryJpa extends AbstractEntityRepositoryJpa<User> {
         clonedUser.setInterests(savedUser.getInterests());
         clonedUser.setAdmin(savedUser.isAdmin());
         clonedUser.setPassword("*********");
+        clonedUser.setBlocked(savedUser.isBlocked());
         return clonedUser;
     }
 }

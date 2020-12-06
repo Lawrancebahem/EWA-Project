@@ -48,8 +48,8 @@ public class UserRepositoryTest {
     @Test
     @DirtiesContext
     public void addingUserWithInterests(){
-        User user1 = new User("Marc","Specht", LocalDate.now(), User.Gender.MAN, "/assets/Images/picProfile.png", "marcspecht@hotmail.com","12345", false);
-        User user2 = new User("Chantal","Specht", LocalDate.now(), User.Gender.WOMAN, "/assets/Images/picProfile.png", "chantal@hotmail.com","12345", false);
+        User user1 = new User("Marc","Specht", LocalDate.now(), User.Gender.MAN, "/assets/Images/picProfile.png", "marcspecht@hotmail.com","12345", false,false);
+        User user2 = new User("Chantal","Specht", LocalDate.now(), User.Gender.WOMAN, "/assets/Images/picProfile.png", "chantal@hotmail.com","12345", false,false);
 
 
         Interest shopping = interestEntityRepositoryJpa.findById(5);

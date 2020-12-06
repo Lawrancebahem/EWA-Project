@@ -41,8 +41,11 @@
                 <td>{{user.email | titlecase}}</td>
                 <td>{{user.password}}</td>
                 <td><img class="userProfile" src="{{user.profilePicture}}"></td>
-                <td><mat-icon (click)="blockUser(user.id)" class="icon-size">block</mat-icon></td>
-                <td><mat-icon (click)="deleteUser(user.id)" class="icon-size">delete</mat-icon></td>
+                <td *ngIf="user.blocked;"><mat-icon class="icon-size align-middle mr-2">block</mat-icon>
+                    <button (click)="unBlockUser(user.email)" class="button--primary align-middle">Deblokkeer</button>
+                </td>
+                <td *ngIf="!user.blocked" ><button (click)="blockUser(user.email)" class="button--primary">Blokkeer</button></td>
+                <td><mat-icon (click)="deleteUser(user.email)" class="icon-size">delete</mat-icon></td>
             </tbody>
         </table>
     </div>
@@ -67,15 +70,13 @@
                 <td>{{activity.title}}</td>
                 <td>{{activity.description}}</td>
                 <td>{{activity.location}}</td>
-                <td>{{activity.image}}</td>
+                <td> <img src="assets/Images/landscape.jpeg" class="default-picture p0 m-0"></td>
                 <td><mat-icon (click)="deleteActivity(activity.idActivity)" class="icon-size">delete</mat-icon></td>
             <tr>
             </tbody>
         </table>
     </div>
 </div>
-
-
 
 <!--modal to add new activity-->
 <div class="modal fade" id="myModal">

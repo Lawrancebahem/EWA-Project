@@ -32,7 +32,8 @@ export class AdminService {
 
   public getAllUsers(){
     this.userService.findAll().subscribe((users)=>{
-      this.userArray  = users ? users.map((user) => User.makeTrueCopy(user)):[];
+      console.log(users);
+      this.userArray = users ? users.map((user) => User.makeTrueCopy(user)):[];
     })
   }
 }
