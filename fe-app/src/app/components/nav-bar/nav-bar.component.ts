@@ -79,7 +79,7 @@ export class NavBarComponent implements OnInit {
         }else {
             // speech recognition API not supported
             console.log("Not supported")
-            let alert = document.getElementById("alert");
+            let alert = document.getElementById("alert-speech");
             alert.style.display = "block"
             setTimeout( ()=> {
                 alert.style.display = "none"
