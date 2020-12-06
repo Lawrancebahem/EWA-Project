@@ -5,6 +5,8 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {shareReplay} from "rxjs/operators";
 import {User} from "../../models/user";
+// @ts-ignore
+import interests from "../../json/interests.json";
 
 @Component({
     selector: 'app-admin',
@@ -16,6 +18,8 @@ export class AdminComponent implements OnInit {
     public userOverViewClicked: boolean;
     public activityOverview: boolean;
     public title: string;
+
+    public arrayInterests: { id, name, image }[] = interests;
 
     constructor(public adminService: AdminService,
                 private convertImage: ImageBase64Service,
@@ -85,11 +89,21 @@ export class AdminComponent implements OnInit {
 
     }
 
+    /**
+     * Once the admin clicks on adding new activity, it will take
+     */
     addNewActivity() {
+        //get the selected interests
+        const selectedInterests: number[] = Array.from(document.getElementById('interests-section')
+            .querySelectorAll('input[name=interest]:checked')).map(interest => {
+            return Number(interest.getAttribute('value'));
+        });
+
+        console.log(selectedInterests);
 
         const closeModal = document.getElementById("close-modal");
         const activityPicture = this.uploadedProfile.nativeElement.files[0];
-        const imagePreview = document.querySelector("#profile-picture-preview")
+        const imagePreview = document.getElementById("image--activity-preview").querySelector("#image-preview")
         this.convertImage.convertToBase64(activityPicture, data => {
             imagePreview.setAttribute("src", data);
             console.log(data);

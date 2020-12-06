@@ -71,11 +71,7 @@ export class ProfileComponent implements OnInit {
 
         setTimeout(() => {
             const errors = document.getElementById("my-profile").querySelectorAll('.error'); // check if there is error
-            if (errors.length > 0){
-                console.log(errors[0]);
-
-                return;
-            }
+            if (errors.length > 0)return;
 
             const genderElement = Array.from(document.querySelector('.gender-form') // get the gender value
                 .querySelectorAll('input[name=gender]:checked')).map((gender) => {
@@ -123,6 +119,6 @@ export class ProfileComponent implements OnInit {
                     console.log(error.error.message);
                 });
             })
-        }, 10)
+        }, 5)
     }
 }

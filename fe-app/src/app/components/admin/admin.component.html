@@ -2,16 +2,18 @@
     <ul>
 
 
-
         <li (click)="onUserOverview()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Gebruikers
-        <mat-icon class="align-middle">perm_identity</mat-icon></li>
-        <li (click)="onActivityOverview()">Activiteiten <mat-icon class="align-middle">local_activity</mat-icon></li>
-<!--        <li>SubMenu-->
-<!--            &lt;!&ndash; Sub menu &ndash;&gt;-->
-<!--            <ul class="menu&#45;&#45;sub">-->
-<!--                <li routerLink="overview1" routerLinkActive="active">Overview 1</li>-->
-<!--            </ul>-->
-<!--        </li>-->
+            <mat-icon class="align-middle">perm_identity</mat-icon>
+        </li>
+        <li (click)="onActivityOverview()">Activiteiten
+            <mat-icon class="align-middle">local_activity</mat-icon>
+        </li>
+        <!--        <li>SubMenu-->
+        <!--            &lt;!&ndash; Sub menu &ndash;&gt;-->
+        <!--            <ul class="menu&#45;&#45;sub">-->
+        <!--                <li routerLink="overview1" routerLinkActive="active">Overview 1</li>-->
+        <!--            </ul>-->
+        <!--        </li>-->
     </ul>
 </nav>
 
@@ -33,7 +35,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr  *ngFor="let user of adminService.userArray">
+            <tr *ngFor="let user of adminService.userArray">
                 <td>{{user.firstName | titlecase}}</td>
                 <td>{{user.lastName | titlecase}}</td>
                 <td>{{user.birthDate}}</td>
@@ -41,17 +43,23 @@
                 <td>{{user.email | titlecase}}</td>
                 <td>{{user.password}}</td>
                 <td><img class="userProfile" src="{{user.profilePicture}}"></td>
-                <td *ngIf="user.blocked;"><mat-icon class="icon-size align-middle mr-2">block</mat-icon>
+                <td *ngIf="user.blocked;">
+                    <mat-icon class="icon-size align-middle mr-2">block</mat-icon>
                     <button (click)="unBlockUser(user.email)" class="button--primary align-middle">Deblokkeer</button>
                 </td>
-                <td *ngIf="!user.blocked" ><button (click)="blockUser(user.email)" class="button--primary">Blokkeer</button></td>
-                <td><mat-icon (click)="deleteUser(user.email)" class="icon-size">delete</mat-icon></td>
+                <td *ngIf="!user.blocked">
+                    <button (click)="blockUser(user.email)" class="button--primary">Blokkeer</button>
+                </td>
+                <td>
+                    <mat-icon (click)="deleteUser(user.email)" class="icon-size">delete</mat-icon>
+                </td>
             </tbody>
         </table>
     </div>
 
     <div *ngIf="activityOverview && adminService.activityArray.length > 0">
-        <button data-toggle="modal" data-target="#myModal" class="button--primary p-1 m-2">Add nieuwe activiteit</button>
+        <button data-toggle="modal" data-target="#myModal" class="button--primary p-1 m-2">Add nieuwe activiteit
+        </button>
         <table class="table table-hover">
             <thead>
             <tr>
@@ -70,8 +78,10 @@
                 <td>{{activity.title}}</td>
                 <td>{{activity.description}}</td>
                 <td>{{activity.location}}</td>
-                <td> <img src="assets/Images/landscape.jpeg" class="default-picture p0 m-0"></td>
-                <td><mat-icon (click)="deleteActivity(activity.idActivity)" class="icon-size">delete</mat-icon></td>
+                <td><img src="assets/Images/landscape.jpeg" class="default-picture p0 m-0"></td>
+                <td>
+                    <mat-icon (click)="deleteActivity(activity.idActivity)" class="icon-size">delete</mat-icon>
+                </td>
             <tr>
             </tbody>
         </table>
@@ -87,14 +97,33 @@
             <div class="modal-header">
             </div>
 
-            <div class="image-preview p-5">
+            <div class="image-preview p-5" id="image--activity-preview">
                 <img src="assets/Images/landscape.jpeg" id="image-preview" class="default-picture">
             </div>
             <label class="input-group-text m-1">Upload activiteit foto (verplicht)
                 <input id="" class="m-4" type="file" #uploadedPicture>
             </label>
 
-<!--            category field-->
+            <!--            title activity-->
+            <div class="input-group p-1">
+                <div class="input-group-append">
+                    <label class="input-group-text" for="inputGroupSelect02">Title</label>
+                </div>
+                <input #titleInput type="text" class="form-control" placeholder="Titel" aria-label="Titel"
+                       aria-describedby="basic-addon1">
+            </div>
+
+            <!--            location activity-->
+            <div class="input-group p-1">
+                <div class="input-group-append ">
+                    <label class="input-group-text" for="inputGroupSelect02">Locatie</label>
+                </div>
+                <input #location type="text" class="form-control" placeholder="Locatie" aria-label="Locatie"
+                       aria-describedby="basic-addon1">
+            </div>
+
+
+            <!--            category field-->
             <div class="input-group p-1">
                 <div class="input-group-append">
                     <label class="input-group-text " for="inputGroupSelect02">Categorie</label>
@@ -105,27 +134,24 @@
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                 </select>
-
-            </div>
-<!--            title activity-->
-            <div class="input-group p-1">
-                <div class="input-group-append">
-                    <label class="input-group-text" for="inputGroupSelect02">Title</label>
-                </div>
-                <input type="text" class="form-control" placeholder="Titel" aria-label="Titel" aria-describedby="basic-addon1">
             </div>
 
-<!--            location activity-->
-            <div class="input-group p-1">
-                <div class="input-group-append ">
-                    <label class="input-group-text" for="inputGroupSelect02">Locatie</label>
-                </div>
-                <input type="text" class="form-control" placeholder="Locatie" aria-label="Locatie" aria-describedby="basic-addon1">
+            <!--            interests field-->
+            <div class="form-group">
+                <label class="input-group-text " for="inputGroupSelect02">Interesses</label>
             </div>
+            <div id="interests-section" class="grid-interests">
+                    <div class="custom-control custom-checkbox " *ngFor="let interest of arrayInterests">
+                        <input name="interest" type="checkbox" value="{{interest.id}}" class="custom-control-input" id="{{interest.id}}">
+                        <label class="custom-control-label" for="{{interest.id}}">{{interest.name}}</label>
+                    </div>
+            </div>
+
 
             <div class="form-group p1">
                 <label class="input-group-text" for="exampleFormControlTextarea5">Omschrijving:</label>
-                <textarea class="form-control" placeholder="omschrijf hier..." id="exampleFormControlTextarea5" rows="3"></textarea>
+                <textarea class="form-control" placeholder="omschrijf hier..." id="exampleFormControlTextarea5"
+                          rows="3"></textarea>
             </div>
 
             <div class="modal-footer p-0">
@@ -135,9 +161,6 @@
 
                 <button id="close-modal" type="button" class="button--primary" data-dismiss="modal">Close</button>
             </div>
-
-
-
 
             <div id="success-message" class="alert alert-success alert-dismissible fade">
                 <strong>Success!</strong>The activity has been added successfully

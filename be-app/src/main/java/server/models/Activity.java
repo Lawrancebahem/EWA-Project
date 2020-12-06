@@ -43,6 +43,16 @@ public class Activity implements Identifiable {
     )
     private List<Category> categories;
 
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "interests_activity",
+            joinColumns = @JoinColumn(name = "idactivity"),
+            inverseJoinColumns = @JoinColumn(name = "interestId")
+    )
+    private List<Interest> interests;
+
     @JsonIgnore
     @OneToMany(mappedBy = "activity")
     private List<Reaction> reactions;
