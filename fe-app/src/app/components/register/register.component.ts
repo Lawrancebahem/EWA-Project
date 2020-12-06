@@ -101,6 +101,7 @@ export class RegisterComponent implements OnInit {
                         this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
                         this.router.navigate(['/home']); // navigate to the home page
                     }, error => {
+
                         alert.innerHTML =error.error.message;
                         alert.style.display = "block"
                         setTimeout( ()=> {

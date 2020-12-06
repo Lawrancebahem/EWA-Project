@@ -70,4 +70,17 @@ export class NavBarComponent implements OnInit {
         this.authenticateService.isLoggedIn = false; // set isLogged in false
         this.router.navigate(['login'])
     }
+
+    checkIfBrowserSupportSupportSpeech() {
+
+        if (! ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
+            // speech recognition API not supported
+            this.speechService.abortListening();
+            let alert = document.getElementById("alert");
+            alert.style.display = "block"
+            setTimeout( ()=> {
+                alert.style.display = "none"
+            }, 6000)
+        }
+    }
 }

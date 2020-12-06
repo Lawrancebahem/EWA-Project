@@ -73,7 +73,6 @@ public class UserController {
 
     /**
      * To register new user, and responding with the user in the body without the password
-     *
      * @param user
      * @return
      */
