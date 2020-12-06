@@ -83,6 +83,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    /*object-fit: cover;*/
     margin-bottom: .5rem;
 }
 .interest input:checked ~ .interest--image{
@@ -103,19 +104,6 @@
     text-transform: uppercase;
     text-align: center;
 }
-
-/*.chart-wrapper{*/
-/*    position: relative;*/
-/*}*/
-/*.chart-percentage{*/
-/*    font-family: 'UniSansSemiBold', sans-serif;*/
-/*    font-size: 1.2rem;*/
-/*    color: var(--color-black);*/
-/*    position: absolute;*/
-/*    top: 50%;*/
-/*    width: 100%;*/
-/*    text-align: center;*/
-/*}*/
 .edit-icon{
     position: relative;
     left: 1rem;
@@ -142,5 +130,13 @@
     /*Chart or chat with*/
     .container--profile > div:nth-of-type(3) {
         order: 2;
+    }
+
+    .container{
+        grid-template-columns: 1fr;
+    }
+    .activity-thumbnail--image{
+        height: 200px;
+        object-fit: cover;
     }
 }
