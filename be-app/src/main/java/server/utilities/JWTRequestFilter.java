@@ -6,7 +6,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import server.exception.UnAuthorizedException;
+import server.exception.AuthorizationException;
 import server.service.APIConfiguration;
 
 import javax.servlet.FilterChain;
@@ -46,14 +46,14 @@ public class JWTRequestFilter extends OncePerRequestFilter {
       encryptedToken = encryptedToken.replace("Bearer","");
 
       //decode the token
-      jwToken = JWToken.decode(encryptedToken, this.api.getPassPhrase());
+      jwToken = JWToken.decode(encryptedToken, this.api.getPassPhrase(),false);
 
       request.setAttribute(JWToken.getJwtAttributeName(), jwToken);
       chain.doFilter(request, response);
     }
 
     if (jwToken == null){
-      throw new UnAuthorizedException("You need to log in");
+      throw new AuthorizationException("You need to log in");
     }
   }
 }

@@ -29,12 +29,10 @@ export class ActivityDetailsComponent implements OnInit {
 
     this.childParamsSubscription =
         this.activatedRoute.params.subscribe((params: Params) => {
-              console.log("detail setup id=" + params['id']);
               this.setSelectedActivityId(params['id'] || -1);
               this.activityToShow = Activity.trueCopy(this.activityService.findById(this.selectedActivityId))
             }
         );
-    console.log(this.activityToShow)
   }
 
   setSelectedActivityId(param: any) {

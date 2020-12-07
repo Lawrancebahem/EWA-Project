@@ -65,12 +65,13 @@ export class ProfileComponent implements OnInit {
     /***
      * To update the user information
      */
-    public onUpdate() {
+    public onUpdate(password:string, confirmPassword) {
         this.submitted = true;
+        if (password != confirmPassword) return;
+
         setTimeout(() => {
-            const errors = document.querySelectorAll('.error'); // check if there is error
-            console.log("erros " + errors.length)
-            if (errors.length > 0) return;
+            const errors = document.getElementById("my-profile").querySelectorAll('.error'); // check if there is error
+            if (errors.length > 0)return;
 
             const genderElement = Array.from(document.querySelector('.gender-form') // get the gender value
                 .querySelectorAll('input[name=gender]:checked')).map((gender) => {

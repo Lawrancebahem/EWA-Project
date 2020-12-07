@@ -30,8 +30,11 @@
                             authenticationService.loginForm.get('password').touched &&
                             authenticationService.loginForm.get('password').invalid}">
                     </div>
-                    <p *ngIf="showError" class="error">Het emailadres of het wachtwoord is onjuist</p>
 
+                    <div id="alert" class="alert alert-danger" style="display: none" role="alert">
+
+
+                    </div>
                 </div>
 
                 <button [disabled]="!authenticationService.loginForm.valid" type="submit" id="submit"
@@ -41,8 +44,7 @@
                        class="button button--primary button--form uppercase" style="display: none"
                        onclick="">
                 <p class="text-center no-padding text-white">Heeft u nog geen een account? <a routerLink="/register"
-                                                                                              class="form--link">Registreer
-                    nu</a>
+                                                                                              class="form--link">Registreer nu</a>
                 </p>
                 <p class="form--link text-center"><a class="text-white">Ik ben mijn wachtwoord vergeten.</a></p>
             </form>
@@ -50,7 +52,8 @@
     </div>
 </div>
 
-<div class="container">
+
+<div class="container ">
     <div class="container container-activity-thumbnails">
 
         <div class="activity-thumbnail--image"

@@ -1,7 +1,6 @@
 package server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import server.repositories.Identifiable;
 
 import javax.persistence.*;
@@ -30,15 +29,29 @@ public class Activity implements Identifiable {
     private String image;
     @Column
     private String location;
+    private boolean show;
+
+    @ManyToMany(mappedBy = "activities")
+    List<User> users;
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "activity_category",
-            joinColumns = @JoinColumn(name = "idctivity"),
+            joinColumns = @JoinColumn(name = "idactivity"),
             inverseJoinColumns = @JoinColumn(name = "idcategory")
     )
     private List<Category> categories;
+
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "interests_activity",
+            joinColumns = @JoinColumn(name = "idactivity"),
+            inverseJoinColumns = @JoinColumn(name = "interestId")
+    )
+    private List<Interest> interests;
 
     @JsonIgnore
     @OneToMany(mappedBy = "activity")
@@ -99,6 +112,14 @@ public class Activity implements Identifiable {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public boolean isShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
     }
 
     @Override

@@ -48,6 +48,10 @@ export class SpeechServiceService {
 
     }
 
+    public abortListening(){
+        annyang.abort();
+    }
+
     /**
      * Once the user stop talking stop listening and give the said phrases back
      * @param whatTheUserHasSaid

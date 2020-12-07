@@ -88,7 +88,9 @@ public class User implements Identifiable, Serializable {
     private String email;
     private String password;
     private boolean admin;
+    private boolean isBlocked;
 
+    //interests
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -99,9 +101,22 @@ public class User implements Identifiable, Serializable {
     private List<Interest> interests;
 
 
+    //activities (fetch type is lazy)
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "user_activity",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "idactivity")
+    )
+    private List<Activity>activities;
+
+    //Reaction
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Reaction> reactions;
+
+
 
 
     public User() {
@@ -115,10 +130,11 @@ public class User implements Identifiable, Serializable {
         this.reactions = new ArrayList<>();
         this.email = "";
         this.admin = false;
+        this.isBlocked = false;
     }
 
 
-    public User(String firstName, String lastName, LocalDate birthDate, Gender gender, String profilePicture, String email, String password, boolean admin) {
+    public User(String firstName, String lastName, LocalDate birthDate, Gender gender, String profilePicture, String email, String password, boolean admin, boolean isBlocked) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -128,6 +144,7 @@ public class User implements Identifiable, Serializable {
         this.password = password;
         this.admin = admin;
         this.interests = new ArrayList<>();
+        this.isBlocked = isBlocked;
     }
 
     @Override
@@ -222,6 +239,13 @@ public class User implements Identifiable, Serializable {
         this.admin = admin;
     }
 
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(final boolean blocked) {
+        isBlocked = blocked;
+    }
     public enum Gender {
         MAN,
         WOMAN,
@@ -231,5 +255,6 @@ public class User implements Identifiable, Serializable {
     public class ShowInfoAdmin {
 
     }
+
 
 }

@@ -6,7 +6,6 @@
         <div class="grid--half">
             <div id="input-fields-user-information">
                 <h2>Persoonlijke gegevens</h2>
-
                 <div class="form--input">
                     <span>Voornaam</span>
                     <input #firstName formControlName="firstName" type="text" class="color form-control" id="surname"
@@ -77,8 +76,9 @@
                             authenticationService.registerForm.get('email').invalid}">
                     <p *ngIf="submitted && email.value.length === 0" class="error">Email is
                         een verplicht veld</p>
-                    <p class="error" *ngIf="emailAlreadyInUse">{{emailAlreadyInUse}}</p>
                 </div>
+                <div id="alert" class="alert alert-danger error" style="display: none"></div>
+
 
                 <div class="form--input" >
                     <span>Wachtwoord</span>
@@ -120,7 +120,7 @@
                 </div><!--pictures section-->
             </div><!--grid child-->
             <div>
-                <button (click)="register()"
+                <button (click)="register(password.value, passwordConfirm.value)"
                         id="submit"
                         value="Registreren" type="submit"
                         class="button button--primary button--form uppercase">Registeren
@@ -132,4 +132,6 @@
     </div><!--wrapper-->
 
 </form>
+
+
 

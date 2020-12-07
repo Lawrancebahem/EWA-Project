@@ -63,14 +63,11 @@ export class ActivityOverviewComponent implements OnInit {
         for (let i = 0; i < this.activityArray.length; i++) {
             for (let j = 0; j < this.categorySearch.length; j++) {
                 let currentCategory = this.categorySearch[j]
-                console.log(currentCategory)
                 if (this.activityArray[i].categories.find(x => x === currentCategory) == false) {
                     this.activityArray.splice(this.activityArray[i]);
                 }
             }
         }
-        console.log(this.categorySearch);
-        console.log(this.activityArray);
     }
 
     filterSearch() {
@@ -90,8 +87,6 @@ export class ActivityOverviewComponent implements OnInit {
         if (this.categorySearch.length == 0) {
             this.filteredActivityArray = this.activityArray;
         }
-
-        console.log("Geselecteerde categoriën: " + this.categorySearch)
 
         // Check every activity if it includes the selected categories.
         for (let activity of this.activityArray) {

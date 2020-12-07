@@ -27,7 +27,6 @@ export class RegisterComponent implements OnInit {
     @ViewChild('password') password: ElementRef;
     noGenderSelected: boolean;
     submitted: boolean;
-    public emailAlreadyInUse = "";
     public arrayInterests: { id, name, image }[] = interests;
 
     constructor(public authenticationService: AuthenticationService,
@@ -45,8 +44,11 @@ export class RegisterComponent implements OnInit {
     /**
      * Register, once the user clicked the register button we get all the input values
      */
-    public register() {
+    public register(password:string, confirmPassword:string) {
         this.submitted = true;
+        let alert = document.getElementById("alert");
+
+        if (password != confirmPassword) return; // extra check for the password
         if (this.authenticationService.registerForm.invalid) return;
         setTimeout(() => {
             const errors = document.querySelectorAll('.errors'); // check if there is error
@@ -99,8 +101,12 @@ export class RegisterComponent implements OnInit {
                         this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
                         this.router.navigate(['/home']); // navigate to the home page
                     }, error => {
-                        this.emailAlreadyInUse = error.error.message;
-                        console.log(error.error.message);
+
+                        alert.innerHTML =error.error.message;
+                        alert.style.display = "block"
+                        setTimeout( ()=> {
+                            alert.style.display = "none"
+                        }, 6000)
                     });
             })
         }, 4)

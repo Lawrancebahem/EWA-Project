@@ -1,16 +1,14 @@
 package server.rest;
 
 
-import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import server.exception.AuthorizationException;
 import server.exception.PreConditionalFailed;
 import server.exception.ResourceNotFound;
-import server.exception.UnAuthorizedException;
 import server.models.Interest;
 import server.models.Login;
 import server.models.User;
@@ -19,6 +17,7 @@ import server.service.APIConfiguration;
 import server.utilities.JWToken;
 
 import javax.naming.AuthenticationException;
+import javax.security.auth.login.AccountLockedException;
 import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.util.List;
@@ -46,10 +45,10 @@ public class UserController {
      */
 //    @JsonView(User.ShowInfoAdmin.class)
     @GetMapping("/all")
-    public List<User> findAll(HttpServletRequest request) throws AuthenticationException {
+    public List<User> findAll(HttpServletRequest request) {
         JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
         boolean isAdmin = this.userRepositoryJpa.findById(userJwToken.getId()).isAdmin();
-        if (!isAdmin) throw new UnAuthorizedException("You are not authorized administrator");
+        if (!isAdmin) throw new AuthorizationException("Je bent geen geautoriseerde gebruiker");
         return this.userRepositoryJpa.findAll();
     }
 
@@ -66,7 +65,7 @@ public class UserController {
         long userId = userJwToken.getId();
         System.out.println("The user is " + userId + " name " + userJwToken.getEmail());
         User user = this.userRepositoryJpa.findById(userId);
-        if (user == null) throw new ResourceNotFound("The user not found");
+        if (user == null) throw new ResourceNotFound("De gebruiker is gevonden");
         return this.userRepositoryJpa.getClonedObject(user);
 
 
@@ -74,7 +73,6 @@ public class UserController {
 
     /**
      * To register new user, and responding with the user in the body without the password
-     *
      * @param user
      * @return
      */
@@ -83,14 +81,19 @@ public class UserController {
 
         User foundUserByEmail = this.userRepositoryJpa.findByEmail(user.getEmail());
         if (foundUserByEmail != null)
-            throw new PreConditionalFailed("This email : '" + user.getEmail() + "' is already in use");
+            throw new PreConditionalFailed("De email : '" + user.getEmail() + "' is al in gebruik");
         User savedUser = this.userRepositoryJpa.saveOrUpdate(user);
         User clonedSavedUser = this.userRepositoryJpa.getClonedObject(savedUser);//Get cloned user without password
         URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}").buildAndExpand(clonedSavedUser).toUri();
         return ResponseEntity.created(location).body(clonedSavedUser);
     }
 
-
+    /**
+     * Tp update a user
+     * @param updatedUser
+     * @param request
+     * @return
+     */
     @PutMapping("/update")
     public User updateUser(@RequestBody User updatedUser, HttpServletRequest request) {
         JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
@@ -103,7 +106,6 @@ public class UserController {
 
     /**
      * Get the interests of a certain user based on the JWToken
-     *
      * @return user's interests in an array
      */
     @GetMapping("/my-interests")
@@ -118,7 +120,6 @@ public class UserController {
 
     /**
      * To insert/update the user's interests, if there are any
-     *
      * @param interestsIds
      * @return
      */
@@ -138,14 +139,32 @@ public class UserController {
         return true;
     }
 
+
     /**
-     * Authenticate login
-     *
-     * @param login
+     * to block a user
+     * @param email
      * @return
      */
-    @PostMapping("/login")
-    public User login(@RequestBody Login login) {
-        return this.userRepositoryJpa.authenticateLogin(login);
+    @GetMapping(value = "/block/{email}/", produces = "application/json")
+    public boolean blockUser(@PathVariable String email){
+        User foundUser = this.userRepositoryJpa.findByEmail(email);
+        foundUser.setBlocked(true);
+        this.userRepositoryJpa.saveOrUpdate(foundUser);
+        return true;
     }
+
+
+    /**
+     * to unblock a user
+     * @param email
+     * @return
+     */
+    @GetMapping(value = "/unblock/{email}/", produces = "application/json")
+    public boolean unblockUser(@PathVariable String email){
+        User foundUser = this.userRepositoryJpa.findByEmail(email);
+        foundUser.setBlocked(false);
+        this.userRepositoryJpa.saveOrUpdate(foundUser);
+        return true;
+    }
+
 }

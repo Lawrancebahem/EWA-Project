@@ -1,11 +1,12 @@
 package server.utilities;
 
 import io.jsonwebtoken.*;
+import server.exception.AuthorizationException;
 
 import javax.crypto.spec.SecretKeySpec;
-import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.util.Calendar;
 import java.util.Date;
 
 public class JWToken {
@@ -22,6 +23,8 @@ public class JWToken {
   private String lastName;
   private String email;
   private boolean admin;
+  private Date issuedAt;
+  private Date expiration;
 
   public JWToken(long id, String firstName, String lastName, String email, boolean admin) {
     this.id = id;
@@ -62,27 +65,48 @@ public class JWToken {
    * @param passPhrase
    * @return
    */
-  public static JWToken decode(String token, String passPhrase){
+  public static JWToken decode(String token, String passPhrase, boolean extendTime){
 
     try {
       Key key = getKey(passPhrase);
       Jws<Claims> jws = Jwts.parser().setSigningKey(key).parseClaimsJws(token);
       Claims claims = jws.getBody();
-      JWToken jwToken = new JWToken(
-              Long.parseLong(claims.get(JWT_USERID_CLAIM).toString()),
-              claims.get(JWT_FIRST_NAME_CLAIM).toString(),
-              claims.get(JWT_LAST_NAME_CLAIM).toString(),
-              claims.get(JWT_EMAIL_CLAIM).toString(),
-              (boolean) claims.get(JWT_ADMIN_CLAIM)
-      );
+
+       return generateTokenInfo(claims);
 
 
-
-      return jwToken;
-    }catch (ExpiredJwtException | UnsupportedJwtException | IllegalArgumentException E){
-      return null;
+    } catch (MalformedJwtException |
+            UnsupportedJwtException | IllegalArgumentException| SignatureException e) {
+      throw new AuthorizationException(e.getMessage());
+    } catch(ExpiredJwtException e) {
+      if(!extendTime) {
+        throw new AuthorizationException(e.getMessage());
+      } else {
+        return generateTokenInfo(e.getClaims());
+      }
     }
   }
+
+  /**
+   * Generate token based on the given claims
+   * @param claims
+   * @return
+   */
+  private static JWToken generateTokenInfo(Claims claims) {
+
+    JWToken jwToken = new JWToken(
+            Long.parseLong(claims.get(JWT_USERID_CLAIM).toString()),
+            claims.get(JWT_FIRST_NAME_CLAIM).toString(),
+            claims.get(JWT_LAST_NAME_CLAIM).toString(),
+            claims.get(JWT_EMAIL_CLAIM).toString(),
+            (boolean) claims.get(JWT_ADMIN_CLAIM)
+    );
+    jwToken.setExpiration(claims.getExpiration());
+    jwToken.setIssuedAt(claims.getIssuedAt());
+
+    return jwToken;
+  }
+
 
   /**
    * Get the key in HS512
@@ -95,7 +119,29 @@ public class JWToken {
     return key;
   }
 
+  /**
+   * To check if a token is still renewable
+   * @param tokenInfo
+   * @param refreshExpiration
+   * @return
+   */
+  public static boolean isRenewable(JWToken tokenInfo, int refreshExpiration) {
+    // If token is still valid there is no reason to issue a new one
+    if(tokenInfo.getExpiration().compareTo(new Date()) > 0) {
+      return false;
+    }
 
+    // Calculating the refresh time limit
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(tokenInfo.getIssuedAt());
+    cal.add(Calendar.SECOND,refreshExpiration);
+
+    System.out.println("max refresh: " + cal.getTime());
+    System.out.println("current date: " + new Date());
+
+    // max refresh time should be greater than current time
+    return cal.getTime().compareTo(new Date()) > 0;
+  }
 
   public static String getJwtAttributeName() {
     return JWT_ATTRIBUTE_NAME;
@@ -140,5 +186,22 @@ public class JWToken {
 
   public String getEmail() {
     return email;
+  }
+
+
+  public void setIssuedAt(Date issuedAt) {
+    this.issuedAt = issuedAt;
+  }
+
+  public void setExpiration(Date expiration) {
+    this.expiration = expiration;
+  }
+
+  public Date getIssuedAt() {
+    return issuedAt;
+  }
+
+  public Date getExpiration() {
+    return expiration;
   }
 }
