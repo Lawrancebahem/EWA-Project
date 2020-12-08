@@ -28,6 +28,7 @@ import {ActivityDetailsComponent} from "./components/activitypages/activity-deta
 import {AdminComponent} from "./components/admin/admin.component";
 import {NavBarComponent} from "./components/nav-bar/nav-bar.component";
 import {RegisterComponent} from "./components/register/register.component";
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 @NgModule({
     declarations: [
@@ -49,6 +50,7 @@ import {RegisterComponent} from "./components/register/register.component";
         MyActivitiesComponent,
         ActivityDetailsComponent,
         AdminComponent,
+        ContactUsComponent,
     ],
     imports: [
         BrowserModule,
