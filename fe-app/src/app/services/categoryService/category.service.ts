@@ -1,14 +1,23 @@
 import { Injectable } from '@angular/core';
 import * as categories from  '../../json/categories.json';
+import {Category} from "../../models/category";
+import {Observable} from "rxjs";
+import {Activity} from "../../models/activity";
+import {environment} from "../../../environments/environment";
+import {shareReplay} from "rxjs/operators";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
+
   categoryArray: any = (categories as any).default
 
-  constructor() { }
+  constructor(private httpClient:HttpClient) { }
+
+
 
   findAll(){
     return this.categoryArray
@@ -20,6 +29,10 @@ export class CategoryService {
 
   findByTitle(categoryTitle){
     return this.categoryArray.filter( x => x.categoryTitle == categoryTitle)[0]
+  }
+
+  addNew(category: Category):Observable<Category> {
+   return this.httpClient.post<Category>(`${environment.apiUrl}/category/add-category-as-admin`, category).pipe(shareReplay(1));
   }
 
 }

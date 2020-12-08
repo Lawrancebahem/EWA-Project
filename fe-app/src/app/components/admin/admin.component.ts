@@ -7,6 +7,8 @@ import {shareReplay} from "rxjs/operators";
 import {User} from "../../models/user";
 // @ts-ignore
 import interests from "../../json/interests.json";
+import {Category} from "../../models/category";
+import {isNotNullOrUndefined} from "codelyzer/util/isNotNullOrUndefined";
 
 @Component({
     selector: 'app-admin',
@@ -15,8 +17,10 @@ import interests from "../../json/interests.json";
 })
 export class AdminComponent implements OnInit {
     @ViewChild('uploadedPicture') uploadedProfile: ElementRef;
+    @ViewChild('uploadedCategoryImage') uploadedCategoryImage: ElementRef;
     public userOverViewClicked: boolean;
     public activityOverview: boolean;
+    public categoryOverview: boolean;
     public title: string;
 
     public arrayInterests: { id, name, image }[] = interests;
@@ -38,6 +42,7 @@ export class AdminComponent implements OnInit {
         this.title = "Lijst van alle gebruikers:"
         this.userOverViewClicked = true;
         this.activityOverview = false;
+        this.categoryOverview = false;
         this.adminService.getAllUsers();
     }
 
@@ -45,7 +50,16 @@ export class AdminComponent implements OnInit {
         this.title = "Lijst van alle activiteiten:"
         this.userOverViewClicked = false;
         this.activityOverview = true;
+        this.categoryOverview = false;
         this.adminService.getAllActivities();
+    }
+
+    public onCategoryOverview() {
+        this.title = "Lijst van alle categorieën:"
+        this.userOverViewClicked =  false;
+        this.activityOverview = false;
+        this.categoryOverview = true;
+        this.adminService.getAllCategories();
     }
 
     /**
@@ -53,6 +67,10 @@ export class AdminComponent implements OnInit {
      * @param idActivity
      */
     deleteActivity(idActivity: any) {
+
+    }
+
+    deleteCategory(idCategory: any) {
 
     }
 
@@ -108,10 +126,31 @@ export class AdminComponent implements OnInit {
             imagePreview.setAttribute("src", data);
             console.log(data);
         })
-        //Close the modal after 1.5sec
+        //Close the modal after 2 sec
         setTimeout(function () {
             closeModal.click();
-        }, 1500)
+        }, 2000)
+    }
+
+    public addNewCategory(categoryTitle: string, description: string) {
+
+        const closeModal = document.getElementById("close-modalCategory");
+        const categoryPicture= this.uploadedCategoryImage.nativeElement.files[0];
+        const imagePreview = document.getElementById("image--category-preview").querySelector("#imageCategory")
+        this.convertImage.convertToBase64(categoryPicture, data => {
+            imagePreview.setAttribute("src", data);
+            console.log(data);
+            const category: Category = new Category();
+            category.name = categoryTitle;
+            category.description = description;
+
+            // Todo:
+            // category.image = data ? != null data: "";
+        })
+        // Close the modal after 1.5sec
+        setTimeout(function () {
+            closeModal.click();
+        }, 2000)
     }
 
 }

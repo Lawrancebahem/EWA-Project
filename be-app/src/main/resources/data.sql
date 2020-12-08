@@ -17,7 +17,6 @@ insert INTO "interest" values
 -- insert into "user" values (1000,true,CURRENT_DATE, 'lawrancebahem@gmail.com', 'lawrance', 0, 'Bahem', 'admin', '/assets/Images/picProfile.png');
 INSERT INTO "user"  VALUES (1052, false, '1999-05-04', 'tico@gmail.com', 'Tico', 0,false, 'Vermeer', 'admin', '/assets/Images/picProfile.png');
 INSERT INTO "user"  VALUES (1002, true, '1996-9-22', 'lawrance@gmail.com', 'Lawrance', 0,false , 'bahem', 'admin', '/assets/Images/picProfile.png');
-
 -- --
 -- --
 --
