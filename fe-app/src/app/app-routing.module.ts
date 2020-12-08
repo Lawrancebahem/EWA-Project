@@ -12,6 +12,7 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {MatchingPageComponent} from "./components/matching-page/matching-page.component";
 import {MyActivitiesComponent} from "./components/my-activities/my-activities.component";
 import {ActivityDetailsComponent} from "./components/activitypages/activity-details/activity-details.component";
+import {ContactUsComponent} from "./components/contact-us/contact-us.component";
 
 const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -30,7 +31,8 @@ const routes: Routes = [
     {path: 'admin', component: AdminComponent},
     {path: 'activityDetails', children:[
             {path: ':id', component: ActivityDetailsComponent}
-        ]}
+        ]},
+  {path: 'contactUs', component: ContactUsComponent}
 ];
 
 @NgModule({
