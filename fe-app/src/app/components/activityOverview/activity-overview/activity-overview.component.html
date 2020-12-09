@@ -18,8 +18,8 @@
 
         <h4>Categoriën:</h4>
         <div class="custom-control custom-checkbox" *ngFor="let category of categoryArray">
-            <input type="checkbox" class="custom-control-input" id="{{category}}">
-            <label class="custom-control-label" for="{{category}}">{{category}}</label>
+            <input type="checkbox" class="custom-control-input" id="{{category.id}}">
+            <label class="custom-control-label" for="{{category.id}}">{{category.categorytitle}}</label>
         </div>
         <button class="btn btn-primary" (click)="filterSearch()">Zoek</button>
 
@@ -30,7 +30,7 @@
         <!--        </div>-->
     </div>
 
-    <div class="activity col-2 mb-4" *ngFor="let activity of filteredActivityArray | filter: activitySearchText" routerLink="/activityDetails/{{activity.id}}">
+    <div class="activity col-2 mb-4" *ngFor="let activity of filteredActivityArray | filter: activitySearchText" routerLink="/activityDetails/{{activity.idActivity}}">
         <div class="card" id="{{activity.id}}">
             <img class="card-img-top" src="../../../../assets/Images/activityImage/{{activity.image}}"
                  alt="{{activity.activityTitle}}">

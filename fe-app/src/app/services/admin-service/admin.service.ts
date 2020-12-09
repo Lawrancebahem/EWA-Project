@@ -29,6 +29,7 @@ export class AdminService {
   public getAllActivities(){
     this.activityService.getAllActivities().subscribe((activities)=>{
       this.activityArray = activities ? activities.map((activity) => Activity.trueCopy(activity)):[];
+
     })
   }
 

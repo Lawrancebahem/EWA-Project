@@ -1,31 +1,31 @@
- import { Injectable } from '@angular/core';
- // @ts-ignore
- import *  as  activities from '../../json/activities.json';
- import {HttpClient} from "@angular/common/http";
- import {User} from "../../models/user";
- import {Observable} from "rxjs";
- import {environment} from "../../../environments/environment";
- import {shareReplay} from "rxjs/operators";
- import {Activity} from "../../models/activity";
+import {Injectable} from '@angular/core';
+// @ts-ignore
+import *  as  activities from '../../json/activities.json';
+import {HttpClient} from "@angular/common/http";
+import {User} from "../../models/user";
+import {Observable} from "rxjs";
+import {environment} from "../../../environments/environment";
+import {shareReplay} from "rxjs/operators";
+import {Activity} from "../../models/activity";
+import {Category} from "../../models/category";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ActivityService {
 
-  activityArray: any = (activities as any).default;
+    constructor(private httpClient: HttpClient) {
+    }
 
-  constructor(private httpClient:HttpClient) { }
+    findById(activityId): Observable<Activity> {
+        return this.httpClient.get<Activity>(`${environment.apiUrl}/activity/`+ activityId ).pipe(shareReplay(1))
+        }
 
-  findAll(){
-    return this.activityArray
-  }
+    public getAllActivities(): Observable<Activity[]> {
+        return this.httpClient.get<Activity[]>(`${environment.apiUrl}/activity/all`).pipe(shareReplay(1));
+    }
 
-  findById(activityId){
-    return this.activityArray.filter(x => x.id == activityId)[0];
-  }
-
-  public getAllActivities():Observable<Activity[]>{
-    return this.httpClient.get<Activity[]>(`${environment.apiUrl}/activity/all`).pipe(shareReplay(1));
-  }
+    public getAllCategories(): Observable<Category[]> {
+        return this.httpClient.get<Category[]>(`${environment.apiUrl}/activity/all`).pipe(shareReplay(1));
+    }
 }

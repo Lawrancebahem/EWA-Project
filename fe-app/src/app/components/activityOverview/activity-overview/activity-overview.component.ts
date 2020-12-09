@@ -3,6 +3,8 @@ import {Component, OnInit} from '@angular/core';
 import *  as  activities from '../../../json/activities.json';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {ActivityService} from "../../../services/activityService/activity.service";
+import {Activity} from "../../../models/activity";
+import {Category} from "../../../models/category";
 
 @Component({
     selector: 'app-activity-overview',
@@ -10,12 +12,12 @@ import {ActivityService} from "../../../services/activityService/activity.servic
     styleUrls: ['./activity-overview.component.css']
 })
 export class ActivityOverviewComponent implements OnInit {
-    activityArray: any = (activities as any).default;
-    categoryArray: Array<string> = [];
+    public activityArray:Activity[] = [];
+    categoryArray: Category[] = [];
     activitySearchText;
     categorySearch = [];
-    filteredActivityArray = this.activityArray;
     selectedActivity;
+    filteredActivityArray :Activity[] = [];
 
     constructor(
         private route: ActivatedRoute,
@@ -30,45 +32,45 @@ export class ActivityOverviewComponent implements OnInit {
         this.route.queryParams.subscribe(params => {
             this.selectedActivity = params['selectedActivity'];
         });
+        this.filterSearch();
     }
 
-    getAllActivities(){
-        this.activityArray = this.activityService.findAll()
+    public getAllActivities(){
+        this.activityService.getAllActivities().subscribe((activities)=>{
+            this.activityArray = activities ? activities.map((activity) => Activity.trueCopy(activity)):[];
+            this.filteredActivityArray = this.activityArray;
+        })
     }
 
     getAllCategories(): any {
-        for (let activity of this.activityArray) {
-            for (let i = 0; i < activity.categories.length; i++) {
-                if (!this.categoryArray.includes(activity.categories[i])) {
-                    this.categoryArray.push(activity.categories[i])
-                }
-            }
-        }
+        this.activityService.getAllCategories().subscribe((categories)=>{
+            this.categoryArray = categories ? categories.map((category) => Category.trueCopy(category)):[];
+        })
     }
 
-    addCategoryToSearch() {
-        this.categorySearch = [];
-
-        // Loop door alle category knoppen.
-        for (let i = 0; i < this.categoryArray.length; i++) {
-            let currentButton = document.getElementById(this.categoryArray[i])
-
-            // Check of de huidige knop is ingedrukt.
-            if (currentButton.getAttribute("aria-pressed") === "true") {
-                // Als de knop is ingedrukt wordt hij in een array gezet.
-                this.categorySearch.push(this.categoryArray[i])
-            }
-        }
-
-        for (let i = 0; i < this.activityArray.length; i++) {
-            for (let j = 0; j < this.categorySearch.length; j++) {
-                let currentCategory = this.categorySearch[j]
-                if (this.activityArray[i].categories.find(x => x === currentCategory) == false) {
-                    this.activityArray.splice(this.activityArray[i]);
-                }
-            }
-        }
-    }
+    // addCategoryToSearch() {
+    //     this.categorySearch = [];
+    //
+    //     // Loop door alle category knoppen.
+    //     for (let i = 0; i < this.categoryArray.length; i++) {
+    //         let currentButton = document.getElementById(this.categoryArray[i].id)
+    //
+    //         // Check of de huidige knop is ingedrukt.
+    //         if (currentButton.getAttribute("aria-pressed") === "true") {
+    //             // Als de knop is ingedrukt wordt hij in een array gezet.
+    //             this.categorySearch.push(this.categoryArray[i])
+    //         }
+    //     }
+    //
+    //     for (let i = 0; i < this.activityArray.length; i++) {
+    //         for (let j = 0; j < this.categorySearch.length; j++) {
+    //             let currentCategory = this.categorySearch[j]
+    //             if (this.activityArray[i].categories.find(x => x === currentCategory) == false) {
+    //                 this.activityArray.splice(this.activityArray[i]);
+    //             }
+    //         }
+    //     }
+    // }
 
     filterSearch() {
         // clear both arrays because a new search is done.
@@ -77,7 +79,7 @@ export class ActivityOverviewComponent implements OnInit {
 
         // Check every filter if checked.
         for (let category of this.categoryArray) {
-            let currentCategory = <HTMLInputElement>document.getElementById(category);
+            let currentCategory = <HTMLInputElement>document.getElementById(category.id);
             if (currentCategory.checked) {
                 this.categorySearch.push(category);
             }
@@ -92,18 +94,19 @@ export class ActivityOverviewComponent implements OnInit {
         for (let activity of this.activityArray) {
             for (let currentCategory of this.categorySearch) {
                 // If the activity includes more than one category only show it once.
-                if (activity.categories.includes(currentCategory)) {
-                    if (!this.filteredActivityArray.includes(activity)) {
-                        this.filteredActivityArray.push(activity);
-                    }
-                }
+                //TODO: fix with the database table ACTIVITY_CATEGORY
+                // if (activity.categories.includes(currentCategory)) {
+                //     if (!this.filteredActivityArray.includes(activity)) {
+                //         this.filteredActivityArray.push(activity);
+                //     }
+                // }
             }
         }
     }
 
     clearFilters() {
         for (let filter of this.categoryArray) {
-            let currentfilter = <HTMLInputElement>document.getElementById(filter);
+            let currentfilter = <HTMLInputElement>document.getElementById(filter.id);
             currentfilter.checked = false;
         }
         this.filterSearch();
