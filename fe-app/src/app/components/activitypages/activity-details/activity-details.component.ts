@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {ActivityService} from "../../../services/activityService/activity.service";
 import {Activity} from "../../../models/activity";
 import {SpeechServiceService} from "../../../services/speech-voice-service/speech-service.service";
 import {HttpClient} from "@angular/common/http";
+import {SessionService} from "../../../services/sessionService/session.service";
 import {environment} from "../../../../environments/environment";
 import {shareReplay} from "rxjs/operators";
-import {SessionService} from "../../../services/sessionService/session.service";
+import {body} from "ionicons/icons";
 
 @Component({
     selector: 'app-activity-details',
@@ -37,11 +38,13 @@ export class ActivityDetailsComponent implements OnInit {
         this.childParamsSubscription =
             this.activatedRoute.params.subscribe((params: Params) => {
                     this.setSelectedActivityId(params['id'] || -1);
-                    this.activityToShow = Activity.trueCopy(this.activityService.findById(this.selectedActivityId))
+                     this.activityService.findById(this.selectedActivityId).subscribe((response)=>{
+                         console.log(response);
+                         this.getAllReactions(this.selectedActivityId);
+                         this.activityToShow = Activity.trueCopy(response);
+                     })
                 }
             );
-
-        this.getAllReactions();
     }
 
     public setSelectedActivityId(param: any) {
@@ -71,8 +74,9 @@ export class ActivityDetailsComponent implements OnInit {
     /**
      * Get all reactions from the backend, and map the values into object array
      */
-    public getAllReactions() {
-        let response = this.httpClient.get<any[]>(`${environment.apiUrl}/reaction/all`).pipe(shareReplay(1));
+    public getAllReactions(id) {
+        let response = this.httpClient.get<any[]>(`${environment.apiUrl}/reaction/all/`+id)
+            .pipe(shareReplay(1));
 
         response.subscribe((reactions) => {
             this.reactionsArray = reactions.map(reaction => {

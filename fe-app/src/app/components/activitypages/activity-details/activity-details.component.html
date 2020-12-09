@@ -1,10 +1,10 @@
-<header id="header" style="background-image: linear-gradient(to bottom, rgba(220,220,220,0.7) 0%,rgba(220,220,220,0.7) 100%),
+<header  *ngIf="activityToShow != null" id="header" style="background-image: linear-gradient(to bottom, rgba(220,220,220,0.7) 0%,rgba(220,220,220,0.7) 100%),
     url('../../../../assets/Images/activityImage/{{activityToShow.image}}')">
     <h1>{{activityToShow.activityTitle}}</h1>
 </header>
 
 <!--Dit is -->
-<div class="container--grid">
+<div class="container--grid"  *ngIf="activityToShow != null">
 
     <div class="right-side">
         <div class="right-side-grid">

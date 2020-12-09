@@ -36,10 +36,15 @@ public class ReactionController {
     @Autowired
     private APIConfiguration api;
 
+//    @GetMapping("/all")
+//    public List<Object[]> getAllReactions(){
+//        return this.reactionRepositoryJpa.findReactionForAnActivity(idActivity);
+//    }
 
-    @GetMapping("/all")
-    public List<Object[]> getAllReactions(){
-        return this.reactionRepositoryJpa.findReactionForAnActivity();
+    @GetMapping("/all/{idActivity}")
+    public List<Object[]> getAllReactions(@PathVariable long idActivity){
+        System.out.println("THe user shit us " + idActivity);
+        return this.reactionRepositoryJpa.findReactionForAnActivity(idActivity);
     }
 
     @PostMapping("/new-reaction")
