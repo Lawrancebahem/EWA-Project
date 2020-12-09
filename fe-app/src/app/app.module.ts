@@ -29,6 +29,9 @@ import {AdminComponent} from "./components/admin/admin.component";
 import {NavBarComponent} from "./components/nav-bar/nav-bar.component";
 import {RegisterComponent} from "./components/register/register.component";
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { ActivityEditComponent } from './components/admin/activity-admin/activitiy-edit/activity-edit.component';
+import { CategoryEditComponent } from './components/admin/category-admin/category-edit/category-edit.component';
+import { UserOverviewComponent } from './components/admin/user-admin/user-overview/user-overview.component';
 
 @NgModule({
     declarations: [
@@ -51,6 +54,9 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
         ActivityDetailsComponent,
         AdminComponent,
         ContactUsComponent,
+        ActivityEditComponent,
+        CategoryEditComponent,
+        UserOverviewComponent,
     ],
     imports: [
         BrowserModule,

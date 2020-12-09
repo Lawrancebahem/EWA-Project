@@ -1,0 +1,78 @@
+<!-- dit is category tabel-->
+<!--Todo zit dit er straks bij => && adminService.categoryArray.length > 0-->
+<div>
+    <button data-toggle="modal" data-target="#myModalCategory" class="button--primary p-1 m-2">Voeg een nieuwe categorie
+    </button>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Titel</th>
+            <th>Omschrijving</th>
+            <th>Foto</th>
+            <th>Verwijderen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let category of adminService.categoryArray">
+            <td>{{category.idCategory}}</td>
+            <td>{{category.name}}</td>
+            <td>{{category.description}}</td>
+            <td>{{category.image}}</td>
+            <td><img src="assets/Images/landscape.jpeg" class="default-picture p0 m-0"></td>
+            <td>
+                <!--                Todo delete funtie maken-->
+                <mat-icon (click)="deleteCategory(category.idCategory)" class="icon-size">delete</mat-icon>
+            </td>
+        <tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<!--modal to add new category-->
+<div class="modal fade" id="myModalCategory">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+
+            <div class="image-preview p-5" id="image--category-preview">
+                <img src="assets/Images/landscape.jpeg" id="imageCategory" class="default-picture">
+            </div>
+            <label class="input-group-text m-1">Upload activiteit foto (verplicht)
+                <input class="m-4" type="file" #uploadedCategoryImage>
+            </label>
+
+            <!--            title activity-->
+            <div class="input-group p-1">
+                <div class="input-group-append">
+                    <label class="input-group-text" for="titleInput">Title</label>
+                </div>
+                <input #titleInputCategory type="text" class="form-control" id="titleInput" placeholder="Titel" aria-label="Titel"
+                       aria-describedby="basic-addon1">
+            </div>
+
+            <div class="form-group p1">
+                <label class="input-group-text" for="descriptionCategory">Omschrijving:</label>
+                <textarea class="form-control" placeholder="omschrijf hier..." id="descriptionCategory" #descriptionCategory
+                          rows="3"></textarea>
+            </div>
+
+            <!--            Todo functie afmaken-->
+            <div class="modal-footer p-0">
+                <button (click)="addNewCategory(titleInputCategory.value, descriptionCategory.value)" id="add-modalCategory" type="button" class="button--primary">toevoegen
+                </button>
+
+                <button id="close-modalCategory" type="button" class="button--primary" data-dismiss="modal">Sluiten</button>
+            </div>
+
+            <!--            <div id="" class="alert alert-success alert-dismissible fade">-->
+            <!--                <strong>Success!</strong>The activity has been added successfully-->
+            <!--            </div>-->
+        </div>
+    </div>
+</div>
