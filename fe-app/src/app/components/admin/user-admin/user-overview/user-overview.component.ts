@@ -33,10 +33,10 @@ export class UserOverviewComponent implements OnInit {
     let response = this.httpClient.get(`${environment.apiUrl}/user/block/` + email + "/").pipe(shareReplay(1));
     response.subscribe((response) => {
       console.log(response);
+      this.adminService.userArray.find(user => user.email == email).blocked = true;
     }, error => {
       console.log(error);
     })
-    this.adminService.userArray.find(user => user.email == email).blocked = true;
   }
 
 
@@ -48,10 +48,10 @@ export class UserOverviewComponent implements OnInit {
     let response = this.httpClient.get(`${environment.apiUrl}/user/unblock/` + email + "/").pipe(shareReplay(1));
     response.subscribe((response) => {
       console.log(response);
+      this.adminService.userArray.find(user => user.email == email).blocked = false;
     }, error => {
       console.log(error);
     })
-    this.adminService.userArray.find(user => user.email == email).blocked = false;
   }
 
   /**
@@ -68,11 +68,22 @@ export class UserOverviewComponent implements OnInit {
    */
   makeAnAdmin(email: string) {
     let response = this.httpClient.get(`${environment.apiUrl}/user/make-admin/` + email + "/").pipe(shareReplay(1));
-
     response.subscribe((response)=>{
       console.log(response);
     },error => {
       console.log(error);
     })
+    this.adminService.userArray.find(user => user.email == email).admin = true;
+
+  }
+
+  revokeAdmin(email: string) {
+    let response = this.httpClient.get(`${environment.apiUrl}/user/make-not-admin/` + email + "/").pipe(shareReplay(1));
+    response.subscribe((response)=>{
+      console.log(response);
+    },error => {
+      console.log(error);
+    })
+    this.adminService.userArray.find(user => user.email == email).admin = false;
   }
 }

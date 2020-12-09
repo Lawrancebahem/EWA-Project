@@ -167,4 +167,31 @@ public class UserController {
         return true;
     }
 
+
+    /**
+     * to make a user as an admin
+     * @param email
+     * @return
+     */
+    @GetMapping(value = "/make-admin/{email}/", produces = "application/json")
+    public boolean makeUserAsAnAdmin(@PathVariable String email){
+        User foundUser = this.userRepositoryJpa.findByEmail(email);
+        foundUser.setAdmin(true);
+        this.userRepositoryJpa.saveOrUpdate(foundUser);
+        return true;
+    }
+
+    /**
+     * to unblock a user
+     * @param email
+     * @return
+     */
+    @GetMapping(value = "/make-not-admin/{email}/", produces = "application/json")
+    public boolean makeUserNotAdmin(@PathVariable String email){
+        User foundUser = this.userRepositoryJpa.findByEmail(email);
+        foundUser.setAdmin(false);
+        this.userRepositoryJpa.saveOrUpdate(foundUser);
+        return true;
+    }
+
 }
