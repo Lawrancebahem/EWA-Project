@@ -16,4 +16,14 @@ public class ReactionRepositoryJpa extends AbstractEntityRepositoryJpa<Reaction>
         super(Reaction.class);
     }
 
+
+
+    public List<Object[]> findReactionForAnActivity(){
+        return this.em.createQuery("select r.idReaction," +
+                " r.message," +
+                " r.activity.idActivity," +
+                " u.firstName from Reaction r " +
+                "JOIN User u  ON r.user.id = u.id")
+                .getResultList();
+    }
 }

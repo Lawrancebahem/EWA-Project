@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
         let alert = document.getElementById("alert");
         this.authenticationService.login(login).subscribe(response => {
 
+            console.log(response);
+
             this.authenticationService.loggedInUser = User.makeTrueCopy(response.body);
             this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
 

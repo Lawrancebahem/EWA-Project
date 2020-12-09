@@ -71,17 +71,6 @@ public class Activity implements Identifiable {
     }
 
 
-    /**
-     * Getters and Setters
-     */
-    public long getIdActivity() {
-        return idActivity;
-    }
-
-    public void setIdActivity(long idActivity) {
-        this.idActivity = idActivity;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -122,13 +111,45 @@ public class Activity implements Identifiable {
         this.show = show;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<Interest> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(List<Interest> interests) {
+        this.interests = interests;
+    }
+
+    public List<Reaction> getReactions() {
+        return reactions;
+    }
+
+    public void setReactions(List<Reaction> reactions) {
+        this.reactions = reactions;
+    }
+
     @Override
     public long getId() {
-        return 0;
+        return this.idActivity;
     }
 
     @Override
     public void setId(long id) {
-
+        this.idActivity  = id;
     }
 }

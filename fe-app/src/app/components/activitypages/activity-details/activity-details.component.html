@@ -22,16 +22,16 @@
     <div class="left-side pb-5">
         <div class="left-sid-grid">
             <div class="comment-box">
-                <textarea class="comment-box-input" placeholder="Typ hier uw reactie..."></textarea>
+                <textarea #textReaction id="reaction-activity" class="comment-box-input" placeholder="Typ hier uw reactie..."></textarea>
                 <button class="button button--primary">Voeg toe aan mijn activiteiten</button>
-                <button class="button button--primary ml-4">Plaats reactie</button>
+                <button (click)="addNewReaction(selectedActivityId, textReaction.value)" class="button button--primary ml-4">Plaats reactie</button>
 
             </div>
 
             <div class="user-comments-box">
                 <h2 class="user-comments-box-title">Reacties:</h2>
-                <p *ngFor="let reaction of activityToShow.reactions">
-                    {{reaction.name}}: {{reaction.message}}
+                <p *ngFor="let reaction of reactionsArray">
+                    {{reaction.userName}}: {{reaction.textReaction}}
                 </p>
             </div>
         </div>

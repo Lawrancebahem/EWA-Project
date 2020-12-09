@@ -81,6 +81,7 @@ public class User implements Identifiable, Serializable {
     private String lastName;
     @JsonSerialize(using = CustomDateSerializer.class)
     private LocalDate birthDate;
+    @JsonIgnoreProperties("user")
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;
     @Column(name = "PROFILE_PICTURE", columnDefinition = "text")
@@ -246,6 +247,24 @@ public class User implements Identifiable, Serializable {
     public void setBlocked(final boolean blocked) {
         isBlocked = blocked;
     }
+
+
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
+
+    public List<Reaction> getReactions() {
+        return reactions;
+    }
+
+    public void setReactions(List<Reaction> reactions) {
+        this.reactions = reactions;
+    }
+
     public enum Gender {
         MAN,
         WOMAN,
