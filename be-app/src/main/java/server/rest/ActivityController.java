@@ -36,6 +36,13 @@ public class ActivityController {
     }
 
 
+
+    @GetMapping("/{id}")
+    public Activity getById(@PathVariable long id){
+        return activityRepositoryJpa.findById(id);
+    }
+
+
     @PostMapping("/add-acitivity-as-user")
     public void addNewActivity(@RequestBody Activity activity){
         activityRepositoryJpa.saveOrUpdate(activity);
