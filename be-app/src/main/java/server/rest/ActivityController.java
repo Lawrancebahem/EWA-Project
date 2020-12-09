@@ -24,6 +24,10 @@ public class ActivityController {
         return this.activityRepositoryJpa.findAll();
     }
 
+    @GetMapping("/{id}")
+    public List<Activity> getById(@PathVariable long id){ return (List<Activity>)activityRepositoryJpa.findById(id);
+    }
+
 
     @PostMapping("/add-acitivity-as-user")
     public void addNewActivity(@RequestBody Activity activity){

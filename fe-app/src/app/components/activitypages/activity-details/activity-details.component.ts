@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {ActivityService} from "../../../services/activityService/activity.service";
@@ -6,36 +6,38 @@ import {Activity} from "../../../models/activity";
 import {SpeechServiceService} from "../../../services/speech-voice-service/speech-service.service";
 
 @Component({
-  selector: 'app-activity-details',
-  templateUrl: './activity-details.component.html',
-  styleUrls: ['./activity-details.component.css']
+    selector: 'app-activity-details',
+    templateUrl: './activity-details.component.html',
+    styleUrls: ['./activity-details.component.css']
 })
 export class ActivityDetailsComponent implements OnInit {
 
-  private selectedActivityId;
-  activityToShow
+    private selectedActivityId;
+    activityToShow
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private router: Router,
-              private activityService: ActivityService,
-              public speechRecognition:SpeechServiceService) {
-  }
+    constructor(private activatedRoute: ActivatedRoute,
+                private router: Router,
+                private activityService: ActivityService,
+                public speechRecognition: SpeechServiceService) {
+    }
 
-  private childParamsSubscription: Subscription = null;
+    private childParamsSubscription: Subscription = null;
 
 
-  ngOnInit(): void {
-    Object.assign(new Activity(), event);
+    ngOnInit(): void {
+        Object.assign(new Activity(), event);
+        this.childParamsSubscription =
+            this.activatedRoute.params.subscribe((params: Params) => {
+                    this.setSelectedActivityId(params['id'] || -1);
+                    this.activityToShow = this.activityService.findById(this.selectedActivityId)
+                        .subscribe((activity) => {
+                            this.activityToShow =  Activity.trueCopy(activity);
+                        })
+                }
+            );
+    }
 
-    this.childParamsSubscription =
-        this.activatedRoute.params.subscribe((params: Params) => {
-              this.setSelectedActivityId(params['id'] || -1);
-              this.activityToShow = Activity.trueCopy(this.activityService.findById(this.selectedActivityId))
-            }
-        );
-  }
-
-  setSelectedActivityId(param: any) {
-    this.selectedActivityId = param;
-  }
+    setSelectedActivityId(param: any) {
+        this.selectedActivityId = param;
+    }
 }

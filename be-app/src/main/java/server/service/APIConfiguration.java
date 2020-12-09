@@ -6,7 +6,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import server.exception.AuthorizationException;
 import server.utilities.JWToken;
 
 import javax.servlet.http.HttpServletRequest;
@@ -62,7 +61,7 @@ public class APIConfiguration implements WebMvcConfigurer {
                 .allowedHeaders(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE)
                 .exposedHeaders(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE)
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedOrigins("http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com");
+                .allowedOrigins("http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com", "http://localhost:8080");
     }
 
 }
