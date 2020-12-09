@@ -10,15 +10,13 @@
         <module name="be-app" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="app" target="15" />
-      <module name="be-app" target="14" />
+    <bytecodeTargetLevel target="14">
+      <module name="be-app" target="1.8" />
       <module name="server" target="15" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="app" options="-parameters" />
       <module name="be-app" options="-parameters" />
       <module name="server" options="-parameters" />
     </option>

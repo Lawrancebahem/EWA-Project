@@ -22,14 +22,16 @@ public class Category implements Identifiable {
     private String name;
     @Column(name = "categoryImage", columnDefinition = "text")
     private String image;
+    private String description;
 
     @ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
     List<Activity> activities;
 
-    public Category(long idCategory, String name, String image) {
+    public Category(long idCategory, String name, String image, String description) {
         this.idCategory = idCategory;
         this.name = name;
         this.image = image;
+        this.description = description;
     }
 
     public Category() {
@@ -66,13 +68,21 @@ public class Category implements Identifiable {
         this.image = image;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public long getId() {
-        return 0;
+        return this.idCategory;
     }
 
     @Override
     public void setId(long id) {
-
+        this.idCategory = id;
     }
 }

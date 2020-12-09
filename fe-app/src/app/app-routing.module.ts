@@ -12,6 +12,10 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {MatchingPageComponent} from "./components/matching-page/matching-page.component";
 import {MyActivitiesComponent} from "./components/my-activities/my-activities.component";
 import {ActivityDetailsComponent} from "./components/activitypages/activity-details/activity-details.component";
+import {ContactUsComponent} from "./components/contact-us/contact-us.component";
+import {ActivityEditComponent} from "./components/admin/activity-admin/activitiy-edit/activity-edit.component";
+import {UserOverviewComponent} from "./components/admin/user-admin/user-overview/user-overview.component";
+import {CategoryEditComponent} from "./components/admin/category-admin/category-edit/category-edit.component";
 
 const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -26,11 +30,19 @@ const routes: Routes = [
     {path: 'profile', component: ProfileComponent},
     {path: 'aboutUs', component: AboutUsPageComponent},
     {path: 'matching', component: MatchingPageComponent},
-    {path: 'myAcitivities', component: MyActivitiesComponent},
-    {path: 'admin', component: AdminComponent},
+    {path: 'myActivities', component: MyActivitiesComponent},
+    {path: 'admin', component: AdminComponent,
+     children:[
+         {path: 'activity-edit', component: ActivityEditComponent,
+         children:[{path:":id", component:ActivityEditComponent}]},
+
+         {path: 'user-edit', component: UserOverviewComponent},
+         {path: 'category-edit', component: CategoryEditComponent}
+     ]},
     {path: 'activityDetails', children:[
             {path: ':id', component: ActivityDetailsComponent}
-        ]}
+        ]},
+  {path: 'contactUs', component: ContactUsComponent}
 ];
 
 @NgModule({

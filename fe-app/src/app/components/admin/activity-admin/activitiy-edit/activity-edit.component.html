@@ -1,0 +1,108 @@
+<div *ngIf="adminService.activityArray.length > 0">
+    <button id="openModal" data-toggle="modal" data-target="#myModal" class="button--primary p-1 m-2">voeg een nieuwe activiteit
+    </button>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Titel</th>
+            <th>Omschrijving</th>
+            <th>locatie</th>
+            <th>Foto</th>
+            <th>Verwijderen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let activity of adminService.activityArray" style="cursor: pointer" (click)="editActivity(activity.idActivity)">
+            <td>{{activity.idActivity}}</td>
+            <td>{{activity.title}}</td>
+            <td>{{activity.description}}</td>
+            <td>{{activity.location}}</td>
+            <td><img src="assets/Images/landscape.jpeg" class="default-picture p0 m-0"></td>
+            <td>
+                <mat-icon (click)="deleteActivity(activity.idActivity)" class="icon-size">delete</mat-icon>
+            </td>
+        <tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!--modal to add new activity-->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+
+            <div class="image-preview p-5" id="image--activity-preview">
+                <img src="assets/Images/landscape.jpeg" id="image-preview" class="default-picture">
+            </div>
+            <label class="input-group-text m-1">Upload activiteit foto (verplicht)
+                <input id="" class="m-4" type="file" #uploadedPicture>
+            </label>
+
+            <!--            title activity-->
+            <div class="input-group p-1">
+                <div class="input-group-append">
+                    <label class="input-group-text" for="inputGroupSelect02">Title</label>
+                </div>
+                <input  id="title-activity"  type="text" class="form-control" placeholder="Titel" aria-label="Titel"
+                       aria-describedby="basic-addon1" #titleActivity>
+            </div>
+
+            <!--            location activity-->
+            <div class="input-group p-1">
+                <div class="input-group-append ">
+                    <label class="input-group-text" for="inputGroupSelect02">Locatie</label>
+                </div>
+                <input id="location-activity"  type="text" class="form-control" placeholder="Locatie" aria-label="Locatie"
+                       aria-describedby="basic-addon1" #locationActivity>
+            </div>
+
+
+            <!--            category field-->
+            <div class="input-group p-1">
+                <div class="input-group-append">
+                    <label class="input-group-text " for="inputGroupSelect02">Categorie</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect02">
+                    <option selected>Kies...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+
+            <!--            interests field-->
+            <div class="form-group">
+                <label class="input-group-text " for="inputGroupSelect02">Interesses</label>
+            </div>
+            <div id="interests-section" class="grid-interests">
+                <div class="custom-control custom-checkbox " *ngFor="let interest of arrayInterests">
+                    <input name="interest" type="checkbox" value="{{interest.id}}" class="custom-control-input" id="{{interest.id}}">
+                    <label class="custom-control-label" for="{{interest.id}}">{{interest.name}}</label>
+                </div>
+            </div>
+
+            <div class="form-group p1">
+                <label class="input-group-text" for="description-activity">Omschrijving:</label>
+                <textarea  class="form-control" placeholder="omschrijf hier..." id="description-activity"
+                          rows="3" #descriptionActivity></textarea>
+            </div>
+
+            <div class="modal-footer p-0">
+                <button (click)="addNewActivity()" id="add-modal" type="button" class="button--primary">toevoegen
+                </button>
+
+                <button id="close-modal" type="button" class="button--primary" data-dismiss="modal">sluiten</button>
+            </div>
+
+            <div id="success-message" class="alert alert-success alert-dismissible fade">
+                <strong>Success!</strong>De actviteit is toegvoegd.
+            </div>
+        </div>
+    </div>
+</div>
