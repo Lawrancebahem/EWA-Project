@@ -1,7 +1,7 @@
 
 export class Activity {
 
-    private _idActivity;
+    private _id;
     private _title;
     private _description;
     private _image;
@@ -13,18 +13,17 @@ export class Activity {
     }
 
 
-    get idActivity() {
-        return this._idActivity;
+    get id() {
+        return this._id;
     }
 
-    set idActivity(value) {
-        this._idActivity = value;
+    set id(value) {
+        this._id = value;
     }
 
     get title() {
         return this._title;
     }
-
 
     set title(value) {
         this._title = value;

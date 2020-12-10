@@ -6,6 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import interests from "../../../../json/interests.json";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BsModalRef} from "ngx-bootstrap/modal";
+import {ActivityService} from "../../../../services/activityService/activity.service";
 
 @Component({
     selector: 'app-activitiy-edit',
@@ -21,34 +22,22 @@ export class ActivityEditComponent implements OnInit {
     public arrayInterests: { id, name, image }[] = interests;
 
     constructor(public adminService: AdminService,
-                private convertImage: ImageBase64Service
+                private convertImage: ImageBase64Service,
+                private activityService: ActivityService
     ) {
     }
 
     ngOnInit(): void {
         this.adminService.getAllActivities();
-    }
+        this.adminService.getAllCategories();  // to make sure that the array of category is loaded
 
 
-    /**
-     * This method is to edit the activity
-     * @param id
-     */
-    editActivity(id: number) {
-        const closeModal = document.getElementById("myModal"); // to close the modal
-        const openModal = document.getElementById("openModal"); // trigger the modal
-        const imagePreview = document.getElementById("image--activity-preview").querySelector("#image-preview")
+        console.log(this.adminService.activityArray)
 
-        const clickedActivity = this.adminService.activityArray.find(activity => activity.idActivity == id);
-
-        setTimeout(() => { // open it
-            openModal.click();
-            this.titleActivity.nativeElement.value = clickedActivity.title;
-            this.locationActivity.nativeElement.value = clickedActivity.location;
-            this.descriptionActivity.nativeElement.value = clickedActivity.description;
-
-        },)
-
+        setTimeout(() => {
+                console.log(this.adminService.activityArray)
+            },
+            2000)
     }
 
 
@@ -78,6 +67,40 @@ export class ActivityEditComponent implements OnInit {
 
 
     /**
+     * This method is to edit the activity
+     * @param id
+     */
+    editActivity(id: number) {
+        const closeModal = document.getElementById("myModal"); // to close the modal
+        const openModal = document.getElementById("openModal"); // trigger the modal
+        const imagePreview = document.getElementById("image--activity-preview").querySelector("#image-preview")
+
+        const clickedActivity = this.adminService.activityArray.find(activity => activity.id == id); // get the clicked activity information
+
+        //Get the interests of this activity
+            this.activityService.getActivityInterest(clickedActivity.id).subscribe((interests)=>{
+                //loop thorough the interests, check these interests in the fields of modal
+                for (let i = 0; i < interests.length ; i++) {
+                    let interestField = <HTMLInputElement>document.getElementById(interests[i]+"");
+                    interestField.checked = true;
+                }
+        },error => {
+            console.log(error);
+        });
+
+        this.titleActivity.nativeElement.value = clickedActivity.title;
+        this.locationActivity.nativeElement.value = clickedActivity.location;
+        this.descriptionActivity.nativeElement.value = clickedActivity.description;
+        imagePreview.setAttribute("src", clickedActivity.image);
+
+
+        setTimeout(() => { // to make sure that the modal is open
+            openModal.click();
+        },)
+
+    }
+
+    /**
      * To clear the activity's modal fields
      * @private
      */
@@ -95,7 +118,7 @@ export class ActivityEditComponent implements OnInit {
 
         for (let i = 0; i < arrayOfCheckInterest.length; i++) {
             // @ts-ignore
-          arrayOfCheckInterest[i].checked = false; // uncheck the selected interests
+            arrayOfCheckInterest[i].checked = false; // uncheck the selected interests
         }
     }
 

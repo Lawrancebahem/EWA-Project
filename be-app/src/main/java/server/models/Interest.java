@@ -14,12 +14,17 @@ import java.util.List;
 //                })}
 //)
 //
+
 @NamedNativeQueries({
 
         @NamedNativeQuery(
                 name = "GetUserInterests",
                 query = "SELECT ui.INTEREST_ID  FROM USER_INTEREST ui WHERE ui.id =:userId"
-        )
+        ),
+        @NamedNativeQuery(
+                name = "GetActivityInterests",
+                query = "SELECT ai.interestid  FROM INTERESTS_ACTIVITY ai WHERE ai.IDACTIVITY =:idActivity"
+        ),
 })
 public class Interest implements Identifiable {
 

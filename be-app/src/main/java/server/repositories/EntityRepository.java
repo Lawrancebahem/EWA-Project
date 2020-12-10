@@ -38,4 +38,7 @@ public interface EntityRepository<T extends Identifiable> {
         return null;
     }
 
+    default int[]getActivityInterests(long idActivity){
+        return null;
+    }
 }

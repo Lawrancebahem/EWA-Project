@@ -45,7 +45,7 @@ export class CategoryEditComponent implements OnInit {
       let objectCategory = {name: category.name, description:category.description, image: category.image};
       // Add the category to the list
       this.adminService.addNewCategory(objectCategory).subscribe((response) => {
-        console.log(response);
+
 
       },error => {
         console.log(error);
@@ -57,6 +57,14 @@ export class CategoryEditComponent implements OnInit {
       this.clearFieldsModal();
 
     }, 2000)
+  }
+
+
+  public editCategory(){
+
+    this.titleInputCategory.nativeElement.value = "";
+    this.descriptionCategory.nativeElement.value =  "";
+    this.uploadedCategoryImage.nativeElement.value = "";
   }
 
 

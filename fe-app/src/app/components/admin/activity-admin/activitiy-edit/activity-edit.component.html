@@ -13,14 +13,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let activity of adminService.activityArray" style="cursor: pointer" (click)="editActivity(activity.idActivity)">
-            <td>{{activity.idActivity}}</td>
+        <tr *ngFor="let activity of adminService.activityArray" style="cursor: pointer" (click)="editActivity(activity.id)">
+            <td>{{activity.id}}</td>
             <td>{{activity.title}}</td>
             <td>{{activity.description}}</td>
             <td>{{activity.location}}</td>
             <td><img src="assets/Images/landscape.jpeg" class="default-picture p0 m-0"></td>
             <td>
-                <mat-icon (click)="deleteActivity(activity.idActivity)" class="icon-size">delete</mat-icon>
+                <mat-icon (click)="deleteActivity(activity.id)" class="icon-size">delete</mat-icon>
             </td>
         <tr>
         </tbody>
@@ -47,7 +47,7 @@
             <!--            title activity-->
             <div class="input-group p-1">
                 <div class="input-group-append">
-                    <label class="input-group-text" for="inputGroupSelect02">Title</label>
+                    <label class="input-group-text">Title</label>
                 </div>
                 <input  id="title-activity"  type="text" class="form-control" placeholder="Titel" aria-label="Titel"
                        aria-describedby="basic-addon1" #titleActivity>
@@ -56,31 +56,43 @@
             <!--            location activity-->
             <div class="input-group p-1">
                 <div class="input-group-append ">
-                    <label class="input-group-text" for="inputGroupSelect02">Locatie</label>
+                    <label class="input-group-text">Locatie</label>
                 </div>
                 <input id="location-activity"  type="text" class="form-control" placeholder="Locatie" aria-label="Locatie"
                        aria-describedby="basic-addon1" #locationActivity>
             </div>
 
 
-            <!--            category field-->
-            <div class="input-group p-1">
-                <div class="input-group-append">
-                    <label class="input-group-text " for="inputGroupSelect02">Categorie</label>
-                </div>
-                <select class="custom-select" id="inputGroupSelect02">
-                    <option selected>Kies...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+<!--            &lt;!&ndash;            category field&ndash;&gt;-->
+<!--            <div class="input-group p-1">-->
+<!--                <div class="input-group-append">-->
+<!--                    <label class="input-group-text " for="inputGroupSelect02">Categorie</label>-->
+<!--                </div>-->
+<!--                <select *ngIf="adminService.categoryArray.length > 0" class="custom-select" id="inputGroupSelect02">-->
+<!--                    <option selected>Kies...</option>-->
+<!--                    <option id="{{category.idCategory}}" *ngFor="let category of adminService.categoryArray" value="{{category.idCategory}}">-->
+<!--                        {{category.name}}</option>-->
+<!--                </select>-->
+<!--            </div>-->
+
+
+            <!--            Category field-->
+            <div class="form-group">
+                <label class="input-group-text ">Categorieen</label>
             </div>
+            <div id="category-section" class="grid-three-sections">
+                <div class="custom-control custom-checkbox " *ngFor="let category of adminService.categoryArray">
+                    <input name="interest" type="checkbox" value="{{category.idCategory}}" class="custom-control-input" id="{{category.idCategory}}">
+                    <label class="custom-control-label" for="{{category.idCategory}}">{{category.name}}</label>
+                </div>
+            </div>
+
 
             <!--            interests field-->
             <div class="form-group">
-                <label class="input-group-text " for="inputGroupSelect02">Interesses</label>
+                <label class="input-group-text ">Interesses</label>
             </div>
-            <div id="interests-section" class="grid-interests">
+            <div id="interests-section" class="grid-three-sections">
                 <div class="custom-control custom-checkbox " *ngFor="let interest of arrayInterests">
                     <input name="interest" type="checkbox" value="{{interest.id}}" class="custom-control-input" id="{{interest.id}}">
                     <label class="custom-control-label" for="{{interest.id}}">{{interest.name}}</label>
