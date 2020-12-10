@@ -32,7 +32,7 @@
 
     <div class="activity col-2 mb-4" *ngFor="let activity of filteredActivityArray | filter: activitySearchText" routerLink="/activityDetails/{{activity.id}}">
         <div class="card" id="{{activity.id}}">
-            <img class="card-img-top" src="../../../../assets/Images/activityImage/{{activity.image}}"
+            <img class="card-img-top" src="{{activity.image}}"
                  alt="{{activity.title}}">
             <h4 class="card-title">
                 {{ activity.title}}

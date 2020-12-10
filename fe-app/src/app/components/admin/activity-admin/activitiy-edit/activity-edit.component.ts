@@ -27,6 +27,7 @@ export class ActivityEditComponent implements OnInit {
 
     private selectedActivityId:number = 0;
 
+
     constructor(public adminService: AdminService,
                 private convertImage: ImageBase64Service,
                 private activityService: ActivityService
@@ -69,11 +70,18 @@ export class ActivityEditComponent implements OnInit {
         });
 
         this.convertImage.convertToBase64(activityPicture, image => { // convert the image
-            imagePreview.setAttribute("src", image);
+
             let title = this.titleActivity.nativeElement.value
             let location = this.locationActivity.nativeElement.value
             let description = this.descriptionActivity.nativeElement.value
 
+            let selectedActivity = this.getSelectedActivity();
+            console.log(selectedActivity);
+            if (selectedActivity != null){
+                image =  activityPicture == undefined ? selectedActivity.image : image; // if there is no image uploaded, get the original picture of this activity
+            }
+
+            imagePreview.setAttribute("src", image);
             let newActivity = {id: this.selectedActivityId,title: title, description: description, image: image, location: location, show: true};
 
             //Add the activity
@@ -114,7 +122,6 @@ export class ActivityEditComponent implements OnInit {
     editActivity(id: number) {
         this.selectedActivityId = id;
 
-        console.log(this.selectedActivityId + " from edit")
         // const closeModal = document.getElementById("myModal"); // to close the modal
         const openModal = document.getElementById("openModal"); // trigger the modal
         const imagePreview = document.getElementById("image--activity-preview").querySelector("#image-preview")
@@ -205,13 +212,18 @@ export class ActivityEditComponent implements OnInit {
 
 
     updateArray(id, activity){
-        let foundScooter = this.adminService.activityArray.find(activity => activity.id == id);
-        if(foundScooter != null){
-            let index = this.adminService.activityArray.indexOf(foundScooter);
+        let foundActivity = this.adminService.activityArray.find(activity => activity.id == id);
+        if(foundActivity != null){
+            let index = this.adminService.activityArray.indexOf(foundActivity);
             this.adminService.activityArray.splice(index, 1, activity);
         } else{
             this.adminService.activityArray.push(activity);
         }
+
+    }
+
+    getSelectedActivity(){
+        return this.adminService.activityArray.find(activity => activity.id == this.selectedActivityId);
 
     }
 }
