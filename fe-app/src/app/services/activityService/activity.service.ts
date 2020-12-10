@@ -26,6 +26,6 @@ export class ActivityService {
     }
 
     public getAllCategories(): Observable<Category[]> {
-        return this.httpClient.get<Category[]>(`${environment.apiUrl}/activity/all`).pipe(shareReplay(1));
+        return this.httpClient.get<Category[]>(`${environment.apiUrl}/category/all`).pipe(shareReplay(1));
     }
 }
