@@ -69,4 +69,21 @@ public class Interest implements Identifiable {
     public void setId(long id) {
         this.interestId = id;
     }
+
+
+    public long getInterestId() {
+        return interestId;
+    }
+
+    public void setInterestId(long interestId) {
+        this.interestId = interestId;
+    }
+
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
 }

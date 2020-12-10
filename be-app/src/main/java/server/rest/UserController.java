@@ -10,14 +10,12 @@ import server.exception.AuthorizationException;
 import server.exception.PreConditionalFailed;
 import server.exception.ResourceNotFound;
 import server.models.Interest;
-import server.models.Login;
 import server.models.User;
 import server.repositories.EntityRepository;
 import server.service.APIConfiguration;
 import server.utilities.JWToken;
 
 import javax.naming.AuthenticationException;
-import javax.security.auth.login.AccountLockedException;
 import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.util.List;
@@ -40,7 +38,6 @@ public class UserController {
 
     /**
      * Get all users
-     *
      * @return
      */
 //    @JsonView(User.ShowInfoAdmin.class)
@@ -67,8 +64,6 @@ public class UserController {
         User user = this.userRepositoryJpa.findById(userId);
         if (user == null) throw new ResourceNotFound("De gebruiker is gevonden");
         return this.userRepositoryJpa.getClonedObject(user);
-
-
     }
 
     /**
@@ -193,5 +188,4 @@ public class UserController {
         this.userRepositoryJpa.saveOrUpdate(foundUser);
         return true;
     }
-
 }

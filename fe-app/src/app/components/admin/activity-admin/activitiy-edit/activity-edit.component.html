@@ -1,6 +1,10 @@
-<div *ngIf="adminService.activityArray.length > 0">
-    <button id="openModal" data-toggle="modal" data-target="#myModal" class="button--primary p-1 m-2">Voeg een nieuwe activiteit
+<div *ngIf="adminService.activityArray.length > 0 && adminService.categoryArray.length > 0">
+    <button (click)="setSelectedToNull()"  data-toggle="modal" data-target="#myModal" class="button--primary p-1 m-2">Voeg een nieuwe activiteit
     </button>
+
+<!--    /this button is for editing purposes-->
+    <button [hidden]="true"  id="openModal" data-toggle="modal" data-target="#myModal"></button>
+
     <table class="table table-hover">
         <thead>
         <tr>
@@ -18,7 +22,7 @@
             <td>{{activity.title}}</td>
             <td>{{activity.description}}</td>
             <td>{{activity.location}}</td>
-            <td><img src="assets/Images/landscape.jpeg" class="default-picture p0 m-0"></td>
+            <td><img src="{{activity.image}}" class="default-picture p0 m-0"></td>
             <td>
                 <mat-icon (click)="deleteActivity(activity.id)" class="icon-size">delete</mat-icon>
             </td>
@@ -80,7 +84,7 @@
             <div class="form-group">
                 <label class="input-group-text ">Categorieen</label>
             </div>
-            <div id="category-section" class="grid-three-sections">
+            <div *ngIf="adminService.categoryArray.length > 0" id="category-section" class="grid-three-sections">
                 <div class="custom-control custom-checkbox " *ngFor="let category of adminService.categoryArray">
                     <input name="category" type="checkbox" value="{{category.idCategory}}" class="custom-control-input" id="{{category.idCategory}}">
                     <label class="custom-control-label" for="{{category.idCategory}}">{{category.name}}</label>

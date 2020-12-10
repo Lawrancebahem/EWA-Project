@@ -10,17 +10,7 @@ export class Activity {
 
     public static trueCopy(activity: Activity): Activity {
         // @ts-ignore
-        return Object.assign(new Activity(0,"","","","",true), activity)
-    }
-
-
-    constructor(id, title, description, image, location, show) {
-        this._id = id;
-        this._title = title;
-        this._description = description;
-        this._image = image;
-        this._location = location;
-        this._show = show;
+        return Object.assign(new Activity(), activity)
     }
 
     get id() {

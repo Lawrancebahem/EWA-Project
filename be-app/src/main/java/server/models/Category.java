@@ -72,6 +72,14 @@ public class Category implements Identifiable {
         return description;
     }
 
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
