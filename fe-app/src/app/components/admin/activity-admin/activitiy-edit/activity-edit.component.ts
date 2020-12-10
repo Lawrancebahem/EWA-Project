@@ -31,13 +31,6 @@ export class ActivityEditComponent implements OnInit {
         this.adminService.getAllActivities();
         this.adminService.getAllCategories();  // to make sure that the array of category is loaded
 
-
-        console.log(this.adminService.activityArray)
-
-        setTimeout(() => {
-                console.log(this.adminService.activityArray)
-            },
-            2000)
     }
 
 
@@ -81,13 +74,22 @@ export class ActivityEditComponent implements OnInit {
             this.activityService.getActivityInterest(clickedActivity.id).subscribe((interests)=>{
                 //loop thorough the interests, check these interests in the fields of modal
                 for (let i = 0; i < interests.length ; i++) {
-                    let interestField = <HTMLInputElement>document.getElementById(interests[i]+"");
-                    interestField.checked = true;
+                    let interestCheckBox = <HTMLInputElement>document.getElementById(interests[i]+"");
+                    interestCheckBox.checked = true;
                 }
         },error => {
             console.log(error);
         });
 
+        this.activityService.getActivityCategory(clickedActivity.id).subscribe((categories) => {
+            console.log(categories);
+            for (let i = 0; i < categories.length; i++) {
+                let categoryCheckBox = <HTMLInputElement>document.getElementById(categories[i]+"");
+                categoryCheckBox.checked = true;
+            }
+        }, error => {
+            console.log(error);
+        })
         this.titleActivity.nativeElement.value = clickedActivity.title;
         this.locationActivity.nativeElement.value = clickedActivity.location;
         this.descriptionActivity.nativeElement.value = clickedActivity.description;
@@ -99,6 +101,7 @@ export class ActivityEditComponent implements OnInit {
         },)
 
     }
+
 
     /**
      * To clear the activity's modal fields

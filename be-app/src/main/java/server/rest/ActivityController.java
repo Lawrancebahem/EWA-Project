@@ -45,4 +45,9 @@ public class ActivityController {
     public int[] getActivityInterests(@PathVariable long idActivity){
         return this.interestEntityRepositoryJpa.getActivityInterests(idActivity);
     }
+
+    @GetMapping("/activity-category/{idActivity}")
+    public int[] getActivityCategory(@PathVariable long idActivity){
+        return this.activityRepositoryJpa.getActivityCategories(idActivity);
+    }
 }
