@@ -114,4 +114,16 @@ public class ActivityController {
     public int[] getActivityCategory(@PathVariable long idActivity){
         return this.activityRepositoryJpa.getActivityCategories(idActivity);
     }
+
+    @GetMapping("/delete/{idActivity}")
+    public boolean deleteAnActivity(@PathVariable long idActivity){
+        Activity toDeleteActivity = this.activityRepositoryJpa.findById(idActivity);
+        toDeleteActivity.getInterests().clear();
+        toDeleteActivity.getReactions().clear();
+        toDeleteActivity.getCategories().clear();
+
+        this.activityRepositoryJpa.saveOrUpdate(toDeleteActivity);
+
+        return this.activityRepositoryJpa.deleteById(idActivity);
+    }
 }

@@ -1,5 +1,5 @@
 <p>{{title}}</p>
-<div *ngIf="adminService.userArray.length > 0">
+<div *ngIf="adminService.userArray.length > 0 else loading">
     <table class="table table-hover">
         <thead>
         <tr>
@@ -12,7 +12,7 @@
             <th>Profielfoto</th>
             <th>Type gebruiker</th>
             <th>Blokeer</th>
-            <th>Verwijderen</th>
+<!--            <th>Verwijderen</th>-->
         </tr>
         </thead>
         <tbody>
@@ -46,10 +46,13 @@
 
             </td>
 
-            <td>
-                <mat-icon *ngIf="!user.admin" (click)="deleteUser(user.email)" class="icon-size">delete</mat-icon>
-            </td>
+<!--            <td>-->
+<!--                <mat-icon *ngIf="!user.admin" (click)="deleteUser(user.email)" class="icon-size">delete</mat-icon>-->
+<!--            </td>-->
 
         </tbody>
     </table>
 </div>
+<ng-template #loading>
+    <mat-icon class="rotate">rotate_right</mat-icon>
+</ng-template>

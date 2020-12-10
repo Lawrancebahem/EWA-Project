@@ -2,7 +2,7 @@
     <h1>Alle activiteiten</h1>
 </header>
 
-<div class="activity-overview row-cols-1 row-cols-md-3">
+<div class="activity-overview row-cols-1 row-cols-md-3" *ngIf="filteredActivityArray.length > 0 else loading">
     <div class="activitySearch">
         <label>
             <h1>Zoek Activiteit</h1>
@@ -43,3 +43,6 @@
         </div>
     </div>
 </div>
+<ng-template #loading>
+    <mat-icon class="rotate">rotate_right</mat-icon>
+</ng-template>

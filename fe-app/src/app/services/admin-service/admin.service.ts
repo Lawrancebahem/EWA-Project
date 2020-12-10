@@ -81,6 +81,12 @@ export class AdminService {
     return this.httpClient.post<number[]>(`${environment.apiUrl}/activity/add-activity-categories/`+idActivity, categories).pipe(shareReplay(1))
   }
 
+
+  public deleteAnActivity(idActivity:number):Observable<boolean>{
+    return this.httpClient.get<boolean>(`${environment.apiUrl}/activity/delete/`+idActivity).pipe(shareReplay(1))
+
+  }
+
   /**
    * To add new category
    * @param category
@@ -88,5 +94,6 @@ export class AdminService {
   public addNewCategory(category):Observable<any>{
     return this.httpClient.post(`${environment.apiUrl}/category/add-category`, category, ).pipe(shareReplay(1))
   }
+
 
 }
