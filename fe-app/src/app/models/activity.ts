@@ -9,9 +9,19 @@ export class Activity {
     private _show;
 
     public static trueCopy(activity: Activity): Activity {
-        return Object.assign(new Activity(), activity)
+        // @ts-ignore
+        return Object.assign(new Activity(0,"","","","",true), activity)
     }
 
+
+    constructor(id, title, description, image, location, show) {
+        this._id = id;
+        this._title = title;
+        this._description = description;
+        this._image = image;
+        this._location = location;
+        this._show = show;
+    }
 
     get id() {
         return this._id;

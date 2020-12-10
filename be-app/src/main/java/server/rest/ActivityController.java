@@ -35,7 +35,7 @@ public class ActivityController {
     }
 
 
-    @PostMapping("/add-acitivity-as-user")
+    @PostMapping("/add-activity")
     public void addNewActivity(@RequestBody Activity activity){
         activityRepositoryJpa.saveOrUpdate(activity);
     }

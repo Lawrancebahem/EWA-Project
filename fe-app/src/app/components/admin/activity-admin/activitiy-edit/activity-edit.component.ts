@@ -7,6 +7,8 @@ import interests from "../../../../json/interests.json";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BsModalRef} from "ngx-bootstrap/modal";
 import {ActivityService} from "../../../../services/activityService/activity.service";
+import {Activity} from "../../../../models/activity";
+import {response} from "express";
 
 @Component({
     selector: 'app-activitiy-edit',
@@ -14,7 +16,7 @@ import {ActivityService} from "../../../../services/activityService/activity.ser
     styleUrls: ['./activity-edit.component.css']
 })
 export class ActivityEditComponent implements OnInit {
-    @ViewChild('uploadedPicture') uploadedProfile: ElementRef;
+    @ViewChild('uploadedImage') uploadedImage: ElementRef;
     @ViewChild('titleActivity') titleActivity: ElementRef;
     @ViewChild('locationActivity') locationActivity: ElementRef;
     @ViewChild('descriptionActivity') descriptionActivity: ElementRef;
@@ -38,19 +40,37 @@ export class ActivityEditComponent implements OnInit {
      * Once the admin clicks on adding new activity, it will take
      */
     addNewActivity() {
+        const closeModal = document.getElementById("close-modal"); // to close the modal
+        const activityPicture = this.uploadedImage.nativeElement.files[0]; // to get the picture
+        const imagePreview = document.getElementById("image--activity-preview").querySelector("#image-preview") // to show the added image
 
         //get the selected interests
         const selectedInterests: number[] = Array.from(document.getElementById('interests-section')
             .querySelectorAll('input[name=interest]:checked')).map(interest => {
             return Number(interest.getAttribute('value'));
         });
+        //get the selected categories
+        const selectedCategories: number[] = Array.from(document.getElementById('category-section')
+            .querySelectorAll('input[name=category]:checked')).map(category => {
+            return Number(category.getAttribute('value'));
+        });
 
-        const closeModal = document.getElementById("close-modal"); // to close the modal
-        const activityPicture = this.uploadedProfile.nativeElement.files[0]; // to get the picutre
-        const imagePreview = document.getElementById("image--activity-preview").querySelector("#image-preview") // to show the added image
-        this.convertImage.convertToBase64(activityPicture, data => { // convert the image
-            imagePreview.setAttribute("src", data);
+        this.convertImage.convertToBase64(activityPicture, image => { // convert the image
+            imagePreview.setAttribute("src", image);
+            let title = this.titleActivity.nativeElement.value
+            let location = this.locationActivity.nativeElement.value
+            let description = this.descriptionActivity.nativeElement.value
+
+            // @ts-ignore
+            let newActivity:Activity = new Activity(title, description, image, location, true)
+            this.adminService.addNewActivity(newActivity).subscribe((response)=>{
+                console.log(response);
+            },error => {
+                console.log(error);
+            })
         })
+
+
         //Close the modal after 2 sec
         setTimeout(() => {
             closeModal.click(); //close the modal
@@ -71,20 +91,20 @@ export class ActivityEditComponent implements OnInit {
         const clickedActivity = this.adminService.activityArray.find(activity => activity.id == id); // get the clicked activity information
 
         //Get the interests of this activity
-            this.activityService.getActivityInterest(clickedActivity.id).subscribe((interests)=>{
-                //loop thorough the interests, check these interests in the fields of modal
-                for (let i = 0; i < interests.length ; i++) {
-                    let interestCheckBox = <HTMLInputElement>document.getElementById(interests[i]+"");
-                    interestCheckBox.checked = true;
-                }
-        },error => {
+        this.activityService.getActivityInterest(clickedActivity.id).subscribe((interests) => {
+            //loop thorough the interests, check these interests in the fields of modal
+            for (let i = 0; i < interests.length; i++) {
+                let interestCheckBox = <HTMLInputElement>document.getElementById(interests[i] + "");
+                interestCheckBox.checked = true;
+            }
+        }, error => {
             console.log(error);
         });
 
         this.activityService.getActivityCategory(clickedActivity.id).subscribe((categories) => {
             console.log(categories);
             for (let i = 0; i < categories.length; i++) {
-                let categoryCheckBox = <HTMLInputElement>document.getElementById(categories[i]+"");
+                let categoryCheckBox = <HTMLInputElement>document.getElementById(categories[i] + "");
                 categoryCheckBox.checked = true;
             }
         }, error => {
@@ -110,7 +130,7 @@ export class ActivityEditComponent implements OnInit {
     private clearModalFields() {
 
         const imagePreview = document.getElementById("image--activity-preview").querySelector("#image-preview");
-        this.uploadedProfile.nativeElement.value = "";
+        this.uploadedImage.nativeElement.value = "";
         this.titleActivity.nativeElement.value = "";
         this.locationActivity.nativeElement.value = "";
         this.descriptionActivity.nativeElement.value = "";

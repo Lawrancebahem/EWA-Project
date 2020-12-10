@@ -57,6 +57,14 @@ export class AdminService {
     })
   }
 
+  /**
+   * To add new activity
+   * @param category
+   */
+  public addNewActivity(activity:Activity):Observable<Activity>{
+    return this.httpClient.post<Activity>(`${environment.apiUrl}/activity/add-activity`, activity, ).pipe(shareReplay(1))
+  }
+
 
   /**
    * To add new category

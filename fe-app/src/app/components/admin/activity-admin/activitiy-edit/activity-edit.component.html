@@ -41,7 +41,7 @@
                 <img src="assets/Images/emptyPicture.png" id="image-preview" class="default-picture">
             </div>
             <label class="input-group-text m-1">Upload activiteit foto (verplicht)
-                <input type="file" #uploadedPicture>
+                <input type="file" #uploadedImage>
             </label>
 
             <!--            title activity-->
@@ -82,7 +82,7 @@
             </div>
             <div id="category-section" class="grid-three-sections">
                 <div class="custom-control custom-checkbox " *ngFor="let category of adminService.categoryArray">
-                    <input name="interest" type="checkbox" value="{{category.idCategory}}" class="custom-control-input" id="{{category.idCategory}}">
+                    <input name="category" type="checkbox" value="{{category.idCategory}}" class="custom-control-input" id="{{category.idCategory}}">
                     <label class="custom-control-label" for="{{category.idCategory}}">{{category.name}}</label>
                 </div>
             </div>
