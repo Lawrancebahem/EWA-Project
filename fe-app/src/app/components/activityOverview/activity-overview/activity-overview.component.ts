@@ -5,7 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {ActivityService} from "../../../services/activityService/activity.service";
 import {Activity} from "../../../models/activity";
 import {Category} from "../../../models/category";
-import {AdminService} from "../../../services/admin-service/admin.service";
+import {CategoryService} from "../../../services/categoryService/category.service";
 
 @Component({
     selector: 'app-activity-overview',
@@ -15,6 +15,7 @@ import {AdminService} from "../../../services/admin-service/admin.service";
 export class ActivityOverviewComponent implements OnInit {
     public activityArray:Activity[] = [];
     categoryArray: Category[] = [];
+    allCategoriesArray: Category[] = [];
     activitySearchText;
     categorySearch = [];
     selectedActivity;
@@ -23,7 +24,8 @@ export class ActivityOverviewComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private adminService:AdminService
+        private activityService: ActivityService,
+        private categoryService: CategoryService
     ) {}
 
     ngOnInit(): void {
@@ -37,37 +39,17 @@ export class ActivityOverviewComponent implements OnInit {
     }
 
     public getAllActivities(){
-            this.filteredActivityArray = this.adminService.activityArray;
-
+        this.activityService.getAllActivities().subscribe((activities)=>{
+            this.activityArray = activities ? activities.map((activity) => Activity.trueCopy(activity)):[];
+            this.filteredActivityArray = this.activityArray;
+        })
     }
 
     getAllCategories(): any {
-            this.categoryArray = this.adminService.categoryArray;
+        this.categoryService.getAllCategories().subscribe((categories)=>{
+            this.categoryArray = categories ? categories.map((category) => Category.trueCopy(category)):[];
+        })
     }
-
-    // addCategoryToSearch() {
-    //     this.categorySearch = [];
-    //
-    //     // Loop door alle category knoppen.
-    //     for (let i = 0; i < this.categoryArray.length; i++) {
-    //         let currentButton = document.getElementById(this.categoryArray[i].id)
-    //
-    //         // Check of de huidige knop is ingedrukt.
-    //         if (currentButton.getAttribute("aria-pressed") === "true") {
-    //             // Als de knop is ingedrukt wordt hij in een array gezet.
-    //             this.categorySearch.push(this.categoryArray[i])
-    //         }
-    //     }
-    //
-    //     for (let i = 0; i < this.activityArray.length; i++) {
-    //         for (let j = 0; j < this.categorySearch.length; j++) {
-    //             let currentCategory = this.categorySearch[j]
-    //             if (this.activityArray[i].categories.find(x => x === currentCategory) == false) {
-    //                 this.activityArray.splice(this.activityArray[i]);
-    //             }
-    //         }
-    //     }
-    // }
 
     filterSearch() {
         // clear both arrays because a new search is done.
@@ -107,9 +89,5 @@ export class ActivityOverviewComponent implements OnInit {
             currentfilter.checked = false;
         }
         this.filterSearch();
-    }
-
-    goToActivityDetails(){
-
     }
 }
