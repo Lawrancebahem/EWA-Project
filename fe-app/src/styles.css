@@ -59,3 +59,18 @@ body {margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     left: 50%;
     margin: -100px 0 0 -150px;
 }
+
+
+.uploadIcon{
+    animation: MoveUpDown 3s linear infinite;
+    position: relative;
+    font-size: 25px;
+}
+@keyframes MoveUpDown {
+    0%, 100% {
+        bottom: 0;
+    }
+    50% {
+        bottom: 25px;
+    }
+}

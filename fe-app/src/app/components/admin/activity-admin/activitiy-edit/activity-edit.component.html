@@ -45,7 +45,8 @@
                 <img src="assets/Images/emptyPicture.png" id="image-preview" class="default-picture">
             </div>
             <label class="input-group-text m-1">Upload activiteit foto (verplicht)
-                <input type="file" #uploadedImage>
+                <mat-icon id="upload-activity-icon">cloud_upload</mat-icon>
+                <input class="ml-2" type="file" #uploadedImage>
             </label>
 
             <!--            title activity-->
@@ -116,8 +117,8 @@
                 <button id="close-modal" type="button" class="button--primary" data-dismiss="modal">sluiten</button>
             </div>
 
-            <div id="success-message" class="alert alert-success alert-dismissible fade">
-                <strong>Success!</strong>De actviteit is toegvoegd.
+            <div id="success-message-activity" class="alert alert-success alert-dismissible" style="display: none">
+                <strong>Success!</strong> De actviteit is toegvoegd.
             </div>
         </div>
     </div>

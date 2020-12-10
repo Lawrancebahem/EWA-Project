@@ -35,8 +35,12 @@ export class ActivityEditComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.adminService.getAllActivities();
-        this.adminService.getAllCategories();  // to make sure that the array of category is loaded
+        if (!(this.adminService.activityArray.length > 0 )){
+            this.adminService.getAllActivities();
+        }
+        if (!(this.adminService.categoryArray.length > 0 )){
+            this.adminService.getAllCategories();  // to make sure that the array of category is loaded
+        }
     }
 
 
@@ -44,6 +48,10 @@ export class ActivityEditComponent implements OnInit {
      * Once the admin clicks on adding new activity, it will take
      */
     addNewActivity() {
+
+        let successMessage  = document.getElementById("success-message-activity"); // to show success message if its done
+        let uploadIcon = document.getElementById("upload-activity-icon");
+        uploadIcon.classList.add("uploadIcon") // let the icon move up and down
 
         const closeModal = document.getElementById("close-modal"); // to close the modal
         const activityPicture = this.uploadedImage.nativeElement.files[0]; // to get the picture
@@ -69,9 +77,8 @@ export class ActivityEditComponent implements OnInit {
             let newActivity = {id: this.selectedActivityId,title: title, description: description, image: image, location: location, show: true};
 
             //Add the activity
-            this.adminService.addNewActivity(newActivity).subscribe((response) => {
-                    let activityId = response.id
-
+            this.adminService.addNewActivity(newActivity).subscribe((addedActivity) => {
+                    let activityId = addedActivity.id
                 //Insert the selected interests for this activity
                 this.adminService.addInterestsToActivity(activityId, selectedInterests).subscribe((inserted)=>{
 
@@ -81,7 +88,15 @@ export class ActivityEditComponent implements OnInit {
                 //Insert the categories for this activity
                 this.adminService.addCategoriesToActivity(activityId, selectedCategories).subscribe((inserted)=>{
                     console.log(inserted);
-                    this.clearModalFields();
+                    successMessage.style.display = "block"
+                    setTimeout(()=>{
+                        closeModal.click(); //close the modal
+                        successMessage.style.display = "none"
+                        this.updateArray(this.selectedActivityId, addedActivity);
+                        uploadIcon.classList.remove("uploadIcon") // remove the animation (moving up and down)
+                        this.clearModalFields(); // clear fields
+                    }, 2500)
+
                 },error => {
                     console.log(error);
                 });
@@ -89,13 +104,6 @@ export class ActivityEditComponent implements OnInit {
                 console.log(error);
             })
         })
-
-
-        //Close the modal after 2 sec
-        setTimeout(() => {
-            closeModal.click(); //close the modal
-            this.clearModalFields();
-        }, 2000)
     }
 
 
@@ -104,11 +112,10 @@ export class ActivityEditComponent implements OnInit {
      * @param id
      */
     editActivity(id: number) {
-
         this.selectedActivityId = id;
 
         console.log(this.selectedActivityId + " from edit")
-        const closeModal = document.getElementById("myModal"); // to close the modal
+        // const closeModal = document.getElementById("myModal"); // to close the modal
         const openModal = document.getElementById("openModal"); // trigger the modal
         const imagePreview = document.getElementById("image--activity-preview").querySelector("#image-preview")
 
@@ -198,6 +205,13 @@ export class ActivityEditComponent implements OnInit {
 
 
     updateArray(id, activity){
+        let foundScooter = this.adminService.activityArray.find(activity => activity.id == id);
+        if(foundScooter != null){
+            let index = this.adminService.activityArray.indexOf(foundScooter);
+            this.adminService.activityArray.splice(index, 1, activity);
+        } else{
+            this.adminService.activityArray.push(activity);
+        }
 
     }
 }
