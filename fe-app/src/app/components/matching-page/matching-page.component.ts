@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as activities from "../../json/activities.json";
+import {ActivityService} from "../../services/activityService/activity.service";
 
 @Component({
   selector: 'app-matching-page',
@@ -10,9 +11,10 @@ export class MatchingPageComponent implements OnInit {
 
   activityArray: any = (activities as any).default;
 
-  constructor() { }
+  constructor(private activityService:ActivityService) { }
 
   ngOnInit(): void {
+
   }
 
 }
