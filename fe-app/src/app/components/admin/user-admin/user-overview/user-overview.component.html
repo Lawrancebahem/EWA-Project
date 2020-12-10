@@ -25,12 +25,7 @@
             <td>{{user.password}}</td>
             <td><img class="userProfile" src="{{user.profilePicture}}"></td>
 
-            <td *ngIf="user.blocked;">
-                <button (click)="unBlockUser(user.email)" class="button--primary p-2 row">
-                    <mat-icon class="icon-size align-middle mr-2">block</mat-icon>
-                    Deblokkeer
-                </button>
-            </td>
+
 
             <td>
                 <button *ngIf="user.admin" class="button--primary p-2 row" (click)="revokeAdmin(user.email)">
@@ -39,12 +34,22 @@
                 </button>
                 <button *ngIf="!user.admin" (click)="makeAnAdmin(user.email)" class="button--primary align-middle">Maak admin</button>
             </td>
-            <td *ngIf="!user.blocked">
-                <button *ngIf="!user.admin" (click)="blockUser(user.email)" class="button--primary">Blokkeer</button>
+
+
+            <td *ngIf="user.blocked;">
+                <button (click)="unBlockUser(user.email)" class="button--primary p-2 row">
+                    <mat-icon class="icon-size align-middle mr-2">block</mat-icon>Deblokkeer</button>
             </td>
+
+            <td  *ngIf="!user.blocked">
+                <button *ngIf="!user.admin;" (click)="blockUser(user.email)" class="button--primary">Blokkeer</button>
+
+            </td>
+
             <td>
                 <mat-icon *ngIf="!user.admin" (click)="deleteUser(user.email)" class="icon-size">delete</mat-icon>
             </td>
+
         </tbody>
     </table>
 </div>

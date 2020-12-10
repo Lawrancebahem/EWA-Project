@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {ActivityService} from "../../../services/activityService/activity.service";
 import {Activity} from "../../../models/activity";
 import {Category} from "../../../models/category";
+import {CategoryService} from "../../../services/categoryService/category.service";
 
 @Component({
     selector: 'app-activity-overview',
@@ -23,7 +24,8 @@ export class ActivityOverviewComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private activityService: ActivityService
+        private activityService: ActivityService,
+        private categoryService: CategoryService
     ) {}
 
     ngOnInit(): void {
@@ -44,7 +46,7 @@ export class ActivityOverviewComponent implements OnInit {
     }
 
     getAllCategories(): any {
-        this.activityService.getAllCategories().subscribe((categories)=>{
+        this.categoryService.getAllCategories().subscribe((categories)=>{
             this.categoryArray = categories ? categories.map((category) => Category.trueCopy(category)):[];
         })
     }

@@ -13,7 +13,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse ml-lg-5" id="navbarSupportedContent-333">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto align-items-center">
 
             <li class="nav-item active">
                 <a class="nav-link button--primary">
@@ -38,33 +38,11 @@
                 </a>
             </li>
 
-            <!--            drop dwon options-->
-            <!--            <li class="nav-item dropdown">-->
-            <!--                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"-->
-            <!--                   aria-haspopup="true" aria-expanded="false">Activities-->
-            <!--                </a>-->
-            <!--                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">-->
-            <!--                    <a class="dropdown-item" href="#">Something</a>-->
-            <!--                    <a class="dropdown-item" href="#">Something</a>-->
-            <!--                    <a class="dropdown-item" href="#">Something</a>-->
-            <!--                </div>-->
-            <!--            </li>-->
-
         </ul>
 
-        <ul class="navbar-nav ml-auto nav-flex-icons">
-            <li class="nav-item">
-                <a class="nav-link waves-effect waves-light">
-                    <i class="fab fa-twitter"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link waves-effect waves-light">
-                    <i class="fab fa-google-plus-g"></i>
-                </a>
-            </li>
+        <ul class="navbar-nav ml-auto nav-flex-icons align-items-center">
 
-            <li *ngIf="authenticateService.isLoggedIn" class="nav-item">
+            <li *ngIf="authenticateService.isLoggedIn" class="nav-item ">
                 <a class="nav-link text-white button--primary" routerLink="/activityOverview">Alle Activiteiten</a>
             </li>
 
@@ -73,18 +51,16 @@
             </li>
 
             <li *ngIf="authenticateService.isLoggedIn else notLoggedIn" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle button--primary text-white" id="navbarDropdownMenuLink-333"
+                <a class="nav-link dropdown-toggle button--primary text-white align-middle" id="navbarDropdownMenuLink-333"
                    data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"><img src="{{authenticateService.loggedInUser.profilePicture}}"
                                                 class="userProfile"
-                                                alt="avatar image"
-                                                height="35">{{authenticateService.loggedInUser.firstName | titlecase}}</i>
+                                                alt="avatar image">{{authenticateService.loggedInUser.firstName | titlecase}}</i>
                 </a>
                 <div id="dropDown" class="dropdown-menu dropdown-menu-right dropdown-default"
                      aria-labelledby="navbarDropdownMenuLink-333">
                     <a class="dropdown-item  text-white button--primary" routerLink="/profile">Mijn Profiel</a>
-                    <!--                    <a class="dropdown-item  text-white button&#45;&#45;primary" routerLink="/register">Instellingen</a>-->
                     <a class="dropdown-item  text-white button--primary" (click)="logout()">Log uit</a>
                 </div>
             </li>
@@ -95,14 +71,14 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link button--primary text-white" routerLink="/aboutUs">About Us</a>
+                    <a class="nav-link button--primary text-white" routerLink="/aboutUs">Over ons</a>
                 </li>
 
                 <li class="nav-item ">
                     <a class="nav-link button--primary text-white" routerLink="/login">Login</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link button--primary text-white" routerLink="/register">Signup</a>
+                    <a class="nav-link button--primary text-white" routerLink="/register">Aanmelden</a>
                 </li>
             </ng-template>
         </ul>

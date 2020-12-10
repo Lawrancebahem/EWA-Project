@@ -7,6 +7,9 @@ import {UserService} from "../userService/user.service";
 import {User} from "../../models/user";
 import {Category} from "../../models/category";
 import {CategoryService} from "../categoryService/category.service";
+import {environment} from "../../../environments/environment";
+import {shareReplay} from "rxjs/operators";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +36,9 @@ export class AdminService {
     })
   }
 
+  /**
+   * To get all users
+   */
   public getAllUsers(){
     this.userService.findAll().subscribe((users)=>{
       console.log(users);
@@ -40,10 +46,23 @@ export class AdminService {
     })
   }
 
+  /**
+   * To get all categories
+   */
   public getAllCategories() {
-    this.categoryService.findAll().subscribe((categories)=>{
+    this.categoryService.getAllCategories().subscribe((categories)=>{
+      console.log(categories)
       this.categoryArray = categories ? categories.map((category) => Category.trueCopy(category)):[];
     })
+  }
+
+
+  /**
+   * To add new category
+   * @param category
+   */
+  public addNewCategory(category):Observable<any>{
+    return this.httpClient.post(`${environment.apiUrl}/category/add-category`, category, ).pipe(shareReplay(1))
   }
 
 }

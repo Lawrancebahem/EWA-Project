@@ -31,8 +31,8 @@ export class CategoryService {
     return this.categoryArray.filter( x => x.categoryTitle == categoryTitle)[0]
   }
 
-  addNew(category: Category):Observable<Category> {
-   return this.httpClient.post<Category>(`${environment.apiUrl}/category/add-category-as-admin`, category).pipe(shareReplay(1));
+  public getAllCategories(): Observable<Category[]> {
+    return this.httpClient.get<Category[]>(`${environment.apiUrl}/category/all`).pipe(shareReplay(1));
   }
 
 }

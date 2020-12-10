@@ -28,8 +28,9 @@ public class CategoryController {
         return this.categoryEntityRepositoryJpa.findAll();
     }
 
-    @PostMapping("/add-category-as-admin")
-    public void addNewCategory(@RequestBody Category category) {
+    @PostMapping("/add-category")
+    public boolean addNewCategory(@RequestBody Category category) {
         categoryEntityRepositoryJpa.saveOrUpdate(category);
+        return true;
     }
 }

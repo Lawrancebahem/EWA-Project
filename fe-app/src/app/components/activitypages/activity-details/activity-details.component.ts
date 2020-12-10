@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {ActivityService} from "../../../services/activityService/activity.service";
@@ -17,6 +17,7 @@ import {body} from "ionicons/icons";
 })
 export class ActivityDetailsComponent implements OnInit {
 
+    @ViewChild("textReaction") textReactionElement
     public selectedActivityId;
     activityToShow;
     public reactionsArray: any[] = [];
@@ -38,8 +39,8 @@ export class ActivityDetailsComponent implements OnInit {
         this.childParamsSubscription =
             this.activatedRoute.params.subscribe((params: Params) => {
                     this.setSelectedActivityId(params['id'] || -1);
-                     this.activityService.findById(this.selectedActivityId).subscribe((response)=>{
-                         console.log(response);
+                     this.activityService.findById(this.selectedActivityId)
+                         .subscribe((response)=>{
                          this.getAllReactions(this.selectedActivityId);
                          this.activityToShow = Activity.trueCopy(response);
                      })
@@ -59,11 +60,13 @@ export class ActivityDetailsComponent implements OnInit {
      * @param textReaction
      */
     public addNewReaction(idActivity: number, textReaction: string) {
+
         let newReaction = {idActivity: idActivity, textReaction: textReaction};
         let response = this.httpClient
             .post(`${environment.apiUrl}/reaction/new-reaction`, newReaction, {observe: "response"})
             .pipe(shareReplay(1));
         let userName = this.sessionStorage.currentUserName // to get the userName
+        this.textReactionElement.nativeElement.value = "";
         this.reactionsArray.push({...newReaction, idActivity: idActivity ,userName: userName})
         response.subscribe((response) => {
             console.log(response);
@@ -74,8 +77,8 @@ export class ActivityDetailsComponent implements OnInit {
     /**
      * Get all reactions from the backend, and map the values into object array
      */
-    public getAllReactions(id) {
-        let response = this.httpClient.get<any[]>(`${environment.apiUrl}/reaction/all/`+id)
+    public getAllReactions(categoryId) {
+        let response = this.httpClient.get<any[]>(`${environment.apiUrl}/reaction/all/`+categoryId)
             .pipe(shareReplay(1));
 
         response.subscribe((reactions) => {
