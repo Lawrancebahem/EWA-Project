@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {ActivityService} from "../../../services/activityService/activity.service";
 import {Activity} from "../../../models/activity";
 import {Category} from "../../../models/category";
+import {AdminService} from "../../../services/admin-service/admin.service";
 
 @Component({
     selector: 'app-activity-overview',
@@ -22,7 +23,7 @@ export class ActivityOverviewComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private activityService: ActivityService
+        private adminService:AdminService
     ) {}
 
     ngOnInit(): void {
@@ -36,16 +37,12 @@ export class ActivityOverviewComponent implements OnInit {
     }
 
     public getAllActivities(){
-        this.activityService.getAllActivities().subscribe((activities)=>{
-            this.activityArray = activities ? activities.map((activity) => Activity.trueCopy(activity)):[];
-            this.filteredActivityArray = this.activityArray;
-        })
+            this.filteredActivityArray = this.adminService.activityArray;
+
     }
 
     getAllCategories(): any {
-        this.activityService.getAllCategories().subscribe((categories)=>{
-            this.categoryArray = categories ? categories.map((category) => Category.trueCopy(category)):[];
-        })
+            this.categoryArray = this.adminService.categoryArray;
     }
 
     // addCategoryToSearch() {

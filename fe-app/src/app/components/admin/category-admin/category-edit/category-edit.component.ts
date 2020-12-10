@@ -10,41 +10,68 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./category-edit.component.css']
 })
 export class CategoryEditComponent implements OnInit {
+
   @ViewChild('uploadedCategoryImage') uploadedCategoryImage: ElementRef;
+  @ViewChild('titleInputCategory') titleInputCategory: ElementRef;
+  @ViewChild('descriptionCategory') descriptionCategory: ElementRef;
 
   constructor(public adminService: AdminService,
-              private convertImage: ImageBase64Service,
-              private httpClient: HttpClient) { }
+              private convertImage: ImageBase64Service) { }
 
   ngOnInit(): void {
+    this.adminService.getAllCategories();
   }
 
 
+  /**
+   * To add new category to the database
+   * @param categoryTitle the title of the category
+   * @param description the description of the category
+   */
 
-
-
-  public addNewCategory(categoryTitle: string, description: string) {
+  public addNewCategory() {
 
     const closeModal = document.getElementById("close-modalCategory");
     const categoryPicture= this.uploadedCategoryImage.nativeElement.files[0];
     const imagePreview = document.getElementById("image--category-preview").querySelector("#imageCategory")
     this.convertImage.convertToBase64(categoryPicture, data => {
       imagePreview.setAttribute("src", data);
-      console.log(data);
       const category: Category = new Category();
-      category.name = categoryTitle;
-      category.description = description;
+      category.name = this.titleInputCategory.nativeElement.value;
+      category.description = this.descriptionCategory.nativeElement.value;
+      category.image = data != null ? data : "";
 
-      // Todo:
-      // category.image = data ? != null data: "";
+      //To make sure that the category is not being read as null
+      let objectCategory = {name: category.name, description:category.description, image: category.image};
+      // Add the category to the list
+      this.adminService.addNewCategory(objectCategory).subscribe((response) => {
+        console.log(response);
+
+      },error => {
+        console.log(error);
+      })
     })
     // Close the modal after 1.5sec
-    setTimeout(function () {
+    setTimeout( ()=> {
       closeModal.click();
+      this.clearFieldsModal();
+
     }, 2000)
   }
 
 
+  /**
+   * To clear the fields of the modal, for in case of adding new category
+   * @private
+   */
+  private clearFieldsModal(){
+    this.titleInputCategory.nativeElement.value = "";
+   this.descriptionCategory.nativeElement.value =  "";
+   this.uploadedCategoryImage.nativeElement.value = "";
+    const imagePreview = document.getElementById("image--category-preview").querySelector("#imageCategory")
+    imagePreview.setAttribute("src", "assets/Images/emptyPicture.png");
+
+  }
 
   deleteCategory(idCategory: number) {
 

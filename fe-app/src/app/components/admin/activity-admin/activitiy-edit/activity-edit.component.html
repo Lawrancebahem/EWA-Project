@@ -1,5 +1,5 @@
 <div *ngIf="adminService.activityArray.length > 0">
-    <button id="openModal" data-toggle="modal" data-target="#myModal" class="button--primary p-1 m-2">voeg een nieuwe activiteit
+    <button id="openModal" data-toggle="modal" data-target="#myModal" class="button--primary p-1 m-2">Voeg een nieuwe activiteit
     </button>
     <table class="table table-hover">
         <thead>
@@ -38,10 +38,10 @@
             </div>
 
             <div class="image-preview p-5" id="image--activity-preview">
-                <img src="assets/Images/landscape.jpeg" id="image-preview" class="default-picture">
+                <img src="assets/Images/emptyPicture.png" id="image-preview" class="default-picture">
             </div>
             <label class="input-group-text m-1">Upload activiteit foto (verplicht)
-                <input id="" class="m-4" type="file" #uploadedPicture>
+                <input type="file" #uploadedPicture>
             </label>
 
             <!--            title activity-->

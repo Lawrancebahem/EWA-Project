@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
                     "password": password,
                     "admin": false
                 }
-                this.userService.registerUser(object).pipe(shareReplay(1))
+                this.userService.registerUser(object)
                     .subscribe((response) => { // insert a new user
 
                         this.authenticationService.loggedInUser = User.makeTrueCopy(response.body);

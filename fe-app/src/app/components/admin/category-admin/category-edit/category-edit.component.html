@@ -1,6 +1,6 @@
 <!-- dit is category tabel-->
 <!--Todo zit dit er straks bij => && adminService.categoryArray.length > 0-->
-<div>
+<div *ngIf="adminService.categoryArray.length > 0">
     <button data-toggle="modal" data-target="#myModalCategory" class="button--primary p-1 m-2">Voeg een nieuwe categorie
     </button>
     <table class="table table-hover">
@@ -18,8 +18,7 @@
             <td>{{category.idCategory}}</td>
             <td>{{category.name}}</td>
             <td>{{category.description}}</td>
-            <td>{{category.image}}</td>
-            <td><img src="assets/Images/landscape.jpeg" class="default-picture p0 m-0"></td>
+            <td><img src="{{category.image}}" class="default-picture p0 m-0"></td>
             <td>
                 <!--                Todo delete funtie maken-->
                 <mat-icon (click)="deleteCategory(category.idCategory)" class="icon-size">delete</mat-icon>
@@ -41,7 +40,7 @@
             </div>
 
             <div class="image-preview p-5" id="image--category-preview">
-                <img src="assets/Images/landscape.jpeg" id="imageCategory" class="default-picture">
+                <img src="assets/Images/emptyPicture.png" id="imageCategory" class="default-picture">
             </div>
             <label class="input-group-text m-1">Upload activiteit foto (verplicht)
                 <input class="m-4" type="file" #uploadedCategoryImage>
@@ -64,7 +63,7 @@
 
             <!--            Todo functie afmaken-->
             <div class="modal-footer p-0">
-                <button (click)="addNewCategory(titleInputCategory.value, descriptionCategory.value)" id="add-modalCategory" type="button" class="button--primary">toevoegen
+                <button (click)="addNewCategory()" id="add-modalCategory" type="button" class="button--primary">toevoegen
                 </button>
 
                 <button id="close-modalCategory" type="button" class="button--primary" data-dismiss="modal">Sluiten</button>

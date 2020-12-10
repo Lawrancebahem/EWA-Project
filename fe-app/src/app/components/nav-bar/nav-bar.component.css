@@ -69,3 +69,9 @@ h2 {
     background-color: var(--color-default);
 }
 
+.align-items-center {
+    -ms-flex-align: center!important;
+    align-items: center!important;
+    display: flex;
+    justify-content: center;
+}
