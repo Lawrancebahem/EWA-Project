@@ -11,6 +11,7 @@
   z-index: -1;
   filter: blur(1px);
   -webkit-filter: blur(1px);
+  max-height: 380px;
 }
 .image{
   display: block;
