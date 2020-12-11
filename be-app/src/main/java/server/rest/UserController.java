@@ -9,6 +9,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import server.exception.AuthorizationException;
 import server.exception.PreConditionalFailed;
 import server.exception.ResourceNotFound;
+import server.models.Activity;
 import server.models.Interest;
 import server.models.User;
 import server.repositories.EntityRepository;
@@ -32,6 +33,10 @@ public class UserController {
     @Autowired
     @Qualifier("interestRepositoryJpa")
     public EntityRepository<Interest> interestEntityRepositoryJpa;
+
+    @Autowired
+    @Qualifier("activityRepositoryJpa")
+    private EntityRepository<Activity> activityRepositoryJpa;
 
     @Autowired
     private APIConfiguration api;
@@ -187,5 +192,16 @@ public class UserController {
         foundUser.setAdmin(false);
         this.userRepositoryJpa.saveOrUpdate(foundUser);
         return true;
+    }
+
+    /**
+     * To get the user's activity matches
+     * @return
+     */
+    @GetMapping("/activity-match")
+    public List<Activity> getMatchesActivity(HttpServletRequest request){
+        JWToken jwToken = api.getUserJWTokenDecoded(request);
+        long userId = jwToken.getId();
+        return this.activityRepositoryJpa.getActivityMatches(userId);
     }
 }

@@ -133,26 +133,11 @@
 
 
         <h2>Activiteiten op basis van mijn interesses</h2>
-        <div class="container container-activity-thumbnails">
-            <div>
-                <div class="activity-thumbnail--image" style="background-image:url('/assets/Images/landscape.jpeg')">
+        <div *ngIf="userService.matchingActivityArray.length > 0" class="container container-activity-thumbnails">
+            <div *ngFor="let activity of getThreeActivity" routerLink="/activityDetails/{{activity.id}}">
+                <div class="activity-thumbnail--image" style="background-image:url('{{activity.image}}')">
                     <div class="activity-thumbnail">
-                        <h3>Activiteit1</h3>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="activity-thumbnail--image" style="background-image:url('/assets/Images/tree.jpeg')">
-                    <div class="activity-thumbnail">
-                        <h3>Activiteit 2</h3>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div class="activity-thumbnail--image" style="background-image:url('/assets/Images/airballoon.jpeg')">
-                    <div class="activity-thumbnail">
-                        <h3>Activiteit 3</h3>
+                        <h3>{{activity.title}}</h3>
                     </div>
                 </div>
             </div>

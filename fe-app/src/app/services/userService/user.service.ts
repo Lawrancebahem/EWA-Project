@@ -6,6 +6,7 @@ import {environment} from "../../../environments/environment";
 import {shareReplay} from "rxjs/operators";
 // @ts-ignore
 import {Interest} from "../../models/Interest";
+import {Activity} from "../../models/activity";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ import {Interest} from "../../models/Interest";
 export class UserService {
 
   private users:User[];
+
+  public matchingActivityArray =  [];
 
   constructor(private httpClient:HttpClient) {
     this.users = [];
@@ -72,4 +75,20 @@ export class UserService {
   public deleteById(id){
     return this.httpClient.delete(`${environment.apiUrl}/user/`+id).pipe(shareReplay(1));
   }
+
+  /**
+   * To get the the matches of activities
+   */
+  public getMatchingActivities(){
+   let response = this.httpClient.get<Activity[]>(`${environment.apiUrl}/user/activity-match`).pipe((shareReplay(1)));
+   response.subscribe((activities)=>{
+     this.matchingActivityArray =  activities.map((activities)=>{
+       return {id:activities[0], description: activities[1], image:activities[2], location: activities[3], show:activities[4], title:activities[5]}
+     })
+     console.log(this.matchingActivityArray);
+   },error => {
+     console.log(error);
+   })
+  }
+
 }

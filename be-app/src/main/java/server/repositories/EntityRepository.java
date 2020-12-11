@@ -46,5 +46,8 @@ public interface EntityRepository<T extends Identifiable> {
         return null;
     }
 
+    default List<T> getActivityMatches(long userId) {
+        return null;
+    }
 
 }

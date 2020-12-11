@@ -21,6 +21,7 @@ header {
 
 img {
     height: 17rem;
+    border-radius: var(--border-radius);
 }
 
 .activity-card:hover {
