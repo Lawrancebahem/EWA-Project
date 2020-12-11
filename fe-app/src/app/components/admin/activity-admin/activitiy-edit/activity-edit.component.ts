@@ -277,4 +277,6 @@ export class ActivityEditComponent implements OnInit {
         let deleteModal = document.getElementById("delete-activity-icon");
         deleteModal.style.display = "block"
     }
+
+
 }
