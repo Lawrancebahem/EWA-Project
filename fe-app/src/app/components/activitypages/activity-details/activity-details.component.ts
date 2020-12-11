@@ -43,6 +43,8 @@ export class ActivityDetailsComponent implements OnInit {
                          .subscribe((response)=>{
                          this.getAllReactions(this.selectedActivityId);
                          this.activityToShow = Activity.trueCopy(response);
+                         console.log(this.activityToShow);
+                         console.log(response);
                      })
                 }
             );

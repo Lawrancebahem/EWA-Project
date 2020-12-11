@@ -15,14 +15,15 @@ export class ImageBase64Service {
    * @param callback
    */
   public convertToBase64(uploadedPicture, callback){
-    if (uploadedPicture != undefined){ // if there is file uploaded convert the image
+    if (uploadedPicture != undefined || uploadedPicture != null){ // if there is file uploaded convert the image
       const reader = new FileReader();
       reader.addEventListener('load',() => {
         callback(reader.result);
       })
       reader.readAsDataURL(uploadedPicture);
-    }else {                   //else give empty callback
+    }else {
       return callback(()=>{
+
       })
     }
   }

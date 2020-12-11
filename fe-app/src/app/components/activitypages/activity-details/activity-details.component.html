@@ -4,12 +4,12 @@
 </header>
 
 <!--Dit is -->
-<div class="container--grid"  *ngIf="activityToShow != null">
+<div class="container--grid"  *ngIf="activityToShow != null; else loading">
 
     <div class="right-side">
         <div class="right-side-grid">
             <div class="activity-image-box">
-                <img class="activity-image" src="../../../../assets/Images/activityImage/{{activityToShow.image}}">
+                <img class="activity-image" src="{{activityToShow.image}}">
             </div>
             <div class="activity-description">
                 <h2 class="activity-description-title">Beschrijving:</h2>
@@ -39,5 +39,9 @@
     </div>
 
 </div>
+
+<ng-template #loading>
+    <mat-icon class="rotate">rotate_right</mat-icon>
+</ng-template>
 
 

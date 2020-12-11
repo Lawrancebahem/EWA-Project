@@ -1,27 +1,30 @@
-<div *ngIf="adminService.activityArray.length > 0">
-    <button id="openModal" data-toggle="modal" data-target="#myModal" class="button--primary p-1 m-2">Voeg een nieuwe activiteit
+
+
+
+<div *ngIf="adminService.activityArray.length > 0 && adminService.categoryArray.length > 0; else loading">
+    <button (click)="setSelectedToNull()"  data-toggle="modal" data-target="#myModal" class="button--primary p-1 m-2">Voeg een nieuwe activiteit
     </button>
+
+<!--    /this button is for editing purposes-->
+    <button [hidden]="true"  id="openModal" data-toggle="modal" data-target="#myModal"></button>
+
     <table class="table table-hover">
         <thead>
         <tr>
             <th>Id</th>
             <th>Titel</th>
             <th>Omschrijving</th>
-            <th>locatie</th>
+            <th>Locatie</th>
             <th>Foto</th>
-            <th>Verwijderen</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let activity of adminService.activityArray" style="cursor: pointer" (click)="editActivity(activity.idActivity)">
-            <td>{{activity.idActivity}}</td>
+        <tr *ngFor="let activity of adminService.activityArray" style="cursor: pointer" (click)="editActivity(activity.id)">
+            <td>{{activity.id}}</td>
             <td>{{activity.title}}</td>
             <td>{{activity.description}}</td>
             <td>{{activity.location}}</td>
-            <td><img src="assets/Images/landscape.jpeg" class="default-picture p0 m-0"></td>
-            <td>
-                <mat-icon (click)="deleteActivity(activity.idActivity)" class="icon-size">delete</mat-icon>
-            </td>
+            <td><img src="{{activity.image}}" class="default-picture p0 m-0"></td>
         <tr>
         </tbody>
     </table>
@@ -29,7 +32,7 @@
 
 
 <!--modal to add new activity-->
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -41,13 +44,14 @@
                 <img src="assets/Images/emptyPicture.png" id="image-preview" class="default-picture">
             </div>
             <label class="input-group-text m-1">Upload activiteit foto (verplicht)
-                <input type="file" #uploadedPicture>
+                <mat-icon id="upload-activity-icon">cloud_upload</mat-icon>
+                <input class="ml-2" type="file" #uploadedImage>
             </label>
 
             <!--            title activity-->
             <div class="input-group p-1">
                 <div class="input-group-append">
-                    <label class="input-group-text" for="inputGroupSelect02">Title</label>
+                    <label class="input-group-text">Title</label>
                 </div>
                 <input  id="title-activity"  type="text" class="form-control" placeholder="Titel" aria-label="Titel"
                        aria-describedby="basic-addon1" #titleActivity>
@@ -56,31 +60,43 @@
             <!--            location activity-->
             <div class="input-group p-1">
                 <div class="input-group-append ">
-                    <label class="input-group-text" for="inputGroupSelect02">Locatie</label>
+                    <label class="input-group-text">Locatie</label>
                 </div>
                 <input id="location-activity"  type="text" class="form-control" placeholder="Locatie" aria-label="Locatie"
                        aria-describedby="basic-addon1" #locationActivity>
             </div>
 
 
-            <!--            category field-->
-            <div class="input-group p-1">
-                <div class="input-group-append">
-                    <label class="input-group-text " for="inputGroupSelect02">Categorie</label>
-                </div>
-                <select class="custom-select" id="inputGroupSelect02">
-                    <option selected>Kies...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+<!--            &lt;!&ndash;            category field&ndash;&gt;-->
+<!--            <div class="input-group p-1">-->
+<!--                <div class="input-group-append">-->
+<!--                    <label class="input-group-text " for="inputGroupSelect02">Categorie</label>-->
+<!--                </div>-->
+<!--                <select *ngIf="adminService.categoryArray.length > 0" class="custom-select" id="inputGroupSelect02">-->
+<!--                    <option selected>Kies...</option>-->
+<!--                    <option id="{{category.idCategory}}" *ngFor="let category of adminService.categoryArray" value="{{category.idCategory}}">-->
+<!--                        {{category.name}}</option>-->
+<!--                </select>-->
+<!--            </div>-->
+
+
+            <!--            Category field-->
+            <div class="form-group">
+                <label class="input-group-text ">Categorieen</label>
             </div>
+            <div *ngIf="adminService.categoryArray.length > 0" id="category-section" class="grid-three-sections">
+                <div class="custom-control custom-checkbox " *ngFor="let category of adminService.categoryArray">
+                    <input name="category" type="checkbox" value="{{category.idCategory}}" class="custom-control-input" id="{{category.idCategory}}">
+                    <label class="custom-control-label" for="{{category.idCategory}}">{{category.name}}</label>
+                </div>
+            </div>
+
 
             <!--            interests field-->
             <div class="form-group">
-                <label class="input-group-text " for="inputGroupSelect02">Interesses</label>
+                <label class="input-group-text ">Interesses</label>
             </div>
-            <div id="interests-section" class="grid-interests">
+            <div id="interests-section" class="grid-three-sections">
                 <div class="custom-control custom-checkbox " *ngFor="let interest of arrayInterests">
                     <input name="interest" type="checkbox" value="{{interest.id}}" class="custom-control-input" id="{{interest.id}}">
                     <label class="custom-control-label" for="{{interest.id}}">{{interest.name}}</label>
@@ -93,16 +109,33 @@
                           rows="3" #descriptionActivity></textarea>
             </div>
 
-            <div class="modal-footer p-0">
-                <button (click)="addNewActivity()" id="add-modal" type="button" class="button--primary">toevoegen
-                </button>
-
-                <button id="close-modal" type="button" class="button--primary" data-dismiss="modal">sluiten</button>
+            <div id="delete-activity-icon" class="centerError confirmation-delete" style="display: none; z-index: 100">
+                <mat-icon class="align-middle">info</mat-icon>
+                Wilt u de activiteit verwijderen?
+                <button (click)="hideConfirmationModal()" class="button--primary float-right" style="position: absolute;  bottom:0; right: 1rem">Nee</button>
+                <button  (click)="deleteActivity()" class="button--primary float-right" style="position: absolute;  bottom:0; right: 4rem">Ja</button>
             </div>
 
-            <div id="success-message" class="alert alert-success alert-dismissible fade">
-                <strong>Success!</strong>De actviteit is toegvoegd.
+            <div class="modal-footer p-0">
+
+                <button (click)="addNewActivity()" id="add-modal" type="button" class="button--primary">Toevoegen
+                </button>
+                <button *ngIf="selectedActivityId > 0" id="delete-activity" (click)="confirmDeletion()" type="button" class="button--primary">Verwijderen</button>
+                <button (click)="clearModalFields()" id="close-modal" type="button" class="button--primary" data-dismiss="modal">Sluiten</button>
+
+
+
+            </div>
+
+            <div id="success-message-activity" class="alert alert-success alert-dismissible" style="display: none">
+                De actviteit is toegevoegd.
             </div>
         </div>
     </div>
 </div>
+
+<ng-template #loading>
+    <mat-icon class="rotate">rotate_right</mat-icon>
+</ng-template>
+
+

@@ -27,6 +27,22 @@ public class InterestRepositoryJpa extends AbstractEntityRepositoryJpa<Interest>
     public int[] getUsersInterests(long userId) {
         Query query = em.createNamedQuery("GetUserInterests");
         query.setParameter("userId", userId);
+        List<BigInteger>interests = query.getResultList(); // get the results as an array of big integers
+        int []arrayOfInterests = new int[interests.size()];
+        for (int i  =0; i<interests.size();i++){
+            arrayOfInterests[i] =  interests.get(i).intValue(); // convert the big in into int
+        }
+        return arrayOfInterests;
+    }
+
+    /**
+     * To get the interests that are related to this activity
+     * @return
+     */
+    @Override
+    public int[] getActivityInterests(long activityId) {
+        Query query = em.createNamedQuery("GetActivityInterests");
+        query.setParameter("idActivity",activityId);
         List<BigInteger>interests = query.getResultList();
         int []arrayOfInterests = new int[interests.size()];
         for (int i  =0; i<interests.size();i++){

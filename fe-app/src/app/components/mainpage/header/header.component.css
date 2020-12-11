@@ -1,0 +1,15 @@
+header{
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 80% 1fr;
+    align-items: center;
+    min-height: 250px;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: bottom;
+}
+
+header *{
+    text-shadow: 2px 2px 3px var(--color-black);
+    color: var(--white);
+}

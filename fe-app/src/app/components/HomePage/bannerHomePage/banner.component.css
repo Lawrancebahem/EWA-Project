@@ -1,21 +1,32 @@
 .carousel-inner {
-  max-height: 250px;
+  /*max-height: 250px;*/
   /*max-height: 600px;*/
 }
 
 .carousel-inner {
   left: 50%;
-  transform: translate(-50%, -.1%);
-  min-width: 100%;
+  transform: translate(-50%, -15%);
   height: auto;
   margin: 0 auto;
   z-index: -1;
   filter: blur(1px);
   -webkit-filter: blur(1px);
 }
+.image{
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
 
+.centered {
+  position: absolute;
+  top: 36%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 #carouselExampleSlidesOnly {
-  max-height: 250px;
+  max-height: 320px;
 }
 
 /************--  media query's  --************/

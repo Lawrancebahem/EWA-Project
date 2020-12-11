@@ -9,15 +9,14 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import server.exception.AuthorizationException;
 import server.exception.PreConditionalFailed;
 import server.exception.ResourceNotFound;
+import server.models.Activity;
 import server.models.Interest;
-import server.models.Login;
 import server.models.User;
 import server.repositories.EntityRepository;
 import server.service.APIConfiguration;
 import server.utilities.JWToken;
 
 import javax.naming.AuthenticationException;
-import javax.security.auth.login.AccountLockedException;
 import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.util.List;
@@ -36,11 +35,14 @@ public class UserController {
     public EntityRepository<Interest> interestEntityRepositoryJpa;
 
     @Autowired
+    @Qualifier("activityRepositoryJpa")
+    private EntityRepository<Activity> activityRepositoryJpa;
+
+    @Autowired
     private APIConfiguration api;
 
     /**
      * Get all users
-     *
      * @return
      */
 //    @JsonView(User.ShowInfoAdmin.class)
@@ -67,8 +69,6 @@ public class UserController {
         User user = this.userRepositoryJpa.findById(userId);
         if (user == null) throw new ResourceNotFound("De gebruiker is gevonden");
         return this.userRepositoryJpa.getClonedObject(user);
-
-
     }
 
     /**
@@ -194,4 +194,14 @@ public class UserController {
         return true;
     }
 
+    /**
+     * To get the user's activity matches
+     * @return
+     */
+    @GetMapping("/activity-match")
+    public List<Activity> getMatchesActivity(HttpServletRequest request){
+        JWToken jwToken = api.getUserJWTokenDecoded(request);
+        long userId = jwToken.getId();
+        return this.activityRepositoryJpa.getActivityMatches(userId);
+    }
 }

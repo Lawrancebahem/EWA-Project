@@ -1,6 +1,6 @@
 <!-- dit is category tabel-->
 <!--Todo zit dit er straks bij => && adminService.categoryArray.length > 0-->
-<div *ngIf="adminService.categoryArray.length > 0">
+<div *ngIf="adminService.categoryArray.length > 0 else loading">
     <button data-toggle="modal" data-target="#myModalCategory" class="button--primary p-1 m-2">Voeg een nieuwe categorie
     </button>
     <table class="table table-hover">
@@ -31,7 +31,7 @@
 
 
 <!--modal to add new category-->
-<div class="modal fade" id="myModalCategory">
+<div class="modal fade" id="myModalCategory" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -43,6 +43,7 @@
                 <img src="assets/Images/emptyPicture.png" id="imageCategory" class="default-picture">
             </div>
             <label class="input-group-text m-1">Upload activiteit foto (verplicht)
+                <mat-icon id="upload-category-icon">cloud_upload</mat-icon>
                 <input class="m-4" type="file" #uploadedCategoryImage>
             </label>
 
@@ -75,3 +76,6 @@
         </div>
     </div>
 </div>
+<ng-template #loading>
+    <mat-icon class="rotate">rotate_right</mat-icon>
+</ng-template>

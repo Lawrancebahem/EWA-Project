@@ -31,6 +31,7 @@ export class AdminService {
    */
   public getAllActivities(){
     this.activityService.getAllActivities().subscribe((activities)=>{
+      console.log(activities);
       this.activityArray = activities ? activities.map((activity) => Activity.trueCopy(activity)):[];
 
     })
@@ -56,6 +57,35 @@ export class AdminService {
     })
   }
 
+  /**
+   * To add new activity
+   * @param category
+   */
+  public addNewActivity(activity):Observable<Activity>{
+    return this.httpClient.post<Activity>(`${environment.apiUrl}/activity/add-activity`, activity, ).pipe(shareReplay(1))
+  }
+  /**
+   * To add interests to a specific activity
+   * @param interestsId the ids of the selected interests
+   */
+  public addInterestsToActivity(idActivity, interestsId:number[]):Observable<number[]>{
+    return this.httpClient.post<number[]>(`${environment.apiUrl}/activity/add-activity-interests/`+idActivity, interestsId).pipe(shareReplay(1))
+  }
+
+  /**
+   * This method is to add categories to an activity
+   * @param idActivity
+   * @param categories
+   */
+  public addCategoriesToActivity(idActivity, categories:number[]):Observable<number[]>{
+    return this.httpClient.post<number[]>(`${environment.apiUrl}/activity/add-activity-categories/`+idActivity, categories).pipe(shareReplay(1))
+  }
+
+
+  public deleteAnActivity(idActivity:number):Observable<boolean>{
+    return this.httpClient.get<boolean>(`${environment.apiUrl}/activity/delete/`+idActivity).pipe(shareReplay(1))
+
+  }
 
   /**
    * To add new category
@@ -64,5 +94,6 @@ export class AdminService {
   public addNewCategory(category):Observable<any>{
     return this.httpClient.post(`${environment.apiUrl}/category/add-category`, category, ).pipe(shareReplay(1))
   }
+
 
 }
