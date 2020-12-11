@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import server.models.Activity;
 import server.models.Category;
 import server.repositories.EntityRepository;
 
@@ -22,6 +23,10 @@ public class CategoryController {
     @Qualifier("categoryRepositoryJpa")
     private EntityRepository<Category> categoryEntityRepositoryJpa;
 
+    @Autowired
+    @Qualifier("activityRepositoryJpa")
+    private EntityRepository<Activity> activityRepositoryJpa;
+
 
     @GetMapping("/all")
     public List<Category> getAllCategories() {
@@ -32,5 +37,10 @@ public class CategoryController {
     public boolean addNewCategory(@RequestBody Category category) {
         categoryEntityRepositoryJpa.saveOrUpdate(category);
         return true;
+    }
+
+    @GetMapping("/all/{idCategory}")
+    public List<Activity> getActivitiesForCategory(@PathVariable long idCategory){
+        return this.activityRepositoryJpa.getActivitiesForCategory(idCategory);
     }
 }

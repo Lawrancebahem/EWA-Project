@@ -2,10 +2,8 @@ package server.repositories;
 
 import org.springframework.stereotype.Service;
 import server.models.Activity;
-import server.models.User;
 
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.math.BigInteger;
 import java.util.List;
@@ -49,5 +47,14 @@ public class ActivityRepositoryJpa extends AbstractEntityRepositoryJpa<Activity>
                 " join user_interest ua on ia.interestid = ua.interest_id where ua.id = ?1")
                 .setParameter(1, userId)
                 .getResultList();
+    }
+
+
+    @Override
+    public List<Activity> getActivitiesForCategory(long idCategory){
+        return this.em.createNativeQuery("select a.* from activity a " +
+                "join activity_category ac on a.idactivity = ac.idactivity" +
+                "where ac.idcategory = ?1")
+                .setParameter(1, idCategory).getResultList();
     }
 }

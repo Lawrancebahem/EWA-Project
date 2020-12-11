@@ -35,7 +35,7 @@ export class ActivityOverviewComponent implements OnInit {
         this.route.queryParams.subscribe(params => {
             this.selectedActivity = params['selectedActivity'];
         });
-        this.filterSearch();
+
     }
 
     public getAllActivities(){
@@ -43,6 +43,8 @@ export class ActivityOverviewComponent implements OnInit {
             this.activityArray = activities ? activities.map((activity) => Activity.trueCopy(activity)):[];
             this.filteredActivityArray = this.activityArray;
         })
+        console.log("alle activiteiten: ");
+        console.log(this.filteredActivityArray);
     }
 
     getAllCategories(): any {
@@ -64,22 +66,30 @@ export class ActivityOverviewComponent implements OnInit {
             }
         }
 
+        console.log(this.categorySearch)
+
         // If no filter is selected show every activity.
         if (this.categorySearch.length == 0) {
             this.filteredActivityArray = this.activityArray;
+            return;
         }
 
         // Check every activity if it includes the selected categories.
-        for (let activity of this.activityArray) {
-            for (let currentCategory of this.categorySearch) {
-                // If the activity includes more than one category only show it once.
-                //TODO: fix with the database table ACTIVITY_CATEGORY
-                // if (activity.categories.includes(currentCategory)) {
-                //     if (!this.filteredActivityArray.includes(activity)) {
-                //         this.filteredActivityArray.push(activity);
-                //     }
-                // }
-            }
+        this.filteredActivityArray = [];
+        for (let category of this.categorySearch) {
+            this.activityService.getActivitiesForCategory(category.idCategory).subscribe((activities) => {
+                let activitiesOfCategory;
+                activitiesOfCategory = activities ? activities.map((activity) => Activity.trueCopy(activity)) : [];
+                console.log("activities from database: ");
+                console.log(activitiesOfCategory);
+                activitiesOfCategory.map((activity) => {
+                    if (!this.filteredActivityArray.includes(activity)){
+                        this.filteredActivityArray.push(activity);
+                    }
+                })
+                console.log("Activities to show");
+                console.log(this.filteredActivityArray);
+            })
         }
     }
 

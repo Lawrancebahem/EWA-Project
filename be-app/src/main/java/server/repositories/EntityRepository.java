@@ -1,11 +1,8 @@
 package server.repositories;
 
-import org.springframework.http.HttpHeaders;
 import server.models.Login;
-import server.utilities.JWToken;
 
 import javax.security.auth.login.AccountLockedException;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface EntityRepository<T extends Identifiable> {
@@ -49,5 +46,7 @@ public interface EntityRepository<T extends Identifiable> {
     default List<T> getActivityMatches(long userId) {
         return null;
     }
+
+    default List<T> getActivitiesForCategory(long idCategory){return null;}
 
 }
