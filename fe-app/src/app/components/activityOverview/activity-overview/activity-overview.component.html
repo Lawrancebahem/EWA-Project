@@ -22,12 +22,6 @@
             <label class="custom-control-label" for="{{category.idCategory}}">{{category.name}}</label>
         </div>
         <button class="btn btn-primary" (click)="filterSearch()">Zoek</button>
-
-        <!--        <button type="button" class="btn button&#45;&#45;primary" id="{{category}}"-->
-        <!--                *ngFor="let category of categoryArray" (click)="addCategoryToSearch()">-->
-        <!--            {{category}}-->
-        <!--        </button>-->
-        <!--        </div>-->
     </div>
 
     <div class="activity col-2 mb-4" *ngFor="let activity of filteredActivityArray | filter: activitySearchText" routerLink="/activityDetails/{{activity.id}}">
