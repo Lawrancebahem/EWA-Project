@@ -1,9 +1,14 @@
 package server.rest;
 
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import server.exception.AuthorizationException;
@@ -16,8 +21,11 @@ import server.repositories.EntityRepository;
 import server.service.APIConfiguration;
 import server.utilities.JWToken;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
@@ -25,6 +33,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+
 
     @Autowired
     @Qualifier("userRepositoryJpa")
@@ -204,4 +218,65 @@ public class UserController {
         long userId = jwToken.getId();
         return this.activityRepositoryJpa.getActivityMatches(userId);
     }
+
+    @PostMapping("/reset-password")
+    public boolean sendEmailTo(@RequestBody ObjectNode objectNode){
+        String email = objectNode.get("email").asText();
+        User foundUser = this.userRepositoryJpa.findByEmail(email);
+        if (foundUser != null){
+            String lastName = foundUser.getLastName();
+            String userPassword = foundUser.getPassword();
+            this.sendEmail(lastName,email ,userPassword);
+            return true;
+        }else {
+            throw new ResourceNotFound("De volgende email + <" + email + "> is niet bekened!");
+        }
+    }
+
+
+    /**
+     * To send the password via an email for the user, if the user has forgotten the password
+     * @param lastName
+     * @param toEmail
+     * @param password
+     */
+    public void sendEmail(String lastName,String toEmail,String password) {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(toEmail);
+        msg.setSubject("Herstellen wachtwoord");
+        msg.setText("Geachte heer/mevrouw " + lastName +",\n\n"
+                + "Uw password is: " + password+ "\n\n" +
+                "Met vriendelijke groet,\n"+
+                "Digital Life team 5");
+        javaMailSender.send(msg);
+    }
+
+
+
+    void sendEmailWithAttachment() throws MessagingException, IOException {
+
+        MimeMessage msg = javaMailSender.createMimeMessage();
+
+        // true = multipart message
+        MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+
+        helper.setTo("to_@email");
+
+        helper.setSubject("Testing from Spring Boot");
+
+        // default = text/plain
+        //helper.setText("Check attachment for image!");
+
+        // true = text/html
+        helper.setText("<h1>Check attachment for image!</h1>", true);
+
+        // hard coded a file path
+        //FileSystemResource file = new FileSystemResource(new File("path/android.png"));
+
+        helper.addAttachment("my_photo.png", new ClassPathResource("android.png"));
+
+        javaMailSender.send(msg);
+
+    }
+
 }

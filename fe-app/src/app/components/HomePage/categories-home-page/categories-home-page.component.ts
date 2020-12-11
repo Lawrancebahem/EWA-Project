@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as categories from "../../../json/categories.json";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CategoryService} from "../../../services/categoryService/category.service";
+import {AdminService} from "../../../services/admin-service/admin.service";
 
 @Component({
   selector: 'app-activities-home-page',
@@ -17,10 +18,12 @@ export class CategoriesHomePageComponent implements OnInit {
   constructor(
       private route: ActivatedRoute,
       private router: Router,
-      private categoryService: CategoryService
+      private categoryService: CategoryService,
+      public adminservice: AdminService
   ) { }
 
   ngOnInit(): void {
+    this.adminservice.getAllCategories();
   }
 
 }

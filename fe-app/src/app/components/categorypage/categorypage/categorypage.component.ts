@@ -4,6 +4,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {Category} from "../../../models/category";
 import {CategoryService} from "../../../services/categoryService/category.service";
+import {AdminService} from "../../../services/admin-service/admin.service";
 
 @Component({
   selector: 'app-categorypage',
@@ -18,9 +19,11 @@ export class CategorypageComponent implements OnInit {
   searchText: any;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private categoryService: CategoryService
+              private categoryService: CategoryService,
+              public adminservice: AdminService
               ) {
   }
+
 
   private childParamsSubscription: Subscription = null;
 
@@ -38,5 +41,7 @@ export class CategorypageComponent implements OnInit {
   setcategoryTitle(param: any){
   this.categoryTitle = param;
   }
+
+
 
 }

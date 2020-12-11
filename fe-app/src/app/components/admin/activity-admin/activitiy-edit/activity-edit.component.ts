@@ -75,8 +75,8 @@ export class ActivityEditComponent implements OnInit {
             let location = this.locationActivity.nativeElement.value
             let description = this.descriptionActivity.nativeElement.value
 
-            let selectedActivity = this.getSelectedActivity();
-            console.log(selectedActivity);
+            let selectedActivity = this.getSelectedActivity(); //get the selected activity
+
             if (selectedActivity != null) {
                 image = activityPicture == undefined ? selectedActivity.image : image; // if there is no image uploaded, get the original picture of this activity
             }
@@ -277,4 +277,6 @@ export class ActivityEditComponent implements OnInit {
         let deleteModal = document.getElementById("delete-activity-icon");
         deleteModal.style.display = "block"
     }
+
+
 }
