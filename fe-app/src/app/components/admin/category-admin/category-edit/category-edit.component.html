@@ -3,6 +3,10 @@
 <div *ngIf="adminService.categoryArray.length > 0 else loading">
     <button data-toggle="modal" data-target="#myModalCategory" class="button--primary p-1 m-2">Voeg een nieuwe categorie
     </button>
+
+    <!--    /this button is for editing purposes-->
+    <button [hidden]="true"  id="openModal-category" data-toggle="modal" data-target="#myModalCategory"></button>
+
     <table class="table table-hover">
         <thead>
         <tr>
@@ -14,7 +18,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let category of adminService.categoryArray">
+        <tr *ngFor="let category of adminService.categoryArray" (click)="editCategory(category.idCategory)">
             <td>{{category.idCategory}}</td>
             <td>{{category.name}}</td>
             <td>{{category.description}}</td>

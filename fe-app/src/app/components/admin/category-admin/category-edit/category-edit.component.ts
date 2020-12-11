@@ -14,7 +14,7 @@ export class CategoryEditComponent implements OnInit {
   @ViewChild('uploadedCategoryImage') uploadedCategoryImage: ElementRef;
   @ViewChild('titleInputCategory') titleInputCategory: ElementRef;
   @ViewChild('descriptionCategory') descriptionCategory: ElementRef;
-
+  private selectedCategory:number = 0;
   constructor(public adminService: AdminService,
               private convertImage: ImageBase64Service) { }
 
@@ -39,10 +39,10 @@ export class CategoryEditComponent implements OnInit {
       const category: Category = new Category();
       category.name = this.titleInputCategory.nativeElement.value;
       category.description = this.descriptionCategory.nativeElement.value;
-      category.image = data != null ? data : "";
+      category.image = categoryPicture != undefined ? data : "";
 
       //To make sure that the category is not being read as null
-      let objectCategory = {name: category.name, description:category.description, image: category.image};
+      let objectCategory = {id:this.selectedCategory ,name: category.name, description:category.description, image: category.image};
       // Add the category to the list
       this.adminService.addNewCategory(objectCategory).subscribe((response) => {
 
@@ -60,11 +60,18 @@ export class CategoryEditComponent implements OnInit {
   }
 
 
-  public editCategory(){
+  public editCategory(idCategory){
+    this.selectedCategory = idCategory;
+    let category = this.adminService.categoryArray.find(category => category.idCategory == idCategory);
+    this.titleInputCategory.nativeElement.value = category.name;
+    this.descriptionCategory.nativeElement.value =  category.description;
+    // this.uploadedCategoryImage.nativeElement.value = category.image;
+    const openModal = document.getElementById("openModal-category"); // trigger the modal
+    
+    setTimeout(()=>{
+      openModal.click();
+    },)
 
-    this.titleInputCategory.nativeElement.value = "";
-    this.descriptionCategory.nativeElement.value =  "";
-    this.uploadedCategoryImage.nativeElement.value = "";
   }
 
 

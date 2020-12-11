@@ -55,6 +55,13 @@
     -webkit-line-clamp: 2; /* number of lines to show */
     -webkit-box-orient: vertical;
 }
+.confirmation-send{
+    background-color: var(--white);
+    border: var(--color-default) 1px solid;
+    border-radius: var(--border-radius);
+    height:210px;
+}
+
 .text_1{
     display: block;
     font-style: var(--font-family-text);

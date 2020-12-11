@@ -65,4 +65,42 @@ export class LoginComponent implements OnInit {
             }, 6000)
         })
     }
+
+
+    /**
+     * To showe the confirmation modal
+     */
+    public showConfirmationModal(){
+        let confirmationModal = document.getElementById("reset-icon");
+        confirmationModal.style.display = "block"
+
+    }
+
+    /**
+     * To hide the reset modal
+     */
+    hideConfirmationModal() {
+        let confirmationModal = document.getElementById("reset-icon");
+        confirmationModal.style.display = "none"
+    }
+    /**
+     * Reset the password, once the user clicks on the button
+     * @param userEmail
+     */
+    public resetPassword(userEmail:string) {
+        let successMessage = document.getElementById("success-message-send");
+
+        this.userService.resetPassword(userEmail).subscribe((response)=>{
+            console.log(response);
+            successMessage.style.display = "block"
+            setTimeout(()=>{
+                successMessage.style.display = "none"
+                this.hideConfirmationModal();
+            },2000)
+        },error => {
+            console.log(error);
+        })
+    }
+
+
 }

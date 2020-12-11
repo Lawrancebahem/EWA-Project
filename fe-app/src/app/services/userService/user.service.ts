@@ -91,4 +91,13 @@ export class UserService {
    })
   }
 
+  /**
+   * To make request to the backend to send the password within the email
+   *
+   */
+  public resetPassword(email:string):Observable<any>{
+    let response = this.httpClient.post<any>(`${environment.apiUrl}/user/reset-password`,{email:email}).pipe((shareReplay(1)));
+    return response;
+  }
+
 }
