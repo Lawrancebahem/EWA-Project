@@ -14,9 +14,11 @@ export class CategoryEditComponent implements OnInit {
   @ViewChild('uploadedCategoryImage') uploadedCategoryImage: ElementRef;
   @ViewChild('titleInputCategory') titleInputCategory: ElementRef;
   @ViewChild('descriptionCategory') descriptionCategory: ElementRef;
-  public selectedCategory:number = 0;
+  public selectedCategory: number = 0;
+
   constructor(public adminService: AdminService,
-              private convertImage: ImageBase64Service) { }
+              private convertImage: ImageBase64Service) {
+  }
 
   ngOnInit(): void {
     this.adminService.getAllCategories();
@@ -36,7 +38,7 @@ export class CategoryEditComponent implements OnInit {
     uploadIconCategory.classList.add("uploadIcon") // let the icon move up and down
 
     const closeModal = document.getElementById("close-modalCategory");
-    const categoryPicture= this.uploadedCategoryImage.nativeElement.files[0];
+    const categoryPicture = this.uploadedCategoryImage.nativeElement.files[0];
     const imagePreview = document.getElementById("image--category-preview").querySelector("#imageCategory")
     this.convertImage.convertToBase64(categoryPicture, data => {
       const category: Category = new Category();
@@ -47,21 +49,27 @@ export class CategoryEditComponent implements OnInit {
       imagePreview.setAttribute("src", category.image);
 
       //To make sure that the category is not being read as null
-      let objectCategory = {id:this.selectedCategory ,name: category.name, description:category.description, image: category.image};
+      let objectCategory = {
+        id: this.selectedCategory,
+        name: category.name,
+        description: category.description,
+        image: category.image
+      };
       // Add the category to the list
       this.adminService.addNewCategory(objectCategory).subscribe((response) => {
         successMessageCategory.style.display = "block";
         // Close the modal after 1.5sec
-        setTimeout( ()=> {
+        setTimeout(() => {
           closeModal.click();
           successMessageCategory.style.display = "none";
           uploadIconCategory.classList.remove("uploadIcon");
           this.clearFieldsModal();
 
         }, 2500)
+        console.log(response);
         this.updateArray(response)
 
-      },error => {
+      }, error => {
         console.log(error);
       })
     })
@@ -78,24 +86,24 @@ export class CategoryEditComponent implements OnInit {
   }
 
 
-  public editCategory(idCategory){
+  public editCategory(idCategory) {
+    this.selectedCategory = idCategory;
     const imagePreview = document.getElementById("image--category-preview").querySelector("#imageCategory");
 
     this.selectedCategory = idCategory;
     let category = this.adminService.categoryArray.find(category => category.idCategory == idCategory);
     this.titleInputCategory.nativeElement.value = category.name;
-    this.descriptionCategory.nativeElement.value =  category.description;
+    this.descriptionCategory.nativeElement.value = category.description;
     // this.uploadedCategoryImage.nativeElement.value = category.image;
     imagePreview.setAttribute("src", category.image);
     const openModal = document.getElementById("openModal-category"); // trigger the modal
 
-    setTimeout(()=>{
+    setTimeout(() => {
       openModal.click();
     },)
-
   }
 
-  setSelectedToNull() {
+    setSelectedToNull() {
     this.selectedCategory = 0; // set the selected to 0
     this.clearFieldsModal(); //clear the fields
   }
