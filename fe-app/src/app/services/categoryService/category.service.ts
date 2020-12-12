@@ -31,6 +31,10 @@ export class CategoryService {
     return this.categoryArray.filter( x => x.categoryTitle == categoryTitle)[0]
   }
 
+  public getAllActivitiesForCategory(idCategory): Observable<any[]>{
+    return this.httpClient.get<any[]>(`${environment.apiUrl}/category/activity/all/` + idCategory).pipe(shareReplay(1));
+  }
+
   public getAllCategories(): Observable<Category[]> {
     return this.httpClient.get<Category[]>(`${environment.apiUrl}/category/all`).pipe(shareReplay(1));
   }

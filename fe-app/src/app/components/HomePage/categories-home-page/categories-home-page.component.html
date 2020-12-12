@@ -17,7 +17,7 @@
 
 <div class="container-grid" *ngIf="adminservice.categoryArray.length > 0 else loading">
 
-    <div class="card" routerLink="/category/{{category.name}}" *ngFor="let category of adminservice.categoryArray | filter: searchText">
+    <div class="card" routerLink="/category/{{category.id}}" *ngFor="let category of adminservice.categoryArray | filter: searchText">
         <img src="{{category.image}}" class="card-img-top" alt="{{category.name}}}">
         <div class="card-body">
             <h2 class="card-title">{{category.name}}</h2>

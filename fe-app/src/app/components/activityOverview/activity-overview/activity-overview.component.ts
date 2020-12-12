@@ -68,14 +68,6 @@ export class ActivityOverviewComponent implements OnInit {
         });
     }
 
-    // public getAllActivities() {
-    //     this.activityService.getAllActivities().subscribe((activities) => {
-    //         this.activityArray = activities ? activities.map((activity) => Activity.trueCopy(activity)) : [];
-    //         this.filteredActivityArray = this.activityArray;
-    //     })
-    //     console.log("alle activiteiten: ");
-    //     console.log(this.filteredActivityArray);
-    // }
 
     getAllCategories(): any {
         this.categoryService.getAllCategories().subscribe((categories) => {
@@ -95,8 +87,6 @@ export class ActivityOverviewComponent implements OnInit {
                 this.categorySearch.push(category);
             }
         }
-
-        console.log(this.categorySearch)
 
         // If no filter is selected show every activity.
         if (this.categorySearch.length == 0) {

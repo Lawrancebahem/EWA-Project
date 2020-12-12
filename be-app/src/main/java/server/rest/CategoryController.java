@@ -3,15 +3,10 @@ package server.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import server.models.Activity;
 import server.models.Category;
 import server.repositories.ActivityRepositoryJpa;
-import server.repositories.EntityRepository;
+import server.repositories.CategoryRepositoryJpa;
 
 import java.util.List;
 
@@ -26,7 +21,7 @@ public class CategoryController {
 
     @Autowired
     @Qualifier("categoryRepositoryJpa")
-    private EntityRepository<Category> categoryEntityRepositoryJpa;
+    private CategoryRepositoryJpa categoryEntityRepositoryJpa;
 
     @GetMapping("/all")
     public List<Category> getAllCategories() {
@@ -57,4 +52,10 @@ public class CategoryController {
     public List<Object[]> getActivitiesForCategory(){
         return this.activityRepositoryJpa.getActivitiesForCategory();
     }
+
+    @GetMapping("/activity/all/{id}")
+    public List<Object[]> getAllActivitiesForThisCategory(@PathVariable long id){
+        return this.categoryEntityRepositoryJpa.getAllActivitiesForThisCategory(id);
+    }
+
 }

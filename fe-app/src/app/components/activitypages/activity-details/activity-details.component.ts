@@ -43,8 +43,6 @@ export class ActivityDetailsComponent implements OnInit {
                          .subscribe((response)=>{
                          this.getAllReactions(this.selectedActivityId);
                          this.activityToShow = Activity.trueCopy(response);
-                         console.log(this.activityToShow);
-                         console.log(response);
                      })
                 }
             );
@@ -71,7 +69,6 @@ export class ActivityDetailsComponent implements OnInit {
         this.textReactionElement.nativeElement.value = "";
         this.reactionsArray.push({...newReaction, idActivity: idActivity ,userName: userName})
         response.subscribe((response) => {
-            console.log(response);
         }, error => {
             console.log(error);
         })
@@ -87,7 +84,6 @@ export class ActivityDetailsComponent implements OnInit {
             this.reactionsArray = reactions.map(reaction => {
                 return {id: reaction[0], textReaction: reaction[1], activityId: reaction[2], userName: reaction[3]};
             })
-            console.log(this.reactionsArray);
         }, error => {
             console.log(error);
         })
