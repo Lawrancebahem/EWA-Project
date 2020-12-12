@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 // @ts-ignore
 import *  as  activities from '../../../json/activities.json';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {ActivityService} from "../../../services/activityService/activity.service";
 import {Activity} from "../../../models/activity";
 import {Category} from "../../../models/category";
@@ -13,24 +13,25 @@ import {CategoryService} from "../../../services/categoryService/category.servic
     styleUrls: ['./activity-overview.component.css']
 })
 export class ActivityOverviewComponent implements OnInit {
-    public activityArray:Activity[] = [];
+    public activityArray: any[] = [];
     categoryArray: Category[] = [];
-    allCategoriesArray: Category[] = [];
     activitySearchText;
     categorySearch = [];
     selectedActivity;
-    filteredActivityArray :Activity[] = [];
+    filteredActivityArray: any[] = [];
+    activitiesWithCategories: any[] = [];
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private activityService: ActivityService,
         private categoryService: CategoryService
-    ) {}
+    ) {
+    }
 
     ngOnInit(): void {
+        this.getAllActivitiesWithCategories()
         this.getAllCategories();
-        this.getAllActivities();
         this.categoryArray.sort((a, b) => a > b ? 1 : -1);
         this.route.queryParams.subscribe(params => {
             this.selectedActivity = params['selectedActivity'];
@@ -38,18 +39,47 @@ export class ActivityOverviewComponent implements OnInit {
 
     }
 
-    public getAllActivities(){
-        this.activityService.getAllActivities().subscribe((activities)=>{
-            this.activityArray = activities ? activities.map((activity) => Activity.trueCopy(activity)):[];
-            this.filteredActivityArray = this.activityArray;
-        })
-        console.log("alle activiteiten: ");
-        console.log(this.filteredActivityArray);
+    public getAllActivitiesWithCategories() {
+        this.activityService.getActivitiesForCategory().subscribe((response) => {
+            this.activitiesWithCategories = response.map((activityCategory) => {
+
+                let newActivity = {
+                    id: activityCategory[0],
+                    description: activityCategory[1],
+                    image: activityCategory[2],
+                    location: activityCategory[3],
+                    show: activityCategory[4],
+                    title: activityCategory[5],
+                    idcategory: activityCategory[6]
+                }
+
+                let foundActivity = this.activityArray.find((found) => found.id == newActivity.id)
+
+                if(foundActivity == null){
+                    this.activityArray.push(newActivity)
+                }
+
+                this.filteredActivityArray = this.activityArray
+
+               return newActivity
+            })
+        }, error => {
+            console.log(error)
+        });
     }
 
+    // public getAllActivities() {
+    //     this.activityService.getAllActivities().subscribe((activities) => {
+    //         this.activityArray = activities ? activities.map((activity) => Activity.trueCopy(activity)) : [];
+    //         this.filteredActivityArray = this.activityArray;
+    //     })
+    //     console.log("alle activiteiten: ");
+    //     console.log(this.filteredActivityArray);
+    // }
+
     getAllCategories(): any {
-        this.categoryService.getAllCategories().subscribe((categories)=>{
-            this.categoryArray = categories ? categories.map((category) => Category.trueCopy(category)):[];
+        this.categoryService.getAllCategories().subscribe((categories) => {
+            this.categoryArray = categories ? categories.map((category) => Category.trueCopy(category)) : [];
         })
     }
 
@@ -77,19 +107,16 @@ export class ActivityOverviewComponent implements OnInit {
         // Check every activity if it includes the selected categories.
         this.filteredActivityArray = [];
         for (let category of this.categorySearch) {
-            this.activityService.getActivitiesForCategory(category.idCategory).subscribe((activities) => {
-                let activitiesOfCategory;
-                activitiesOfCategory = activities ? activities.map((activity) => Activity.trueCopy(activity)) : [];
-                console.log("activities from database: ");
-                console.log(activitiesOfCategory);
-                activitiesOfCategory.map((activity) => {
-                    if (!this.filteredActivityArray.includes(activity)){
-                        this.filteredActivityArray.push(activity);
+            for(let activity of this.activitiesWithCategories){
+                if(activity.idcategory == category.idCategory){
+
+                    let foundActivity = this.filteredActivityArray.find((found) => found.id == activity.id)
+
+                    if(foundActivity == null){
+                        this.filteredActivityArray.push(activity)
                     }
-                })
-                console.log("Activities to show");
-                console.log(this.filteredActivityArray);
-            })
+                }
+            }
         }
     }
 

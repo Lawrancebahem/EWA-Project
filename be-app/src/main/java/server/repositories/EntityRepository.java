@@ -47,6 +47,4 @@ public interface EntityRepository<T extends Identifiable> {
         return null;
     }
 
-    default List<T> getActivitiesForCategory(long idCategory){return null;}
-
 }

@@ -49,12 +49,9 @@ public class ActivityRepositoryJpa extends AbstractEntityRepositoryJpa<Activity>
                 .getResultList();
     }
 
-
-    @Override
-    public List<Activity> getActivitiesForCategory(long idCategory){
-        return this.em.createNativeQuery("select a.* from activity a " +
-                "join activity_category ac on a.idactivity = ac.idactivity" +
-                "where ac.idcategory = ?1")
-                .setParameter(1, idCategory).getResultList();
+    public List<Object[]> getActivitiesForCategory(){
+        return this.em.createNativeQuery("select a.* , ac.idcategory from activity a  " +
+                "join activity_category ac on a.idactivity = ac.idactivity")
+                .getResultList();
     }
 }

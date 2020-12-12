@@ -47,7 +47,7 @@ export class ActivityService {
     }
 
 
-    public getActivitiesForCategory(idCategory: number):Observable<Activity[]>{
-        return this.httpClient.get<Activity[]>(`${environment.apiUrl}/category/all/` + idCategory).pipe(shareReplay(1));
+    public getActivitiesForCategory():Observable<any[]>{
+        return this.httpClient.get<any[]>(`${environment.apiUrl}/category/all/activityForCategory`).pipe(shareReplay(1));
     }
 }

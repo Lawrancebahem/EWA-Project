@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import server.models.Activity;
 import server.models.Category;
+import server.repositories.ActivityRepositoryJpa;
 import server.repositories.EntityRepository;
 
 import java.util.List;
@@ -21,16 +22,11 @@ public class CategoryController {
 
     @Autowired
     @Qualifier("activityRepositoryJpa")
-    private EntityRepository<Activity> activityRepositoryJpa;
+    private ActivityRepositoryJpa activityRepositoryJpa;
 
     @Autowired
     @Qualifier("categoryRepositoryJpa")
     private EntityRepository<Category> categoryEntityRepositoryJpa;
-
-    @Autowired
-    @Qualifier("activityRepositoryJpa")
-    private EntityRepository<Activity> activityRepositoryJpa;
-
 
     @GetMapping("/all")
     public List<Category> getAllCategories() {
@@ -57,8 +53,8 @@ public class CategoryController {
         return false;
     }
 
-    @GetMapping("/all/{idCategory}")
-    public List<Activity> getActivitiesForCategory(@PathVariable long idCategory){
-        return this.activityRepositoryJpa.getActivitiesForCategory(idCategory);
+    @GetMapping("/all/activityForCategory")
+    public List<Object[]> getActivitiesForCategory(){
+        return this.activityRepositoryJpa.getActivitiesForCategory();
     }
 }
