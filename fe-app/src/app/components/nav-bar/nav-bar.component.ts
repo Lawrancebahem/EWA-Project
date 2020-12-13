@@ -64,6 +64,8 @@ export class NavBarComponent implements OnInit {
         }
     }
 
+
+
     //To logout from the drop down
     public logout() {
         this.sessionService.signOut(); // remove session
