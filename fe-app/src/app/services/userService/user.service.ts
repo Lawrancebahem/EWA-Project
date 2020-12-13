@@ -82,8 +82,12 @@ export class UserService {
   public getMatchingActivities(){
    let response = this.httpClient.get<Activity[]>(`${environment.apiUrl}/user/activity-match`).pipe((shareReplay(1)));
    response.subscribe((activities)=>{
-     this.matchingActivityArray =  activities.map((activities)=>{
-       return {id:activities[0], description: activities[1], image:activities[2], location: activities[3], show:activities[4], title:activities[5]}
+     activities.map((activities)=>{
+       let activity = {id:activities[0], description: activities[1], image:activities[2], location: activities[3], show:activities[4], title:activities[5]}
+       let foundActivity = this.matchingActivityArray.find((act) => act.id == activity.id);
+       if (foundActivity == null){
+         this.matchingActivityArray.push(activity);
+       }
      })
      console.log(this.matchingActivityArray);
    },error => {

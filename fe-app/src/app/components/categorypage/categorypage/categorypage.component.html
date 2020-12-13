@@ -1,4 +1,4 @@
-<div *ngIf="adminservice.categoryArray.length > 0 && activityArray.length > 0 else loading" >
+<div  *ngIf="adminservice.categoryArray.length > 0 && activityArray.length > 0 else loading" >
     <header id="header" style="background-image: linear-gradient(to bottom, rgba(220,220,220,0.7) 0%,rgba(220,220,220,0.7) 100%),
     url('{{getCategoryImage()}}')">
         <div class="backgroundCategoryPage" >
@@ -12,16 +12,18 @@
         <mat-icon>search</mat-icon>
     </div>
 
-    <div class="activity-overview row-cols-1 row-cols-md-3">
-        <div class="activity col-2 mb-4" *ngFor="let activity of activityArray | filter: categoryId | filter: searchText" routerLink="/activityDetails/{{activity.id}}">
-            <img class="card-img-top" src="{{activity.image}}"
-                 alt="{{activity.title}}">
-            <h4 class="card-title">
-                {{ activity.title}}
-            </h4>
-            <p class="card-text">
-                {{activity.description}}
-            </p>
+    <div class="flex-container">
+        <div class="activity-overview row-cols-1 row-cols-md-3">
+            <div class="activity col-2 mb-4" *ngFor="let activity of activityArray | filter: categoryId | filter: searchText" routerLink="/activityDetails/{{activity.id}}">
+                <img class="card-img-top" src="{{activity.image}}"
+                     alt="{{activity.title}}">
+                <h4 class="card-title">
+                    {{ activity.title}}
+                </h4>
+                <p class="card-text">
+                    {{activity.description}}
+                </p>
+            </div>
         </div>
     </div>
 </div>

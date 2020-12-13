@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
      * @param login
      */
     public login(login) {
-        let alert = document.getElementById("alert");
+        let alert = document.getElementById("error-login");
         this.authenticationService.login(login).subscribe(response => {
 
             console.log(response);
@@ -58,9 +58,9 @@ export class LoginComponent implements OnInit {
             }
         },error => {
 
-            alert.innerHTML =error.error.message;
+            alert.innerHTML = error.error.message;
             alert.style.display = "block"
-            setTimeout( ()=> {
+            setTimeout( () => {
                 alert.style.display = "none"
             }, 6000)
         })
