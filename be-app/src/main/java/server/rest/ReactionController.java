@@ -43,7 +43,6 @@ public class ReactionController {
 
     @GetMapping("/all/{idActivity}")
     public List<Object[]> getAllReactions(@PathVariable long idActivity){
-        System.out.println("THe user shit us " + idActivity);
         return this.reactionRepositoryJpa.findReactionForAnActivity(idActivity);
     }
 
