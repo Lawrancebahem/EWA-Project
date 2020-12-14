@@ -26,7 +26,6 @@
                 </a>
             </li>
 
-
             <li *ngIf="authenticateService.isLoggedIn && authenticateService.loggedInUser.admin" class="nav-item active">
                 <a class="nav-link button--primary" routerLink="/admin">
                     <mat-icon class="icon-size">admin_panel_settings</mat-icon>
@@ -57,6 +56,14 @@
                 <a class="nav-link waves-effect waves-light">
                     <i class="fab fa-google-plus-g"></i>
                 </a>
+            </li>
+
+            <li *ngIf="authenticateService.isLoggedIn" class="nav-item">
+                <a class="nav-link button--primary text-white" routerLink="/aboutUs">About Us</a>
+            </li>
+
+            <li *ngIf="authenticateService.isLoggedIn" class="nav-item">
+                <a class="nav-link button--primary text-white" routerLink="/contactUs">Contact</a>
             </li>
 
             <li *ngIf="authenticateService.isLoggedIn" class="nav-item">
@@ -91,6 +98,10 @@
 
                 <li class="nav-item">
                     <a class="nav-link button--primary text-white" routerLink="/aboutUs">About Us</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link button--primary text-white" routerLink="/contactUs">Contact</a>
                 </li>
 
                 <li class="nav-item ">
