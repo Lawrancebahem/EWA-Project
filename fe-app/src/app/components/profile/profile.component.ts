@@ -114,6 +114,8 @@ export class ProfileComponent implements OnInit {
                     this.userService.insertUserInterests(interests)
                         .pipe(shareReplay(1)).subscribe((response) => {
                         this.authenticationService.loggedInUser.interests = interests;
+                        this.userService.matchingActivityArray = [] // make the array empty
+                        this.userService.getMatchingActivities();//load the new activities
                     }, error => {
                         console.log(error);
                     })
