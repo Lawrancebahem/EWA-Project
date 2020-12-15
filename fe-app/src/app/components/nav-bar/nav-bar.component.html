@@ -47,6 +47,18 @@
                 </div>
             </li>
 
+            <li class="nav-item active text-font-change-size">
+                <a class="nav-link button--primary" routerLink="/home">
+                    <mat-icon class="icon-size">text_fields</mat-icon>
+                    <span class="nav-icon-text">Text</span>
+                </a>
+                <div class="text-center p-0 m-0 icons-plus-minus">
+                    <mat-icon class="icon-font" (click)="maximizeFontSize()">add_box</mat-icon>
+                    <mat-icon class="icon-font" (click)="minimizeFontSize()">indeterminate_check_box</mat-icon>
+                </div>
+
+            </li>
+
             <li *ngIf="authenticateService.isLoggedIn && authenticateService.loggedInUser.admin" class="nav-item active">
                 <a class="nav-link button--primary" routerLink="/admin">
                     <mat-icon class="icon-size">admin_panel_settings</mat-icon>
@@ -76,8 +88,8 @@
                 </a>
                 <div id="dropDown" class="dropdown-menu dropdown-menu-right dropdown-default"
                      aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item text-white  button--primary" routerLink="/profile">Mijn Profiel</a>
-                    <a class="dropdown-item  text-white button--primary" (click)="logout()">Log uit</a>
+                    <a class="dropdown-item   button--primary" routerLink="/profile">Mijn Profiel</a>
+                    <a class="dropdown-item   button--primary" (click)="logout()">Log uit</a>
                 </div>
             </li>
 

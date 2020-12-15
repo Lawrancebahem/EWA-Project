@@ -22,7 +22,12 @@
     box-shadow: 7px 7px 7px var(--color-default);
 
 }
-
+.card-title{
+    font-size: var(--font-h1);
+}
+.card-text{
+    font-size:  var(--font-p);
+}
 .card:hover {
     transform: translateY(-10px);
     cursor: pointer;

@@ -7,7 +7,11 @@ import * as annyang from 'annyang';
 })
 
 export class SpeechServiceService {
-    // colors = {'blauw': "blue", 'groen': "green", 'zwart': "black" , 'rood': "red", 'geel': "yellow",}
+
+    public h1 = 50 ;
+    public h2 = 30;
+    public h4 =20 ;
+    public p = 24;    // colors = {'blauw': "blue", 'groen': "green", 'zwart': "black" , 'rood': "red", 'geel': "yellow",}
     public title = 'angularSpeechRecognition';
     public phrases = [];
     public languages: string [] = ['nl-NL']

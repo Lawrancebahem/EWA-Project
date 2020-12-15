@@ -6,6 +6,7 @@
   text-align: center;
   padding-bottom: 5rem;
   color: var(--color-white-smoke);
+  font-size: var(--font-h1);
 }
 .carousel-inner {
   left: 50%;

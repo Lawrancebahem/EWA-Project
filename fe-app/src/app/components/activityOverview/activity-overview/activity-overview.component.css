@@ -12,7 +12,7 @@ header {
 
 
 header h1 {
-    font-size: 70px;
+    font-size: var(--font-h1);
     text-shadow: 0 0 20px white;
     padding: 25px;
     border-radius: 70px;
@@ -77,12 +77,14 @@ img{
     width: 100%;
     text-align: center;
     position: center;
-    font-size: 25px;
+    font-size: var(--font-h2);
 }
 
 .card-text{
     opacity: .5;
     padding: 5px;
+    font-size: var(--font-p);
+
 }
 
 /*.card-text:hover{*/
@@ -108,6 +110,12 @@ img{
     border-bottom-right-radius: 45px;
 }
 
+.custom-control-label{
+    font-size: var(--font-p);
+}
+.filterlist h4 {
+    font-size: var(--font-h4);
+}
 #filterlist .btn-link {
     font-weight: bold;
     border: 2px solid black;
@@ -115,6 +123,10 @@ img{
     padding: 3px;
     color: #eeeeee;
     background-color: black;
+    font-size: var(--font-p);
+}
+.filterlist h1{
+    font-size: var(--font-h1);
 }
 
 #filterlist .btn.btn-primary {

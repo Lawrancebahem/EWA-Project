@@ -87,6 +87,26 @@ h2 {
     float: right;
 
 }
+.icon-font{
+    font-size: 50px;
+    position: relative;
+    right: .7rem;
+    bottom:1.6rem;
+    cursor: pointer;
+}
+.icons-plus-minus{
+    display: none;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
+.text-font-change-size:hover .icons-plus-minus{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    z-index: 1;
+    color: var(--white);
+}
 .red-color{
     background-color: var(--red);
 }

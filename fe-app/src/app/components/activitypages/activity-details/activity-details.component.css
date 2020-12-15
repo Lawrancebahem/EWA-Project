@@ -30,7 +30,7 @@ header {
 }
 
 header h1 {
-    font-size: 70px;
+    font-size: var(--font-h1);
     text-shadow: 0 0 20px white;
 }
 
@@ -49,11 +49,13 @@ header h1 {
 
 .activity-description-title {
     font-weight: bold;
+    font-size: var(--font-h2);
     margin-left: .5rem;
 }
 
 .activity-description p{
     padding-left: 1rem;
+    font-size: var(--font-p);
     opacity: .5;
 }
 .activity-description {
@@ -83,7 +85,7 @@ header h1 {
     border: 1px solid var(--color-default);
     border-radius: var(--border-radius);
     font-family: var(--font-family-text);
-    font-size: var(--font-size-text);
+    font-size: var(--font-p);
     color: var(--color-black);
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

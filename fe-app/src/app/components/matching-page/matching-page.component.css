@@ -1,7 +1,12 @@
 header {
  margin-top: 1rem;
 }
-
+.card-title{
+    font-size: var(--font-h2);
+}
+.card-text{
+    font-size: var(--font-p);
+}
 .container {
     background-color: var(--color-white-smoke);
     margin-top: -2%;

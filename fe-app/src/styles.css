@@ -13,6 +13,11 @@
     --color-blue: #45b3e0;
     --color-default: #232323;
     --font-size: 1.2rem;
+    --font-h1: 50px;
+    --font-h2: 30px;
+    --font-h4: 30px;
+    --font-p: 24px;
+
 
     /*RESPONSIVE SIZES (Not working with media queries) */
     --media_XS:         20em; /* Extra Small Devices               320px    */

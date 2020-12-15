@@ -12,7 +12,7 @@ header {
 
 
 header h1 {
-  font-size: 70px;
+  font-size: var(--font-h1);
   text-shadow: 0 0 20px white;
   padding: 25px;
   border-radius: 70px;
@@ -62,12 +62,14 @@ img{
   width: 100%;
   text-align: center;
   position: center;
+  font-size: var(--font-h4)
 }
 
 .card-text{
   opacity: .5;
   padding: 5px;
   /*max-height: 50px;*/
+  font-size: var(--font-p);
 }
 
 .form-control{

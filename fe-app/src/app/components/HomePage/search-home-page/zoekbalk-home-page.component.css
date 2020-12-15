@@ -17,6 +17,7 @@
   border-radius: var(--border-radius);
   cursor: pointer;
 }
+
 .card-img-top{
   max-height: 350px;
   border-radius: var(--border-radius);

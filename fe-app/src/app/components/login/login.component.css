@@ -66,6 +66,12 @@
     display: block;
     font-style: var(--font-family-text);
 }
+.text_1 h2{
+    font-size: var(--font-h2);
+}
+.text_1 p{
+    font-size: var(--font-p);
+}
 @media only screen and (max-width: 48em){
     .login_blok{
         margin:0;
