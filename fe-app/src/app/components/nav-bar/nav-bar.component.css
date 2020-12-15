@@ -52,6 +52,7 @@
 
 .dropdown-item:hover{
     background-color: var(--color-black);
+    color: var(--white);
 
 }
 
@@ -65,10 +66,43 @@ h2 {
     margin: 0;
 }
 
-#dropDown {
-    background-color: var(--color-default);
+.nav-icon-text {
+    display: block;
+    color: var(--white);
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    /*font-family: Garamond Pro;*/
 }
 
+.color-icon{
+    color: var(--white);
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    width: 1.3rem;
+    height: 1.3rem;
+    font-size: 14px;
+    float: right;
+
+}
+.red-color{
+    background-color: var(--red);
+}
+.green-color{
+    background-color: var(--green);
+}
+.blue-color{
+    background-color: var(--blue);
+}
+.yellow-color{
+    background-color: var(--yellow);
+}
+
+.black-color{
+    background-color: var(--color-black);
+}
 .align-items-center {
     -ms-flex-align: center!important;
     align-items: center!important;

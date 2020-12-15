@@ -65,7 +65,7 @@ export class SpeechServiceService {
         let command = this.checkPhrase(this.phrases);
         // console.log('I think the user said: ' + command);
         if (command !== "") {
-            this.reactOnSpeech(command)
+            this.reactOnCommand(command)
             annyang.abort();
         }
     }
@@ -176,7 +176,7 @@ export class SpeechServiceService {
      * @param command
      * @private
      */
-    private reactOnSpeech(command: string) {
+    public reactOnCommand(command: string) {
         const routerService = this.injector.get(Router);
         const ngZone = this.injector.get(NgZone);
         if (this.navigationsDutch.indexOf(command) > -1) {
