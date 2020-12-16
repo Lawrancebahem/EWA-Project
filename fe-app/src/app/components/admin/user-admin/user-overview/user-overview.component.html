@@ -1,5 +1,5 @@
 <p>{{title}}</p>
-<div *ngIf="adminService.userArray.length > 0">
+<div *ngIf="adminService.userArray.length > 0 else loading">
     <table class="table table-hover">
         <thead>
         <tr>
@@ -8,11 +8,11 @@
             <th>Geboortedatum</th>
             <th>Geslacht</th>
             <th>Email</th>
-            <th>Wahtwoord</th>
+<!--            <th>Wachtwoord</th>-->
             <th>Profielfoto</th>
             <th>Type gebruiker</th>
             <th>Blokeer</th>
-            <th>Verwijderen</th>
+<!--            <th>Verwijderen</th>-->
         </tr>
         </thead>
         <tbody>
@@ -22,15 +22,10 @@
             <td>{{user.birthDate}}</td>
             <td>{{user.gender}}</td>
             <td>{{user.email | titlecase}}</td>
-            <td>{{user.password}}</td>
+<!--            <td>{{user.password}}</td>-->
             <td><img class="userProfile" src="{{user.profilePicture}}"></td>
 
-            <td *ngIf="user.blocked;">
-                <button (click)="unBlockUser(user.email)" class="button--primary p-2 row">
-                    <mat-icon class="icon-size align-middle mr-2">block</mat-icon>
-                    Deblokkeer
-                </button>
-            </td>
+
 
             <td>
                 <button *ngIf="user.admin" class="button--primary p-2 row" (click)="revokeAdmin(user.email)">
@@ -39,12 +34,25 @@
                 </button>
                 <button *ngIf="!user.admin" (click)="makeAnAdmin(user.email)" class="button--primary align-middle">Maak admin</button>
             </td>
-            <td *ngIf="!user.blocked">
-                <button *ngIf="!user.admin" (click)="blockUser(user.email)" class="button--primary">Blokkeer</button>
+
+
+            <td *ngIf="user.blocked;">
+                <button (click)="unBlockUser(user.email)" class="button--primary p-2 row">
+                    <mat-icon class="icon-size align-middle mr-2">block</mat-icon>Deblokkeer</button>
             </td>
-            <td>
-                <mat-icon *ngIf="!user.admin" (click)="deleteUser(user.email)" class="icon-size">delete</mat-icon>
+
+            <td  *ngIf="!user.blocked">
+                <button *ngIf="!user.admin;" (click)="blockUser(user.email)" class="button--primary">Blokkeer</button>
+
             </td>
+
+<!--            <td>-->
+<!--                <mat-icon *ngIf="!user.admin" (click)="deleteUser(user.email)" class="icon-size">delete</mat-icon>-->
+<!--            </td>-->
+
         </tbody>
     </table>
 </div>
+<ng-template #loading>
+    <mat-icon class="rotate">rotate_right</mat-icon>
+</ng-template>

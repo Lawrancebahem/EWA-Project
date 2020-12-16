@@ -42,6 +42,10 @@ li:hover{
   color: var(--color-default);
 }
 
+.row{
+  justify-content: center;
+}
+
 .col-md-8{
   margin-top: 2rem;
   margin-bottom: 2rem;

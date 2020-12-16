@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
      * @param login
      */
     public login(login) {
-        let alert = document.getElementById("alert");
+        let alert = document.getElementById("error-login");
         this.authenticationService.login(login).subscribe(response => {
 
             console.log(response);
@@ -58,11 +58,49 @@ export class LoginComponent implements OnInit {
             }
         },error => {
 
-            alert.innerHTML =error.error.message;
+            alert.innerHTML = error.error.message;
             alert.style.display = "block"
-            setTimeout( ()=> {
+            setTimeout( () => {
                 alert.style.display = "none"
             }, 6000)
         })
     }
+
+
+    /**
+     * To showe the confirmation modal
+     */
+    public showConfirmationModal(){
+        let confirmationModal = document.getElementById("reset-icon");
+        confirmationModal.style.display = "block"
+
+    }
+
+    /**
+     * To hide the reset modal
+     */
+    hideConfirmationModal() {
+        let confirmationModal = document.getElementById("reset-icon");
+        confirmationModal.style.display = "none"
+    }
+    /**
+     * Reset the password, once the user clicks on the button
+     * @param userEmail
+     */
+    public resetPassword(userEmail:string) {
+        let successMessage = document.getElementById("success-message-send");
+
+        this.userService.resetPassword(userEmail).subscribe((response)=>{
+            console.log(response);
+            successMessage.style.display = "block"
+            setTimeout(()=>{
+                successMessage.style.display = "none"
+                this.hideConfirmationModal();
+            },2000)
+        },error => {
+            console.log(error);
+        })
+    }
+
+
 }

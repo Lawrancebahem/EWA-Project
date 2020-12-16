@@ -16,8 +16,22 @@ import java.util.List;
         @NamedQuery(
                 name = "findActivityById",
                 query = "select a from Activity a where a.idActivity = :id"
-        )
+        ),
+
 })
+
+@NamedNativeQueries({
+
+        /**
+         * query to get the categories of an specified activity
+         */
+        @NamedNativeQuery(
+                name = "GetActivityCategory",
+                query = "SELECT ac.idcategory  FROM activity_category ac WHERE ac.idactivity =:idActivity"
+        )
+
+})
+
 public class Activity implements Identifiable {
 
     @Id

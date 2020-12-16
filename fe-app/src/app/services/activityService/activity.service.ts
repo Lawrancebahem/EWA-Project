@@ -18,14 +18,36 @@ export class ActivityService {
     }
 
     findById(activityId): Observable<Activity> {
-        return this.httpClient.get<Activity>(`${environment.apiUrl}/activity/`+ activityId ).pipe(shareReplay(1))
-        }
+        return this.httpClient.get<Activity>(`${environment.apiUrl}/activity/` + activityId).pipe(shareReplay(1))
+    }
 
+    /**
+     * To get all activities
+     */
     public getAllActivities(): Observable<Activity[]> {
         return this.httpClient.get<Activity[]>(`${environment.apiUrl}/activity/all`).pipe(shareReplay(1));
     }
 
-    public getAllCategories(): Observable<Category[]> {
-        return this.httpClient.get<Category[]>(`${environment.apiUrl}/activity/all`).pipe(shareReplay(1));
+    /**
+     * To get the interests that belong to this activity based on its id
+     * @param idActivity
+     */
+    public getActivityInterest(idActivity:number):Observable<number[]>{
+        return this.httpClient.get<number[]>(`${environment.apiUrl}/activity/activity-interests/`+idActivity).pipe(shareReplay(1));
+
+    }
+
+    /**
+     * To get the interests that belong to this activity based on its id
+     * @param idActivity
+     */
+    public getActivityCategory(idActivity:number):Observable<number[]>{
+        return this.httpClient.get<number[]>(`${environment.apiUrl}/activity/activity-category/`+idActivity).pipe(shareReplay(1));
+
+    }
+
+
+    public getActivitiesForCategory():Observable<any[]>{
+        return this.httpClient.get<any[]>(`${environment.apiUrl}/category/all/activityForCategory`).pipe(shareReplay(1));
     }
 }

@@ -1,4 +1,4 @@
-.grid-interests{
+.grid-three-sections{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -27,3 +27,8 @@
     height: 80px;
 }
 
+.confirmation-delete{
+    background-color: var(--white);
+    border: var(--color-default) 1px solid;
+    border-radius: var(--border-radius);
+}

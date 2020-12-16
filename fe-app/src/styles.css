@@ -11,8 +11,13 @@
     --color-red: #c3363b;
     --color-white: #fffeec;
     --color-blue: #45b3e0;
-    --color-default: grey;
+    --color-default: #232323;
     --font-size: 1.2rem;
+    --font-h1: 50px;
+    --font-h2: 30px;
+    --font-h4: 30px;
+    --font-p: 24px;
+
 
     /*RESPONSIVE SIZES (Not working with media queries) */
     --media_XS:         20em; /* Extra Small Devices               320px    */
@@ -39,7 +44,7 @@ ul{
 }
 
 
-html, body { height: 100%; }
+html, body { height: 100%;}
 body {margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .userProfile{
@@ -58,4 +63,43 @@ body {margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     top: 50%;
     left: 50%;
     margin: -100px 0 0 -150px;
+}
+.rotate {
+    -webkit-animation: spin 4s infinite linear;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 100px;
+    height: 100px;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+.icon-size {
+    cursor: pointer;
+    font-size: 50px;
+    width: 50px;
+    height: 50px;
+    color: white;
+}
+.uploadIcon{
+    animation: MoveUpDown 3s linear infinite;
+    position: relative;
+    font-size: 25px;
+}
+@keyframes MoveUpDown {
+    0%, 100% {
+        bottom: 0;
+    }
+    50% {
+        bottom: 25px;
+    }
 }

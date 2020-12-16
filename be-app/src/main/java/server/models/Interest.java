@@ -14,12 +14,17 @@ import java.util.List;
 //                })}
 //)
 //
+
 @NamedNativeQueries({
 
         @NamedNativeQuery(
                 name = "GetUserInterests",
                 query = "SELECT ui.INTEREST_ID  FROM USER_INTEREST ui WHERE ui.id =:userId"
-        )
+        ),
+        @NamedNativeQuery(
+                name = "GetActivityInterests",
+                query = "SELECT ai.interestid  FROM INTERESTS_ACTIVITY ai WHERE ai.IDACTIVITY =:idActivity"
+        ),
 })
 public class Interest implements Identifiable {
 
@@ -63,5 +68,22 @@ public class Interest implements Identifiable {
     @Override
     public void setId(long id) {
         this.interestId = id;
+    }
+
+
+    public long getInterestId() {
+        return interestId;
+    }
+
+    public void setInterestId(long interestId) {
+        this.interestId = interestId;
+    }
+
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
     }
 }

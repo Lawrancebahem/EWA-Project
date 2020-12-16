@@ -25,3 +25,17 @@
     /*width: 25px;*/
     /*height: 25px;*/
 }
+
+.confirmation-delete{
+    background-color: var(--white);
+    border: var(--color-default) 1px solid;
+    border-radius: var(--border-radius);
+
+}
+
+.confirmation-delete{
+    background-color: var(--white);
+    border: var(--color-default) 1px solid;
+    border-radius: var(--border-radius);
+
+}

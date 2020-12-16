@@ -10,6 +10,20 @@
                 deserunt mollit anim id est laborum.</p>
         </div>
         <div class="login_blok">
+
+            <div id="reset-icon" class="centerError confirmation-send p-2" style="display: none; z-index: 100">
+                <mat-icon class="align-middle">info</mat-icon>
+                    <h3 style="color: var(--color-black)">Vul uw email in</h3>
+                    <input #emailResetPassword type="text" placeholder="Type uw email..." class="form_input form-control">
+
+                <button (click)="hideConfirmationModal()" class="button--primary float-right" style="position: absolute;  bottom:0; right: 1rem">Sluiten</button>
+                <button (click)="resetPassword(emailResetPassword.value)"  class="button--primary float-right" style="position: absolute;  bottom:0; right: 5rem">Resetten</button>
+                <div id="success-message-send" class="alert alert-success alert-dismissible mt-2" style="display: none">
+                    Email is verzonden
+                </div>
+            </div>
+
+
             <form class="form" [formGroup]="authenticationService.loginForm">
                 <h2 id="h2">Inloggen</h2>
                 <div class="form--input">
@@ -31,7 +45,7 @@
                             authenticationService.loginForm.get('password').invalid}">
                     </div>
 
-                    <div id="alert" class="alert alert-danger" style="display: none" role="alert">
+                    <div id="error-login" class="alert alert-danger" style="display: none" role="alert">
 
 
                     </div>
@@ -46,7 +60,7 @@
                 <p class="text-center no-padding text-white">Heeft u nog geen een account? <a routerLink="/register"
                                                                                               class="form--link">Registreer nu</a>
                 </p>
-                <p class="form--link text-center"><a class="text-white">Ik ben mijn wachtwoord vergeten.</a></p>
+                <p class="form--link text-center"><a (click)="showConfirmationModal()" class="text-white">Ik ben mijn wachtwoord vergeten.</a></p>
             </form>
         </div>
     </div>

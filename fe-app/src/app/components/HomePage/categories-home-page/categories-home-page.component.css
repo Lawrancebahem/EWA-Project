@@ -22,13 +22,18 @@
     box-shadow: 7px 7px 7px var(--color-default);
 
 }
-
+.card-title{
+    font-size: var(--font-h1);
+}
+.card-text{
+    font-size:  var(--font-p);
+}
 .card:hover {
     transform: translateY(-10px);
     cursor: pointer;
     transition: .2s;
-    border-color: var(--color-blue);
-    box-shadow: 7px 7px 7px var(--color-blue);
+    /*border-color: var(--color-blue);*/
+    /*box-shadow: 7px 7px 7px var(--color-blue);*/
 }
 
 .card-img-top{

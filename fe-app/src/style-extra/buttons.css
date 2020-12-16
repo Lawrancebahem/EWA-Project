@@ -31,6 +31,7 @@
     color: var(--color-white);
     border-radius: var(--border-radius);
     border: none;
+    cursor: pointer;
 }
 
 .button--primary .fa{
@@ -48,7 +49,7 @@
 }
 
 .button--primary:hover{
-    background-color: var(--color-black);
+    background-color: var(--gray);
 }
 
 

@@ -6,6 +6,7 @@ import {environment} from "../../../environments/environment";
 import {shareReplay} from "rxjs/operators";
 // @ts-ignore
 import {Interest} from "../../models/Interest";
+import {Activity} from "../../models/activity";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ import {Interest} from "../../models/Interest";
 export class UserService {
 
   private users:User[];
+
+  public matchingActivityArray =  [];
 
   constructor(private httpClient:HttpClient) {
     this.users = [];
@@ -72,4 +75,33 @@ export class UserService {
   public deleteById(id){
     return this.httpClient.delete(`${environment.apiUrl}/user/`+id).pipe(shareReplay(1));
   }
+
+  /**
+   * To get the the matches of activities
+   */
+  public getMatchingActivities(){
+   let response = this.httpClient.get<Activity[]>(`${environment.apiUrl}/user/activity-match`).pipe((shareReplay(1)));
+   response.subscribe((activities)=>{
+     activities.map((activities)=>{
+       let activity = {id:activities[0], description: activities[1], image:activities[2], location: activities[3], show:activities[4], title:activities[5]}
+       let foundActivity = this.matchingActivityArray.find((act) => act.id == activity.id);
+       if (foundActivity == null){
+         this.matchingActivityArray.push(activity);
+       }
+     })
+     console.log(this.matchingActivityArray);
+   },error => {
+     console.log(error);
+   })
+  }
+
+  /**
+   * To make request to the backend to send the password within the email
+   *
+   */
+  public resetPassword(email:string):Observable<any>{
+    let response = this.httpClient.post<any>(`${environment.apiUrl}/user/reset-password`,{email:email}).pipe((shareReplay(1)));
+    return response;
+  }
+
 }

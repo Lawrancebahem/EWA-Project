@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormsModule} from "@angular/forms";
+import {contact} from "../../models/contact";
 
 @Component({
   selector: 'app-contact-us',

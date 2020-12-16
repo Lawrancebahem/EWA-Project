@@ -1,7 +1,12 @@
 header {
  margin-top: 1rem;
 }
-
+.card-title{
+    font-size: var(--font-h2);
+}
+.card-text{
+    font-size: var(--font-p);
+}
 .container {
     background-color: var(--color-white-smoke);
     margin-top: -2%;
@@ -21,14 +26,12 @@ header {
 
 img {
     height: 17rem;
+    border-radius: var(--border-radius);
 }
 
 .activity-card:hover {
     cursor: pointer;
     transition: .5s;
-    border-color: var(--color-blue);
-    box-shadow: 7px 7px 7px var(--color-blue);
-    transform: translateY(-10px);
 }
 
 .toevoegbutton {

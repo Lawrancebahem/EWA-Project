@@ -2,7 +2,7 @@
     <h1>Alle activiteiten</h1>
 </header>
 
-<div class="activity-overview row-cols-1 row-cols-md-3">
+<div class="activity-overview row-cols-1 row-cols-md-3" *ngIf="activitiesWithCategories.length > 0 else loading">
     <div class="activitySearch">
         <label>
             <h1>Zoek Activiteit</h1>
@@ -10,7 +10,7 @@
         <input type="search" class="form-control form-control-lg" placeholder="Zoek hier uw activiteit"
                [(ngModel)]="activitySearchText">
     </div>
-
+    <p id="1"></p>
 
     <div class="filterlist " id="filterlist">
         <h1>Filters:</h1>
@@ -18,24 +18,18 @@
 
         <h4>Categoriën:</h4>
         <div class="custom-control custom-checkbox" *ngFor="let category of categoryArray">
-            <input type="checkbox" class="custom-control-input" id="{{category.id}}">
-            <label class="custom-control-label" for="{{category.id}}">{{category.categorytitle}}</label>
+            <input type="checkbox" class="custom-control-input" id="{{category.idCategory}}">
+            <label class="custom-control-label" for="{{category.idCategory}}">{{category.name}}</label>
         </div>
         <button class="btn btn-primary" (click)="filterSearch()">Zoek</button>
-
-        <!--        <button type="button" class="btn button&#45;&#45;primary" id="{{category}}"-->
-        <!--                *ngFor="let category of categoryArray" (click)="addCategoryToSearch()">-->
-        <!--            {{category}}-->
-        <!--        </button>-->
-        <!--        </div>-->
     </div>
 
-    <div class="activity col-2 mb-4" *ngFor="let activity of filteredActivityArray | filter: activitySearchText" routerLink="/activityDetails/{{activity.idActivity}}">
+    <div class="activity col-2 mb-4" *ngFor="let activity of filteredActivityArray | filter: activitySearchText" routerLink="/activityDetails/{{activity.id}}">
         <div class="card" id="{{activity.id}}">
-            <img class="card-img-top" src="../../../../assets/Images/activityImage/{{activity.image}}"
-                 alt="{{activity.activityTitle}}">
+            <img class="card-img-top" src="{{activity.image}}"
+                 alt="{{activity.title}}">
             <h4 class="card-title">
-                {{ activity.activityTitle}}
+                {{ activity.title}}
             </h4>
             <p class="card-text">
                 {{activity.description}}
@@ -43,3 +37,6 @@
         </div>
     </div>
 </div>
+<ng-template #loading>
+    <mat-icon class="rotate">rotate_right</mat-icon>
+</ng-template>

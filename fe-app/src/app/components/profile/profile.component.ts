@@ -10,6 +10,8 @@ import interests from '../../json/interests.json'
 import {Interest} from "../../models/Interest";
 import {Gender} from "../../models/gender";
 import {shareReplay} from "rxjs/operators";
+import {Activity} from "../../models/activity";
+import {Category} from "../../models/category";
 
 // @ts-ignore
 @Component({
@@ -42,6 +44,7 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.userService.getMatchingActivities();
     }
 
     /**
@@ -111,6 +114,8 @@ export class ProfileComponent implements OnInit {
                     this.userService.insertUserInterests(interests)
                         .pipe(shareReplay(1)).subscribe((response) => {
                         this.authenticationService.loggedInUser.interests = interests;
+                        this.userService.matchingActivityArray = [] // make the array empty
+                        this.userService.getMatchingActivities();//load the new activities
                     }, error => {
                         console.log(error);
                     })
@@ -120,5 +125,10 @@ export class ProfileComponent implements OnInit {
                 });
             })
         }, 5)
+    }
+
+
+    public get getThreeActivity():Activity[] {
+        return this.userService.matchingActivityArray.filter((activity, index) => index < 3 )
     }
 }

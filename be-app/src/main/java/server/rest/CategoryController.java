@@ -3,13 +3,10 @@ package server.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import server.models.Activity;
 import server.models.Category;
-import server.repositories.EntityRepository;
+import server.repositories.ActivityRepositoryJpa;
+import server.repositories.CategoryRepositoryJpa;
 
 import java.util.List;
 
@@ -19,17 +16,46 @@ import java.util.List;
 public class CategoryController {
 
     @Autowired
-    @Qualifier("categoryRepositoryJpa")
-    private EntityRepository<Category> categoryEntityRepositoryJpa;
+    @Qualifier("activityRepositoryJpa")
+    private ActivityRepositoryJpa activityRepositoryJpa;
 
+    @Autowired
+    @Qualifier("categoryRepositoryJpa")
+    private CategoryRepositoryJpa categoryEntityRepositoryJpa;
 
     @GetMapping("/all")
     public List<Category> getAllCategories() {
         return this.categoryEntityRepositoryJpa.findAll();
     }
 
-    @PostMapping("/add-category-as-admin")
-    public void addNewCategory(@RequestBody Category category) {
-        categoryEntityRepositoryJpa.saveOrUpdate(category);
+    @PostMapping("/add-category")
+    public Category addNewCategory(@RequestBody Category category) {
+        return categoryEntityRepositoryJpa.saveOrUpdate(category);
     }
+
+    @GetMapping("/delete/{idCategory}")
+    public boolean deleteCategory(@PathVariable long idCategory){
+        Category foundCategory = this.categoryEntityRepositoryJpa.findById(idCategory);
+        if (foundCategory != null){
+            for (Activity activity : foundCategory.getActivities()) {
+                Activity foundActivity = this.activityRepositoryJpa.findById(activity.getId());
+                foundActivity.getCategories().clear();
+                this.activityRepositoryJpa.saveOrUpdate(foundActivity);
+            }
+            this.categoryEntityRepositoryJpa.deleteById(idCategory);
+            return true;
+        }
+        return false;
+    }
+
+    @GetMapping("/all/activityForCategory")
+    public List<Object[]> getActivitiesForCategory(){
+        return this.activityRepositoryJpa.getActivitiesForCategory();
+    }
+
+    @GetMapping("/activity/all/{id}")
+    public List<Object[]> getAllActivitiesForThisCategory(@PathVariable long id){
+        return this.categoryEntityRepositoryJpa.getAllActivitiesForThisCategory(id);
+    }
+
 }

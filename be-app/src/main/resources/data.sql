@@ -42,4 +42,4 @@
 --  INSERT INTO public.activity  VALUES (4, 'Geen zin om naar buiten te gaan? Er zijn genoeg activiteiten die je thuis kan doen', 'mondkapjes.jpg', 'overal',true ,'Binnen');
 
 
- select * from "interest";
+select * from "interest";

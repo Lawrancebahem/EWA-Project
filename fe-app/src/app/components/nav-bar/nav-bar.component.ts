@@ -21,6 +21,8 @@ import {SessionService} from "../../services/sessionService/session.service";
 export class NavBarComponent implements OnInit {
     isLoggedIn: boolean;
 
+
+
     constructor(private router: Router,
                 public speechService: SpeechServiceService,
                 public authenticateService: AuthenticationService,
@@ -64,6 +66,8 @@ export class NavBarComponent implements OnInit {
         }
     }
 
+
+
     //To logout from the drop down
     public logout() {
         this.sessionService.signOut(); // remove session
@@ -88,5 +92,21 @@ export class NavBarComponent implements OnInit {
                 alert.style.display = "none"
             }, 6000)
         }
+    }
+
+    maximizeFontSize() {
+
+        document.documentElement.style.setProperty('--font-h1', (this.speechService.h1++) +"px");
+        document.documentElement.style.setProperty('--font-h2', (this.speechService.h2++)+"px");
+        document.documentElement.style.setProperty('--font-h4', (this.speechService.h4++)+"px");
+        document.documentElement.style.setProperty('--font-p', (this.speechService.p++) +"px");
+
+    }
+
+    minimizeFontSize() {
+        document.documentElement.style.setProperty('--font-h1', (this.speechService.h1--) +"px");
+        document.documentElement.style.setProperty('--font-h2', (this.speechService.h2--)+"px");
+        document.documentElement.style.setProperty('--font-h4', (this.speechService.h4--)+"px");
+        document.documentElement.style.setProperty('--font-p', (this.speechService.p--) +"px");
     }
 }
