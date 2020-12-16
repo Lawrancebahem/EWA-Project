@@ -16,7 +16,7 @@ import server.utilities.JWToken;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com"})
+//@CrossOrigin(origins = {"http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com"})
 @RestController
 @RequestMapping("/reaction")
 public class ReactionController {
