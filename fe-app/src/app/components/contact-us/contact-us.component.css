@@ -13,6 +13,14 @@ body{
 }
 /* contact form css */
 
+h2 {
+  font-size: var(--font-h2)
+}
+
+p {
+  font-size: var(--font-p)
+}
+
 #contact-section{
   background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),url(../../../assets/Images/contact.jpg);
   background-size: cover;
@@ -52,7 +60,7 @@ body{
 .contact-form i.fa{
   /* color: red; */
   /* color: #fff; */
-  font-size: 2rem;
+  font-size: var(--font-p);
   padding: 3%;
   background-color: none;
   border-radius: 80%;
@@ -85,7 +93,7 @@ body{
 
 
 .form-info{
-  font-size: 16px;
+  font-size: var(--font-p);
   font-style: italic;
   color: white;
   letter-spacing: 2px;

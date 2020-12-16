@@ -50,7 +50,7 @@
     padding-bottom: 2rem;
     padding-top: 2rem;
     color: var(--color-default);
-    font-size: 2rem;
+    font-size: var(--font-h2);
 }
 
 #post-title-text{
