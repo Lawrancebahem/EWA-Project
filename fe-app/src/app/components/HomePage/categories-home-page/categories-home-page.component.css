@@ -23,7 +23,7 @@
 
 }
 .card-title{
-    font-size: var(--font-h1);
+    font-size: var(--font-h2);
 }
 .card-text{
     font-size:  var(--font-p);

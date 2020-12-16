@@ -1,0 +1,30 @@
+stages:
+  - deploy
+
+deploy_be:
+  stage: deploy
+  only:
+    refs:
+      - production
+    changes:
+      - "be-app/**/*"
+  script:
+    - git remote rm heroku-be-app || true
+    - git remote add heroku-be-app https://heroku:$HEROKU_API_KEY@git.heroku.com/digital-life-backend-prod.git || true
+    - git subtree split --prefix be-app -b splitting-production-be
+    - git push --force heroku-be-app splitting-production-be:master
+    - git branch -D splitting-production-be
+
+deploy_fe:
+  stage: deploy
+  only:
+    refs:
+      - production
+    changes:
+      - "fe-app/**/*"
+  script:
+    - git remote rm heroku-fe-app || true
+    - git remote add heroku-fe-app https://heroku:$HEROKU_API_KEY@git.heroku.com/digital-life-frontend-prod.git || true
+    - git subtree split --prefix fe-app -b splitting-production-fe
+    - git push --force heroku-fe-app splitting-production-fe:master
+    - git branch -D splitting-production-fe
