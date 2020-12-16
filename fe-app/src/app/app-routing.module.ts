@@ -10,7 +10,6 @@ import {ActivityOverviewComponent} from "./components/activityOverview/activity-
 import {AboutUsPageComponent} from "./components/about-us-page/about-us-page.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {MatchingPageComponent} from "./components/matching-page/matching-page.component";
-import {MyActivitiesComponent} from "./components/my-activities/my-activities.component";
 import {ActivityDetailsComponent} from "./components/activitypages/activity-details/activity-details.component";
 import {ContactUsComponent} from "./components/contact-us/contact-us.component";
 import {ActivityEditComponent} from "./components/admin/activity-admin/activitiy-edit/activity-edit.component";
@@ -30,7 +29,6 @@ const routes: Routes = [
     {path: 'profile', component: ProfileComponent},
     {path: 'aboutUs', component: AboutUsPageComponent},
     {path: 'matching', component: MatchingPageComponent},
-    {path: 'myActivities', component: MyActivitiesComponent},
     {path: 'admin', component: AdminComponent,
      children:[
          {path: 'activity-edit', component: ActivityEditComponent,

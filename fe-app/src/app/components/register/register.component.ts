@@ -8,9 +8,8 @@ import {shareReplay} from "rxjs/operators";
 import {Router} from "@angular/router";
 // @ts-ignore
 import interests from '../../json/interests.json'
-// @ts-ignore
 import {SessionService} from "../../services/sessionService/session.service";
-import {Interest} from "../../models/Interest";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
     selector: 'app-register',
@@ -29,6 +28,9 @@ export class RegisterComponent implements OnInit {
     submitted: boolean;
     public arrayInterests: { id, name, image }[] = interests;
 
+
+    public registerForm;
+
     constructor(public authenticationService: AuthenticationService,
                 public sessionService: SessionService,
                 public userService: UserService,
@@ -38,6 +40,20 @@ export class RegisterComponent implements OnInit {
     }
 
     ngOnInit(): void {
+
+        this.registerForm = new FormGroup({
+            firstName: new FormControl('', Validators.required),
+            lastName: new FormControl('', Validators.required),
+            birthDate: new FormControl('', Validators.required),
+            email: new FormControl('', [Validators.required, Validators.email,Validators.pattern("^[A-Z-a-z0-9._%+-]+@[A-Z-a-z0-9.-]+\\.[a-z]{2,4}$")]),
+            password: new FormControl('', Validators.compose([
+                Validators.required,
+            ])),
+            passwordConfirm: new FormControl('', Validators.compose([
+                Validators.required,
+            ])),
+        })
+
     }
 
 
@@ -49,7 +65,7 @@ export class RegisterComponent implements OnInit {
         let alert = document.getElementById("alert");
 
         if (password != confirmPassword) return; // extra check for the password
-        if (this.authenticationService.registerForm.invalid) return;
+        if (this.registerForm.invalid) return;
         setTimeout(() => {
             const errors = document.querySelectorAll('.errors'); // check if there is error
             if (errors.length > 0) return;
@@ -118,6 +134,17 @@ export class RegisterComponent implements OnInit {
             .map(n => Number.parseInt(n))
             .filter(n => !Number.isNaN(n)) as unknown as T[keyof T][];
         return enumValues;
+    }
+
+
+    /**
+     * Check the equality of the passwords in the registration form
+     * @param confirm
+     */
+    public checkPasswords(confirm): boolean { // here we have the 'passwords' group
+        let pass = this.registerForm.get('password').value;
+        return pass === confirm;
+
     }
 }
 

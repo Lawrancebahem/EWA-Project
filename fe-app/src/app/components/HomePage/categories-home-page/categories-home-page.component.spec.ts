@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CategoriesHomePageComponent } from './categories-home-page.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {RouterModule} from "@angular/router";
 
 describe('ActivitiesHomePageComponent', () => {
   let component: CategoriesHomePageComponent;
@@ -8,7 +10,9 @@ describe('ActivitiesHomePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CategoriesHomePageComponent ]
+      declarations: [ CategoriesHomePageComponent ],
+      imports: [HttpClientTestingModule, RouterModule.forRoot([])],
+
     })
     .compileComponents();
   });

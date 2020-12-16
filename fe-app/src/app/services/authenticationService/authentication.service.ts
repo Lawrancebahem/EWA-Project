@@ -20,18 +20,18 @@ export class AuthenticationService {
     })
 
     //Register form for the registration page
-    public registerForm = new FormGroup({
-        firstName: new FormControl('', Validators.required),
-        lastName: new FormControl('', Validators.required),
-        birthDate: new FormControl('', Validators.required),
-        email: new FormControl('', [Validators.required, Validators.email,Validators.pattern("^[A-Z-a-z0-9._%+-]+@[A-Z-a-z0-9.-]+\\.[a-z]{2,4}$")]),
-        password: new FormControl('', Validators.compose([
-            Validators.required,
-        ])),
-        passwordConfirm: new FormControl('', Validators.compose([
-            Validators.required,
-        ])),
-    })
+    // public registerForm = new FormGroup({
+    //     firstName: new FormControl('', Validators.required),
+    //     lastName: new FormControl('', Validators.required),
+    //     birthDate: new FormControl('', Validators.required),
+    //     email: new FormControl('', [Validators.required, Validators.email,Validators.pattern("^[A-Z-a-z0-9._%+-]+@[A-Z-a-z0-9.-]+\\.[a-z]{2,4}$")]),
+    //     password: new FormControl('', Validators.compose([
+    //         Validators.required,
+    //     ])),
+    //     passwordConfirm: new FormControl('', Validators.compose([
+    //         Validators.required,
+    //     ])),
+    // })
 
 
     public isLoggedIn: boolean = false;
@@ -53,13 +53,4 @@ export class AuthenticationService {
     }
 
 
-    /**
-     * Check the equality of the passwords in the registration form
-     * @param confirm
-     */
-    public checkPasswords(confirm): boolean { // here we have the 'passwords' group
-        let pass = this.registerForm.get('password').value;
-        return pass === confirm;
-
-    }
 }

@@ -19,7 +19,7 @@ import javax.naming.AuthenticationException;
 import javax.security.auth.login.AccountLockedException;
 import javax.servlet.http.HttpServletRequest;
 
-@CrossOrigin(origins = {"http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com","https://digital-life-frontend-prod.herokuapp.com"})
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:9876" ,  "https://digital-life-frontend-staging.herokuapp.com","https://digital-life-frontend-prod.herokuapp.com"})
 @RestController
 @RequestMapping("/authenticate")
 public class AuthenticateController {

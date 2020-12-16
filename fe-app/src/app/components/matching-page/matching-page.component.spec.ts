@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatchingPageComponent } from './matching-page.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {UserService} from "../../services/userService/user.service";
 
 describe('MatchingPageComponent', () => {
   let component: MatchingPageComponent;
@@ -8,7 +10,9 @@ describe('MatchingPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MatchingPageComponent ]
+      declarations: [ MatchingPageComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [UserService]
     })
     .compileComponents();
   });

@@ -1,7 +1,7 @@
 <!--<div class="text-center header">-->
 <!--    <h2  class="font-italic p-1 digital-life-title">Digital Life</h2>-->
 <!--</div>-->
-<form id="formRegister" action="" method="POST" [formGroup]="authenticationService.registerForm">
+<form id="formRegister" action="" method="POST" [formGroup]="registerForm">
     <div class="wrapper no-padding">
         <div class="grid--half">
             <div id="input-fields-user-information">
@@ -10,9 +10,9 @@
                     <span>Voornaam</span>
                     <input #firstName formControlName="firstName" type="text" class="color form-control" id="surname"
                            name="Voornaam" required maxlength="20" [ngClass]="{'is-invalid':
-                            authenticationService.registerForm.get('firstName').touched &&
-                            authenticationService.registerForm.get('firstName').invalid}">
-                    <p *ngIf="submitted &&  authenticationService.registerForm.get('firstName').invalid" class="error">
+                            registerForm.get('firstName').touched &&
+                            registerForm.get('firstName').invalid}">
+                    <p *ngIf="submitted &&  registerForm.get('firstName').invalid" class="error">
                         Voornaam is een verplicht veld</p>
                 </div>
 
@@ -22,9 +22,9 @@
                     <span>Achternaam</span>
                     <input #lastName formControlName="lastName" type="text" name="Achternaam" id="lastname"
                            class="form-control" required maxlength="20" [ngClass]="{'is-invalid':
-                            authenticationService.registerForm.get('lastName').touched &&
-                            authenticationService.registerForm.get('lastName').invalid}">
-                    <p *ngIf="submitted && authenticationService.registerForm.get('lastName').invalid" class="error">
+                            registerForm.get('lastName').touched &&
+                            registerForm.get('lastName').invalid}">
+                    <p *ngIf="submitted && registerForm.get('lastName').invalid" class="error">
                         Achternaam is een verplicht veld</p>
                 </div>
 
@@ -33,9 +33,9 @@
                     <span>Geboortedatum</span>
                     <input  formControlName="birthDate" class="form-control" #birthDate placeholder="yyyy-MM-dd"
                            min="1996-01-01" type="date" name="Geboortedatum" id="birthdate" required [ngClass]="{'is-invalid':
-                            authenticationService.registerForm.get('birthDate').touched &&
-                            authenticationService.registerForm.get('birthDate').invalid}">
-                    <p *ngIf="submitted && authenticationService.registerForm.get('birthDate').value === ''" class="error">
+                            registerForm.get('birthDate').touched &&
+                            registerForm.get('birthDate').invalid}">
+                    <p *ngIf="submitted && registerForm.get('birthDate').value === ''" class="error">
                         Geoortedatum is verplicht veld</p>
                 </div>
 
@@ -72,8 +72,8 @@
                     <span>Email</span>
                     <input formControlName="email" #email id="email" class="form-control" type="email" name="mailadres"
                            maxlength="40" [ngClass]="{'is-invalid':
-                            authenticationService.registerForm.get('email').touched &&
-                            authenticationService.registerForm.get('email').invalid}">
+                          registerForm.get('email').touched &&
+                            registerForm.get('email').invalid}">
                     <p *ngIf="submitted && email.value.length === 0" class="error">Email is
                         een verplicht veld</p>
                 </div>
@@ -87,9 +87,9 @@
                         <input formControlName="password" #password class="form_input form-control" type="password"
                                name="wachtwoord" id="password1" maxlength="30"
                                required="required" [ngClass]="{'is-invalid':
-                            authenticationService.registerForm.get('password').touched &&
-                            authenticationService.registerForm.get('password').invalid}">
-                        <p *ngIf="submitted && authenticationService.registerForm.get('password').invalid" class="error">
+                            registerForm.get('password').touched &&
+                            registerForm.get('password').invalid}">
+                        <p *ngIf="submitted && registerForm.get('password').invalid" class="error">
                             Wachtwoord is een verplicht veld</p>
                     </div>
                     <span>Bevestiging wachtwoord</span>
@@ -98,7 +98,7 @@
                         <input #passwordConfirm formControlName="passwordConfirm" class="form_input" type="password" name="wachtwoord" id="password2"
                                maxlength="30"
                                required="required">
-                        <p *ngIf="submitted && !authenticationService.checkPasswords(passwordConfirm.value)" class="error">
+                        <p *ngIf="submitted && !checkPasswords(passwordConfirm.value)" class="error">
                             Het is niet juist
                         </p>
                     </div>

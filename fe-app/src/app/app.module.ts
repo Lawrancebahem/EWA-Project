@@ -22,7 +22,6 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {AboutUsPageComponent} from "./components/about-us-page/about-us-page.component";
 import {CustomDatePipe} from "./components/customDate/customDatePipe";
 import {MatchingPageComponent} from "./components/matching-page/matching-page.component";
-import {MyActivitiesComponent} from "./components/my-activities/my-activities.component";
 import {ActivityDetailsComponent} from "./components/activitypages/activity-details/activity-details.component";
 import {AdminComponent} from "./components/admin/admin.component";
 import {RegisterComponent} from "./components/register/register.component";
@@ -32,6 +31,7 @@ import { CategoryEditComponent } from './components/admin/category-admin/categor
 import { UserOverviewComponent } from './components/admin/user-admin/user-overview/user-overview.component';
 import {NavBarComponent} from "./components/nav-bar/nav-bar.component";
 import {HeaderComponent} from "./components/header/header.component";
+
 
 @NgModule({
     declarations: [
@@ -49,7 +49,6 @@ import {HeaderComponent} from "./components/header/header.component";
         AboutUsPageComponent,
         CustomDatePipe,
         MatchingPageComponent,
-        MyActivitiesComponent,
         ActivityDetailsComponent,
         AdminComponent,
         ContactUsComponent,
@@ -62,21 +61,18 @@ import {HeaderComponent} from "./components/header/header.component";
     imports: [
         BrowserModule,
         AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
         MatIconModule,
         FormsModule,
         Ng2SearchPipeModule,
         ReactiveFormsModule,
+        HttpClientModule
     ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptorService,
             multi: true
-        }
-
-    ],
+        }],
     bootstrap: [AppComponent]
 })
 export class AppModule {
