@@ -28,3 +28,4 @@ deploy_fe:
     - git subtree split --prefix fe-app -b splitting-production-fe
     - git push --force heroku-fe-app-production splitting-production-fe:master
     - git branch -D splitting-production-fe
+
