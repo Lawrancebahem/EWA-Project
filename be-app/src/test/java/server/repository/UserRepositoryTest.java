@@ -40,7 +40,7 @@ public class UserRepositoryTest {
     @Test
     @DirtiesContext
     public void testFindingUser(){
-        User user = this.userRepositoryJpa.findById(1302);
+        User user = this.userRepositoryJpa.findById(1002);
         logger.info(user + "");
         assertNotNull(user);
     }

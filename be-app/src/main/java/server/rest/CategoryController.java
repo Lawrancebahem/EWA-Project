@@ -10,7 +10,7 @@ import server.repositories.CategoryRepositoryJpa;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com"})
+@CrossOrigin(origins = {"http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com","https://digital-life-frontend-prod.herokuapp.com"})
 @RestController
 @RequestMapping("/category")
 public class CategoryController {

@@ -1,5 +1,5 @@
 export const environment = {
-  apirUrl : "",
+  apiUrl : "https://digital-life-backend-prod.herokuapp.com",
   environmentName: "production",
   production: true
 };

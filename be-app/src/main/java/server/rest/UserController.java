@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com"})
+@CrossOrigin(origins = {"http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com","https://digital-life-frontend-prod.herokuapp.com"})
 @RestController
 @RequestMapping("/user")
 public class UserController {
