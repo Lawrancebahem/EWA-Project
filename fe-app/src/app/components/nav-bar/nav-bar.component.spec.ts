@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {NavBarComponent} from './nav-bar.component';
 import {Router, RouterModule} from "@angular/router";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import {AppComponent} from "../../app.component";
 
 
 
@@ -11,7 +13,8 @@ describe('NavBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavBarComponent ],
+      declarations: [NavBarComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA],
       imports: [HttpClientTestingModule, RouterModule.forRoot([])],
     })
     .compileComponents();

@@ -4,6 +4,7 @@ import { ActivityDetailsComponent } from './activity-details.component';
 import {ActivatedRoute, RouterModule} from "@angular/router";
 import {RouterTestingModule} from "@angular/router/testing";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 
 describe('ActivityDetailsComponent', () => {
   let component: ActivityDetailsComponent;
@@ -14,6 +15,8 @@ describe('ActivityDetailsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ActivityDetailsComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA],
+
       imports: [HttpClientTestingModule, RouterModule.forRoot([])],
     })
     .compileComponents();

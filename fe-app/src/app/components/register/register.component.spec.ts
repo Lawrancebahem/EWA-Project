@@ -6,6 +6,7 @@ import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} f
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {UserService} from "../../services/userService/user.service";
 import {Router, RouterModule} from "@angular/router";
+import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 
 
 describe('RegisterComponent', () => {
@@ -17,6 +18,7 @@ describe('RegisterComponent', () => {
         await TestBed.configureTestingModule({
             imports: [FormsModule, ReactiveFormsModule, HttpClientTestingModule, RouterModule.forRoot([]),],
             providers: [UserService, RouterTestingModule],
+            schemas: [ CUSTOM_ELEMENTS_SCHEMA],
             declarations: [RegisterComponent],
         }).compileComponents();
     });
@@ -36,7 +38,7 @@ describe('RegisterComponent', () => {
         let compiled = fixture.debugElement.nativeElement;
         fixture.detectChanges();
 
-        expect(compiled.querySelector('form'))
+        expect(compiled.querySelector('form')).toBeDefined();
     });
 
     /**
@@ -94,8 +96,8 @@ describe('RegisterComponent', () => {
         winterSport.click();
         strand.click();
         fixture.detectChanges();
-        expect(compiled.querySelector('#strand').checked)
-        expect(compiled.querySelector('#wintersport').checked)
+        expect(compiled.querySelector('#strand').checked).toBeTrue()
+        expect(compiled.querySelector('#wintersport').checked).toBeTrue()
     });
 
 });

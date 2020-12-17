@@ -6,6 +6,7 @@ import {User} from "../../models/user";
 import {shareReplay} from "rxjs/operators";
 import {UserService} from "../../services/userService/user.service";
 import {SessionService} from "../../services/sessionService/session.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
     selector: 'app-login',
@@ -14,6 +15,9 @@ import {SessionService} from "../../services/sessionService/session.service";
 })
 export class LoginComponent implements OnInit {
 
+    //login form for the log in page
+    public loginForm;
+
     constructor(private router: Router, private activeRout: ActivatedRoute,
                 public authenticationService: AuthenticationService,
                 private userService: UserService,
@@ -21,6 +25,10 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.loginForm = new FormGroup({
+            email: new FormControl('', [Validators.required, Validators.email]),
+            password: new FormControl('', Validators.required)
+        })
     }
 
     /**
@@ -30,8 +38,6 @@ export class LoginComponent implements OnInit {
     public login(login) {
         let alert = document.getElementById("error-login");
         this.authenticationService.login(login).subscribe(response => {
-
-            console.log(response);
 
             this.authenticationService.loggedInUser = User.makeTrueCopy(response.body);
             this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;

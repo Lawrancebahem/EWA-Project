@@ -4,6 +4,8 @@ import { CategorypageComponent } from './categorypage.component';
 import {ActivatedRoute, RouterModule} from "@angular/router";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {RouterTestingModule} from "@angular/router/testing";
+import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 describe('CategorypageComponent', () => {
   let component: CategorypageComponent;
@@ -11,9 +13,12 @@ describe('CategorypageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterModule.forRoot([])],
+      declarations: [ CategorypageComponent ],
+      imports: [ FormsModule, HttpClientTestingModule, RouterModule.forRoot([]),],
 
-      declarations: [ CategorypageComponent ]
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA],
+
+
     })
     .compileComponents();
   });

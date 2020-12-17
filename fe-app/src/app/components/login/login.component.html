@@ -24,14 +24,14 @@
             </div>
 
 
-            <form class="form" [formGroup]="authenticationService.loginForm">
+            <form class="form" id="form-login-email-password" [formGroup]="loginForm">
                 <h2 id="h2">Inloggen</h2>
                 <div class="form--input">
                     <!--                  <span>Gebruikersnaam</span>-->
                     <input #email required formControlName="email" class="form_input form-control"
                            id="email" name="gebruikersnaam" placeholder="e-mail" type="text" [ngClass]="{'is-invalid':
-                            authenticationService.loginForm.get('email').touched &&
-                            authenticationService.loginForm.get('email').invalid}">
+                           loginForm.get('email').touched &&
+                            loginForm.get('email').invalid}">
                 </div>
 
 
@@ -41,8 +41,8 @@
                         <input #password formControlName="password" class="form_input form-control" id="password" maxlength="20"
                                placeholder="wachtwoord" type="password"
                                [ngClass]="{'is-invalid':
-                            authenticationService.loginForm.get('password').touched &&
-                            authenticationService.loginForm.get('password').invalid}">
+                            loginForm.get('password').touched &&
+                            loginForm.get('password').invalid}">
                     </div>
 
                     <div id="error-login" class="alert alert-danger" style="display: none" role="alert">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
 
-                <button [disabled]="!authenticationService.loginForm.valid" type="submit" id="submit"
+                <button [disabled]="!loginForm.valid" type="submit" id="submit"
                         class="button button--primary button--form uppercase" (click)="login({email: email.value, password:password.value})">Inloggen
                 </button>
                 <input value="stuur wachtwoord" type="button" id="stuur_wachtwoord"

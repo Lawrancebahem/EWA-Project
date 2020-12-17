@@ -15,6 +15,7 @@ import {ContactUsComponent} from "./components/contact-us/contact-us.component";
 import {ActivityEditComponent} from "./components/admin/activity-admin/activitiy-edit/activity-edit.component";
 import {UserOverviewComponent} from "./components/admin/user-admin/user-overview/user-overview.component";
 import {CategoryEditComponent} from "./components/admin/category-admin/category-edit/category-edit.component";
+import {FormsModule} from "@angular/forms";
 
 const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},

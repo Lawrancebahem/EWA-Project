@@ -61,7 +61,9 @@ public class APIConfiguration implements WebMvcConfigurer {
                 .allowedHeaders(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE)
                 .exposedHeaders(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE)
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedOrigins("http://localhost:4200", "https://digital-life-frontend-staging.herokuapp.com", "http://localhost:8080","https://digital-life-backend-prod.herokuapp.com");
+                .allowedOrigins("http://localhost:4200",
+                        "http://localhost:9876","https://digital-life-frontend-staging.herokuapp.com",
+                        "http://localhost:8080","https://digital-life-backend-prod.herokuapp.com");
     }
 
 }

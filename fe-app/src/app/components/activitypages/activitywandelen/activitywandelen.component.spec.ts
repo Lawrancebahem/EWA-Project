@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ActivitywandelenComponent } from './activitywandelen.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 
 describe('ActivitywandelenComponent', () => {
   let component: ActivitywandelenComponent;
@@ -8,7 +9,9 @@ describe('ActivitywandelenComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActivitywandelenComponent ]
+      declarations: [ ActivitywandelenComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA],
+
     })
     .compileComponents();
   });
