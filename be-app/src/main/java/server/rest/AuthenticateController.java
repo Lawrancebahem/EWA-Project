@@ -3,7 +3,6 @@ package server.rest;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +10,7 @@ import server.exception.AuthorizationException;
 import server.exception.PreConditionalFailed;
 import server.models.Login;
 import server.models.User;
-import server.repositories.EntityRepository;
+import server.repositories.UserRepositoryJpa;
 import server.service.APIConfiguration;
 import server.utilities.JWToken;
 
@@ -29,8 +28,8 @@ public class AuthenticateController {
     APIConfiguration apiConfig;
 
     @Autowired
-    @Qualifier("userRepositoryJpa")
-    public EntityRepository<User> userRepositoryJpa;
+//    @Qualifier("userRepositoryJpa")
+    public UserRepositoryJpa userRepositoryJpa;
 
     /**
      * Authenticate logging in

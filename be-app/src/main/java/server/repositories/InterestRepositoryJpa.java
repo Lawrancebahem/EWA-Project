@@ -23,7 +23,7 @@ public class InterestRepositoryJpa extends AbstractEntityRepositoryJpa<Interest>
      * @param userId
      * @return
      */
-    @Override
+
     public int[] getUsersInterests(long userId) {
         Query query = em.createNamedQuery("GetUserInterests");
         query.setParameter("userId", userId);
@@ -39,7 +39,6 @@ public class InterestRepositoryJpa extends AbstractEntityRepositoryJpa<Interest>
      * To get the interests that are related to this activity
      * @return
      */
-    @Override
     public int[] getActivityInterests(long activityId) {
         Query query = em.createNamedQuery("GetActivityInterests");
         query.setParameter("idActivity",activityId);

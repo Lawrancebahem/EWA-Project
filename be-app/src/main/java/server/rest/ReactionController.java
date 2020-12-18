@@ -3,13 +3,13 @@ package server.rest;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 import server.models.Activity;
 import server.models.Reaction;
 import server.models.User;
-import server.repositories.AbstractEntityRepositoryJpa;
+import server.repositories.ActivityRepositoryJpa;
 import server.repositories.ReactionRepositoryJpa;
+import server.repositories.UserRepositoryJpa;
 import server.service.APIConfiguration;
 import server.utilities.JWToken;
 
@@ -22,12 +22,12 @@ import java.util.List;
 public class ReactionController {
 
     @Autowired
-    @Qualifier("userRepositoryJpa")
-    public AbstractEntityRepositoryJpa<User> userRepositoryJpa;
+//    @Qualifier("userRepositoryJpa")
+    public UserRepositoryJpa userRepositoryJpa;
 
     @Autowired
-    @Qualifier("activityRepositoryJpa")
-    private AbstractEntityRepositoryJpa<Activity> activityRepositoryJpa;
+//    @Qualifier("activityRepositoryJpa")
+    private ActivityRepositoryJpa activityRepositoryJpa;
 
 
     @Autowired

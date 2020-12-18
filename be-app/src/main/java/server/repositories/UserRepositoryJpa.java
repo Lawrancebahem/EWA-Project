@@ -2,7 +2,6 @@ package server.repositories;
 
 import org.springframework.stereotype.Service;
 import server.exception.AuthenticationException;
-import server.exception.PreConditionalFailed;
 import server.exception.ResourceNotFound;
 import server.models.Login;
 import server.models.User;
@@ -10,7 +9,6 @@ import server.models.User;
 import javax.persistence.Query;
 import javax.security.auth.login.AccountLockedException;
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Service("userRepositoryJpa")
 @Transactional
@@ -26,7 +24,7 @@ public class UserRepositoryJpa extends AbstractEntityRepositoryJpa<User> {
      * @param email
      * @return
      */
-    @Override
+
     public User findByEmail(String email) {
         try {
             Query query = em.createNamedQuery("FindByEmail");
@@ -42,7 +40,7 @@ public class UserRepositoryJpa extends AbstractEntityRepositoryJpa<User> {
      * @param login
      * @return
      */
-    @Override
+
     public User authenticateLogin(Login login) throws AccountLockedException {
         User foundUser = findByEmail(login.getEmail().trim()); // check the email
         if (foundUser == null)
@@ -74,7 +72,6 @@ public class UserRepositoryJpa extends AbstractEntityRepositoryJpa<User> {
      * @param savedUser
      * @return
      */
-    @Override
     public User getClonedObject(User savedUser) {
         User clonedUser = new User();
         clonedUser.setId(savedUser.getId()); // hide the id

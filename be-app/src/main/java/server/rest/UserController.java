@@ -3,7 +3,6 @@ package server.rest;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
@@ -17,7 +16,9 @@ import server.exception.ResourceNotFound;
 import server.models.Activity;
 import server.models.Interest;
 import server.models.User;
-import server.repositories.EntityRepository;
+import server.repositories.ActivityRepositoryJpa;
+import server.repositories.InterestRepositoryJpa;
+import server.repositories.UserRepositoryJpa;
 import server.service.APIConfiguration;
 import server.utilities.JWToken;
 
@@ -41,16 +42,16 @@ public class UserController {
 
 
     @Autowired
-    @Qualifier("userRepositoryJpa")
-    public EntityRepository<User> userRepositoryJpa;
+//    @Qualifier("userRepositoryJpa")
+    public UserRepositoryJpa userRepositoryJpa;
 
     @Autowired
-    @Qualifier("interestRepositoryJpa")
-    public EntityRepository<Interest> interestEntityRepositoryJpa;
+//    @Qualifier("interestRepositoryJpa")
+    public InterestRepositoryJpa interestEntityRepositoryJpa;
 
     @Autowired
-    @Qualifier("activityRepositoryJpa")
-    private EntityRepository<Activity> activityRepositoryJpa;
+//    @Qualifier("activityRepositoryJpa")
+    private ActivityRepositoryJpa activityRepositoryJpa;
 
     @Autowired
     private APIConfiguration api;

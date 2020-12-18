@@ -21,7 +21,7 @@ public class ActivityRepositoryJpa extends AbstractEntityRepositoryJpa<Activity>
      * @param idActivity
      * @return
      */
-    @Override
+
     public int[] getActivityCategories(long idActivity) {
         Query query = em.createNamedQuery("GetActivityCategory");
         query.setParameter("idActivity",idActivity);
@@ -39,7 +39,6 @@ public class ActivityRepositoryJpa extends AbstractEntityRepositoryJpa<Activity>
      * @param userId
      * @return
      */
-    @Override
     public List<Activity> getActivityMatches(long userId) {
 
         return this.em.createNativeQuery("select a.* from activity a " +

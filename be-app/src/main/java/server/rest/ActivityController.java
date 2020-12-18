@@ -2,12 +2,13 @@ package server.rest;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 import server.models.Activity;
 import server.models.Category;
 import server.models.Interest;
-import server.repositories.EntityRepository;
+import server.repositories.ActivityRepositoryJpa;
+import server.repositories.CategoryRepositoryJpa;
+import server.repositories.InterestRepositoryJpa;
 
 import java.util.List;
 
@@ -17,18 +18,18 @@ import java.util.List;
 public class ActivityController {
 
     @Autowired
-    @Qualifier("activityRepositoryJpa")
-    private EntityRepository<Activity> activityRepositoryJpa;
+//    @Qualifier("activityRepositoryJpa")
+    private ActivityRepositoryJpa activityRepositoryJpa;
 
     @Autowired
-    @Qualifier("interestRepositoryJpa")
-    public EntityRepository<Interest> interestEntityRepositoryJpa;
+//    @Qualifier("interestRepositoryJpa")
+    public InterestRepositoryJpa interestEntityRepositoryJpa;
 
 
 
     @Autowired
-    @Qualifier("categoryRepositoryJpa")
-    private EntityRepository<Category> categoryEntityRepositoryJpa;
+//    @Qualifier("categoryRepositoryJpa")
+    private CategoryRepositoryJpa categoryEntityRepositoryJpa;
 
     /**
      * get all activities

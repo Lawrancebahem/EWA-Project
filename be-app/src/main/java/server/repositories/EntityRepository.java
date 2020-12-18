@@ -1,8 +1,5 @@
 package server.repositories;
 
-import server.models.Login;
-
-import javax.security.auth.login.AccountLockedException;
 import java.util.List;
 
 public interface EntityRepository<T extends Identifiable> {
@@ -15,36 +12,35 @@ public interface EntityRepository<T extends Identifiable> {
 
     boolean deleteById(long id);
 
-    default T getClonedObject(T savedUser) {
-        return null;
-    }
+//    default T getClonedObject(T savedUser) {
+//        return null;
+//    }
+//
+//    default T authenticateLogin(Login login) throws AccountLockedException {
+//        return null;
+//    };
+//
+//    default T findByEmail(String email) {
+//        return null;
+//    }
+//
+//    default int[]getUsersInterests(long userId){
+//        return new int[]{};
+//    }
+//
+    List<T> findByQuery(String queryName, Object... params);
 
-    default T authenticateLogin(Login login) throws AccountLockedException {
-        return null;
-    };
-
-    default T findByEmail(String email) {
-        return null;
-    }
-
-    default int[]getUsersInterests(long userId){
-        return new int[]{};
-    }
-
-    default List<T> findByQuery(String queryName, Object... params) {
-        return null;
-    }
-
-    default int[]getActivityInterests(long idActivity){
-        return null;
-    }
-
-    default int[]getActivityCategories(long idActivity){
-        return null;
-    }
-
-    default List<T> getActivityMatches(long userId) {
-        return null;
-    }
+//
+//    default int[]getActivityInterests(long idActivity){
+//        return null;
+//    }
+//
+//    default int[]getActivityCategories(long idActivity){
+//        return null;
+//    }
+//
+//    default List<T> getActivityMatches(long userId) {
+//        return null;
+//    }
 
 }

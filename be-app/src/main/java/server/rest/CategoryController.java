@@ -1,7 +1,6 @@
 package server.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 import server.models.Activity;
 import server.models.Category;
@@ -16,11 +15,11 @@ import java.util.List;
 public class CategoryController {
 
     @Autowired
-    @Qualifier("activityRepositoryJpa")
+//    @Qualifier("activityRepositoryJpa")
     private ActivityRepositoryJpa activityRepositoryJpa;
 
     @Autowired
-    @Qualifier("categoryRepositoryJpa")
+//    @Qualifier("categoryRepositoryJpa")
     private CategoryRepositoryJpa categoryEntityRepositoryJpa;
 
     @GetMapping("/all")

@@ -18,7 +18,6 @@ public class ReactionRepositoryJpa extends AbstractEntityRepositoryJpa<Reaction>
     }
 
 
-
     public List<Object[]> findReactionForAnActivity(long idActivity){
         System.out.println("The id activity is " + idActivity);
         return this.em.createQuery("select r.idReaction," +

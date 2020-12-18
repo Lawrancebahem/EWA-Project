@@ -5,13 +5,13 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import server.models.Interest;
 import server.models.User;
-import server.repositories.EntityRepository;
+import server.repositories.InterestRepositoryJpa;
+import server.repositories.UserRepositoryJpa;
 
 import java.time.LocalDate;
 
@@ -30,12 +30,12 @@ public class UserRepositoryTest {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    @Qualifier("userRepositoryJpa")
-    private EntityRepository<User> userRepositoryJpa;
+//    @Qualifier("userRepositoryJpa")
+    private UserRepositoryJpa userRepositoryJpa;
 
     @Autowired
-    @Qualifier("interestRepositoryJpa")
-    private EntityRepository<Interest> interestEntityRepositoryJpa;
+//    @Qualifier("interestRepositoryJpa")
+    private InterestRepositoryJpa interestEntityRepositoryJpa;
 
     @Test
     @DirtiesContext
