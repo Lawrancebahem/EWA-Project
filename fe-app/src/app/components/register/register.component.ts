@@ -18,16 +18,11 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class RegisterComponent implements OnInit {
 
-    @ViewChild('firstName') firstName: ElementRef;
-    @ViewChild('lastName') lastName: ElementRef;
-    @ViewChild('birthDate') birthdate: ElementRef;
+
     @ViewChild('profilePicture') profilePicture: ElementRef;
-    @ViewChild('email') email: ElementRef;
-    @ViewChild('password') password: ElementRef;
     noGenderSelected: boolean;
     submitted: boolean;
     public arrayInterests: { id, name, image }[] = interests;
-
 
     public registerForm;
 
@@ -45,7 +40,7 @@ export class RegisterComponent implements OnInit {
             firstName: new FormControl('', Validators.required),
             lastName: new FormControl('', Validators.required),
             birthDate: new FormControl('', Validators.required),
-            email: new FormControl('', [Validators.required, Validators.email,Validators.pattern("^[A-Z-a-z0-9._%+-]+@[A-Z-a-z0-9.-]+\\.[a-z]{2,4}$")]),
+            email: new FormControl('', [Validators.required, Validators.email, Validators.pattern("^[A-Z-a-z0-9._%+-]+@[A-Z-a-z0-9.-]+\\.[a-z]{2,4}$")]),
             password: new FormControl('', Validators.compose([
                 Validators.required,
             ])),
@@ -53,27 +48,28 @@ export class RegisterComponent implements OnInit {
                 Validators.required,
             ])),
         })
-
     }
 
 
     /**
      * Register, once the user clicked the register button we get all the input values
      */
-    public register(password:string, confirmPassword:string) {
+    public register(password: string, confirmPassword: string) {
         this.submitted = true;
         let alert = document.getElementById("alert");
 
-        if (password != confirmPassword) return; // extra check for the password
-        if (this.registerForm.invalid) return;
+        if (this.registerForm.invalid || password != confirmPassword) return;
+
         setTimeout(() => {
             const errors = document.querySelectorAll('.errors'); // check if there is error
             if (errors.length > 0) return;
 
+            const profilePicture = this.profilePicture.nativeElement.files[0];
             const genderElement = Array.from(document.querySelector('.gender-form') // get the gender value
                 .querySelectorAll('input[name=gender]:checked')).map((gender) => {
                 return gender.getAttribute('value')
-            })
+            }).pop();
+            //Get the user's interests
             const interests: number[] = Array.from(document.querySelector('#pictures-section')
                 .querySelectorAll('input[name=interest]:checked')).map(interest => {
                 return Number(interest.getAttribute('value'));
@@ -81,26 +77,16 @@ export class RegisterComponent implements OnInit {
 
             this.noGenderSelected = genderElement.length == 0;
             if (this.noGenderSelected) return;
-            const firstName = this.firstName.nativeElement.value;
-            const lastName = this.lastName.nativeElement.value;
-            const birthdate = this.birthdate.nativeElement.value;
-            const profilePicture = this.profilePicture.nativeElement.files[0];
-            const email = this.email.nativeElement.value;
-            const password = this.password.nativeElement.value;
-            const gender = Gender[genderElement[0]];
+
+            const user = {
+                id: 0,
+                admin: false,
+                blocked: false,
+                gender: Gender[genderElement], ...this.registerForm.value
+            };
             this.convertImage.convertToBase64(profilePicture, data => {
-                const object: User = <User>{
-                    "id": 0,
-                    "firstName": firstName,
-                    "lastName": lastName,
-                    "birthDate": birthdate,
-                    "gender": gender,
-                    "profilePicture": profilePicture == undefined ? "" : data,
-                    "email": email,
-                    "password": password,
-                    "admin": false
-                }
-                this.userService.registerUser(object)
+                user.profilePicture = profilePicture == undefined ? "" : data; // add the new picture if there is any
+                this.userService.registerUser(user)
                     .subscribe((response) => { // insert a new user
 
                         this.authenticationService.loggedInUser = User.makeTrueCopy(response.body);
@@ -118,15 +104,14 @@ export class RegisterComponent implements OnInit {
                         this.router.navigate(['/home']); // navigate to the home page
                     }, error => {
 
-                        alert.innerHTML =error.error.message;
+                        alert.innerHTML = error.error.message;
                         alert.style.display = "block"
-                        setTimeout( ()=> {
+                        setTimeout(() => {
                             alert.style.display = "none"
                         }, 6000)
                     });
             })
         }, 4)
-
     }
 
     private transformEnum<T>(enumOb: T): T[keyof T][] {

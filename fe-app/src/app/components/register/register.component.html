@@ -36,14 +36,14 @@
                             registerForm.get('birthDate').touched &&
                             registerForm.get('birthDate').invalid}">
                     <p *ngIf="submitted && registerForm.get('birthDate').value === ''" class="error">
-                        Geoortedatum is verplicht veld</p>
+                        Geboortedatum is verplicht veld</p>
                 </div>
 
 
 
-                <form class="form--radio gender-form" #myForm="ngForm">
+                <div class="form--radio gender-form">
                     <label for="choice_man">
-                        <input type="radio" id="choice_man" class="gender" name="gender" value=0>
+                        <input type="radio" id="choice_man"  class="gender" name="gender" value=0>
                         <span>Man</span>
                     </label>
                     <label for="choice_woman">
@@ -56,7 +56,7 @@
                     </label>
                     <p *ngIf="noGenderSelected" class="error">Geslacht is een verplicht veld</p>
 
-                </form>
+                </div>
 
                 <h4>Account instellingen</h4>
 
@@ -123,7 +123,7 @@
                 <button (click)="register(password.value, passwordConfirm.value)"
                         id="submit"
                         value="Registreren" type="submit"
-                        class="button button--primary button--form uppercase">Registeren
+                        class="button button--primary button--form uppercase">Registreren
                 </button>
                 <p class="text-center">Heeft u al een account? <a routerLink="/login"> Log in</a>.</p>
             </div>

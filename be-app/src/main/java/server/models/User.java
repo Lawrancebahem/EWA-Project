@@ -102,15 +102,15 @@ public class User implements Identifiable, Serializable {
     private List<Interest> interests;
 
 
-    //activities (fetch type is lazy)
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "user_activity",
-            joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "idactivity")
-    )
-    private List<Activity>activities;
+//    //activities (fetch type is lazy)
+//    @JsonIgnore
+//    @ManyToMany
+//    @JoinTable(
+//            name = "user_activity",
+//            joinColumns = @JoinColumn(name = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "idactivity")
+//    )
+//    private List<Activity>activities;
 
     //Reaction
     @JsonIgnore
@@ -249,13 +249,13 @@ public class User implements Identifiable, Serializable {
     }
 
 
-    public List<Activity> getActivities() {
-        return activities;
-    }
-
-    public void setActivities(List<Activity> activities) {
-        this.activities = activities;
-    }
+//    public List<Activity> getActivities() {
+//        return activities;
+//    }
+//
+//    public void setActivities(List<Activity> activities) {
+//        this.activities = activities;
+//    }
 
     public List<Reaction> getReactions() {
         return reactions;

@@ -45,8 +45,8 @@ public class Activity implements Identifiable {
     private String location;
     private boolean show;
 
-    @ManyToMany(mappedBy = "activities")
-    List<User> users;
+//    @ManyToMany(mappedBy = "activities")
+//    List<User> users;
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
@@ -125,13 +125,13 @@ public class Activity implements Identifiable {
         this.show = show;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
+//    public List<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(List<User> users) {
+//        this.users = users;
+//    }
 
     public List<Category> getCategories() {
         return categories;
