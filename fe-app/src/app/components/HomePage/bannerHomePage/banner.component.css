@@ -2,12 +2,12 @@
   /*max-height: 250px;*/
   /*max-height: 600px;*/
 }
-.carousel-item h1{
-  text-align: center;
-  padding-bottom: 5rem;
-  color: var(--color-white-smoke);
-  font-size: var(--font-h1);
-}
+/*.carousel-item h1{*/
+/*  text-align: center;*/
+/*  padding-bottom: 5rem;*/
+/*  color: var(--color-white-smoke);*/
+/*  font-size: var(--font-h1);*/
+/*}*/
 .carousel-inner {
   left: 50%;
   transform: translate(-50%, -15%);

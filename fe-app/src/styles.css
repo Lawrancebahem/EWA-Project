@@ -65,24 +65,27 @@ body {margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin: -100px 0 0 -150px;
 }
 .rotate {
-    -webkit-animation: spin 4s infinite linear;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -50px;
-    margin-left: -50px;
-    width: 100px;
-    height: 100px;
+    animation: rotation 2s infinite linear;
+    color: var(--color-blue);
+    position: fixed;
+    height: 2em;
+    width: 2em;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    font-weight: bold;
 }
 
-@keyframes spin {
-    from {
-        transform:rotate(0deg);
+
+@-webkit-keyframes rotation {
+
+    from {-webkit-transform: rotate(0deg);
     }
-    to {
-        transform:rotate(360deg);
-    }
+    to   {-webkit-transform: rotate(359deg);}
 }
+
 .icon-size {
     cursor: pointer;
     font-size: 50px;
