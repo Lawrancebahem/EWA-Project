@@ -14,7 +14,7 @@
 
     <div class="flex-container">
         <div class="activity-overview row-cols-1 row-cols-md-3">
-            <div class="activity col-2 mb-4" *ngFor="let activity of activityArray | filter: categoryId | filter: searchText" routerLink="/activityDetails/{{activity.id}}">
+            <div class="activity col-2 mb-4" *ngFor="let activity of activityArray | filter: searchText" routerLink="/activityDetails/{{activity.id}}">
                 <img class="card-img-top" src="{{activity.image}}"
                      alt="{{activity.title}}">
                 <h4 class="card-title">

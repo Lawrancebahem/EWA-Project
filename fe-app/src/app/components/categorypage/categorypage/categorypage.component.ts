@@ -57,6 +57,8 @@ export class CategorypageComponent implements OnInit {
                     title: activity[5]
                 }
             })
+            console.log(this.activityArray);
+
         }, error => {
             console.log(error)
         })
