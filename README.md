@@ -1,7 +1,5 @@
 # Digital Life Web application installation guide
 
-**[Enterprise-Web-Application](#enterprise-web-application) 2**
-
 **[About the Web Applications Installation and Configuration Guide](#about-the-web-applications-installation-and-configuration-guide) 3**
 
 [General information](#general-information) 3
@@ -30,12 +28,6 @@
 
 ##
 
-
-## Enterprise-Web-Application
-
-An Enterprise Web Application that aims at helping the users with visual impairments to do all kinds of activities that they&#39;d like to do by finding an activity that suits their interests. Absolutely there is a possibility to choose interests when creating a new account, which will help the user to see the appropriate activities based on the selected interests. The activities are divided into categories, to make it easier for the user to find certain activities of a certain category. By using the filter, it is possible to find the needed category/activity.
-
-During the development process, we had to test the application with real users with visual impairments to improve the application based on the user&#39;s feedback. We tested the application with several color combinations to find out which color is the best to choose. But that was difficult since color blindness affects people in different manners and that makes it difficult to choose a safe color that applies to all colorblind users. To have this problem solved, we&#39;ve built a speech recognition to help the user to apply the color as preferred. By clicking on the mic the user can give a command to change the color of the whole website and it&#39;s also possible to navigate through the app by using this speech recognition.
 
 ##
 
