@@ -16,7 +16,6 @@
 </div>
 
 <div class="container-grid" *ngIf="adminservice.categoryArray.length > 0 else loading">
-
     <div class="card" routerLink="/category/{{category.id}}" *ngFor="let category of adminservice.categoryArray | filter: searchText">
         <img src="{{category.image}}" class="card-img-top" alt="{{category.name}}}">
         <div class="card-body">
@@ -24,7 +23,6 @@
             <p class="card-text">{{category.description}}</p>
         </div>
     </div>
-
 </div>
 
 </div>

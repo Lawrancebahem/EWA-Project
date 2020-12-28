@@ -8,19 +8,20 @@
     padding-top: 40px;
 }
 .container-grid{
-    display: grid;
-    grid-template-rows: repeat(1,auto);
-    grid-template-columns: repeat(2,auto);
-    /*padding: 4rem;*/
+    /*display: grid;*/
+    /*grid-template-rows: repeat(1,auto);*/
+    /*grid-template-columns: repeat(2,auto);*/
 }
 
 .card{
+    float: left;
     border-radius: var(--border-radius);
     cursor: pointer;
     margin: 15px;
     border-color: var(--color-default);
     box-shadow: 7px 7px 7px var(--color-default);
-
+    box-sizing: border-box;
+    width: 48%;
 }
 .card-title{
     font-size: var(--font-h2);
