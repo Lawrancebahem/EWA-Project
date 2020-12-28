@@ -8,7 +8,7 @@
 
 [Running the client](#running-the-client) 3
 
-[Using the Client API](#using-the-client) 4
+[Using the Client API](#using-the-client-api) 4
 
 [Database configuration](#database-configuration) 6
 
@@ -18,35 +18,15 @@
 
 **[Contribution of each team member](#contribution-of-each-team-member) 9**
 
-[Lawrance Bahem:](#lawrence-bahem) 9
-
-[Back-end:](#back-end) 9
-
-[Front-end:](#front-end) 9
+[Lawrance Bahem:](#lawrance-bahem) 9
 
 [Tico Vermeer:](#tico-vermeer) 10
 
-[Back-end:](#back-end) 10
-
-[Front-end:](#front-end) 10
-
 [Bugra Karaaslan:](#bugra-karaaslan) 10
-
-[Front-end:](#front-end) 11
-
-[Back-end:](#back-end) 11
 
 [Lucas Melis:](#lucas-melis) 11
 
-[Back-end:](#back-end) 11
-
-[Front-end:](#front-end) 11
-
 [Moustafa Fadil:](#moustafa-fadil) 11
-
-[Back-end:](#back-end) 11
-
-[Front-end:](#front-end) 11
 
 ##
 
@@ -367,8 +347,7 @@ User controller getMatching()
 
 ActivityControllerJPA getActivitiyMatches
 
-####
-Front-end:
+#### Front-end:
 
 Home component
 
