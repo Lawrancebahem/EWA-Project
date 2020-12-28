@@ -1,52 +1,52 @@
 # Digital Life Web application installation guide
 
-**[Enterprise-Web-Application](#_esnhi1wsz41y) 2**
+**[Enterprise-Web-Application](#enterprise-web-application) 2**
 
-**[About the Web Applications Installation and Configuration Guide](#_b5pvgxhdrkoz) 3**
+**[About the Web Applications Installation and Configuration Guide](#about-the-web-applications-installation-and-configuration-guide) 3**
 
-[General information](#General information) 3
+[General information](#general-information) 3
 
-[Running the client](#_3b4vi0pe7762) 3
+[Running the client](#running-the-client) 3
 
-[Using the Client API](#_9ijsn030fhci) 4
+[Using the Client API](#using-the-client) 4
 
-[Database configuration](#_zdc72iuhegfi) 6
+[Database configuration](#database-configuration) 6
 
-[Using RESTful API](#_gqkpm22pum74) 7
+[Using RESTful API](#using-restful-api) 7
 
-**[Database Postgres EERD](#_wgbm477abzh0) 8**
+**[Database Postgres EERD](#database-postgres-eerd) 8**
 
-**[Contribution of each team member](#_c17ipd5f6b9j) 9**
+**[Contribution of each team member](#contribution-of-each-team-member) 9**
 
-[Lawrance Bahem:](#_xon5pg16xdr1) 9
+[Lawrance Bahem:](#lawrence-bahem) 9
 
-[Back-end:](#_tv785fx49vjk) 9
+[Back-end:](#back-end) 9
 
-[Front-end:](#_26sfqxnk37e4) 9
+[Front-end:](#front-end) 9
 
-[Tico Vermeer:](#_1f9v9q9hnp01) 10
+[Tico Vermeer:](#tico-vermeer) 10
 
-[Back-end:](#_41yzse9zzmu) 10
+[Back-end:](#back-end) 10
 
-[Front-end:](#_lgxzmnfesqdt) 10
+[Front-end:](#front-end) 10
 
-[Bugra Karaaslan:](#_98611nnkrzka) 10
+[Bugra Karaaslan:](#bugra-karaaslan) 10
 
-[Front-end:](#_huis5w24bu25) 11
+[Front-end:](#front-end) 11
 
-[Back-end:](#_ok1gpeh3kbq4) 11
+[Back-end:](#back-end) 11
 
-[Lucas Melis:](#_wepxhjxwm3pb) 11
+[Lucas Melis:](#lucas-melis) 11
 
-[Back-end:](#_j8j94hoeeakm) 11
+[Back-end:](#back-end) 11
 
-[Front-end:](#_s9jel210dflm) 11
+[Front-end:](#front-end) 11
 
-[Moustafa Fadil:](#_son87uw6nlw7) 11
+[Moustafa Fadil:](#moustafa-fadil) 11
 
-[Back-end:](#_v3qulmrg0b82) 11
+[Back-end:](#back-end) 11
 
-[Front-end:](#_q4nbegvwcsj3) 11
+[Front-end:](#front-end) 11
 
 ##
 
