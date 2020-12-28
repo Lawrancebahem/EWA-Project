@@ -47,6 +47,7 @@ export class CategorypageComponent implements OnInit {
 
     getAllActivitiesForThisCategory(id) {
         this.categoryService.getAllActivitiesForCategory(id).subscribe((response) => {
+            console.log(response);
             this.activityArray = response.map((activity) => {
                 return {
                     id: activity[0],
