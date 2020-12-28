@@ -11,6 +11,7 @@
     /*display: grid;*/
     /*grid-template-rows: repeat(1,auto);*/
     /*grid-template-columns: repeat(2,auto);*/
+    background-color: var(--color-default);
 }
 
 .card{
