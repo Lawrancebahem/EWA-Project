@@ -36,7 +36,7 @@
                             registerForm.get('birthDate').touched &&
                             registerForm.get('birthDate').invalid}">
                     <p *ngIf="submitted && registerForm.get('birthDate').value === ''" class="error">
-                        Geboortedatum is verplicht veld</p>
+                        Geboortedatum is een verplicht veld</p>
                 </div>
 
 
@@ -95,11 +95,11 @@
                     <span>Bevestiging wachtwoord</span>
                     <div class="show-password">
                         <i class="fa fa-eye"></i>
-                        <input #passwordConfirm formControlName="passwordConfirm" class="form_input" type="password" name="wachtwoord" id="password2"
+                        <input #passwordConfirm formControlName="passwordConfirm" class="form_input" type="password" name="wachtwoord" id="password2" placeholder="Herhaal uw wachtwoord"
                                maxlength="30"
                                required="required">
                         <p *ngIf="submitted && !checkPasswords(passwordConfirm.value)" class="error">
-                            Het is niet juist
+                            De ingevulde wachtwoorden komen niet overeen
                         </p>
                     </div>
                 </div>

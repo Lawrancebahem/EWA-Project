@@ -40,6 +40,11 @@
     width: 100%;
     object-fit: cover;
 }
+
+.activity-thumbnail--image:hover{
+    cursor: pointer;
+}
+
 .activity-thumbnail h3{
     font-family: 'Open Sans', sans-serif;
     font-weight: normal;
@@ -72,6 +77,9 @@
 }
 .text_1 p{
     font-size: var(--font-p);
+}
+.form--link:hover{
+    color: var(--color-white);
 }
 @media only screen and (max-width: 48em){
     .login_blok{
