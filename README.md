@@ -150,7 +150,7 @@ That will use the application-dev.properties, which has configuration that runs 
 
 ## Using RESTful API
 
-To interact with the API, you should download an HTTP client. For this workshop we recommend you using Postman. The following link allows you to get a collection of examples to interact with the API.
+To interact with the API, you should download an HTTP client. For this we recommend you using Postman. The following link allows you to get a collection of examples to interact with the API.
 
 Below, a summary of operations:.
 
