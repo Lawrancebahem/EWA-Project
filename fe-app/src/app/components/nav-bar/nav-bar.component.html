@@ -70,13 +70,18 @@
 
         <ul class="navbar-nav ml-auto nav-flex-icons align-items-center">
 
+
             <li *ngIf="authenticateService.isLoggedIn" class="nav-item">
                 <a class="nav-link text-white button--primary" routerLink="/activityOverview">Alle Activiteiten</a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link text-white button--primary" routerLink="/contactUs">Contact</a>
+            </li>
             <li *ngIf="authenticateService.isLoggedIn" class="nav-item">
                 <a class="nav-link text-white button--primary" routerLink="/matching">Matching</a>
             </li>
+
 
             <li *ngIf="authenticateService.isLoggedIn else notLoggedIn" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle button--primary text-white align-middle" id="navbarDropdownMenuLink-333"
@@ -96,12 +101,13 @@
 <!--            When the user is not logged in-->
             <ng-template #notLoggedIn>
                 <li class="nav-item">
+                    <a class="nav-link text-white button--primary" routerLink="/aboutUs">Over ons</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link button--primary text-white" routerLink="/activityOverview">Alle Activiteiten</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link text-white button--primary" routerLink="/aboutUs">Over ons</a>
-                </li>
+
 
                 <li class="nav-item ">
                     <a class="nav-link text-white button--primary" routerLink="/login">Login</a>

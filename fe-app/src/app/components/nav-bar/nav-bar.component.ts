@@ -79,7 +79,7 @@ export class NavBarComponent implements OnInit {
      */
     checkIfBrowserSupportSpeech() {
 
-        if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+        if (!('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
             this.speechService.startListening();
         }else {
             // speech recognition API not supported
