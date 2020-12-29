@@ -1,36 +1,32 @@
 # Digital Life Web application installation guide
 
-**[About the Web Applications Installation and Configuration Guide](#about-the-web-applications-installation-and-configuration-guide) 3**
+**[About the Web Applications Installation and Configuration Guide](#about-the-web-applications-installation-and-configuration-guide)**
 
-[General information](#general-information) 3
+[General information](#general-information) 
 
-[Running the client](#running-the-client) 3
+[Running the client](#running-the-client) 
 
-[Using the Client API](#using-the-client-api) 4
+[Using the Client API](#using-the-client-api) 
 
-[Database configuration](#database-configuration) 6
+[Database configuration](#database-configuration) 
 
-[Using RESTful API](#using-restful-api) 7
+[Using RESTful API](#using-restful-api)
 
-**[Database Postgres EERD](#database-postgres-eerd) 8**
+**[Database Postgres EERD](#database-postgres-eerd)**
 
-**[Contribution of each team member](#contribution-of-each-team-member) 9**
+**[Contribution of each team member](#contribution-of-each-team-member)**
 
-[Lawrance Bahem:](#lawrance-bahem) 9
+[Lawrance Bahem:](#lawrance-bahem) 
 
-[Tico Vermeer:](#tico-vermeer) 10
+[Tico Vermeer:](#tico-vermeer) 
 
-[Bugra Karaaslan:](#bugra-karaaslan) 10
+[Bugra Karaaslan:](#bugra-karaaslan) 
 
-[Lucas Melis:](#lucas-melis) 11
+[Lucas Melis:](#lucas-melis)
 
-[Moustafa Fadil:](#moustafa-fadil) 11
-
-##
-
+[Moustafa Fadil:](#moustafa-fadil)
 
 ##
-
 
 ## About the Web Applications Installation and Configuration Guide
 
@@ -97,9 +93,9 @@ In the &#39;be-app/src/main/resources&#39; you find four different files of appl
 
 ![alt_text](readme-images/applicationProperties.png "image_tooltip")
 
-The application.properties file is the main file of the rest of the properties files, in this file you&#39;re able to choose which configured file you&#39;d like to run for example by changing the value of spring.profiles.active=dev
+The application.properties file is the main file of the rest of the properties files, in this file you&#39;re able to choose which configured file you&#39;d like to run for example by changing the value of ```spring.profiles.active=<value>```
 
-in application.properties into spring.profiles.active=staging
+in application.properties into ```spring.profiles.active=staging```
 
 The application will use the file application.staging.properties, which might have a different configuration than the application.dev.properties
 
@@ -115,9 +111,9 @@ When installing the project you may want to run it on a certain database and thi
 ```java
 | // setting the database
 //note: dialects are auto detected by hibernate
- spring.datasource.url=\&lt;your-jdbc-url\&gt;
- spring.datasource.username=\&lt;user\&gt;
- spring.datasource.password=\&lt;password\&gt;
+ spring.datasource.url=<jdbc-url>
+ spring.datasource.username=<user>
+ spring.datasource.password=<password>
 
 //drop and create table again, good for testing, comment this in production
  spring.jpa.hibernate.ddl-auto=create
@@ -147,6 +143,29 @@ main application.properties as follows:
 | --- |
 
 That will use the application-dev.properties, which has configuration that runs on your [http://localhost:8080/](http://localhost:8080/).
+
+## Configuration SMTP server
+You can also adjust the email configuration in one of the application.properties sub-files to be able to send emails if the user wants tp reset the password
+ these configurations are like username, email and password as shown below
+
+```java
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=<emai>
+spring.mail.password=<password>.
+
+//Other properties
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.connectiontimeout=5000
+spring.mail.properties.mail.smtp.timeout=5000
+spring.mail.properties.mail.smtp.writetimeout=5000
+
+//TLS , port 587
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+```
+
+
 
 ## Using RESTful API
 
