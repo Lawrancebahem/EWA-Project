@@ -9,15 +9,16 @@
 }
 .container-grid{
     display: grid;
-    grid-template-rows: repeat(1,auto);
-    grid-template-columns: repeat(2,auto);
-    /*padding: 4rem;*/
+    grid-template-rows: repeat(1,1fr);
+    grid-template-columns: repeat(2,1fr);
+    padding: 1rem;
+    grid-row-gap: 1rem;
+    grid-column-gap: 1rem;
 }
 
 .card{
     border-radius: var(--border-radius);
     cursor: pointer;
-    margin: 15px;
     border-color: var(--color-default);
     box-shadow: 7px 7px 7px var(--color-default);
 

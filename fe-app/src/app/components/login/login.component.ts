@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
                 //Get the user's interests
                 this.userService.getUserInterests()
                     .subscribe((interestsArray) => {
-                    console.log(interestsArray);
                     this.authenticationService.loggedInUser.interests = interestsArray;
                 })
 
@@ -63,7 +62,7 @@ export class LoginComponent implements OnInit {
                 this.authenticationService.isLoggedIn = false;
             }
         },error => {
-
+            console.log("The error message loggin in " + error.error.message);
             alert.innerHTML = error.error.message;
             alert.style.display = "block"
             setTimeout( () => {
@@ -97,7 +96,6 @@ export class LoginComponent implements OnInit {
         let successMessage = document.getElementById("success-message-send");
 
         this.userService.resetPassword(userEmail).subscribe((response)=>{
-            console.log(response);
             successMessage.style.display = "block"
             setTimeout(()=>{
                 successMessage.style.display = "none"
