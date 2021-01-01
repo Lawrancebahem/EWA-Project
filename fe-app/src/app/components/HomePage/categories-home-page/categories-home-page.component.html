@@ -1,31 +1,31 @@
-<app-banner></app-banner>
-<div class="container-fluid">
+<app-banner id="bannerCategoryTest"></app-banner>
+<div class="container-fluid containerHomePageCategoryTest">
     <div class="form-inline" role="form">
 
-    <div class="searchBar">
-        <div class="input-group" >
-            <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" style="height: 3rem">
-            <div class="input-group-append">
-                <button class="btn text-white" type="button">
-                    <mat-icon>search</mat-icon>
-                </button>
+        <div class="searchBar searchBarTestComponent">
+            <div class="input-group" >
+                <input id="fieldText" type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText" style="height: 3rem">
+                <div class="input-group-append">
+                    <button class="btn text-white" type="button">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </div>
             </div>
         </div>
+
     </div>
 
-</div>
+    <div id="foundCategoryTest" class="container-grid" *ngIf="adminservice.categoryArray.length > 0 else loading">
 
-<div class="container-grid" *ngIf="adminservice.categoryArray.length > 0 else loading">
-
-    <div class="card" routerLink="/category/{{category.id}}" *ngFor="let category of adminservice.categoryArray | filter: searchText">
-        <img src="{{category.image}}" class="card-img-top" alt="{{category.name}}}">
-        <div class="card-body">
-            <h2 class="card-title">{{category.name}}</h2>
-            <p class="card-text">{{category.description}}</p>
+        <div class="card" routerLink="/category/{{category.id}}" *ngFor="let category of adminservice.categoryArray | filter: searchText">
+            <img src="{{category.image}}" class="card-img-top" alt="{{category.name}}}">
+            <div class="card-body">
+                <h2 class="card-title">{{category.name}}</h2>
+                <p class="card-text">{{category.description}}</p>
+            </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
 </div>
 <ng-template #loading>
