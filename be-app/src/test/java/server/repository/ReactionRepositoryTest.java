@@ -35,8 +35,6 @@ public class ReactionRepositoryTest {
     @Autowired
     private ActivityRepositoryJpa activityRepositoryJpa;
 
-    private long reactionId1;
-    private long reactionId2;
 
     @Test
     @Order(1)
@@ -49,7 +47,7 @@ public class ReactionRepositoryTest {
     @Test
     @DirtiesContext
     @Order(2)
-    public void addReaction() throws Exception {
+    public void addReaction(){
 
         //get the users
         User user1 = this.userRepositoryJpa.findById(1002);
@@ -92,8 +90,8 @@ public class ReactionRepositoryTest {
         assertEquals(reaction1.getMessage(), "oud");
         assertEquals(reaction2.getMessage(), "Wat een leuke activiteit");
     }
-//
-//
+
+
     @Test
     @Order(4)
     public void findUsersReactionsByIdAndDeleteThemById(){
@@ -123,4 +121,12 @@ public class ReactionRepositoryTest {
         assertTrue(this.reactionEntityRepository.deleteById(reaction2.getId()));
 
     }
+
+    @Test
+    @Order(5)
+    public void findUserFromReaction(){
+        Reaction reaction = this.reactionEntityRepository.findById(170);
+        assertEquals("Tico",reaction.getUser().getFirstName());
+    }
+
 }
