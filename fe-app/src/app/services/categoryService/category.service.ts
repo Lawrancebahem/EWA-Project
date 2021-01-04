@@ -17,6 +17,7 @@ export class CategoryService {
 
   constructor(private httpClient:HttpClient) { }
 
+
   findAll(){
     return this.categoryArray
   }
