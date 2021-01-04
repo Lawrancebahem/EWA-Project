@@ -15,7 +15,7 @@ import {CategoryService} from "../../../services/categoryService/category.servic
 export class ActivityOverviewComponent implements OnInit {
     public activityArray: any[] = [];
     categoryArray: Category[] = [];
-    activitySearchText;
+    activitySearchText = "";
     categorySearch = [];
     selectedActivity;
     filteredActivityArray: any[] = [];

@@ -80,6 +80,13 @@ public class Activity implements Identifiable {
         this.location = location;
     }
 
+    public Activity(String title, String description, String image, String location) {
+        this.title = title;
+        this.description = description;
+        this.image = image;
+        this.location = location;
+    }
+
     public Activity() {
 
     }

@@ -2,14 +2,18 @@
     <h1>Alle activiteiten</h1>
 </header>
 
-<div class="activity-overview row-cols-1 row-cols-md-3" *ngIf="activitiesWithCategories.length > 0 else loading">
+<div id="activityOverview" class="activity-overview row-cols-1 row-cols-md-3 activityFoundOverviewTest"
+     *ngIf="activitiesWithCategories.length > 0 else loading">
+
     <div class="activitySearch">
-        <label>
-            <h1>Zoek Activiteit</h1>
-        </label>
-        <input type="search" class="form-control form-control-lg" placeholder="Zoek hier uw activiteit"
+        <h1>Zoek Activiteit</h1>
+        <label for="searchInput"></label>
+        <input id="searchInput" type="search"
+               class="form-control form-control-lg activitySearchBar"
+               placeholder="Zoek hier uw activiteit"
                [(ngModel)]="activitySearchText">
     </div>
+
     <p id="1"></p>
 
     <div class="filterlist " id="filterlist">
@@ -18,13 +22,16 @@
 
         <h4>Categoriën:</h4>
         <div class="custom-control custom-checkbox" *ngFor="let category of categoryArray">
-            <input type="checkbox" class="custom-control-input" id="{{category.idCategory}}">
-            <label class="custom-control-label" for="{{category.idCategory}}">{{category.name}}</label>
+            <input type="checkbox" class="custom-control-input" id="{{category.name}}">
+            <label class="custom-control-label" for="{{category.name}}"
+                   id="{{category.description}}">{{category.name}}</label>
         </div>
         <button class="btn btn-primary" (click)="filterSearch()">Zoek</button>
     </div>
 
-    <div class="activity col-2 mb-4" *ngFor="let activity of filteredActivityArray | filter: activitySearchText" routerLink="/activityDetails/{{activity.id}}">
+
+    <div class="activity col-2 mb-4" *ngFor="let activity of filteredActivityArray | filter: activitySearchText"
+         routerLink="/activityDetails/{{activity.id}}" id="{{activity.title}}">
         <div class="card" id="{{activity.id}}">
             <img class="card-img-top" src="{{activity.image}}"
                  alt="{{activity.title}}">
