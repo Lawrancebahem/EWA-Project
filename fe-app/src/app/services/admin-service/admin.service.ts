@@ -31,7 +31,6 @@ export class AdminService {
    */
   public getAllActivities(){
     this.activityService.getAllActivities().subscribe((activities)=>{
-      console.log(activities);
       this.activityArray = activities ? activities.map((activity) => Activity.trueCopy(activity)):[];
 
     })
@@ -42,7 +41,6 @@ export class AdminService {
    */
   public getAllUsers(){
     this.userService.findAll().subscribe((users)=>{
-      console.log(users);
       this.userArray = users ? users.map((user) => User.makeTrueCopy(user)):[];
     })
   }
@@ -52,7 +50,6 @@ export class AdminService {
    */
   public getAllCategories() {
     this.categoryService.getAllCategories().subscribe((categories)=>{
-      console.log(categories)
       this.categoryArray = categories ? categories.map((category) => Category.trueCopy(category)):[];
     })
   }

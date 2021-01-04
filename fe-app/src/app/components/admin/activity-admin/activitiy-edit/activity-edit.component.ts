@@ -102,7 +102,6 @@ export class ActivityEditComponent implements OnInit {
                 });
                 //Insert the categories for this activity
                 this.adminService.addCategoriesToActivity(activityId, selectedCategories).subscribe((inserted) => {
-                    console.log(inserted);
                     successMessage.style.display = "block"
                     setTimeout(() => {
                         closeModal.click(); //close the modal
@@ -217,7 +216,6 @@ export class ActivityEditComponent implements OnInit {
                 closeModal.click();// close the editing modal
             }, 2000)
 
-            console.log(response);
         }, error => {
             console.log(error);
         })

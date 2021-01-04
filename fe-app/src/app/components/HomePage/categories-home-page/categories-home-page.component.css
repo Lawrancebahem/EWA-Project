@@ -8,21 +8,20 @@
     padding-top: 40px;
 }
 .container-grid{
-    /*display: grid;*/
-    /*grid-template-rows: repeat(1,auto);*/
-    /*grid-template-columns: repeat(2,auto);*/
-    background-color: var(--color-default);
+    display: grid;
+    grid-template-rows: repeat(1,1fr);
+    grid-template-columns: repeat(2,1fr);
+    padding: 1rem;
+    grid-row-gap: 1rem;
+    grid-column-gap: 1rem;
 }
 
 .card{
-    float: left;
     border-radius: var(--border-radius);
     cursor: pointer;
-    margin: 15px;
     border-color: var(--color-default);
     box-shadow: 7px 7px 7px var(--color-default);
-    box-sizing: border-box;
-    width: 48%;
+
 }
 .card-title{
     font-size: var(--font-h2);

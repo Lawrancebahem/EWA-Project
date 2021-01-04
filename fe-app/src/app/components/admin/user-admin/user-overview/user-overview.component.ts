@@ -32,7 +32,6 @@ export class UserOverviewComponent implements OnInit {
   blockUser(email: string) {
     let response = this.httpClient.get(`${environment.apiUrl}/user/block/` + email + "/").pipe(shareReplay(1));
     response.subscribe((response) => {
-      console.log(response);
       this.adminService.userArray.find(user => user.email == email).blocked = true;
     }, error => {
       console.log(error);
@@ -47,7 +46,6 @@ export class UserOverviewComponent implements OnInit {
   unBlockUser(email: string) {
     let response = this.httpClient.get(`${environment.apiUrl}/user/unblock/` + email + "/").pipe(shareReplay(1));
     response.subscribe((response) => {
-      console.log(response);
       this.adminService.userArray.find(user => user.email == email).blocked = false;
     }, error => {
       console.log(error);
@@ -69,7 +67,6 @@ export class UserOverviewComponent implements OnInit {
   makeAnAdmin(email: string) {
     let response = this.httpClient.get(`${environment.apiUrl}/user/make-admin/` + email + "/").pipe(shareReplay(1));
     response.subscribe((response)=>{
-      console.log(response);
     },error => {
       console.log(error);
     })
@@ -80,7 +77,6 @@ export class UserOverviewComponent implements OnInit {
   revokeAdmin(email: string) {
     let response = this.httpClient.get(`${environment.apiUrl}/user/make-not-admin/` + email + "/").pipe(shareReplay(1));
     response.subscribe((response)=>{
-      console.log(response);
     },error => {
       console.log(error);
     })

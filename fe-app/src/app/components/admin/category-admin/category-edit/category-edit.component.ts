@@ -66,7 +66,6 @@ export class CategoryEditComponent implements OnInit {
           this.clearFieldsModal();
 
         }, 2500)
-        console.log(response);
         this.updateArray(response)
 
       }, error => {
@@ -148,7 +147,6 @@ export class CategoryEditComponent implements OnInit {
     const closeModal = document.getElementById("close-modalCategory");
 
     this.adminService.deleteAnCategory(idCategory).subscribe((response) => {
-      console.log(response);
       setTimeout(() => {
         this.deleteFromCategoryArray(idCategory);
         this.hideConfirmationModal();

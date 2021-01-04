@@ -48,7 +48,6 @@ export class NavBarComponent implements OnInit {
                     })
                     this.authenticateService.isLoggedIn = true;
                 }, error => {
-                    console.log(error.error.message)
                     //Make request to refresh the token
                     let response = this.httpClient.get(`${environment.apiUrl}/authenticate/token-refresh`,
                         {observe: "response"}).pipe(shareReplay(1));
@@ -81,11 +80,9 @@ export class NavBarComponent implements OnInit {
     checkIfBrowserSupportSpeech() {
 
         if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-            console.log("Supported")
             this.speechService.startListening();
         }else {
             // speech recognition API not supported
-            console.log("Not supported")
             let alert = document.getElementById("alert-speech");
             alert.style.display = "block"
             setTimeout( ()=> {
