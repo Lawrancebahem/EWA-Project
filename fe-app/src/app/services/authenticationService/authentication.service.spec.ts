@@ -4,7 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { AuthenticationService } from './authentication.service';
 
-describe('AuthenticationService', () => {
+fdescribe('AuthenticationService', () => {
   let service: AuthenticationService;
   let httpMock: HttpTestingController;
 

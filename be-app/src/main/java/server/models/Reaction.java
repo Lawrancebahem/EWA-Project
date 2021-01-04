@@ -1,7 +1,6 @@
 package server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import server.repositories.Identifiable;
 
 import javax.persistence.*;
@@ -85,13 +84,6 @@ public class Reaction implements Identifiable {
      * @return Getters and Setters
      */
 
-    public long getIdReaction() {
-        return idReaction;
-    }
-
-    public void setIdReaction(long idReaction) {
-        this.idReaction = idReaction;
-    }
 
     public String getMessage() {
         return message;

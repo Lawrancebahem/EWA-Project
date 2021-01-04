@@ -9,7 +9,7 @@ import {Router, RouterModule} from "@angular/router";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 
 
-describe('RegisterComponent', () => {
+fdescribe('RegisterComponent', () => {
     let component: RegisterComponent;
     let fixture: ComponentFixture<RegisterComponent>;
 
@@ -99,5 +99,4 @@ describe('RegisterComponent', () => {
         expect(compiled.querySelector('#strand').checked).toBeTrue()
         expect(compiled.querySelector('#wintersport').checked).toBeTrue()
     });
-
 });

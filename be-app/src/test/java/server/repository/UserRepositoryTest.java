@@ -15,8 +15,7 @@ import server.repositories.UserRepositoryJpa;
 
 import java.time.LocalDate;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * This test is to test adding new users and link them with their interests, and removing them again
@@ -89,4 +88,22 @@ public class UserRepositoryTest {
 
     }
 
+    @Test
+    public void  addNewUserAndUpdateAndDelete(){
+        User user1 = new User("Marc","Specht", LocalDate.now(), User.Gender.MAN, "/assets/Images/picProfile.png", "marcspecht@gmail.com","12345", false,false);
+        User savedUser = this.userRepositoryJpa.saveOrUpdate(user1);
+
+        assertEquals("Marc", savedUser.getFirstName());
+
+        savedUser.setFirstName("Marcio");
+        savedUser.setLastName("De laat");
+        savedUser.setBlocked(true);
+
+        savedUser = this.userRepositoryJpa.saveOrUpdate(savedUser);
+
+        assertEquals("Marcio", savedUser.getFirstName());
+        assertEquals("De laat", savedUser.getLastName());
+        assertTrue(savedUser.isBlocked());
+        assertTrue(this.userRepositoryJpa.deleteById(savedUser.getId()));
+    }
 }

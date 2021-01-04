@@ -1,11 +1,13 @@
 <!-- dit is category tabel-->
 <!--Todo zit dit er straks bij => && adminService.categoryArray.length > 0-->
 <div *ngIf="adminService.categoryArray.length > 0 else loading">
-    <button data-toggle="modal" data-target="#myModalCategory" class="button--primary p-1 m-2" (click)="setSelectedToNull()">Voeg een nieuwe categorie
+    <button data-toggle="modal" data-target="#myModalCategory" class="button--primary p-1 m-2"
+            (click)="setSelectedToNull()">Voeg een nieuwe categorie
     </button>
 
     <!--    /this button is for editing purposes-->
-    <button [hidden]="true"  id="openModal-category" data-toggle="modal" data-target="#myModalCategory"></button>
+    <button [hidden]="true" type="button" id="openModal-category" data-toggle="modal"
+            data-target="#myModalCategory"></button>
 
     <table class="table table-hover">
         <thead>
@@ -17,20 +19,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let category of adminService.categoryArray" style="cursor: pointer"(click)="editCategory(category.idCategory)">
+        <tr *ngFor="let category of adminService.categoryArray" style="cursor: pointer"
+            (click)="editCategory(category.idCategory)">
             <td>{{category.idCategory}}</td>
             <td>{{category.name}}</td>
             <td>{{category.description}}</td>
             <td><img src="{{category.image}}" class="default-picture p0 m-0"></td>
             <td>
-<!--                &lt;!&ndash;                Todo delete funtie maken&ndash;&gt;-->
-<!--                <mat-icon (click)="deleteCategory(category.idCategory)" class="icon-size">delete</mat-icon>-->
+                <!--                &lt;!&ndash;                Todo delete funtie maken&ndash;&gt;-->
+                <!--                <mat-icon (click)="deleteCategory(category.idCategory)" class="icon-size">delete</mat-icon>-->
             </td>
         <tr>
         </tbody>
     </table>
 </div>
-
 
 
 <!--modal to add new category-->
@@ -55,34 +57,43 @@
                 <div class="input-group-append">
                     <label class="input-group-text" for="titleInput">Title</label>
                 </div>
-                <input #titleInputCategory type="text" class="form-control" id="titleInput" placeholder="Titel" aria-label="Titel"
+                <input #titleInputCategory type="text" class="form-control" id="titleInput" placeholder="Titel"
+                       aria-label="Titel"
                        aria-describedby="basic-addon1">
             </div>
 
             <div class="form-group p1">
                 <label class="input-group-text" for="descriptionCategory">Omschrijving:</label>
-                <textarea class="form-control" placeholder="omschrijf hier..." id="descriptionCategory" #descriptionCategory
+                <textarea class="form-control" placeholder="omschrijf hier..." id="descriptionCategory"
+                          #descriptionCategory
                           rows="3"></textarea>
             </div>
 
             <div id="delete-category-icon" class="centerError confirmation-delete" style="display: none; z-index: 100">
                 <mat-icon class="align-middle">info</mat-icon>
                 Wilt u de activiteit verwijderen?
-                <button (click)="hideConfirmationModal()" class="button--primary float-right" style="position: absolute;  bottom:0; right: 1rem">Nee</button>
-                <button  (click)="deleteCategory()" class="button--primary float-right" style="position: absolute;  bottom:0; right: 4rem">Ja</button>
+                <button (click)="hideConfirmationModal()" class="button--primary float-right"
+                        style="position: absolute;  bottom:0; right: 1rem">Nee
+                </button>
+                <button (click)="deleteCategory()" class="button--primary float-right"
+                        style="position: absolute;  bottom:0; right: 4rem">Ja
+                </button>
             </div>
 
             <!--            Todo functie afmaken-->
             <div class="modal-footer p-0">
-                <button (click)="addNewCategory()" id="add-modalCategory" type="button" class="button--primary">toevoegen
+                <button (click)="addNewCategory()" id="add-modalCategory" type="button" class="button--primary">
+                    toevoegen
                 </button>
-                <button id="" *ngIf="selectedCategory > 0" type="button" class="button--primary" (click)="confirmDeletion()">verwijderen</button>
-                <button id="close-modalCategory" type="button" class="button--primary" data-dismiss="modal">Sluiten</button>
+                <button id="" *ngIf="selectedCategory > 0" type="button" class="button--primary"
+                        (click)="confirmDeletion()">verwijderen
+                </button>
+                <button id="close-modalCategory" type="button" class="button--primary" data-dismiss="modal">Sluiten
+                </button>
             </div>
-
-                        <div id="success-message-category" class="alert alert-success alert-dismissible" style="display: none">
-                            De categorie is succesvol toegevoegd.
-                        </div>
+            <div id="success-message-category" class="alert alert-success alert-dismissible" style="display: none">
+                De categorie is succesvol toegevoegd.
+            </div>
         </div>
     </div>
 </div>

@@ -10,7 +10,7 @@ import {Gender} from "../../models/gender";
 import {of} from "rxjs";
 
 
-describe('LoginComponent', () => {
+fdescribe('LoginComponent', () => {
     let loginComponent: LoginComponent;
     let componentHtml: HTMLElement;
     let fixture: ComponentFixture<LoginComponent>;
