@@ -77,7 +77,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-white button--primary" routerLink="/contactUs">Contact</a>
+                <a class="nav-link text-white button--primary" id="contactUs" routerLink="/contactUs">Contact</a>
             </li>
             <li *ngIf="authenticateService.isLoggedIn" class="nav-item">
                 <a class="nav-link text-white button--primary" routerLink="/matching">Matching</a>
@@ -102,10 +102,10 @@
 <!--            When the user is not logged in-->
             <ng-template #notLoggedIn>
                 <li class="nav-item">
-                    <a class="nav-link text-white button--primary" routerLink="/aboutUs">Over ons</a>
+                    <a class="nav-link text-white button--primary" id="aboutUs" routerLink="/aboutUs">Over ons</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link button--primary text-white" routerLink="/activityOverview">Alle Activiteiten</a>
+                    <a class="nav-link button--primary text-white" id="allActivities" routerLink="/activityOverview">Alle Activiteiten</a>
                 </li>
 
 

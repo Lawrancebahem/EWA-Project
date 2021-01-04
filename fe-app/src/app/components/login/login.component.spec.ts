@@ -97,8 +97,7 @@ describe('LoginComponent', () => {
         });
     });
 
-
-    // it('should log in', () => {
+  // it('should log in', () => {
     //     const user = {
     //         "email": "lawrance@gmail.com",
     //         "firstName": "Lawrance",

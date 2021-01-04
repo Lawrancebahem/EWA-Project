@@ -133,3 +133,13 @@ export class RegisterComponent implements OnInit {
     }
 }
 
+export const validUser = {
+  username: '00132126',
+  password: '123456'
+};
+
+export const blankUser = {
+  email: '',
+  password: ''
+};
+
