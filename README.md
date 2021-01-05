@@ -375,4 +375,4 @@ Nav bar component
 ##
 
 ### UML system documentation
-[Click here](https://gitlab.fdmci.hva.nl/se-ewa-2020-2021/digital-life-5/-/wikis/EWA-System-documentation)
+[Click here](https://gitlab.fdmci.hva.nl/se-ewa-2020-2021/digital-life-5/-/blob/master/UML%20system%20documentation.pdf)
