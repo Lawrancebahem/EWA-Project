@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     //login form for the log in page
     public loginForm;
 
-    constructor(private router: Router, private activeRout: ActivatedRoute,
+    constructor(public router: Router, private activeRout: ActivatedRoute,
                 public authenticationService: AuthenticationService,
                 private userService: UserService,
                 private sessionStorage: SessionService) {
@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
     public login(login) {
         let alert = document.getElementById("error-login");
         this.authenticationService.login(login).subscribe(response => {
-
             this.authenticationService.loggedInUser = User.makeTrueCopy(response.body);
             this.authenticationService.isLoggedIn = this.authenticationService.loggedInUser != null;
 
@@ -53,7 +52,6 @@ export class LoginComponent implements OnInit {
                     .subscribe((interestsArray) => {
                     this.authenticationService.loggedInUser.interests = interestsArray;
                 })
-
                 //Navigate to home
                 this.router.navigate(['/home']);
 
@@ -105,6 +103,4 @@ export class LoginComponent implements OnInit {
             console.log(error);
         })
     }
-
-
 }
