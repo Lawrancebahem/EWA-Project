@@ -22,8 +22,8 @@
 
         <h4>Categoriën:</h4>
         <div class="custom-control custom-checkbox" *ngFor="let category of categoryArray">
-            <input type="checkbox" class="custom-control-input" id="{{category.name}}">
-            <label class="custom-control-label" for="{{category.name}}"
+            <input type="checkbox" class="custom-control-input" id="{{category.idCategory}}">
+            <label class="custom-control-label" for="{{category.idCategory}}"
                    id="{{category.description}}">{{category.name}}</label>
         </div>
         <button class="btn btn-primary" (click)="filterSearch()">Zoek</button>
