@@ -4,9 +4,13 @@ import { CategoriesHomePageComponent } from './categories-home-page.component';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {RouterModule} from "@angular/router";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import {RegisterComponent} from "../../register/register.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AuthenticationService} from "../../../services/authenticationService/authentication.service";
 import {AdminService} from "../../../services/admin-service/admin.service";
 import {Category} from "../../../models/category";
+import {CategoryService} from "../../../services/categoryService/category.service";
+import {shareReplay} from "rxjs/operators";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 
 describe('ActivitiesHomePageComponent', () => {
@@ -22,7 +26,7 @@ describe('ActivitiesHomePageComponent', () => {
       imports: [FormsModule, ReactiveFormsModule, HttpClientTestingModule, RouterModule.forRoot([]),Ng2SearchPipeModule],
 
     })
-    .compileComponents();
+        .compileComponents();
     adminService = TestBed.inject(AdminService);
 
   });

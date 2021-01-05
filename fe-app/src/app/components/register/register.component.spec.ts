@@ -1,5 +1,5 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {RegisterComponent} from './register.component';
+import {blankUser, RegisterComponent} from './register.component';
 import {RouterTestingModule} from "@angular/router/testing";
 import {HttpClientModule} from "@angular/common/http";
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -7,9 +7,10 @@ import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {UserService} from "../../services/userService/user.service";
 import {Router, RouterModule} from "@angular/router";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import {first} from "rxjs/operators";
 
 
-fdescribe('RegisterComponent', () => {
+describe('RegisterComponent', () => {
     let component: RegisterComponent;
     let fixture: ComponentFixture<RegisterComponent>;
 
@@ -99,4 +100,66 @@ fdescribe('RegisterComponent', () => {
         expect(compiled.querySelector('#strand').checked).toBeTrue()
         expect(compiled.querySelector('#wintersport').checked).toBeTrue()
     });
+
+
+  /**
+   * @Author Moustafa
+   */
+  it('should test input validity', () => {
+    const firstName = component.registerForm.controls.firstName;
+    const lastName = component.registerForm.controls.lastName;
+    const email = component.registerForm.controls.email;
+    // const password = loginComponent.registerForm.controls.lastName;
+
+    expect(firstName.valid).toBeFalsy();
+    expect(lastName.valid).toBeFalsy();
+    expect(email.valid).toBeFalsy();
+
+    firstName.setValue('Moustafa');
+    lastName.setValue('Fadil');
+    email.setValue('moustafa.fadil@hva.nl');
+    expect(firstName.valid).toBeTruthy();
+    expect(lastName.valid).toBeTruthy();
+    expect(email.valid).toBeTruthy();
+  })
+
+  /**
+   * @Author Moustafa Fadil
+   */
+  it('created a form with username and password input and login button', () => {
+    // const fixture = TestBed.createComponent(LoginComponent);
+    const firstName = fixture.debugElement.nativeElement.querySelector('#input-fields-user-information').querySelector('#surname');
+    const lastName = fixture.debugElement.nativeElement.querySelector('#input-fields-user-information').querySelector('#lastname');
+    const email = fixture.debugElement.nativeElement.querySelector('#input-fields-user-information').querySelector('#email');
+    const password = fixture.debugElement.nativeElement.querySelector('#input-fields-user-information').querySelector('#password1');
+    expect(firstName).toBeDefined();
+    expect(lastName).toBeDefined();
+    expect(email).toBeDefined();
+    expect(password).toBeDefined();
+  });
+
+  function updateForm(userEmail, userPassword) {
+    fixture.componentInstance.registerForm.controls['email'].setValue(userEmail);
+    fixture.componentInstance.registerForm.controls['password'].setValue(userPassword);
+  }
+
+  it('Display Both email & Password Error Msg when both field is blank', () => {
+
+    updateForm(blankUser.email, blankUser.password);
+    fixture.detectChanges();
+
+    const button = fixture.debugElement.nativeElement.querySelector('#submit');
+    button.click();
+    fixture.detectChanges();
+
+    const usernameErrorMsg = fixture.debugElement.nativeElement.querySelector('#email-error-msg');
+    const passwordErrorMsg = fixture.debugElement.nativeElement.querySelector('#password-error-msg');
+
+    expect(usernameErrorMsg).toBeDefined();
+    expect(usernameErrorMsg.innerHTML).toContain('Email is een verplicht veld');
+
+    expect(passwordErrorMsg).toBeDefined();
+    expect(passwordErrorMsg.innerHTML).toContain('Wachtwoord is een verplicht veld');
+  });
+
 });

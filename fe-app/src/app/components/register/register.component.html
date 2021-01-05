@@ -74,7 +74,7 @@
                            maxlength="40" [ngClass]="{'is-invalid':
                           registerForm.get('email').touched &&
                             registerForm.get('email').invalid}">
-                    <p *ngIf="submitted && email.value.length === 0" class="error">Email is
+                    <p *ngIf="submitted && email.value.length === 0" id="email-error-msg" class="error">Email is
                         een verplicht veld</p>
                 </div>
                 <div id="alert" class="alert alert-danger error" style="display: none"></div>
@@ -89,7 +89,7 @@
                                required="required" [ngClass]="{'is-invalid':
                             registerForm.get('password').touched &&
                             registerForm.get('password').invalid}">
-                        <p *ngIf="submitted && registerForm.get('password').invalid" class="error">
+                        <p *ngIf="submitted && registerForm.get('password').invalid" id="password-error-msg" class="error">
                             Wachtwoord is een verplicht veld</p>
                     </div>
                     <span>Bevestiging wachtwoord</span>
