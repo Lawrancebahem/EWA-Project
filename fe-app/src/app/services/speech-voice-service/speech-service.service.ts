@@ -23,8 +23,8 @@ export class SpeechServiceService {
     private utterance = new SpeechSynthesisUtterance("Dagje uit");
     private colorsDutch = ["zwart", "groen", "wit", "geel", "rood", "blauw"] // this is for the dutch speakers
     private colors = ["black", "green", "white", "yellow", "red", "blue"] // to apply the requested color in css
-    private navigationsDutch = ['home', 'activiteiten', 'registratie', 'login', 'profiel',"matching", "mijn activiteiten", "alle activiteiten"]// navigations in Dutch
-    private navigations = ['home', 'activityoverview', 'register', 'login', 'profile',"matching", "myAcitivities","activityOverview", ""] // navigations in English
+    private navigationsDutch = ['home', 'activiteiten', 'registratie', 'login', 'profiel',"matching", "mijn activiteiten", "alle activiteiten", "contact","over ons"]// navigations in Dutch
+    private navigations = ['home', 'activityoverview', 'register', 'login', 'profile',"matching", "myAcitivities","activityOverview","contactUs", "aboutUs"] // navigations in English
 
     // commands = {
     //   'home pagina': this.getHomePage(),
@@ -171,6 +171,10 @@ export class SpeechServiceService {
             return "alle activiteiten"
         }else if (text.toLocaleLowerCase() === "mijn activiteiten") {
             return "mijn activiteiten";
+        }else if (text.toLocaleLowerCase() === "contact" || text.toLocaleLowerCase() === "contactpagina"){
+            return "contact"
+        }else if (text.toLocaleLowerCase() === "over ons" || text.toLocaleLowerCase() === "over dagje uit" || text.toLocaleLowerCase() === "over" ){
+            return "over ons"
         }
         else {
             return "";
@@ -186,6 +190,7 @@ export class SpeechServiceService {
         const routerService = this.injector.get(Router);
         const ngZone = this.injector.get(NgZone);
         if (this.navigationsDutch.indexOf(command) > -1) {
+            console.log(command + " command")
             let navigateTo = this.navigations[this.navigationsDutch.indexOf(command)];
             this.speak("U bent op de " + command +" pagina")
             ngZone.run(() => {
