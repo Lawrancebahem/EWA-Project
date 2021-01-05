@@ -45,8 +45,8 @@ describe('CategorypageComponent', () => {
 
     let activity2 = new Activity();
     activity2.id = 1002;
-    activity2.title = "activityTitleTest";
-    activity2.description = "activityDescriptionTest";
+    activity2.title = "secondActivity";
+    activity2.description = "secondActivity";
     activity2.image = "";
     activity2.location = "overal";
     activity2.show = true;
@@ -59,6 +59,7 @@ describe('CategorypageComponent', () => {
 
     component.categoryObject = category
     component.activityArray.push(activity1, activity2);
+    adminService.categoryArray.push(category)
     fixture.detectChanges();
   });
 
@@ -68,10 +69,12 @@ describe('CategorypageComponent', () => {
 
   it('should search find the right activity with the searchbar',  () => {
 
-    let shownActivities = componentHtml.querySelector(".activity-overview").querySelectorAll(".card")
-    expect(shownActivities.length == 2).toBeTrue()
-
+    let shownActivities = componentHtml.querySelector("#activityOverviewTest").querySelectorAll(".card")
     let searchBarText:HTMLInputElement = componentHtml.querySelector(".search-div").querySelector("#categoryPageSearchBar")
+
+    fixture.detectChanges()
+    console.log(shownActivities.length)
+    expect(shownActivities.length == 2).toBeTrue()
 
     searchBarText.value = "test"
     searchBarText.dispatchEvent(new Event('input'))

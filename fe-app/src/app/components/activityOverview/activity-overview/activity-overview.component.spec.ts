@@ -13,10 +13,10 @@ import {query} from "@angular/animations";
 import {By} from "@angular/platform-browser";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
-import {CategoriesHomePageComponent} from "../../HomePage/categories-home-page/categories-home-page.component";
+import {CategoriesHomePageComponent} from "../../HomePage/categories-home-page/categories-home-page.component"  ;
 
 
-fdescribe('ActivityOverviewComponent', () => {
+describe('ActivityOverviewComponent', () => {
     let component: ActivityOverviewComponent;
     let fixture: ComponentFixture<ActivityOverviewComponent>;
     let adminService: AdminService;
@@ -91,19 +91,24 @@ fdescribe('ActivityOverviewComponent', () => {
     });
 
     it('should filter by clicking category', () => {
-        let fixture = TestBed.createComponent(ActivityOverviewComponent);
         let compiled = fixture.debugElement.nativeElement;
         let activityArray = componentHtml.querySelectorAll(".card")
         fixture.detectChanges();
 
+
         expect(activityArray.length == 2).toBeTrue()
+
+        console.log(activityArray.length)
 
         let categoryToSelect = compiled.querySelector("#testCategoryName");
         categoryToSelect.click();
         fixture.detectChanges();
 
-        expect(compiled.querySelector("#testCategoryName")).toBeTrue();
-        expect(activityArray.length == 0).toBeTrue()
+        expect(categoryToSelect.checked).toBeTrue()
+
+        console.log(activityArray.length)
+
+        expect(activityArray.length != 1).toBeTrue()
     })
 
 

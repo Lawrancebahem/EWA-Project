@@ -10,7 +10,7 @@ import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {first} from "rxjs/operators";
 
 
-fdescribe('RegisterComponent', () => {
+describe('RegisterComponent', () => {
     let component: RegisterComponent;
     let fixture: ComponentFixture<RegisterComponent>;
 
