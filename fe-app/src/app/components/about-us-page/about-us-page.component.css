@@ -13,9 +13,14 @@
   margin-top: 5rem;
   margin-left: 3rem;
 }
-
+.text{
+  font-size: var(--font-p);
+}
 h1{
-  font-size: 30px;
+  font-size: var(--font-h1);
+}
+.title{
+  font-size: var(--font-h2);
 }
 
 .container{
