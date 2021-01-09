@@ -53,6 +53,7 @@ fdescribe('LoginComponent', () => {
      * Check the input fields of login page
      */
     it('login input should update component property', () => {
+        //Get the fields
         const email: HTMLInputElement = componentHtml.querySelector("#form-login-email-password").querySelector("#email");
         const password: HTMLInputElement = componentHtml.querySelector("#form-login-email-password").querySelector("#password");
 
@@ -63,6 +64,7 @@ fdescribe('LoginComponent', () => {
 
         fixture.detectChanges(); //angular should be updated
 
+        //Check if the values are changed of the fields
         expect(loginComponent.loginForm.get('email').value === email.value).toBeTrue()
         expect(loginComponent.loginForm.get('password').value === password.value).toBeTrue();
         //
@@ -71,9 +73,10 @@ fdescribe('LoginComponent', () => {
     });
 
     /**
-     * Test loggin in
+     * Test logging in with using the spy method
      */
     it('login button should react and authentication method should be called', async (done: DoneFn) => {
+        //Get the fields and the submit button
         const email: HTMLInputElement = componentHtml.querySelector("#form-login-email-password").querySelector("#email");
         const password: HTMLInputElement = componentHtml.querySelector("#form-login-email-password").querySelector("#password");
         const loginBtn: HTMLButtonElement = componentHtml.querySelector("#form-login-email-password").querySelector("#submit");
@@ -88,6 +91,7 @@ fdescribe('LoginComponent', () => {
         const authenticationService = fixture.debugElement.injector.get(AuthenticationService);
         const user: User = new User(0, 'Lawrance', "Bahem", new Date(), Gender.MAN, "", "lawrance@gmail.com", "admin", [], true, false);
 
+        //Spy on the login method of the authentication service
         let spy = spyOn(authenticationService, 'login').and.returnValue(of(user));
 
         loginBtn.click();
@@ -103,8 +107,12 @@ fdescribe('LoginComponent', () => {
     });
 
 
+    /**
+     * Test login in with http mock
+     */
     it('should log in', () => {
 
+        //Get the fields
         const email: HTMLInputElement = componentHtml.querySelector("#form-login-email-password").querySelector("#email");
         const password: HTMLInputElement = componentHtml.querySelector("#form-login-email-password").querySelector("#password");
         const loginBtn: HTMLButtonElement = componentHtml.querySelector("#form-login-email-password").querySelector("#submit");
@@ -120,20 +128,26 @@ fdescribe('LoginComponent', () => {
 
         loginBtn.click();
 
+        //Check the if there is a POST request sent to this url
         const req = httpMock.expectOne("http://localhost:8080/authenticate/login")
         expect(req.request.method).toBe("POST")
         req.flush(user);
 
         fixture.detectChanges();
 
+        //Check the logged in user's name and email of authentication service
         expect(loginComponent.authenticationService.loggedInUser.firstName === "lawrance")
         expect(loginComponent.authenticationService.loggedInUser.email === "lawrance@gmail.com")
 
     });
 
 
+    /**
+     * Should get error when trying to log in
+     */
     it('should get error', () => {
 
+        //Get the email field, password and the submit button
         const email: HTMLInputElement = componentHtml.querySelector("#form-login-email-password").querySelector("#email");
         const password: HTMLInputElement = componentHtml.querySelector("#form-login-email-password").querySelector("#password");
         const loginBtn: HTMLButtonElement = componentHtml.querySelector("#form-login-email-password").querySelector("#submit");
@@ -145,15 +159,18 @@ fdescribe('LoginComponent', () => {
         loginBtn.dispatchEvent(new Event('button'))
         fixture.detectChanges();
 
+        //Click on log in
         loginBtn.click();
 
+        //Check if there is a  POST request has been sent
         const req = httpMock.expectOne("http://localhost:8080/authenticate/login")
         expect(req.request.method).toBe("POST")
 
+        //Return an error as response
         req.flush({message: "The email/password are not correct"}, {status: 400, statusText: ''})
 
         fixture.detectChanges();
-
+        //Check if the message has been displayed to the user
         let errorMessageElement = document.getElementById("error-login")
         expect(errorMessageElement.innerHTML).toEqual("The email/password are not correct")
     });

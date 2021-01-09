@@ -21,7 +21,8 @@ import java.util.Set;
 @WebFilter
 public class JWTRequestFilter extends OncePerRequestFilter {
 
-  private static final Set<String> SECURED_PATHS = Set.of("/user/all");
+  private static final Set<String> SECURED_PATHS = Set.of("/user","/user/all","/user/my-interests", "/user/activity-match",
+          "/user/update","/user/interests", "/reaction/new-reaction");
 
   @Autowired
   private APIConfiguration api;

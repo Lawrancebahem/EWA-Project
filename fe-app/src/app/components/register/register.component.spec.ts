@@ -10,7 +10,7 @@ import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {first} from "rxjs/operators";
 
 
-describe('RegisterComponent', () => {
+fdescribe('RegisterComponent', () => {
     let component: RegisterComponent;
     let fixture: ComponentFixture<RegisterComponent>;
 
@@ -30,15 +30,16 @@ describe('RegisterComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    fit('should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should have form', () => {
+    fit('should have form', () => {
         let fixture = TestBed.createComponent(RegisterComponent);
         let compiled = fixture.debugElement.nativeElement;
         fixture.detectChanges();
 
+        //Check if there is a form
         expect(compiled.querySelector('form')).toBeDefined();
     });
 
@@ -62,13 +63,16 @@ describe('RegisterComponent', () => {
     /**
      * Check the length of the input fields
      */
-    it('Check input fields length should be 10', () => {
+    fit('Check input fields length should be 10', () => {
         let fixture = TestBed.createComponent(RegisterComponent);
         let compiled = fixture.debugElement.nativeElement;
-        let inputFields = Array.from(compiled.querySelector('#input-fields-user-information').querySelectorAll('input')).map(() => {
 
+        //Get the all input fields
+        let inputFields = Array.from(compiled.querySelector('#input-fields-user-information').querySelectorAll('input')).map(() => {
         })
         fixture.detectChanges();
+
+        //Check the total of the input fields
         expect(inputFields.length === 10).toBeTrue();
 
     });
@@ -76,11 +80,12 @@ describe('RegisterComponent', () => {
     /**
      * Check the length of the interests labels s
      */
-    it('Should have 9 labels for interests', () => {
+    fit('Should have 9 labels for interests', () => {
         let fixture = TestBed.createComponent(RegisterComponent);
         let compiled = fixture.debugElement.nativeElement;
         fixture.detectChanges();
 
+        //Get all interests and check the size of the returned array
         const labels = Array.from(compiled.querySelector('#pictures-section').querySelectorAll('label'));
         expect(labels.length === 9).toBeTrue();
     });
@@ -88,15 +93,19 @@ describe('RegisterComponent', () => {
     /**
      * Check interests ons they're clicked
      */
-    it('Check clicked interests', () => {
+    fit('Check clicked interests', () => {
         let fixture = TestBed.createComponent(RegisterComponent);
         let compiled = fixture.debugElement.nativeElement;
         fixture.detectChanges();
+
+        //Find input
         let strand = compiled.querySelector('#strand')
         let winterSport = compiled.querySelector('#wintersport')
+        //Click on the both iputs
         winterSport.click();
         strand.click();
         fixture.detectChanges();
+        //Check if the interests have been checked
         expect(compiled.querySelector('#strand').checked).toBeTrue()
         expect(compiled.querySelector('#wintersport').checked).toBeTrue()
     });

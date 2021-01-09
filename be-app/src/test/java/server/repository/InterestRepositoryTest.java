@@ -27,16 +27,25 @@ public class InterestRepositoryTest {
     private EntityRepository<Interest> interestEntityRepositoryJpa;
 
 
+    /**
+     * Find interests by their id
+     */
     @Test
     public void findInterests(){
+
+        //Get interest by id
         Interest interest1 = interestEntityRepositoryJpa.findById(1);
         Interest interest2 = interestEntityRepositoryJpa.findById(2);
         Interest interest3 = interestEntityRepositoryJpa.findById(3);
-
+        //Check the names of the interests
         assertEquals(interest1.getName(), "muziek");
         assertEquals(interest2.getName(), "strand");
         assertEquals(interest3.getName(), "avontuur");
     }
+
+    /**
+     * Get all interests and check their size
+     */
     @Test
     public void totalInterest(){
         List<Interest> interests = this.interestEntityRepositoryJpa.findAll();

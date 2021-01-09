@@ -7,7 +7,6 @@ import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AdminService} from "../../../services/admin-service/admin.service";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
-import {ActivityOverviewComponent} from "../../activityOverview/activity-overview/activity-overview.component";
 import {Activity} from "../../../models/activity";
 import {Category} from "../../../models/category";
 

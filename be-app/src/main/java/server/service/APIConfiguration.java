@@ -6,9 +6,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import server.utilities.JWToken;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Configuration
 @EnableWebMvc
@@ -43,16 +40,16 @@ public class APIConfiguration implements WebMvcConfigurer {
         return refreshExpiration;
     }
 
-    /**
-     * To get the user JWToken decoded
-     * @param request
-     * @return
-     */
-    public JWToken getUserJWTokenDecoded(HttpServletRequest request) {
-        String encryptedToken = request.getHeader(HttpHeaders.AUTHORIZATION);
-        encryptedToken = encryptedToken.replace("Bearer", "");
-        return JWToken.decode(encryptedToken, getPassPhrase(), false);
-    }
+//    /**
+//     * To get the user JWToken decoded
+//     * @param request
+//     * @return
+//     */
+//    public JWToken getUserJWTokenDecoded(HttpServletRequest request) {
+//        String encryptedToken = request.getHeader(HttpHeaders.AUTHORIZATION);
+//        encryptedToken = encryptedToken.replace("Bearer", "");
+//        return JWToken.decode(encryptedToken, getPassPhrase(), false);
+//    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {

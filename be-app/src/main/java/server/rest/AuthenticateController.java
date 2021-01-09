@@ -34,11 +34,10 @@ public class AuthenticateController {
     /**
      * Authenticate logging in
      * @param signInfo
-     * @param request
      * @return
      */
     @PostMapping(value = "/login", produces = "application/json")
-    public ResponseEntity<User> authenticate(@RequestBody ObjectNode signInfo, HttpServletRequest request) throws AccountLockedException {
+    public ResponseEntity<User> authenticate(@RequestBody ObjectNode signInfo) throws AccountLockedException {
         String email = signInfo.get("email").asText();
         String password = signInfo.get("password").asText();
         Login login = new Login(email, password);

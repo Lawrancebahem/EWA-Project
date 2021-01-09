@@ -32,6 +32,7 @@ fdescribe('AuthenticationService', () => {
    * Mocking the login and flushing dummy user
    */
   it('should log in', () => {
+    //Create a user
     const user = {
       "email": "lawrance@gmail.com",
       "firstName": "Lawrance",
@@ -39,16 +40,20 @@ fdescribe('AuthenticationService', () => {
       "admin": true
     }
 
+    //Make login object
     const loginInfo = {email: "lawrance@gmail.com", password: "admin"};
+    //Use the login method to log in and check if the logged in user's name is equal to Lawrance
     service.login(loginInfo).subscribe((res) => {
       expect(res.body.email).toEqual(loginInfo.email);
       expect(res.body.firstName).toEqual("Lawrance");
       console.log(res.body);
     })
 
+    //Check if there is a POST request to this url
     const req = httpMock.expectOne("http://localhost:8080/authenticate/login")
     expect(req.request.method).toBe("POST")
 
+    //Return the logged in user
     req.flush(user);
 
   });

@@ -10,6 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import server.exception.AuthenticationException;
 import server.exception.AuthorizationException;
 import server.exception.PreConditionalFailed;
 import server.exception.ResourceNotFound;
@@ -19,13 +20,10 @@ import server.models.User;
 import server.repositories.ActivityRepositoryJpa;
 import server.repositories.InterestRepositoryJpa;
 import server.repositories.UserRepositoryJpa;
-import server.service.APIConfiguration;
 import server.utilities.JWToken;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import javax.naming.AuthenticationException;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.net.URI;
 import java.util.List;
@@ -53,8 +51,8 @@ public class UserController {
 //    @Qualifier("activityRepositoryJpa")
     private ActivityRepositoryJpa activityRepositoryJpa;
 
-    @Autowired
-    private APIConfiguration api;
+//    @Autowired
+//    private APIConfiguration api;
 
     /**
      * Get all users
@@ -62,8 +60,7 @@ public class UserController {
      */
 //    @JsonView(User.ShowInfoAdmin.class)
     @GetMapping("/all")
-    public List<User> findAll(HttpServletRequest request) {
-        JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
+    public List<User> findAll(@RequestAttribute(value = JWToken.JWT_ATTRIBUTE_NAME) JWToken userJwToken) {
         boolean isAdmin = this.userRepositoryJpa.findById(userJwToken.getId()).isAdmin();
         if (!isAdmin) throw new AuthorizationException("Je bent geen geautoriseerde gebruiker");
         return this.userRepositoryJpa.findAll();
@@ -76,9 +73,7 @@ public class UserController {
      * @return
      */
     @GetMapping()
-    public User findUserById(HttpServletRequest request) throws AuthenticationException {
-
-        JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
+    public User findUserById(@RequestAttribute(value = JWToken.JWT_ATTRIBUTE_NAME) JWToken userJwToken) throws AuthenticationException {
         long userId = userJwToken.getId();
         System.out.println("The user is " + userId + " name " + userJwToken.getEmail());
         User user = this.userRepositoryJpa.findById(userId);
@@ -106,12 +101,10 @@ public class UserController {
     /**
      * Tp update a user
      * @param updatedUser
-     * @param request
      * @return
      */
     @PutMapping("/update")
-    public User updateUser(@RequestBody User updatedUser, HttpServletRequest request) {
-        JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
+    public User updateUser(@RequestBody User updatedUser, @RequestAttribute(value = JWToken.JWT_ATTRIBUTE_NAME) JWToken userJwToken) {
         long userId = userJwToken.getId();
         updatedUser.setId(userId);
         User user = this.userRepositoryJpa.saveOrUpdate(updatedUser);
@@ -124,8 +117,7 @@ public class UserController {
      * @return user's interests in an array
      */
     @GetMapping("/my-interests")
-    public int[] getUserInterests(HttpServletRequest request) {
-        JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
+    public int[] getUserInterests(@RequestAttribute(value = JWToken.JWT_ATTRIBUTE_NAME) JWToken userJwToken) {
         if (userJwToken != null) {
             return this.interestEntityRepositoryJpa.getUsersInterests(userJwToken.getId());
         } else {
@@ -139,10 +131,9 @@ public class UserController {
      * @return
      */
     @PostMapping("/interests")
-    public boolean responseEntityInterests(@RequestBody int[] interestsIds, HttpServletRequest request) {
+    public boolean responseEntityInterests(@RequestBody int[] interestsIds, @RequestAttribute(value = JWToken.JWT_ATTRIBUTE_NAME) JWToken userJwToken) {
+        long userId = userJwToken.getId();
 
-        JWToken userJWToken = this.api.getUserJWTokenDecoded(request);
-        long userId = userJWToken.getId();
         User foundUser = this.userRepositoryJpa.findById(userId); // get the user
         for (int interestId : interestsIds) {// loop through the interests id's
             Interest interest = this.interestEntityRepositoryJpa.findById(interestId); // get the interest
@@ -214,9 +205,8 @@ public class UserController {
      * @return
      */
     @GetMapping("/activity-match")
-    public List<Activity> getMatchesActivity(HttpServletRequest request){
-        JWToken jwToken = api.getUserJWTokenDecoded(request);
-        long userId = jwToken.getId();
+    public List<Activity> getMatchesActivity(@RequestAttribute(value = JWToken.JWT_ATTRIBUTE_NAME) JWToken userJwToken){
+        long userId = userJwToken.getId();
         return this.activityRepositoryJpa.getActivityMatches(userId);
     }
 

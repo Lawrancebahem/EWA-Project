@@ -44,13 +44,17 @@ public class UserRepositoryTest {
         assertNotNull(user);
     }
 
+    /**
+     * Create new users add for them some interests by getting these interests from the database,
+     * after that link these interests to the users and add the users to the database
+     */
     @Test
     @DirtiesContext
     public void addingUserWithInterests(){
         User user1 = new User("Marc","Specht", LocalDate.now(), User.Gender.MAN, "/assets/Images/picProfile.png", "marcspecht@hotmail.com","12345", false,false);
         User user2 = new User("Chantal","Specht", LocalDate.now(), User.Gender.WOMAN, "/assets/Images/picProfile.png", "chantal@hotmail.com","12345", false,false);
 
-
+        //get interests from database
         Interest shopping = interestEntityRepositoryJpa.findById(5);
         Interest sport = interestEntityRepositoryJpa.findById(6);
         Interest music = interestEntityRepositoryJpa.findById(1);
@@ -76,34 +80,45 @@ public class UserRepositoryTest {
     }
 
 
+    /**
+     * Find users by their email and delete them by their ids
+     */
     @Test
-    @DirtiesContext
     public void findUsersByEmailAndDeleteThemById(){
-
+        //find users by email
         User user1 = this.userRepositoryJpa.findByEmail("marcspecht@hotmail.com");
         User user2 = this.userRepositoryJpa.findByEmail("chantal@hotmail.com");
 
+        //delete them by id
         assertTrue(this.userRepositoryJpa.deleteById(user1.getId()));
         assertTrue(this.userRepositoryJpa.deleteById(user2.getId()));
 
     }
 
+    /**
+     * Add new user and update their names
+     */
     @Test
     public void  addNewUserAndUpdateAndDelete(){
+        //new user
         User user1 = new User("Marc","Specht", LocalDate.now(), User.Gender.MAN, "/assets/Images/picProfile.png", "marcspecht@gmail.com","12345", false,false);
         User savedUser = this.userRepositoryJpa.saveOrUpdate(user1);
-
+        //Check if the user has been inserted
         assertEquals("Marc", savedUser.getFirstName());
 
+        //Change the name and last name, set the user as admin
         savedUser.setFirstName("Marcio");
         savedUser.setLastName("De laat");
         savedUser.setBlocked(true);
-
+        //Update the user
         savedUser = this.userRepositoryJpa.saveOrUpdate(savedUser);
 
+        //Check if the user has been updated
         assertEquals("Marcio", savedUser.getFirstName());
         assertEquals("De laat", savedUser.getLastName());
         assertTrue(savedUser.isBlocked());
+
+        //Delete the user
         assertTrue(this.userRepositoryJpa.deleteById(savedUser.getId()));
     }
 }

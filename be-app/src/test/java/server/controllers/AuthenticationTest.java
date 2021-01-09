@@ -10,9 +10,12 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.client.RestClientException;
 import server.models.Login;
 import server.models.User;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  *To test if the user who's sending request, is authorized for a certain request
@@ -35,8 +38,12 @@ public class AuthenticationTest {
     @Test
     public void shouldGetErrorWhenGettingAllUsersWithNoAdminPrivileges(){
 
-        ResponseEntity<User> gettingResult = restTemplate.getForEntity("/user/all", User.class);
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,gettingResult.getStatusCode());
+        //Trying to get all users, expect to error(because there will be no response to extract)
+        assertThrows(RestClientException.class,()->{
+            restTemplate.getForEntity("/user/all", User[].class);
+        });
+
+
     }
 
     /**
@@ -46,7 +53,7 @@ public class AuthenticationTest {
     public void loginAsAdminAndGetAllUsers(){
 
         //Log in as admin
-        Login loginInfo = new Login("lawrance@gmail.com", "admin");
+        Login loginInfo = new Login("lawrancebahem@gmail.com", "admin");
         ResponseEntity<User> responseEntity = restTemplate.postForEntity("/authenticate/login", loginInfo, User.class);
         //Get the encryptedToken from the header
         String encryptedToken = responseEntity.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0).replace("Bearer","").trim();

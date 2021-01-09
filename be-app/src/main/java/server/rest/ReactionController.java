@@ -10,10 +10,8 @@ import server.models.User;
 import server.repositories.ActivityRepositoryJpa;
 import server.repositories.ReactionRepositoryJpa;
 import server.repositories.UserRepositoryJpa;
-import server.service.APIConfiguration;
 import server.utilities.JWToken;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:9876" ,  "https://digital-life-frontend-staging.herokuapp.com","https://digital-life-frontend-prod.herokuapp.com"})
@@ -33,8 +31,8 @@ public class ReactionController {
     @Autowired
     private ReactionRepositoryJpa reactionRepositoryJpa;
 
-    @Autowired
-    private APIConfiguration api;
+//    @Autowired
+//    private APIConfiguration api;
 
 //    @GetMapping("/all")
 //    public List<Object[]> getAllReactions(){
@@ -47,8 +45,7 @@ public class ReactionController {
     }
 
     @PostMapping("/new-reaction")
-    public boolean addNewReaction(@RequestBody ObjectNode objectNode, HttpServletRequest request){
-        JWToken userJwToken = this.api.getUserJWTokenDecoded(request);
+    public boolean addNewReaction(@RequestBody ObjectNode objectNode, @RequestAttribute(value = JWToken.JWT_ATTRIBUTE_NAME) JWToken userJwToken){
 
         int idActivity = objectNode.get("idActivity").asInt();
         String reactionText = objectNode.get("textReaction").asText();
