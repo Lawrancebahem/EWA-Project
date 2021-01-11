@@ -118,18 +118,22 @@ fdescribe('RegisterComponent', () => {
    * @Author Moustafa
    */
   it('should test input validity', () => {
+    //first i make 3 variables with what i can test the validaty
     const firstName = component.registerForm.controls.firstName;
     const lastName = component.registerForm.controls.lastName;
     const email = component.registerForm.controls.email;
-    // const password = loginComponent.registerForm.controls.lastName;
 
+    //i haven't given the constants a input value yet, that is why i expect the an false
     expect(firstName.valid).toBeFalsy();
     expect(lastName.valid).toBeFalsy();
     expect(email.valid).toBeFalsy();
 
+    //now i give the constants a input value
     firstName.setValue('Moustafa');
     lastName.setValue('Fadil');
     email.setValue('moustafa.fadil@hva.nl');
+
+    //last i expect the constants to be truthy because they have an value now.
     expect(firstName.valid).toBeTruthy();
     expect(lastName.valid).toBeTruthy();
     expect(email.valid).toBeTruthy();
@@ -138,12 +142,17 @@ fdescribe('RegisterComponent', () => {
   /**
    * @Author Moustafa Fadil
    */
-  it('created a form with username and password input and login button', () => {
-    // const fixture = TestBed.createComponent(LoginComponent);
+  it('created a form with firstname, lastname, email and password input and login button', () => {
+    //I make 4 contante by retrieving the input values.
+    //first i need to get the form id and when i have the correct name
+    // i retrieve the right input value by inserting the id of the input form.
+    // i did this 4 times
     const firstName = fixture.debugElement.nativeElement.querySelector('#input-fields-user-information').querySelector('#surname');
     const lastName = fixture.debugElement.nativeElement.querySelector('#input-fields-user-information').querySelector('#lastname');
     const email = fixture.debugElement.nativeElement.querySelector('#input-fields-user-information').querySelector('#email');
     const password = fixture.debugElement.nativeElement.querySelector('#input-fields-user-information').querySelector('#password1');
+
+    //last i expect the constants to be defined so they return something
     expect(firstName).toBeDefined();
     expect(lastName).toBeDefined();
     expect(email).toBeDefined();
