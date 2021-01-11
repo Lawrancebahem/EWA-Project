@@ -84,11 +84,11 @@
             </li>
 
 
-            <li *ngIf="authenticateService.isLoggedIn else notLoggedIn" class="nav-item dropdown">
+            <li  *ngIf="authenticateService.isLoggedIn else notLoggedIn" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle button--primary text-white align-middle" id="navbarDropdownMenuLink-333"
                    data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"><img src="{{authenticateService.loggedInUser.profilePicture}}"
+                    <i id="nav-bar-userDropDown" class="fas fa-user"><img src="{{authenticateService.loggedInUser.profilePicture}}"
                                                 class="userProfile"
                                                 alt="avatar image">{{authenticateService.loggedInUser.firstName | titlecase}}</i>
                 </a>
@@ -107,8 +107,6 @@
                 <li class="nav-item">
                     <a class="nav-link button--primary text-white" id="allActivities" routerLink="/activityOverview">Alle Activiteiten</a>
                 </li>
-
-
 
                 <li class="nav-item ">
                     <a class="nav-link text-white button--primary" routerLink="/login">Login</a>

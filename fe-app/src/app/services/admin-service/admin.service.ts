@@ -95,7 +95,4 @@ export class AdminService {
   public deleteAnCategory(idCategory: number):Observable<boolean>{
     return this.httpClient.get<boolean>(`${environment.apiUrl}/category/delete/`+idCategory).pipe(shareReplay(1));
   }
-
-
-
 }

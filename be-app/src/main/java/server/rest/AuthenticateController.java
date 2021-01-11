@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import server.exception.AuthorizationException;
 import server.exception.PreConditionalFailed;
 import server.models.Login;
 import server.models.User;
@@ -37,7 +36,7 @@ public class AuthenticateController {
      * @return
      */
     @PostMapping(value = "/login", produces = "application/json")
-    public ResponseEntity<User> authenticate(@RequestBody ObjectNode signInfo) throws AccountLockedException {
+    public ResponseEntity<User> authenticate(@RequestBody ObjectNode signInfo) throws AccountLockedException, AuthenticationException {
         String email = signInfo.get("email").asText();
         String password = signInfo.get("password").asText();
         Login login = new Login(email, password);
@@ -45,7 +44,7 @@ public class AuthenticateController {
         if (user != null) {
             return this.getResponseBodyJWToken(user); // send the token in the header and the user in the body
         } else {
-            throw new AuthorizationException("Cannot authenticate user by email " + email + " and password #" + password.length());
+            throw new AuthenticationException("Cannot authenticate user by email " + email + " and password #" + password.length());
         }
     }
 

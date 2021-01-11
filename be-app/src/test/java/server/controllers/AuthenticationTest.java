@@ -14,7 +14,10 @@ import org.springframework.web.client.RestClientException;
 import server.models.Login;
 import server.models.User;
 
+import java.util.Objects;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -34,6 +37,8 @@ public class AuthenticationTest {
 
     /**
      * Try to get all users, if the requester not admin, it should return an error
+     *(boundary condition)
+     * System test
      */
     @Test
     public void shouldGetErrorWhenGettingAllUsersWithNoAdminPrivileges(){
@@ -48,6 +53,8 @@ public class AuthenticationTest {
 
     /**
      * Try to get the all users, with a given token for the admin
+     * (boundary condition)
+     * System test
      */
     @Test
     public void loginAsAdminAndGetAllUsers(){
@@ -68,6 +75,7 @@ public class AuthenticationTest {
         ResponseEntity<User[]> gettingResults =  restTemplate.exchange("/user/all", HttpMethod.GET, httpEntity, User[].class);
         //Check if it's succeeded
         assertEquals(HttpStatus.OK, gettingResults.getStatusCode());
+        assertTrue(Objects.requireNonNull(gettingResults.getBody()).length > 0);
 
 //        System.out.println(gettingResults.getBody()[0].getFirstName() +"  the sstatus code");
 

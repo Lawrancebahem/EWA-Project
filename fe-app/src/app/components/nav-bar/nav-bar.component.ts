@@ -65,8 +65,6 @@ export class NavBarComponent implements OnInit {
         }
     }
 
-
-
     //To logout from the drop down
     public logout() {
         this.sessionService.signOut(); // remove session
@@ -85,7 +83,7 @@ export class NavBarComponent implements OnInit {
             // speech recognition API not supported
             let alert = document.getElementById("alert-speech");
             alert.style.display = "block"
-            setTimeout( ()=> {
+            setTimeout( () => {
                 alert.style.display = "none"
             }, 6000)
         }

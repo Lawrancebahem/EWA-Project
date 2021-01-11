@@ -30,6 +30,7 @@ fdescribe('AuthenticationService', () => {
 
   /**
    * Mocking the login and flushing dummy user
+   * System test
    */
   it('should log in', () => {
     //Create a user

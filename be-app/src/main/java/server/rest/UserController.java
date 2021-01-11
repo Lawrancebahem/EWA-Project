@@ -77,7 +77,7 @@ public class UserController {
         long userId = userJwToken.getId();
         System.out.println("The user is " + userId + " name " + userJwToken.getEmail());
         User user = this.userRepositoryJpa.findById(userId);
-        if (user == null) throw new ResourceNotFound("De gebruiker is gevonden");
+        if (user == null) throw new ResourceNotFound("De gebruiker is niet gevonden");
         return this.userRepositoryJpa.getClonedObject(user);
     }
 

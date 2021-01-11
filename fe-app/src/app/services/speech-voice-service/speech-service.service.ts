@@ -84,10 +84,10 @@ export class SpeechServiceService {
      */
     private checkPhrase(array: string []): string {
         for (let i = 0; i < array.length; i++) {
-            let word = array[i];
+            let sentence = array[i];
             let foundWord = "";
-            if (word.length > 0 && word.indexOf(" ") > -1) {
-                let arrayOfWords = word.split(" ");
+            if (sentence.length > 0 && sentence.indexOf(" ") > -1) {
+                let arrayOfWords = sentence.split(" ");
                 for (let j = 0; arrayOfWords.length; j++) {
                     foundWord = this.checkWordsInSentence(arrayOfWords[j], array);
                     if (foundWord !== "") {
@@ -95,7 +95,7 @@ export class SpeechServiceService {
                     }
                 }
             } else {
-                foundWord = this.checkWordsInSentence(word, array);
+                foundWord = this.checkWordsInSentence(sentence, array);
                 if (foundWord !== "") {
                     return foundWord;
                 }
@@ -188,12 +188,12 @@ export class SpeechServiceService {
      */
     public reactOnCommand(command: string) {
         const routerService = this.injector.get(Router);
-        const ngZone = this.injector.get(NgZone);
+        // const ngZone = this.injector.get(NgZone);
         if (this.navigationsDutch.indexOf(command) > -1) {
             console.log(command + " command")
             let navigateTo = this.navigations[this.navigationsDutch.indexOf(command)];
             this.speak("U bent op de " + command +" pagina")
-            ngZone.run(() => {
+            this.ngZone.run(() => {
                 routerService.navigate(['/' + navigateTo]);
             });
         } else if (this.colorsDutch.indexOf(command) > -1) {

@@ -37,6 +37,7 @@ fdescribe('AdminService', () => {
 
     /**
      * Get all users
+     *unit tests/more system test
      */
     it('should get all users', () => {
 
@@ -78,6 +79,7 @@ fdescribe('AdminService', () => {
 
     /**
      * Get all activities
+     * unit tests/more system test
      */
     it('should get all activities', () => {
 

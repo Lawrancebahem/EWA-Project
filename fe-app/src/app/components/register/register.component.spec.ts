@@ -34,6 +34,7 @@ fdescribe('RegisterComponent', () => {
         expect(component).toBeTruthy();
     });
 
+    //unit
     fit('should have form', () => {
         let fixture = TestBed.createComponent(RegisterComponent);
         let compiled = fixture.debugElement.nativeElement;
@@ -62,14 +63,14 @@ fdescribe('RegisterComponent', () => {
 
     /**
      * Check the length of the input fields
+     * unit
      */
     fit('Check input fields length should be 10', () => {
         let fixture = TestBed.createComponent(RegisterComponent);
         let compiled = fixture.debugElement.nativeElement;
 
         //Get the all input fields
-        let inputFields = Array.from(compiled.querySelector('#input-fields-user-information').querySelectorAll('input')).map(() => {
-        })
+        let inputFields = Array.from(compiled.querySelector('#input-fields-user-information').querySelectorAll('input'));
         fixture.detectChanges();
 
         //Check the total of the input fields
@@ -79,6 +80,7 @@ fdescribe('RegisterComponent', () => {
 
     /**
      * Check the length of the interests labels s
+     * unit
      */
     fit('Should have 9 labels for interests', () => {
         let fixture = TestBed.createComponent(RegisterComponent);
@@ -92,6 +94,7 @@ fdescribe('RegisterComponent', () => {
 
     /**
      * Check interests ons they're clicked
+     * unit
      */
     fit('Check clicked interests', () => {
         let fixture = TestBed.createComponent(RegisterComponent);

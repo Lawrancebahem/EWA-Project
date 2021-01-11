@@ -1,8 +1,6 @@
 package server.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import server.repositories.Identifiable;
 
@@ -81,7 +79,7 @@ public class User implements Identifiable, Serializable {
     private String lastName;
     @JsonSerialize(using = CustomDateSerializer.class)
     private LocalDate birthDate;
-    @JsonIgnoreProperties("user")
+//    @JsonIgnoreProperties("user")
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;
     @Column(name = "PROFILE_PICTURE", columnDefinition = "text")
@@ -116,7 +114,6 @@ public class User implements Identifiable, Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Reaction> reactions;
-
 
 
 

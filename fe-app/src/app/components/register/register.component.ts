@@ -114,14 +114,6 @@ export class RegisterComponent implements OnInit {
         }, 4)
     }
 
-    private transformEnum<T>(enumOb: T): T[keyof T][] {
-        const enumValues = Object.keys(enumOb)
-            .map(n => Number.parseInt(n))
-            .filter(n => !Number.isNaN(n)) as unknown as T[keyof T][];
-        return enumValues;
-    }
-
-
     /**
      * Check the equality of the passwords in the registration form
      * @param confirm
@@ -129,7 +121,6 @@ export class RegisterComponent implements OnInit {
     public checkPasswords(confirm): boolean { // here we have the 'passwords' group
         let pass = this.registerForm.get('password').value;
         return pass === confirm;
-
     }
 }
 

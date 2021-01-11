@@ -29,6 +29,7 @@ public class InterestRepositoryTest {
 
     /**
      * Find interests by their id
+     * Integration
      */
     @Test
     public void findInterests(){
@@ -45,6 +46,7 @@ public class InterestRepositoryTest {
 
     /**
      * Get all interests and check their size
+     * Integration
      */
     @Test
     public void totalInterest(){

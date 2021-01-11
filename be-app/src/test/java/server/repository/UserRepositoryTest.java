@@ -36,6 +36,10 @@ public class UserRepositoryTest {
 //    @Qualifier("interestRepositoryJpa")
     private InterestRepositoryJpa interestEntityRepositoryJpa;
 
+    /**
+     * Find a user by id
+     * Integration test
+     */
     @Test
     @DirtiesContext
     public void testFindingUser(){
@@ -47,6 +51,7 @@ public class UserRepositoryTest {
     /**
      * Create new users add for them some interests by getting these interests from the database,
      * after that link these interests to the users and add the users to the database
+     * Integration
      */
     @Test
     @DirtiesContext
@@ -82,6 +87,7 @@ public class UserRepositoryTest {
 
     /**
      * Find users by their email and delete them by their ids
+     * Integration
      */
     @Test
     public void findUsersByEmailAndDeleteThemById(){
@@ -97,6 +103,7 @@ public class UserRepositoryTest {
 
     /**
      * Add new user and update their names
+     * Integration
      */
     @Test
     public void  addNewUserAndUpdateAndDelete(){

@@ -38,10 +38,10 @@ export class AuthenticationService {
     public loggedInUser:User;
 
     constructor(private  httpClient: HttpClient) {
-        let userLogged = localStorage.getItem("loggedIndUser");
-        if (userLogged != '') {
-            this.isLoggedIn = true;
-        }
+        // let userLogged = localStorage.getItem("loggedIndUser");
+        // if (userLogged != '') {
+        //     this.isLoggedIn = true;
+        // }
     }
 
     /**
@@ -51,6 +51,4 @@ export class AuthenticationService {
     public login(login): Observable<any> {
         return this.httpClient.post(`${environment.apiUrl}/authenticate/login`, login,{observe: "response"}).pipe(shareReplay(1));
     }
-
-
 }
