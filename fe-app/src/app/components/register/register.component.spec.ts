@@ -151,27 +151,47 @@ fdescribe('RegisterComponent', () => {
   });
 
   function updateForm(userEmail, userPassword) {
+    //this is for given the form the values by retrieving the email and password.
+    //we retrieve this by inserting the variable as a string en set the value of this variable to
+    //the variables in the updateForm parameters.
     fixture.componentInstance.registerForm.controls['email'].setValue(userEmail);
     fixture.componentInstance.registerForm.controls['password'].setValue(userPassword);
   }
 
+//we check in this check if the fields are blank and need to show an error if they're blank.
   it('Display Both email & Password Error Msg when both field is blank', () => {
 
+
+    //first we retrieve the function and insert an empty string to both parameters
     updateForm(blankUser.email, blankUser.password);
     fixture.detectChanges();
 
+    //next step is clicking on the button and check if there are any changes.
+    //So first we need to retrieve the button by calling an querySelector and inserting the id of the button.
     const button = fixture.debugElement.nativeElement.querySelector('#submit');
-    button.click();
-    fixture.detectChanges();
+    button.click();// for clicking on the button
+    fixture.detectChanges();//check if there are any changes
 
+    //We gave the forms blank strings so we have to show an error.
+    //first of all we have to retrieve the errorMessage by Inserting the id of the error message
+    // in the parameter of the querySelector
     const usernameErrorMsg = fixture.debugElement.nativeElement.querySelector('#email-error-msg');
     const passwordErrorMsg = fixture.debugElement.nativeElement.querySelector('#password-error-msg');
 
+    //this checks if the variable is not undefined
+    // you do this for checken if the variable has a value
     expect(usernameErrorMsg).toBeDefined();
+    //We need to check if the message is the same as we expect it to be, by calling the variable html content.
+    //that is why we use innerHTML
     expect(usernameErrorMsg.innerHTML).toContain('Email is een verplicht veld');
 
+    //this checks if the variable is not undefined
+    // you do this for checken if the variable has a value
     expect(passwordErrorMsg).toBeDefined();
+    //We need to check if the message is the same as we expect it to be, by calling the variable html content.
+    //that is why we use innerHTML
     expect(passwordErrorMsg.innerHTML).toContain('Wachtwoord is een verplicht veld');
   });
+
 
 });

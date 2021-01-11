@@ -84,12 +84,15 @@ public class ReactionRepositoryTest {
   @DirtiesContext
   @Order(3)
   public void findReactions(){
+    //finds the reaction by calling the the methode findById from the reaction Repo en inserting an existing id
     Reaction reaction1 = reactionEntityRepository.findById(170);
     Reaction reaction2 = reactionEntityRepository.findById(195);
 
+    //this checks if the message of the reaction is the same as the string parameter
     assertEquals(reaction1.getMessage(), "oud");
     assertEquals(reaction2.getMessage(), "Wat een leuke activiteit");
   }
+
 
 
   @Test
