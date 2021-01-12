@@ -2,7 +2,6 @@ package server.repositories;
 
 
 import server.exception.ResourceNotFound;
-import server.models.Activity;
 import server.models.User;
 
 import javax.persistence.EntityManager;
@@ -29,7 +28,7 @@ public abstract class AbstractEntityRepositoryJpa<E extends Identifiable> implem
 
 
     /**
-     * Return all users
+     * Return all objects
      * @return
      */
     @Override

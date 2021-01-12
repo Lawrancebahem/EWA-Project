@@ -51,7 +51,7 @@ public class JWToken {
                     .claim(JWT_ADMIN_CLAIM, this.admin)
                     .setIssuer(issuer)
                     .setIssuedAt(new Date())
-                    .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
+                    .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000)) // in ms
                     .signWith(key, SignatureAlgorithm.HS512)
                     .compact();
 
@@ -69,11 +69,10 @@ public class JWToken {
 
     try {
       Key key = getKey(passPhrase);
-      Jws<Claims> jws = Jwts.parser().setSigningKey(key).parseClaimsJws(token);
+      Jws<Claims> jws = Jwts.parser().setSigningKey(key).parseClaimsJws(token); // decrypt the token
       Claims claims = jws.getBody();
 
        return generateTokenInfo(claims);
-
 
     } catch (MalformedJwtException |
             UnsupportedJwtException | IllegalArgumentException| SignatureException e) {
@@ -89,6 +88,7 @@ public class JWToken {
 
   /**
    * Generate token based on the given claims
+   * convert the claims to the appropriate data types
    * @param claims
    * @return
    */
@@ -109,7 +109,7 @@ public class JWToken {
 
 
   /**
-   * Get the key in HS512
+   * Get the key which is encrypted using the algorithm HS512
    * @param passPhrase
    * @return
    */

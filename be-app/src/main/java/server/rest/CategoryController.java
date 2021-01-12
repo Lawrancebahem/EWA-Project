@@ -38,7 +38,7 @@ public class CategoryController {
         if (foundCategory != null){
             for (Activity activity : foundCategory.getActivities()) {
                 Activity foundActivity = this.activityRepositoryJpa.findById(activity.getId());
-                foundActivity.getCategories().clear();
+                foundActivity.getCategories().remove(foundCategory);
                 this.activityRepositoryJpa.saveOrUpdate(foundActivity);
             }
             this.categoryEntityRepositoryJpa.deleteById(idCategory);

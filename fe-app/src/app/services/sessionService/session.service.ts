@@ -22,7 +22,6 @@ export class SessionService {
 
     public signOut() {
         this.saveTokenIntoSessionStorage(null, null);
-
     }
 
     public isAuthenticated(): boolean {

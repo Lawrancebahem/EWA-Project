@@ -31,13 +31,6 @@ public class ReactionController {
     @Autowired
     private ReactionRepositoryJpa reactionRepositoryJpa;
 
-//    @Autowired
-//    private APIConfiguration api;
-
-//    @GetMapping("/all")
-//    public List<Object[]> getAllReactions(){
-//        return this.reactionRepositoryJpa.findReactionForAnActivity(idActivity);
-//    }
 
     @GetMapping("/all/{idActivity}")
     public List<Object[]> getAllReactions(@PathVariable long idActivity){
@@ -45,7 +38,8 @@ public class ReactionController {
     }
 
     @PostMapping("/new-reaction")
-    public boolean addNewReaction(@RequestBody ObjectNode objectNode, @RequestAttribute(value = JWToken.JWT_ATTRIBUTE_NAME) JWToken userJwToken){
+    public boolean addNewReaction(@RequestBody ObjectNode objectNode,
+                                  @RequestAttribute(value = JWToken.JWT_ATTRIBUTE_NAME) JWToken userJwToken){
 
         int idActivity = objectNode.get("idActivity").asInt();
         String reactionText = objectNode.get("textReaction").asText();
@@ -63,6 +57,5 @@ public class ReactionController {
         this.activityRepositoryJpa.saveOrUpdate(foundActivity); // to update the reactions of this activity
 
         return true;
-
     }
 }

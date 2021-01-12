@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
      */
     public register(password: string, confirmPassword: string) {
         this.submitted = true;
-        let alert = document.getElementById("alert");
+        let alert = document.getElementById("alert");// if the email is already in use, this will be prompted
 
         if (this.registerForm.invalid || password != confirmPassword) return;
 

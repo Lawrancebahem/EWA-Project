@@ -38,7 +38,6 @@ public class UserController {
     private JavaMailSender javaMailSender;
 
 
-
     @Autowired
 //    @Qualifier("userRepositoryJpa")
     public UserRepositoryJpa userRepositoryJpa;
@@ -50,9 +49,6 @@ public class UserController {
     @Autowired
 //    @Qualifier("activityRepositoryJpa")
     private ActivityRepositoryJpa activityRepositoryJpa;
-
-//    @Autowired
-//    private APIConfiguration api;
 
     /**
      * Get all users
@@ -210,6 +206,11 @@ public class UserController {
         return this.activityRepositoryJpa.getActivityMatches(userId);
     }
 
+    /**
+     * To reset the password by sending an email to the user
+     * @param objectNode
+     * @return
+     */
     @PostMapping("/reset-password")
     public boolean sendEmailTo(@RequestBody ObjectNode objectNode){
         String email = objectNode.get("email").asText();

@@ -1,10 +1,10 @@
 package server.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import server.repositories.Identifiable;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "\"category\"")
@@ -92,5 +92,16 @@ public class Category implements Identifiable {
     @Override
     public void setId(long id) {
         this.idCategory = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Category category = (Category) o;
+        return idCategory == category.idCategory && Objects.equals(name, category.name) && Objects.equals(image, category.image) && Objects.equals(description, category.description) && Objects.equals(activities, category.activities);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idCategory, name, image, description, activities);
     }
 }

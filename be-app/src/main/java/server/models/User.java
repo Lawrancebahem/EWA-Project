@@ -79,7 +79,6 @@ public class User implements Identifiable, Serializable {
     private String lastName;
     @JsonSerialize(using = CustomDateSerializer.class)
     private LocalDate birthDate;
-//    @JsonIgnoreProperties("user")
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;
     @Column(name = "PROFILE_PICTURE", columnDefinition = "text")
@@ -99,16 +98,6 @@ public class User implements Identifiable, Serializable {
     )
     private List<Interest> interests;
 
-
-//    //activities (fetch type is lazy)
-//    @JsonIgnore
-//    @ManyToMany
-//    @JoinTable(
-//            name = "user_activity",
-//            joinColumns = @JoinColumn(name = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "idactivity")
-//    )
-//    private List<Activity>activities;
 
     //Reaction
     @JsonIgnore
@@ -245,14 +234,6 @@ public class User implements Identifiable, Serializable {
         isBlocked = blocked;
     }
 
-
-//    public List<Activity> getActivities() {
-//        return activities;
-//    }
-//
-//    public void setActivities(List<Activity> activities) {
-//        this.activities = activities;
-//    }
 
     public List<Reaction> getReactions() {
         return reactions;

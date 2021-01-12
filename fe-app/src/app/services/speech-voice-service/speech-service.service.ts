@@ -19,12 +19,14 @@ export class SpeechServiceService {
     public languages: string [] = ['nl-NL']
     public isListening = false;
     public introduced = false;
+    //This Web Speech API interface for the speech service; this can be used to retrieve information about the synthesis voices available
+    // on the device, speak and pause speech, and other commands besides.
     private synthesis = window.speechSynthesis;
     private utterance = new SpeechSynthesisUtterance("Dagje uit");
     private colorsDutch = ["zwart", "groen", "wit", "geel", "rood", "blauw"] // this is for the dutch speakers
     private colors = ["black", "green", "white", "yellow", "red", "blue"] // to apply the requested color in css
-    private navigationsDutch = ['home', 'activiteiten', 'registratie', 'login', 'profiel',"matching", "mijn activiteiten", "alle activiteiten", "contact","over ons"]// navigations in Dutch
-    private navigations = ['home', 'activityoverview', 'register', 'login', 'profile',"matching", "myAcitivities","activityOverview","contactUs", "aboutUs"] // navigations in English
+    private navigationsDutch = ['home', 'activiteiten', 'registratie', 'login', 'profiel',"matching", "mijn activiteiten", "alle activiteiten", "contact","over ons"]// navigationsEnglish in Dutch
+    private navigationsEnglish = ['home', 'activityoverview', 'register', 'login', 'profile',"matching", "myAcitivities","activityOverview","contactUs", "aboutUs"] // navigationsEnglish in English
 
     // commands = {
     //   'home pagina': this.getHomePage(),
@@ -40,7 +42,6 @@ export class SpeechServiceService {
             localStorage.setItem("introduced", "1");
         }
     }
-
 
     /**
      * When clicking on the mic, fire up this method
@@ -65,6 +66,8 @@ export class SpeechServiceService {
      */
     private printUsersSaying(whatTheUserHasSaid: string[]) {
         this.isListening = false;
+        // if we have came out of angular zone, then to come back we use ngZone.run(), so ngZone helps us
+        // to reenter Angular zone from a task that was executed outside of the Angular zone
         this.ngZone.run(() => {
             this.phrases = whatTheUserHasSaid;
         });
@@ -188,14 +191,14 @@ export class SpeechServiceService {
      */
     public reactOnCommand(command: string) {
         const routerService = this.injector.get(Router);
-        // const ngZone = this.injector.get(NgZone);
+        //This is navigation command
         if (this.navigationsDutch.indexOf(command) > -1) {
-            console.log(command + " command")
-            let navigateTo = this.navigations[this.navigationsDutch.indexOf(command)];
+            let navigateTo = this.navigationsEnglish[this.navigationsDutch.indexOf(command)];
             this.speak("U bent op de " + command +" pagina")
             this.ngZone.run(() => {
                 routerService.navigate(['/' + navigateTo]);
             });
+            //Color change command
         } else if (this.colorsDutch.indexOf(command) > -1) {
             let indexColor = this.colorsDutch.indexOf(command);
             let color = this.colors[indexColor]; // get the color if the found index

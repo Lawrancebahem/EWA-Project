@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
 
 
     /**
-     * To showe the confirmation modal
+     * To show the confirmation modal
      */
     public showConfirmationModal(){
         let confirmationModal = document.getElementById("reset-icon");
@@ -100,6 +100,12 @@ export class LoginComponent implements OnInit {
                 this.hideConfirmationModal();
             },2000)
         },error => {
+            successMessage.innerHTML = error.error.message
+            successMessage.style.display = "block"
+            setTimeout(()=>{
+                successMessage.style.display = "none"
+                this.hideConfirmationModal();
+            },2000)
             console.log(error);
         })
     }
