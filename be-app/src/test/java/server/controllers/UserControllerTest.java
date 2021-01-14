@@ -18,6 +18,11 @@ import server.exception.ResourceNotFound;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ *
+ * To test resetting a password by email
+ * @author Lawrance Bahem
+ */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @ExtendWith(SpringExtension.class)

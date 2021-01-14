@@ -74,7 +74,7 @@ public class UserRepositoryJpa extends AbstractEntityRepositoryJpa<User> {
      */
     public User getClonedObject(User savedUser) {
         User clonedUser = new User();
-        clonedUser.setId(savedUser.getId()); // hide the id
+        clonedUser.setId(savedUser.getId());
         clonedUser.setBirthDate(savedUser.getBirthDate());
         clonedUser.setEmail(savedUser.getEmail());
         clonedUser.setFirstName(savedUser.getFirstName());

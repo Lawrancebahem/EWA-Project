@@ -53,6 +53,7 @@ fdescribe('LoginComponent', () => {
     /**
      * Check the input fields of login page
      * Unit
+     * @author Lawrance Bahem
      */
     it('login input should update component property', () => {
         //Get the fields
@@ -77,6 +78,7 @@ fdescribe('LoginComponent', () => {
     /**
      * Test logging in with using the spy method
      * Integration
+     * @author Lawrance Bahem
      */
     it('login button should react and authentication method should be called', async (done: DoneFn) => {
 
@@ -114,6 +116,7 @@ fdescribe('LoginComponent', () => {
     /**
      * Test login in with http mock
      * Integration
+     * @author Lawrance Bahem
      */
     it('should log in', () => {
 
@@ -152,6 +155,7 @@ fdescribe('LoginComponent', () => {
      * Should get error when trying to log in
      * (error condition)
      * Integration test
+     *@author Lawrance Bahem
      */
     it('should get error', () => {
 

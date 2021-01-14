@@ -38,6 +38,7 @@ fdescribe('AdminService', () => {
     /**
      * Get all users
      *unit tests/more system test
+     * @author Lawrance Bahem
      */
     it('should get all users', () => {
 
@@ -80,8 +81,9 @@ fdescribe('AdminService', () => {
     /**
      * Get all activities
      * unit tests/more system test
+     * @author Lawrance Bahem
      */
-    it('should get all activities', () => {
+    it('should get an activity based on id', () => {
 
         //Create two activities
         const activity: { image: string; show: boolean; location: string; id: number; title: string } = {
@@ -117,7 +119,7 @@ fdescribe('AdminService', () => {
         const req = httpMock.expectOne("http://localhost:8080/activity/1")
 
         //Get the id from the url
-        let mockId = req.request.url.match(/\/(\d+)+[\/]?/)[1]
+        let mockId = req.request.url.match(/\/(\d+)/)[1]
         //Check the request method
         expect(req.request.method).toBe("GET")
 
