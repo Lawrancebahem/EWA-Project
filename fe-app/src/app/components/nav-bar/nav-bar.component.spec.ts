@@ -36,7 +36,9 @@ describe('NavBarComponent', () => {
    * @Author Moustafa
    */
   it('should display original title', () => {
+    //here we retrieve the html element by using the querySelector and inserting the css name of the title
     componentHtml = fixture.nativeElement.querySelector('h2')
+    //I except the title to be the same as the string text that is why i use toEqual().
     expect(componentHtml.textContent).toEqual('Dagje uit')
   });
 
@@ -44,7 +46,9 @@ describe('NavBarComponent', () => {
    * @Author Moustafa
    */
   it('should display the expected text', function () {
+    //here we retrieve the html element by using the querySelector and inserting the css name (id) of the contactUS
     componentHtml = fixture.nativeElement.querySelector('#contactUs')
+    //I except the title to be the same as the string text that is why i use toEqual().
     expect(componentHtml.textContent).toEqual('Contact')
   });
 
