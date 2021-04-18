@@ -24,7 +24,7 @@
 
 [All categories have their own page with every activity of that category](#all-categories-have-their-own-page-with-every-activity-of-that-category)
 
-[The website gives a few suggestions for the user of activities that they may like according to their interests](#the-website-gives-a-few-suggestions-for-the-user-of-activities-that-they-may like-according-to-their-interests)
+[The website gives a few suggestions for the user of activities that they may like according to their interests](#the-website-gives-a-few-suggestions-for-the-user-of-activities-that-they-may-like-according-to-their-interests)
 
 [General information](#general-information) 
 
@@ -384,8 +384,6 @@ spring.mail.properties.mail.smtp.starttls.enable=true
 
 ```
 
-
-
 ## Using RESTful API
 
 To interact with the API, you should download an HTTP client. For this we recommend you using Postman. The following link allows you to get a collection of examples to interact with the API.
@@ -403,17 +401,4 @@ If you make request to [http://localhost:8080/user/all](http://localhost:8080/us
 
 ![alt_text](readme-images/ERD.png "image_tooltip")
 
-### UML system documentation
-# UML system documentation
 
-![pasted_image_0](uploads/21fa9c0062ce1b3eee3d25ef601ba2ee/pasted_image_0.png)
-
-**Team: Digital Life 5**
-
-**Subject:** project EWA
-
-**Team members:** Bugra Karaaslan, Lawrance Bahem, Lucas Melis, Tico Vermeer, Moustafa Fadil
-
-**Date:** 30-12-2020
-
-**Version number:** 1.0
